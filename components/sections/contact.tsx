@@ -1,242 +1,198 @@
-// components/sections/portfolio.tsx
 "use client";
 
-import Image from "next/image";
+import { FadeIn } from "@/components/animate/fade-in";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Magnetic } from "@/components/ui/magnetic";
-import { ShineBorder } from "@/components/ui/shine-border";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import * as React from "react";
 
-type Project = {
-  title: string;
-  subtitle: string;
-  description: string;
-  tags: string[];
-  metrics: { label: string; value: string }[];
-  image: string;
-  ctaHref?: string;
-  ctaLabel?: string;
-  isNext?: boolean; // ✅ marcador para el card especial
-};
+type Status = "idle" | "loading" | "ok" | "error";
 
-const projects: Project[] = [
-  {
-    title: "Titan Fitness (Mobile)",
-    subtitle: "IA visual para calorías + rutinas personalizadas",
-    description:
-      "Aplicación móvil que estima calorías a partir de fotos de alimentos usando IA, y genera rutinas personalizadas según objetivos, nivel y disponibilidad. Incluye seguimiento de progreso, recomendaciones inteligentes y ajustes automáticos semana a semana.",
-    tags: ["Mobile", "IA", "Visión", "Fitness"],
-    metrics: [
-      { label: "Valor clave", value: "Foto → Calorías" },
-      { label: "Personalización", value: "Rutinas IA" },
-    ],
-    image: "/portfolio/p1.jpg",
-    ctaHref: "#contacto",
-    ctaLabel: "Ver enfoque",
-  },
-  {
-    title: "Obelium App (Web)",
-    subtitle: "Marketplace de funerarias + comparación + chat",
-    description:
-      "Plataforma web donde las funerarias publican sus servicios y los clientes comparan opciones en tiempo real. Filtros avanzados por precio, ubicación y prestaciones; fichas detalladas; mensajería directa y solicitudes desde una misma interfaz.",
-    tags: ["Web App", "Marketplace", "Filtros", "Chat"],
-    metrics: [
-      { label: "Descubrimiento", value: "Comparar fácil" },
-      { label: "Conversión", value: "Chat directo" },
-    ],
-    image: "/portfolio/p2.jpg",
-    ctaHref: "#contacto",
-    ctaLabel: "Solicitar demo",
-  },
-  {
-    title: "Altum (Legal Web)",
-    subtitle: "Generación gratuita de documentos legales",
-    description:
-      "Web app para crear documentos legales de forma guiada y gratuita: formularios inteligentes, generación instantánea y exportación lista para revisión profesional. El resultado queda preparado para que solo falte el sello/validación de un abogado.",
-    tags: ["LegalTech", "Automatización", "Plantillas", "UX"],
-    metrics: [
-      { label: "Tiempo", value: "Minutos" },
-      { label: "Acceso", value: "Gratuito" },
-    ],
-    image: "/portfolio/p3.jpg",
-    ctaHref: "#contacto",
-    ctaLabel: "Ver caso",
-  },
-  {
-    title: "ODAV (Odoo Venezuela)",
-    subtitle: "Distribución homologada + módulos locales",
-    description:
-      "Distribución de Odoo adaptada a Venezuela, con módulos y desarrollos específicos para operaciones locales. Implementación, personalizaciones, integraciones y mejoras para acelerar el despliegue y reducir fricción operativa.",
-    tags: ["Odoo", "ERP", "Venezuela", "Módulos"],
-    metrics: [
-      { label: "Implementación", value: "Más rápida" },
-      { label: "Adaptación", value: "Homologada" },
-    ],
-    image: "/portfolio/p1.jpg",
-    ctaHref: "#contacto",
-    ctaLabel: "Ver módulos",
-  },
-  {
-    title: "Maintenance Check",
-    subtitle: "Ejecutables para equipos médicos + alertas overlay",
-    description:
-      "Suite de ejecutables para equipos médicos (ultrasonidos y otros) que despliega notificaciones persistentes sobre la interfaz clínica. Diseñada para informar falta de soporte, recordatorios y avisos críticos sin interrumpir el flujo de trabajo del operador.",
-    tags: ["Windows", "Medical", "Overlay", "Notificaciones"],
-    metrics: [
-      { label: "Objetivo", value: "Aviso visible" },
-      { label: "Entorno", value: "Interfaz clínica" },
-    ],
-    image: "/portfolio/p2.jpg",
-    ctaHref: "#contacto",
-    ctaLabel: "Ver implementación",
-  },
+export function Contact() {
+  const [status, setStatus] = React.useState<Status>("idle");
+  const [msg, setMsg] = React.useState<string>("");
 
-  // ✅ Card especial
-  {
-    title: "Tu próximo proyecto",
-    subtitle: "",
-    description: "",
-    tags: [],
-    metrics: [],
-    image: "/portfolio/p3.jpg",
-    ctaHref: "#contacto",
-    ctaLabel: "",
-    isNext: true,
-  },
-];
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("loading");
+    setMsg("");
 
-export function Portfolio() {
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    const payload = {
+      name: String(fd.get("name") ?? ""),
+      company: String(fd.get("company") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
+      message: String(fd.get("message") ?? ""),
+      hp: String(fd.get("hp") ?? ""), // honeypot anti-bots
+    };
+
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await r.json().catch(() => ({}));
+
+      if (!r.ok || !data?.ok) {
+        setStatus("error");
+        setMsg(data?.error ?? "No se pudo enviar. Intenta de nuevo.");
+        return;
+      }
+
+      setStatus("ok");
+      setMsg("Listo. Mensaje enviado. Te respondemos pronto.");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 3500);
+    } catch {
+      setStatus("error");
+      setMsg("Error de red. Intenta de nuevo.");
+    }
+  }
+
   return (
-    <section id="portafolio" className="relative py-20">
-      <div className="mx-auto max-w-6xl px-5">
-        <div className="mb-10 flex flex-col gap-3">
-          <p className="text-sm text-white/60">Portafolio</p>
-          <h2 className="font-display text-3xl tracking-tight text-white md:text-4xl">
-            Proyectos con impacto real
-          </h2>
-          <p className="max-w-2xl text-white/70">
-            Productos y soluciones: IA aplicada, plataformas web, automatización y
-            software a medida. (Puedes reemplazar imágenes y métricas por datos
-            reales cuando quieras.)
-          </p>
-        </div>
+    <section id="contacto" className="mx-auto max-w-6xl px-5 py-20">
+      <FadeIn>
+        <h2 className="font-display text-3xl tracking-tight md:text-4xl">
+          Contacto
+        </h2>
+        <p className="mt-3 max-w-2xl text-white/70">
+          Cuéntanos el objetivo. Te devolvemos una propuesta clara (alcance,
+          tiempo y próximos pasos).
+        </p>
+      </FadeIn>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {projects.map((p, idx) => (
-            <Magnetic key={`${p.title}-${idx}`}>
-              <div
-                className="animate__animated animate__fadeInUp"
-                style={{ animationDelay: `${idx * 90}ms` }}
-              >
-                <ShineBorder className="h-full rounded-2xl">
-                  <article className="group relative overflow-hidden rounded-2xl border border-white/8 bg-gunmetal-950/55 backdrop-blur-xl">
-                    {/* Imagen */}
-                    <div className="relative h-44 w-full overflow-hidden">
-                      <Image
-                        src={p.image}
-                        alt={p.title}
-                        fill
-                        className="object-cover opacity-90 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-100"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-gunmetal-950/90 via-gunmetal-950/20 to-transparent" />
-                    </div>
+      <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <FadeIn delay={0.05}>
+          <Card className="p-7">
+            <form className="grid gap-4" onSubmit={onSubmit}>
+              {/* honeypot anti-bots (no visible) */}
+              <input
+                name="hp"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
-                    {/* Contenido */}
-                    <div className="p-6">
-                      {/* ✅ Card especial: solo + y texto abajo */}
-                      {p.isNext ? (
-                        <div className="relative">
-                          <div className="flex flex-col items-center justify-center py-10">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-4xl font-semibold text-white/80 backdrop-blur-md">
-                              +
-                            </div>
-                            <p className="mt-4 text-center text-sm text-white/70">
-                              Tú puedes ser el próximo
-                            </p>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="mb-3">
-                            <h3 className="font-display text-xl text-white">
-                              {p.title}
-                            </h3>
-                            <p className="text-sm text-white/60">{p.subtitle}</p>
-                          </div>
-
-                          <p className="mb-5 text-sm leading-relaxed text-white/70">
-                            {p.description}
-                          </p>
-
-                          {/* Métricas */}
-                          <div className="mb-5 grid grid-cols-2 gap-3">
-                            {p.metrics.map((m) => (
-                              <div
-                                key={m.label}
-                                className="rounded-xl border border-white/8 bg-white/3 px-3 py-2"
-                              >
-                                <div className="text-[11px] text-white/55">
-                                  {m.label}
-                                </div>
-                                <div className="font-display text-sm text-white">
-                                  {m.value}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-
-                          {/* Tags */}
-                          <div className="mb-5 flex flex-wrap gap-2">
-                            {p.tags.map((t) => (
-                              <span
-                                key={t}
-                                className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/70"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-
-                          {/* CTA */}
-                          <a href={p.ctaHref ?? "#contacto"} className="inline-block">
-                            <Button variant="secondary" size="sm">
-                              {p.ctaLabel ?? "Ver más"}
-                            </Button>
-                          </a>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Glow hover */}
-                    <div className="pointer-events-none absolute -inset-24 opacity-0 blur-3xl transition duration-500 group-hover:opacity-100">
-                      <div className="h-full w-full bg-[radial-gradient(circle_at_30%_20%,rgba(230,57,70,.25),transparent_55%)]" />
-                    </div>
-                  </article>
-                </ShineBorder>
+              <div className="grid gap-4 md:grid-cols-2">
+                <Input
+                  name="name"
+                  label="Nombre"
+                  placeholder="Tu nombre"
+                  required
+                />
+                <Input
+                  name="company"
+                  label="Empresa"
+                  placeholder="Nombre de tu empresa"
+                />
               </div>
-            </Magnetic>
-          ))}
-        </div>
 
-        <div className="mt-10 flex flex-col items-start gap-3 rounded-2xl border border-white/8 bg-white/3 p-6 backdrop-blur-xl md:flex-row md:items-center md:justify-between">
-          <div>
-            <h4 className="font-display text-lg text-white">
-              ¿Quieres ver casos reales de tu industria?
-            </h4>
-            <p className="text-sm text-white/70">
-              Preparamos una vitrina con capturas, KPIs, stack y narrativa
-              orientada a conversión.
-            </p>
-          </div>
-          <Magnetic>
-            <a href="#contacto">
-              <Button variant="primary" size="sm">
-                Armar mi portafolio
+              <Input
+                name="email"
+                label="Email"
+                placeholder="correo@empresa.com"
+                type="email"
+                required
+              />
+              <Input name="phone" label="Teléfono" placeholder="+58 ..." />
+
+              <label className="grid gap-2 text-sm text-white/80">
+                <span className="font-semibold">Mensaje</span>
+                <textarea
+                  name="message"
+                  className="min-h-[130px] resize-y rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/35 outline-none transition focus:border-ruby-red/40 focus:ring-2 focus:ring-ruby-red/20"
+                  placeholder="¿Qué necesitas construir o mejorar?"
+                  required
+                />
+              </label>
+
+              <Button
+                type="submit"
+                className="justify-center"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? (
+                  <>Enviando...</>
+                ) : (
+                  <>
+                    Enviar <ArrowRight className="h-4 w-4" />
+                  </>
+                )}
               </Button>
-            </a>
-          </Magnetic>
-        </div>
+
+              {msg ? (
+                <div
+                  className={`rounded-2xl border px-4 py-3 text-sm ${
+                    status === "ok"
+                      ? "border-emerald-400/20 bg-emerald-400/5 text-emerald-100/80"
+                      : status === "error"
+                      ? "border-red-400/20 bg-red-400/5 text-red-100/80"
+                      : "border-white/10 bg-white/[0.02] text-white/70"
+                  }`}
+                >
+                  {msg}
+                </div>
+              ) : null}
+            </form>
+          </Card>
+        </FadeIn>
+
+        <FadeIn delay={0.1}>
+          <Card className="p-7">
+            <div className="grid gap-4 text-sm text-white/75">
+              <InfoRow icon={<Mail className="h-4 w-4" />} label="Email">
+                soporte@devruby.org
+              </InfoRow>
+              <InfoRow icon={<Phone className="h-4 w-4" />} label="Teléfono">
+                +58 4164118747
+              </InfoRow>
+              <InfoRow icon={<MapPin className="h-4 w-4" />} label="Ubicación">
+                Caracas • Remoto / Latam
+              </InfoRow>
+            </div>
+
+            <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div className="mt-7">
+              <div className="text-xs text-white/55">Sugerencia</div>
+              <div className="mt-2 font-display text-xl">
+                Si tienes un documento o brief, adjúntalo.
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-white/70">
+                Nos ayuda a estimar más rápido y reducir iteraciones innecesarias.
+              </p>
+            </div>
+          </Card>
+        </FadeIn>
       </div>
     </section>
+  );
+}
+
+function InfoRow({
+  icon,
+  label,
+  children,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-4">
+      <div className="grid h-9 w-9 place-items-center rounded-2xl bg-ruby-red/12 text-ruby-red ring-1 ring-ruby-red/20">
+        {icon}
+      </div>
+      <div className="grid gap-1">
+        <div className="text-xs text-white/55">{label}</div>
+        <div className="font-semibold text-white/80">{children}</div>
+      </div>
+    </div>
   );
 }
