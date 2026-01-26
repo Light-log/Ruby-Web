@@ -154,16 +154,6 @@ export function Portfolio() {
                               Tú puedes ser el próximo
                             </p>
                           </div>
-
-                          {/* CTA opcional: si quieres mantener el botón, deja esto.
-                              Si NO lo quieres, borra este bloque completo. */}
-                          <div className="flex justify-center">
-                            <a href={p.ctaHref ?? "#contacto"} className="inline-block">
-                              <Button variant="secondary" size="sm">
-                                Hablemos
-                              </Button>
-                            </a>
-                          </div>
                         </div>
                       ) : (
                         <>
