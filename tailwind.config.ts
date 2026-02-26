@@ -10,12 +10,13 @@ export default {
   theme: {
     extend: {
       colors: {
+        /* Fondo blanco cálido inspirado en el pelaje de Zoroark Hisui */
         dark: {
-          DEFAULT: "#0A0A12",
-          50: "#0E0E18",
-          100: "#13131F",
-          200: "#1A1A2A",
-          300: "#222236",
+          DEFAULT: "#F5F1EC",
+          50: "#EDE8E3",
+          100: "#FFFFFF",
+          200: "#F0ECE7",
+          300: "#E5E0DA",
         },
         crimson: {
           DEFAULT: "#C41E3A",
@@ -26,26 +27,27 @@ export default {
           200: "rgba(196,30,58,0.20)",
         },
         ivory: {
-          DEFAULT: "#EDE8E3",
-          dim: "#C4C0BA",
-          muted: "#8D99AE",
+          DEFAULT: "#1A1A2E",
+          dim: "#3D3D55",
+          muted: "#6B6B85",
         },
         lavender: {
           DEFAULT: "#7C5CBF",
           light: "#A78BFA",
           dark: "#5B3D99",
         },
-        silver: "#8D99AE",
+        silver: "#8D8DA0",
       },
       fontFamily: {
         display: ["var(--font-oswald)", "ui-sans-serif", "system-ui"],
         body: ["var(--font-open-sans)", "ui-sans-serif", "system-ui"],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(196,30,58,.35), 0 0 40px rgba(196,30,58,.18)",
-        "glow-lg": "0 0 60px rgba(196,30,58,.25), 0 0 120px rgba(124,92,191,.12)",
-        "glow-lavender": "0 0 0 1px rgba(124,92,191,.35), 0 0 40px rgba(124,92,191,.18)",
-        card: "0 4px 24px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.04)",
+        glow: "0 0 0 1px rgba(196,30,58,.30), 0 0 40px rgba(196,30,58,.12)",
+        "glow-lg": "0 0 60px rgba(196,30,58,.18), 0 0 120px rgba(124,92,191,.08)",
+        "glow-lavender": "0 0 0 1px rgba(124,92,191,.30), 0 0 40px rgba(124,92,191,.12)",
+        card: "0 2px 16px rgba(0,0,0,.06), 0 1px 0 rgba(0,0,0,.03)",
+        "card-hover": "0 8px 30px rgba(0,0,0,.10), 0 2px 0 rgba(0,0,0,.03)",
       },
       keyframes: {
         floaty: {

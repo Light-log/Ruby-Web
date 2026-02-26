@@ -10,18 +10,17 @@ export function CTASection() {
     <section className="relative py-24">
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl border border-white/8 bg-dark-100/60 p-12 md:p-20 text-center backdrop-blur-xl">
-            {/* Decorative gradients */}
-            <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-crimson/10 blur-[100px]" />
-            <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-lavender/10 blur-[100px]" />
+          <div className="relative overflow-hidden rounded-3xl border border-black/8 bg-white/70 p-12 md:p-20 text-center backdrop-blur-xl shadow-card">
+            <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-crimson/6 blur-[100px]" />
+            <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-lavender/6 blur-[100px]" />
 
             <div className="relative">
-              <div className="inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-crimson/5 px-4 py-2 text-xs text-crimson-light mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-8">
                 <Rocket className="h-3.5 w-3.5" />
                 Empecemos hoy
               </div>
 
-              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight">
+              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight text-ivory">
                 ¿Listo para transformar{" "}
                 <span className="gradient-text">tu negocio?</span>
               </h2>

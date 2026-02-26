@@ -36,19 +36,19 @@ export function Aurora({ className }: { className?: string }) {
     <div ref={ref} className={cn("absolute inset-0 overflow-hidden", className)}>
       <div
         data-blob
-        className="absolute -left-24 top-12 h-[420px] w-[420px] rounded-full bg-crimson/15 blur-[80px]"
+        className="absolute -left-24 top-12 h-[420px] w-[420px] rounded-full bg-crimson/8 blur-[100px]"
       />
       <div
         data-blob
-        className="absolute right-[-120px] top-[-40px] h-[520px] w-[520px] rounded-full bg-lavender/12 blur-[100px]"
+        className="absolute right-[-120px] top-[-40px] h-[520px] w-[520px] rounded-full bg-lavender/8 blur-[120px]"
       />
       <div
         data-blob
-        className="absolute bottom-[-140px] left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-crimson-dark/10 blur-[100px]"
+        className="absolute bottom-[-140px] left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-crimson-dark/6 blur-[120px]"
       />
       <div
         data-blob
-        className="absolute bottom-[-120px] right-[-120px] h-[460px] w-[460px] rounded-full bg-lavender-dark/10 blur-[90px]"
+        className="absolute bottom-[-120px] right-[-120px] h-[460px] w-[460px] rounded-full bg-lavender-dark/6 blur-[100px]"
       />
     </div>
   );

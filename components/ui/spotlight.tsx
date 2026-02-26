@@ -17,9 +17,9 @@ type SpotlightProps = {
 
 export function Spotlight({
   className,
-  fill = "rgba(196,30,58,.15)",
+  fill = "rgba(196,30,58,.08)",
   size = 620,
-  opacity = 0.7,
+  opacity = 0.5,
   follow = 0.22,
   softness = 0.62,
   fullscreen = false,
@@ -102,10 +102,9 @@ export function Spotlight({
         [
           "opacity-[var(--spot-opacity)]",
           "[background:",
-          "radial-gradient(calc(var(--spot-size)*1.35)_circle_at_var(--x,50%)_var(--y,30%),rgba(255,255,255,0.06),transparent_65%),",
+          "radial-gradient(calc(var(--spot-size)*1.35)_circle_at_var(--x,50%)_var(--y,30%),rgba(0,0,0,0.02),transparent_65%),",
           "radial-gradient(var(--spot-size)_circle_at_var(--x,50%)_var(--y,30%),var(--spot-fill),transparent_calc(55%+var(--spot-soft)*20%))",
           "]",
-          "mix-blend-screen",
           "blur-[0.2px]",
         ].join(""),
         className

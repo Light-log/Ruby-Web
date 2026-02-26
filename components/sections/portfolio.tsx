@@ -111,12 +111,12 @@ export function Portfolio() {
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-crimson/5 px-4 py-2 text-xs text-crimson-light mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
               <Briefcase className="h-3.5 w-3.5" />
               Portafolio
             </div>
 
-            <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+            <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
               Proyectos con{" "}
               <span className="gradient-text">impacto real</span>
             </h2>
@@ -132,17 +132,16 @@ export function Portfolio() {
             <FadeIn key={p.title} delay={idx * 0.08}>
               <Magnetic>
                 <ShineBorder className="h-full rounded-2xl">
-                  <article className="group relative flex h-[520px] flex-col overflow-hidden rounded-2xl border border-white/8 bg-dark-100/60 backdrop-blur-xl">
-                    {/* Image */}
+                  <article className="group relative flex h-[520px] flex-col overflow-hidden rounded-2xl border border-black/8 bg-white/80 backdrop-blur-xl shadow-card">
                     <div className="relative h-44 w-full overflow-hidden">
                       <Image
                         src={p.image}
                         alt={p.title}
                         fill
-                        className="object-cover opacity-80 transition-all duration-500 group-hover:scale-[1.06] group-hover:opacity-100"
+                        className="object-cover opacity-90 transition-all duration-500 group-hover:scale-[1.06] group-hover:opacity-100"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-100 via-dark-100/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
                     </div>
 
                     <div className="flex flex-1 flex-col p-6">
@@ -152,7 +151,7 @@ export function Portfolio() {
                             Tu próximo proyecto
                           </h3>
                           <div className="flex flex-1 flex-col items-center justify-center">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-lavender/20 bg-lavender/5 text-4xl font-light text-lavender backdrop-blur-md transition-all duration-300 group-hover:bg-lavender/10 group-hover:border-lavender/30 group-hover:shadow-glow-lavender">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-lavender/15 bg-lavender/5 text-4xl font-light text-lavender backdrop-blur-md transition-all duration-300 group-hover:bg-lavender/10 group-hover:border-lavender/25 group-hover:shadow-glow-lavender">
                               +
                             </div>
                             <p className="mt-4 text-center text-sm text-ivory-dim">
@@ -177,7 +176,7 @@ export function Portfolio() {
 
                           <div className="mt-4 grid grid-cols-2 gap-2">
                             {p.metrics.map((m) => (
-                              <div key={m.label} className="rounded-xl border border-white/6 bg-dark-200/50 px-3 py-2">
+                              <div key={m.label} className="rounded-xl border border-black/6 bg-dark-200/60 px-3 py-2">
                                 <div className="text-[10px] text-ivory-muted">{m.label}</div>
                                 <div className="font-display text-xs text-ivory">{m.value}</div>
                               </div>
@@ -186,7 +185,7 @@ export function Portfolio() {
 
                           <div className="mt-4 flex flex-wrap gap-1.5">
                             {p.tags.map((t) => (
-                              <span key={t} className="rounded-full border border-white/8 bg-white/5 px-2.5 py-1 text-[10px] text-ivory-muted">
+                              <span key={t} className="rounded-full border border-black/8 bg-black/3 px-2.5 py-1 text-[10px] text-ivory-muted">
                                 {t}
                               </span>
                             ))}
@@ -204,7 +203,7 @@ export function Portfolio() {
                     </div>
 
                     <div className="pointer-events-none absolute -inset-24 opacity-0 blur-3xl transition-all duration-500 group-hover:opacity-100">
-                      <div className="h-full w-full bg-[radial-gradient(circle_at_30%_20%,rgba(196,30,58,.15),transparent_55%)]" />
+                      <div className="h-full w-full bg-[radial-gradient(circle_at_30%_20%,rgba(196,30,58,.06),transparent_55%)]" />
                     </div>
                   </article>
                 </ShineBorder>

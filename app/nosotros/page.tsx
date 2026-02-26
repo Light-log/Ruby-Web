@@ -46,20 +46,19 @@ export default function NosotrosPage() {
 
       <section className="relative py-24">
         <div className="absolute inset-0 -z-10 opacity-30">
-          <div className="absolute -top-40 right-1/4 h-[400px] w-[400px] rounded-full bg-lavender/10 blur-[100px]" />
-          <div className="absolute top-40 left-1/4 h-[350px] w-[350px] rounded-full bg-crimson/10 blur-[100px]" />
+          <div className="absolute -top-40 right-1/4 h-[400px] w-[400px] rounded-full bg-lavender/6 blur-[100px]" />
+          <div className="absolute top-40 left-1/4 h-[350px] w-[350px] rounded-full bg-crimson/6 blur-[100px]" />
         </div>
 
         <div className="mx-auto max-w-7xl px-6">
-          {/* Header */}
           <FadeIn>
             <div className="flex flex-col items-center text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-light mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark mb-6">
                 <Users className="h-3.5 w-3.5" />
                 Nosotros
               </div>
 
-              <h1 className="font-display text-4xl tracking-tight md:text-6xl">
+              <h1 className="font-display text-4xl tracking-tight text-ivory md:text-6xl">
                 Tecnología con{" "}
                 <span className="gradient-text">propósito humano</span>
               </h1>
@@ -70,7 +69,6 @@ export default function NosotrosPage() {
             </div>
           </FadeIn>
 
-          {/* Story + Logo */}
           <div className="mt-20 grid gap-12 md:grid-cols-2 md:items-center">
             <FadeIn delay={0.05}>
               <Card className="p-8 md:p-10">
@@ -97,13 +95,13 @@ export default function NosotrosPage() {
             <FadeIn delay={0.1}>
               <div className="flex flex-col items-center">
                 <div className="relative">
-                  <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-crimson/10 via-transparent to-lavender/10 blur-3xl" />
+                  <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-crimson/6 via-transparent to-lavender/6 blur-3xl" />
                   <Image
                     src="/logo.svg"
                     alt="Consultora Ruby"
                     width={240}
                     height={240}
-                    className="relative select-none drop-shadow-[0_16px_60px_rgba(196,30,58,.15)]"
+                    className="relative select-none drop-shadow-[0_16px_60px_rgba(196,30,58,.08)]"
                   />
                 </div>
                 <div className="mt-8 text-center">
@@ -115,7 +113,7 @@ export default function NosotrosPage() {
 
                 <div className="mt-8 grid grid-cols-2 gap-3 w-full max-w-sm">
                   {capabilities.map((cap) => (
-                    <div key={cap.label} className="flex items-center gap-2 rounded-xl border border-white/8 bg-dark-200/50 px-4 py-3">
+                    <div key={cap.label} className="flex items-center gap-2 rounded-xl border border-black/8 bg-dark-200/60 px-4 py-3">
                       <cap.icon className="h-4 w-4 text-lavender" />
                       <span className="text-xs text-ivory-dim">{cap.label}</span>
                     </div>
@@ -125,11 +123,10 @@ export default function NosotrosPage() {
             </FadeIn>
           </div>
 
-          {/* Values */}
           <div className="mt-24">
             <FadeIn>
               <div className="text-center mb-12">
-                <h2 className="font-display text-3xl tracking-tight md:text-4xl">
+                <h2 className="font-display text-3xl tracking-tight text-ivory md:text-4xl">
                   Nuestros <span className="gradient-text">valores</span>
                 </h2>
                 <p className="mt-3 text-ivory-dim">
@@ -141,8 +138,8 @@ export default function NosotrosPage() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {values.map((v, idx) => (
                 <FadeIn key={v.title} delay={idx * 0.08}>
-                  <Card className="h-full p-7 transition-all duration-300 hover:border-white/15 hover:-translate-y-1">
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-crimson/10 text-crimson ring-1 ring-crimson/20 mb-5">
+                  <Card className="h-full p-7 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover hover:-translate-y-1">
+                    <div className="grid h-12 w-12 place-items-center rounded-2xl bg-crimson/8 text-crimson ring-1 ring-crimson/15 mb-5">
                       <v.icon className="h-5 w-5" />
                     </div>
                     <h3 className="font-display text-lg text-ivory mb-3">{v.title}</h3>
@@ -153,12 +150,11 @@ export default function NosotrosPage() {
             </div>
           </div>
 
-          {/* Mission */}
           <FadeIn delay={0.1}>
             <div className="mt-24">
               <Card className="relative overflow-hidden p-10 md:p-14 text-center">
-                <div className="absolute -top-20 -left-20 h-40 w-40 rounded-full bg-crimson/8 blur-[80px]" />
-                <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-lavender/8 blur-[80px]" />
+                <div className="absolute -top-20 -left-20 h-40 w-40 rounded-full bg-crimson/5 blur-[80px]" />
+                <div className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full bg-lavender/5 blur-[80px]" />
 
                 <div className="relative">
                   <h2 className="font-display text-3xl md:text-4xl text-ivory mb-4">

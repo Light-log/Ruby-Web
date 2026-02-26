@@ -62,12 +62,12 @@ export function Contact() {
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-crimson/5 px-4 py-2 text-xs text-crimson-light mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
               <MessageSquare className="h-3.5 w-3.5" />
               Contacto
             </div>
 
-            <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+            <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
               Hablemos de tu{" "}
               <span className="gradient-text">próximo proyecto</span>
             </h2>
@@ -98,7 +98,7 @@ export function Contact() {
                   <span className="font-semibold">Mensaje</span>
                   <textarea
                     name="message"
-                    className="min-h-[140px] resize-y rounded-2xl border border-white/10 bg-dark-200/60 px-4 py-3 text-ivory placeholder:text-ivory-muted/50 outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-dark-200/80"
+                    className="min-h-[140px] resize-y rounded-2xl border border-black/10 bg-dark-200/60 px-4 py-3 text-ivory placeholder:text-ivory-muted/60 outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white"
                     placeholder="¿Qué necesitas construir o mejorar?"
                     required
                   />
@@ -118,10 +118,10 @@ export function Contact() {
                   <div
                     className={`rounded-2xl border px-4 py-3 text-sm animate__animated animate__fadeIn ${
                       status === "ok"
-                        ? "border-emerald-400/20 bg-emerald-400/5 text-emerald-200"
+                        ? "border-emerald-500/20 bg-emerald-50 text-emerald-700"
                         : status === "error"
-                        ? "border-red-400/20 bg-red-400/5 text-red-200"
-                        : "border-white/10 bg-white/5 text-ivory-dim"
+                        ? "border-red-400/20 bg-red-50 text-red-700"
+                        : "border-black/10 bg-black/3 text-ivory-dim"
                     }`}
                   >
                     {msg}
@@ -145,10 +145,10 @@ export function Contact() {
                 </InfoRow>
               </div>
 
-              <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+              <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
 
               <div className="mt-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-3 py-1.5 text-xs text-lavender-light mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-3 py-1.5 text-xs text-lavender-dark mb-4">
                   Tip
                 </div>
                 <div className="font-display text-xl text-ivory">
@@ -160,7 +160,7 @@ export function Contact() {
                 </p>
               </div>
 
-              <div className="mt-8 rounded-2xl border border-white/8 bg-dark-200/50 p-5">
+              <div className="mt-8 rounded-2xl border border-black/8 bg-dark-200/60 p-5">
                 <div className="text-xs text-ivory-muted mb-2">Tiempo de respuesta promedio</div>
                 <div className="font-display text-2xl gradient-text">&lt; 24 horas</div>
                 <p className="mt-2 text-xs text-ivory-muted">
@@ -185,13 +185,13 @@ function InfoRow({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-2xl border border-white/8 bg-dark-200/50 px-5 py-4 transition-all duration-300 hover:border-white/15 hover:bg-dark-200/70">
-      <div className="grid h-10 w-10 place-items-center rounded-xl bg-crimson/10 text-crimson ring-1 ring-crimson/20">
+    <div className="flex items-start gap-3 rounded-2xl border border-black/8 bg-dark-200/60 px-5 py-4 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
+      <div className="grid h-10 w-10 place-items-center rounded-xl bg-crimson/8 text-crimson ring-1 ring-crimson/15">
         {icon}
       </div>
       <div className="grid gap-1">
         <div className="text-xs text-ivory-muted">{label}</div>
-        <div className="font-semibold text-ivory/90">{children}</div>
+        <div className="font-semibold text-ivory">{children}</div>
       </div>
     </div>
   );
