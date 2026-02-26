@@ -1,4 +1,3 @@
-// app/layout.tsx
 import "./globals.css";
 import "animate.css";
 
@@ -20,7 +19,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Consultora Ruby",
+  title: "Consultora Ruby | Soluciones Tecnológicas Premium",
   description:
     "Diseñamos, construimos e integramos soluciones tecnológicas: software a medida, automatización, DevOps, seguridad e inteligencia de datos.",
   icons: {
@@ -35,23 +34,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={cn(oswald.variable, openSans.variable)}>
-      <body className="relative min-h-screen bg-background font-sans antialiased">
-        {/* Spotlight GLOBAL (por encima del contenido) */}
+      <body className="relative min-h-screen bg-dark font-body antialiased">
         <div className="pointer-events-none fixed inset-0 z-[20]">
           <Spotlight
             fullscreen
-            className="opacity-35"
-            fill="rgba(255,255,255,.10)"
-            size={720}
-            follow={0.18}
-            softness={0.65}
+            className="opacity-30"
+            fill="rgba(124,92,191,.08)"
+            size={800}
+            follow={0.15}
+            softness={0.7}
           />
         </div>
-
-        {/* Noise */}
         <div className="noise pointer-events-none fixed inset-0 z-[21]" />
-
-        {/* Contenido */}
         <div className="relative z-[30]">{children}</div>
       </body>
     </html>

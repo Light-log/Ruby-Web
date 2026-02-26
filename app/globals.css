@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base */
 :root {
   color-scheme: dark;
 }
@@ -12,32 +11,74 @@ html, body {
 }
 
 body {
-  @apply bg-gunmetal-950 text-white font-body antialiased;
+  @apply bg-dark text-ivory font-body antialiased;
   overflow-x: hidden;
 }
 
-/* Smooth scrolling for the landing */
 html {
   scroll-behavior: smooth;
 }
 
-/* Subtle noise overlay */
 .noise {
   pointer-events: none;
   position: fixed;
   inset: 0;
   z-index: 1;
-  opacity: .08;
+  opacity: .06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
 
-/* Gradient border helper */
 .border-grad {
   background:
-    linear-gradient(#0F172A, #0F172A) padding-box,
-    linear-gradient(135deg, rgba(230,57,70,.65), rgba(141,153,174,.35), rgba(208,0,0,.55)) border-box;
+    linear-gradient(#0A0A12, #0A0A12) padding-box,
+    linear-gradient(135deg, rgba(196,30,58,.55), rgba(124,92,191,.35), rgba(141,153,174,.25)) border-box;
   border: 1px solid transparent;
 }
 
-/* Animate.css is installed (classes like animate__animated animate__fadeInUp, etc.) */
+.border-grad-lavender {
+  background:
+    linear-gradient(#13131F, #13131F) padding-box,
+    linear-gradient(135deg, rgba(124,92,191,.55), rgba(196,30,58,.35), rgba(141,153,174,.25)) border-box;
+  border: 1px solid transparent;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #EDE8E3 0%, #C41E3A 40%, #7C5CBF 70%, #EDE8E3 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.glass {
+  background: rgba(19, 19, 31, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,30,58,0.3), rgba(124,92,191,0.3), transparent);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A12;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124,92,191,0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124,92,191,0.5);
+}
+
+::selection {
+  background: rgba(196,30,58,0.3);
+  color: #EDE8E3;
+}

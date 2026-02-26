@@ -6,112 +6,193 @@ import { Magnetic } from "@/components/ui/magnetic";
 import { Button } from "@/components/ui/button";
 import anime from "animejs";
 import * as React from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, Award } from "lucide-react";
 
 const bullets = [
-  "Arquitectura escalable (no parches).",
-  "Automatización real: menos tareas, menos errores.",
-  "UI con motion design y microinteracciones.",
-  "Deploys y observabilidad para operar con tranquilidad.",
+  "Arquitectura escalable desde el día uno (no parches).",
+  "Automatización real: menos tareas repetitivas, menos errores.",
+  "UI con motion design y microinteracciones profesionales.",
+  "Deploys automatizados y observabilidad para operar con confianza.",
+  "Documentación completa y handoff organizado.",
+];
+
+const stats = [
+  { value: "50+", label: "Proyectos entregados" },
+  { value: "98%", label: "Satisfacción del cliente" },
+  { value: "24/7", label: "Soporte disponible" },
+  { value: "3x", label: "Más rápido que lo convencional" },
 ];
 
 export function Proof() {
   const ref = React.useRef<HTMLDivElement | null>(null);
+  const statsRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    // Stagger reveal with anime.js once on mount
     const items = el.querySelectorAll("[data-b]");
-    anime({
-      targets: items,
-      opacity: [0, 1],
-      translateY: [10, 0],
-      delay: anime.stagger(90),
-      duration: 650,
-      easing: "easeOutCubic",
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: items,
+              opacity: [0, 1],
+              translateX: [-20, 0],
+              delay: anime.stagger(90),
+              duration: 650,
+              easing: "easeOutCubic",
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+
+    const counters = el.querySelectorAll("[data-counter]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: counters,
+              opacity: [0, 1],
+              translateY: [20, 0],
+              scale: [0.95, 1],
+              delay: anime.stagger(100),
+              duration: 600,
+              easing: "easeOutCubic",
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="resultados" className="mx-auto max-w-6xl px-5 py-20">
-      <FadeIn>
-        <h2 className="font-display text-3xl tracking-tight md:text-4xl">
-          Construimos sistemas que se pueden mantener
-        </h2>
-        <p className="mt-3 max-w-2xl text-white/70">
-          La diferencia no está en el “demo bonito”, sino en la calidad de ingeniería, la claridad y la operación.
-        </p>
-      </FadeIn>
+    <section id="resultados" className="relative py-24">
+      <div className="section-divider mx-auto max-w-5xl mb-24" />
 
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
-        <FadeIn delay={0.05}>
-          <Card className="p-7">
-            <div className="text-sm text-white/70">
-              Enfoque de entrega:
-            </div>
-            <div ref={ref} className="mt-5 grid gap-3">
-              {bullets.map((b) => (
-                <div key={b} data-b className="flex items-start gap-3 opacity-0">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-ruby-red" />
-                  <div className="text-sm text-white/75">{b}</div>
-                </div>
-              ))}
+      <div className="mx-auto max-w-7xl px-6">
+        <FadeIn>
+          <div className="flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-light mb-6">
+              <Award className="h-3.5 w-3.5" />
+              Resultados
             </div>
 
-            <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-white/55">
-              <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-2">Arquitectura</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-2">Automatización</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-2">Seguridad</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-2">UI</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-2">DevOps</span>
-            </div>
-          </Card>
+            <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+              Sistemas que{" "}
+              <span className="gradient-text">generan confianza</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-ivory-dim">
+              La diferencia no está en el &ldquo;demo bonito&rdquo;, sino en la calidad de
+              ingeniería, la claridad y la operación.
+            </p>
+          </div>
         </FadeIn>
 
-        <FadeIn delay={0.1}>
-          <Card className="relative overflow-hidden p-7">
-            <div className="absolute inset-0 bg-gradient-to-br from-ruby-red/10 via-transparent to-silver/10" />
-            <div className="relative">
-              <div className="font-display text-2xl">¿Qué hacemos en tu proyecto?</div>
-              <p className="mt-3 text-sm leading-relaxed text-white/70">
-                Te entregamos un sistema completo: código + despliegue + prácticas correctas, para que puedas crecer sin fricción.
-              </p>
+        {/* Stats counter */}
+        <div ref={statsRef} className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} data-counter className="opacity-0">
+              <Card className="p-6 text-center transition-all duration-300 hover:border-white/15 hover:-translate-y-1">
+                <div className="font-display text-3xl md:text-4xl gradient-text">{s.value}</div>
+                <div className="mt-2 text-sm text-ivory-dim">{s.label}</div>
+              </Card>
+            </div>
+          ))}
+        </div>
 
-              <div className="mt-7 grid gap-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="text-xs text-white/55">Ejemplo de resultado</div>
-                  <div className="mt-1 text-sm font-semibold">
-                    Panel + API + automatizaciones + métricas, listo para escalar.
-                  </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <FadeIn delay={0.05}>
+            <Card className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-crimson/10 text-crimson ring-1 ring-crimson/20">
+                  <TrendingUp className="h-5 w-5" />
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="text-xs text-white/55">Ejemplo de impacto</div>
-                  <div className="mt-1 text-sm font-semibold">
-                    Reducción de tiempos operativos y mayor trazabilidad del negocio.
-                  </div>
-                </div>
+                <div className="text-sm font-semibold text-ivory">Enfoque de entrega</div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Magnetic>
-                  <a href="#contacto">
-                    <Button>
-                      Quiero mi propuesta <ArrowRight className="h-4 w-4" />
-                    </Button>
+              <div ref={ref} className="grid gap-3">
+                {bullets.map((b) => (
+                  <div key={b} data-b className="flex items-start gap-3 opacity-0">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-crimson" />
+                    <div className="text-sm text-ivory-dim">{b}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+
+              <div className="mt-6 flex flex-wrap items-center gap-2">
+                {["Arquitectura", "Automatización", "Seguridad", "UI/UX", "DevOps"].map((tag) => (
+                  <span key={tag} className="rounded-full border border-white/8 bg-white/5 px-3 py-1.5 text-xs text-ivory-muted">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <Card className="relative overflow-hidden p-8">
+              <div className="absolute inset-0 bg-gradient-to-br from-crimson/8 via-transparent to-lavender/5" />
+              <div className="relative">
+                <div className="font-display text-2xl md:text-3xl">
+                  ¿Qué hacemos en tu proyecto?
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-ivory-dim">
+                  Te entregamos un sistema completo: código + despliegue + prácticas
+                  correctas, para que puedas crecer sin fricción.
+                </p>
+
+                <div className="mt-8 grid gap-4">
+                  <div className="rounded-2xl border border-white/8 bg-dark-200/50 p-5">
+                    <div className="text-xs text-ivory-muted mb-1">Ejemplo de resultado</div>
+                    <div className="text-sm font-semibold text-ivory">
+                      Panel + API + automatizaciones + métricas, listo para escalar.
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-white/8 bg-dark-200/50 p-5">
+                    <div className="text-xs text-ivory-muted mb-1">Ejemplo de impacto</div>
+                    <div className="text-sm font-semibold text-ivory">
+                      Reducción de tiempos operativos y mayor trazabilidad del negocio.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Magnetic>
+                    <a href="#contacto">
+                      <Button>
+                        Quiero mi propuesta <ArrowRight className="h-4 w-4" />
+                      </Button>
+                    </a>
+                  </Magnetic>
+                  <a href="#servicios">
+                    <Button variant="outline">Ver servicios</Button>
                   </a>
-                </Magnetic>
-                <a href="#servicios">
-                  <Button variant="outline">Ver servicios</Button>
-                </a>
+                </div>
               </div>
-            </div>
 
-            <div className="pointer-events-none absolute -bottom-16 -right-20 h-60 w-60 rounded-full bg-ruby-burnt/20 blur-[90px]" />
-          </Card>
-        </FadeIn>
+              <div className="pointer-events-none absolute -bottom-16 -right-20 h-60 w-60 rounded-full bg-crimson-dark/15 blur-[90px]" />
+            </Card>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );
