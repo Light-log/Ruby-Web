@@ -5,41 +5,19 @@ import { cn } from "@/lib/utils";
 
 type SpotlightProps = {
   className?: string;
-
-  /** Color del brillo (recomendado usar rgba con alpha). */
   fill?: string;
-
-  /** Radio en px del spotlight principal. */
   size?: number;
-
-  /** Opacidad global del contenedor (0..1). */
   opacity?: number;
-
-  /** Qué tan rápido sigue el puntero (0..1). 1 = inmediato. */
   follow?: number;
-
-  /** Suavidad del borde (0..1). 0.6–0.75 suele verse bien. */
   softness?: number;
-
-  /** Si true, usa pantalla completa (fixed inset-0). */
   fullscreen?: boolean;
-
-  /** Z-index si lo usas global en layout. */
   zIndex?: number;
-
-  /** Posición inicial (%). Útil si no hay movimiento aún. */
   initial?: { x: number; y: number };
 };
 
-/**
- * Spotlight: resplandor radial que sigue el puntero.
- * - Optimizado con requestAnimationFrame
- * - Pointer events (mouse/touch/stylus)
- * - Respeta prefers-reduced-motion
- */
 export function Spotlight({
   className,
-  fill = "rgba(230,57,70,.18)",
+  fill = "rgba(196,30,58,.15)",
   size = 620,
   opacity = 0.7,
   follow = 0.22,
@@ -54,12 +32,10 @@ export function Spotlight({
     const el = ref.current;
     if (!el) return;
 
-    // Reduced motion: no seguir el puntero, dejarlo fijo “bonito”
     const reduced =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
-    // Variables iniciales (antes de mover el mouse)
     el.style.setProperty("--x", `${initial.x}%`);
     el.style.setProperty("--y", `${initial.y}%`);
     el.style.setProperty("--spot-fill", fill);
@@ -79,11 +55,9 @@ export function Spotlight({
 
     const animate = () => {
       raf = 0;
-      // Lerp suave hacia el objetivo
       const t = clamp(follow, 0.01, 1);
       currentX += (targetX - currentX) * t;
       currentY += (targetY - currentY) * t;
-
       el.style.setProperty("--x", `${currentX}%`);
       el.style.setProperty("--y", `${currentY}%`);
     };
@@ -103,7 +77,6 @@ export function Spotlight({
     };
 
     const onPointerLeave = () => {
-      // Vuelve suavemente a una posición “estética” al salir
       targetX = initial.x;
       targetY = initial.y;
       requestTick();
@@ -126,17 +99,14 @@ export function Spotlight({
       className={cn(
         "pointer-events-none",
         fullscreen ? "fixed inset-0" : "absolute inset-0",
-        // Fondo premium: core + halo + grano suave + blend
         [
           "opacity-[var(--spot-opacity)]",
           "[background:",
-          // Halo suave (más grande y tenue)
           "radial-gradient(calc(var(--spot-size)*1.35)_circle_at_var(--x,50%)_var(--y,30%),rgba(255,255,255,0.06),transparent_65%),",
-          // Core (color configurable)
           "radial-gradient(var(--spot-size)_circle_at_var(--x,50%)_var(--y,30%),var(--spot-fill),transparent_calc(55%+var(--spot-soft)*20%))",
           "]",
           "mix-blend-screen",
-          "blur-[0.2px]", // micro-blur para quitar banding
+          "blur-[0.2px]",
         ].join(""),
         className
       )}
