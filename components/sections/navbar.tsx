@@ -29,7 +29,7 @@ export function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/6 bg-dark/80 backdrop-blur-2xl shadow-lg shadow-black/20"
+          ? "border-b border-black/6 bg-white/80 backdrop-blur-2xl shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -52,7 +52,7 @@ export function Navbar() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-ivory/60 lg:flex">
+        <nav className="hidden items-center gap-8 text-sm text-ivory-dim lg:flex">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -83,15 +83,14 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden border-t border-white/6 bg-dark/95 backdrop-blur-2xl animate__animated animate__fadeIn animate__faster">
+        <div className="lg:hidden border-t border-black/6 bg-white/95 backdrop-blur-2xl animate__animated animate__fadeIn animate__faster">
           <nav className="flex flex-col gap-1 px-6 py-4">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="rounded-xl px-4 py-3 text-sm text-ivory/70 transition-colors hover:bg-white/5 hover:text-ivory"
+                className="rounded-xl px-4 py-3 text-sm text-ivory-dim transition-colors hover:bg-black/5 hover:text-ivory"
                 onClick={() => setOpen(false)}
               >
                 {l.label}

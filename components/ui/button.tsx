@@ -30,11 +30,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         "bg-crimson text-white shadow-glow hover:bg-crimson-light hover:translate-y-[-2px] hover:shadow-glow-lg active:translate-y-[0px] active:opacity-90",
       secondary:
-        "bg-white/8 text-ivory border border-white/10 hover:bg-white/12 hover:border-white/18 hover:translate-y-[-1px] active:translate-y-[0px]",
+        "bg-black/5 text-ivory border border-black/10 hover:bg-black/8 hover:border-black/15 hover:translate-y-[-1px] active:translate-y-[0px]",
       ghost:
-        "bg-transparent text-ivory hover:bg-white/6 hover:translate-y-[-1px] active:translate-y-[0px]",
+        "bg-transparent text-ivory hover:bg-black/5 hover:translate-y-[-1px] active:translate-y-[0px]",
       outline:
-        "border border-white/12 bg-transparent text-ivory hover:bg-white/6 hover:border-white/20",
+        "border border-black/12 bg-transparent text-ivory hover:bg-black/5 hover:border-black/20",
       lavender:
         "bg-lavender text-white shadow-glow-lavender hover:bg-lavender-light hover:translate-y-[-2px] active:translate-y-[0px] active:opacity-90",
     };

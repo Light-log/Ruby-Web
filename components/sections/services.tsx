@@ -85,12 +85,12 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-crimson/5 px-4 py-2 text-xs text-crimson-light mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
               <Sparkles className="h-3.5 w-3.5" />
               Nuestros servicios
             </div>
 
-            <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+            <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
               Soluciones con{" "}
               <span className="gradient-text">enfoque de producto</span>
             </h2>
@@ -105,13 +105,13 @@ export function Services() {
           {items.map((it) => (
             <div key={it.title} data-svc className="opacity-0">
               <ShineBorder className="h-full">
-                <Card className="group h-full p-7 transition-all duration-300 hover:border-white/15 hover:bg-dark-200/40 hover:-translate-y-1">
+                <Card className="group h-full p-7 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover hover:-translate-y-1">
                   <div className="flex items-center gap-4">
                     <div
                       className={`grid h-12 w-12 place-items-center rounded-2xl transition-all duration-300 ${
                         it.color === "crimson"
-                          ? "bg-crimson/10 text-crimson ring-1 ring-crimson/20 group-hover:bg-crimson/20 group-hover:shadow-glow"
-                          : "bg-lavender/10 text-lavender ring-1 ring-lavender/20 group-hover:bg-lavender/20 group-hover:shadow-glow-lavender"
+                          ? "bg-crimson/8 text-crimson ring-1 ring-crimson/15 group-hover:bg-crimson/12 group-hover:shadow-glow"
+                          : "bg-lavender/8 text-lavender ring-1 ring-lavender/15 group-hover:bg-lavender/12 group-hover:shadow-glow-lavender"
                       }`}
                     >
                       <it.icon className="h-5 w-5" />
@@ -121,7 +121,7 @@ export function Services() {
 
                   <p className="mt-5 text-sm leading-relaxed text-ivory-dim">{it.desc}</p>
 
-                  <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+                  <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
 
                   <div className="mt-5 flex items-center justify-between">
                     <p className="text-xs text-ivory-muted">

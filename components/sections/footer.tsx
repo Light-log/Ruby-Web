@@ -21,10 +21,9 @@ const serviceLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/6 bg-dark-50/80">
+    <footer className="border-t border-black/6 bg-dark-50/80">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-4">
-          {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-3">
               <Image
@@ -46,7 +45,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
             <h4 className="font-display text-sm tracking-wider text-ivory mb-4">
               NAVEGACIÓN
@@ -65,7 +63,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="font-display text-sm tracking-wider text-ivory mb-4">
               SERVICIOS
@@ -84,7 +81,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="font-display text-sm tracking-wider text-ivory mb-4">
               CONTACTO
@@ -106,7 +102,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 h-px w-full bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+        <div className="mt-12 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
 
         <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="text-sm text-ivory-muted">

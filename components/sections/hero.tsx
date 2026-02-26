@@ -30,7 +30,7 @@ export function Hero() {
     }).add(
       {
         targets: glow,
-        opacity: [0.2, 0.5, 0.2],
+        opacity: [0.15, 0.35, 0.15],
         duration: 4000,
         easing: "easeInOutSine",
       },
@@ -61,23 +61,22 @@ export function Hero() {
         <Aurora />
       </div>
 
-      {/* Decorative grid */}
-      <div className="absolute inset-0 -z-10 opacity-[0.03]"
+      <div className="absolute inset-0 -z-10 opacity-[0.02]"
         style={{
-          backgroundImage: `linear-gradient(rgba(237,232,227,0.1) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(237,232,227,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(26,26,46,0.08) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(26,26,46,0.08) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />
 
       <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-16 md:grid-cols-2 md:items-center md:pt-24 lg:gap-16">
         <FadeIn>
-          <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-light mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark mb-6">
             <Zap className="h-3.5 w-3.5" />
             Innovación tecnológica con propósito empresarial
           </div>
 
-          <h1 className="font-display text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-ivory sm:text-5xl md:text-6xl lg:text-7xl">
             Transformamos ideas en{" "}
             <span className="gradient-text">soluciones digitales</span>
             {" "}que impulsan tu negocio
@@ -115,21 +114,20 @@ export function Hero() {
 
         <FadeIn delay={0.15}>
           <div ref={logoRef} className="relative">
-            {/* Floating decorative elements */}
             <div className="absolute -top-8 -right-8 h-20 w-20 rounded-full bg-lavender/10 blur-2xl animate-pulse-glow" />
             <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-crimson/10 blur-2xl animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
 
-            <div className="relative rounded-3xl border border-white/8 bg-dark-100/70 p-8 backdrop-blur-xl shadow-card overflow-hidden">
+            <div className="relative rounded-3xl border border-black/8 bg-white/80 p-8 backdrop-blur-xl shadow-card overflow-hidden">
               <div
                 data-glow
-                className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-crimson/15 via-transparent to-lavender/10 blur-3xl"
+                className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-crimson/8 via-transparent to-lavender/6 blur-3xl"
               />
 
               <div className="relative grid gap-8">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-crimson animate-pulse" />
-                    <span className="text-xs text-ivory-muted tracking-wider">IDENTIDAD • TECNOLOGÍA • ESTRATEGIA</span>
+                    <span className="text-xs text-ivory-muted tracking-wider">IDENTIDAD &bull; TECNOLOGÍA &bull; ESTRATEGIA</span>
                   </div>
                 </div>
 
@@ -141,15 +139,15 @@ export function Hero() {
                       width={280}
                       height={280}
                       priority
-                      className="select-none drop-shadow-[0_16px_60px_rgba(196,30,58,.2)]"
+                      className="select-none drop-shadow-[0_16px_60px_rgba(196,30,58,.12)]"
                     />
-                    <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-crimson/0 via-lavender/5 to-white/8 blur-2xl" />
+                    <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-tr from-crimson/0 via-lavender/3 to-black/3 blur-2xl" />
                   </div>
                 </div>
 
                 <div className="grid gap-4">
                   <div className="text-center">
-                    <p className="text-sm font-semibold text-ivory/90">
+                    <p className="text-sm font-semibold text-ivory">
                       &ldquo;Lo difícil se vuelve simple cuando el sistema está bien diseñado.&rdquo;
                     </p>
                     <p className="mt-2 text-xs text-ivory-muted">
@@ -169,7 +167,6 @@ export function Hero() {
         </FadeIn>
       </div>
 
-      {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent" />
     </section>
   );
@@ -189,7 +186,7 @@ function StatPill({
   return (
     <div
       {...rest}
-      className="flex items-center gap-3 rounded-2xl border border-white/8 bg-dark-100/50 px-4 py-3 opacity-0 backdrop-blur"
+      className="flex items-center gap-3 rounded-2xl border border-black/8 bg-white/70 px-4 py-3 opacity-0 backdrop-blur shadow-card"
     >
       <span className="text-crimson">{icon}</span>
       <div>
@@ -202,7 +199,7 @@ function StatPill({
 
 function Kpi({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-dark-200/50 px-4 py-3 text-center">
+    <div className="rounded-2xl border border-black/8 bg-dark-200/60 px-4 py-3 text-center">
       <div className="text-[11px] text-ivory-muted">{label}</div>
       <div className="mt-1 text-sm font-bold text-ivory">{value}</div>
     </div>

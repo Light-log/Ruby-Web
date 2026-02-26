@@ -75,12 +75,12 @@ export function Process() {
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-light mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark mb-6">
               <CheckCircle2 className="h-3.5 w-3.5" />
               Metodología
             </div>
 
-            <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+            <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
               Un proceso{" "}
               <span className="gradient-text">claro y eficiente</span>
             </h2>
@@ -94,13 +94,12 @@ export function Process() {
         <div ref={ref} className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <div key={step.num} data-step className="opacity-0">
-              <Card className="group h-full p-7 transition-all duration-300 hover:border-white/15 hover:-translate-y-1">
-                {/* Step number */}
+              <Card className="group h-full p-7 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover hover:-translate-y-1">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-display text-4xl text-crimson/20 group-hover:text-crimson/40 transition-colors duration-300">
+                  <span className="font-display text-4xl text-crimson/15 group-hover:text-crimson/30 transition-colors duration-300">
                     {step.num}
                   </span>
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-lavender/10 text-lavender ring-1 ring-lavender/20 transition-all duration-300 group-hover:bg-lavender/20">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-lavender/8 text-lavender ring-1 ring-lavender/15 transition-all duration-300 group-hover:bg-lavender/12">
                     <step.icon className="h-5 w-5" />
                   </div>
                 </div>
@@ -108,7 +107,7 @@ export function Process() {
                 <h3 className="font-display text-xl text-ivory mb-3">{step.title}</h3>
                 <p className="text-sm leading-relaxed text-ivory-dim mb-6">{step.desc}</p>
 
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/8 to-transparent mb-5" />
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent mb-5" />
 
                 <ul className="grid gap-2">
                   {step.details.map((d) => (

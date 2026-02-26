@@ -89,12 +89,12 @@ export function Proof() {
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-light mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark mb-6">
               <Award className="h-3.5 w-3.5" />
               Resultados
             </div>
 
-            <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+            <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
               Sistemas que{" "}
               <span className="gradient-text">generan confianza</span>
             </h2>
@@ -105,11 +105,10 @@ export function Proof() {
           </div>
         </FadeIn>
 
-        {/* Stats counter */}
         <div ref={statsRef} className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} data-counter className="opacity-0">
-              <Card className="p-6 text-center transition-all duration-300 hover:border-white/15 hover:-translate-y-1">
+              <Card className="p-6 text-center transition-all duration-300 hover:border-black/12 hover:shadow-card-hover hover:-translate-y-1">
                 <div className="font-display text-3xl md:text-4xl gradient-text">{s.value}</div>
                 <div className="mt-2 text-sm text-ivory-dim">{s.label}</div>
               </Card>
@@ -121,7 +120,7 @@ export function Proof() {
           <FadeIn delay={0.05}>
             <Card className="p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-crimson/10 text-crimson ring-1 ring-crimson/20">
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-crimson/8 text-crimson ring-1 ring-crimson/15">
                   <TrendingUp className="h-5 w-5" />
                 </div>
                 <div className="text-sm font-semibold text-ivory">Enfoque de entrega</div>
@@ -136,11 +135,11 @@ export function Proof() {
                 ))}
               </div>
 
-              <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+              <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
 
               <div className="mt-6 flex flex-wrap items-center gap-2">
                 {["Arquitectura", "Automatización", "Seguridad", "UI/UX", "DevOps"].map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/8 bg-white/5 px-3 py-1.5 text-xs text-ivory-muted">
+                  <span key={tag} className="rounded-full border border-black/8 bg-black/3 px-3 py-1.5 text-xs text-ivory-muted">
                     {tag}
                   </span>
                 ))}
@@ -150,9 +149,9 @@ export function Proof() {
 
           <FadeIn delay={0.1}>
             <Card className="relative overflow-hidden p-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-crimson/8 via-transparent to-lavender/5" />
+              <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 via-transparent to-lavender/3" />
               <div className="relative">
-                <div className="font-display text-2xl md:text-3xl">
+                <div className="font-display text-2xl md:text-3xl text-ivory">
                   ¿Qué hacemos en tu proyecto?
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-ivory-dim">
@@ -161,13 +160,13 @@ export function Proof() {
                 </p>
 
                 <div className="mt-8 grid gap-4">
-                  <div className="rounded-2xl border border-white/8 bg-dark-200/50 p-5">
+                  <div className="rounded-2xl border border-black/8 bg-dark-200/60 p-5">
                     <div className="text-xs text-ivory-muted mb-1">Ejemplo de resultado</div>
                     <div className="text-sm font-semibold text-ivory">
                       Panel + API + automatizaciones + métricas, listo para escalar.
                     </div>
                   </div>
-                  <div className="rounded-2xl border border-white/8 bg-dark-200/50 p-5">
+                  <div className="rounded-2xl border border-black/8 bg-dark-200/60 p-5">
                     <div className="text-xs text-ivory-muted mb-1">Ejemplo de impacto</div>
                     <div className="text-sm font-semibold text-ivory">
                       Reducción de tiempos operativos y mayor trazabilidad del negocio.
@@ -189,7 +188,7 @@ export function Proof() {
                 </div>
               </div>
 
-              <div className="pointer-events-none absolute -bottom-16 -right-20 h-60 w-60 rounded-full bg-crimson-dark/15 blur-[90px]" />
+              <div className="pointer-events-none absolute -bottom-16 -right-20 h-60 w-60 rounded-full bg-crimson/6 blur-[90px]" />
             </Card>
           </FadeIn>
         </div>

@@ -38,8 +38,8 @@ export default function RootLayout({
         <div className="pointer-events-none fixed inset-0 z-[20]">
           <Spotlight
             fullscreen
-            className="opacity-30"
-            fill="rgba(124,92,191,.08)"
+            className="opacity-20"
+            fill="rgba(124,92,191,.05)"
             size={800}
             follow={0.15}
             softness={0.7}

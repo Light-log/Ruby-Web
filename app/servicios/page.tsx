@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Code2, Database, Shield, Sparkles, Workflow, Wrench,
-  ArrowRight, CheckCircle2, Layers, Cpu, BarChart3
+  ArrowRight, CheckCircle2, Layers, Cpu
 } from "lucide-react";
 
 const services = [
@@ -102,19 +102,19 @@ export default function ServiciosPage() {
 
       <section className="relative py-24">
         <div className="absolute inset-0 -z-10 opacity-30">
-          <div className="absolute -top-40 left-1/4 h-[400px] w-[400px] rounded-full bg-crimson/10 blur-[100px]" />
-          <div className="absolute top-20 right-1/4 h-[350px] w-[350px] rounded-full bg-lavender/10 blur-[100px]" />
+          <div className="absolute -top-40 left-1/4 h-[400px] w-[400px] rounded-full bg-crimson/6 blur-[100px]" />
+          <div className="absolute top-20 right-1/4 h-[350px] w-[350px] rounded-full bg-lavender/6 blur-[100px]" />
         </div>
 
         <div className="mx-auto max-w-7xl px-6">
           <FadeIn>
             <div className="flex flex-col items-center text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-crimson/5 px-4 py-2 text-xs text-crimson-light mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
                 <Layers className="h-3.5 w-3.5" />
                 Servicios
               </div>
 
-              <h1 className="font-display text-4xl tracking-tight md:text-6xl">
+              <h1 className="font-display text-4xl tracking-tight text-ivory md:text-6xl">
                 Soluciones completas para{" "}
                 <span className="gradient-text">cada desafío</span>
               </h1>
@@ -128,15 +128,15 @@ export default function ServiciosPage() {
           <div className="mt-20 grid gap-8">
             {services.map((svc, idx) => (
               <FadeIn key={svc.title} delay={idx * 0.05}>
-                <Card className="p-8 md:p-10 transition-all duration-300 hover:border-white/15">
+                <Card className="p-8 md:p-10 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
                   <div className="grid gap-8 md:grid-cols-5">
                     <div className="md:col-span-2">
                       <div className="flex items-center gap-4 mb-4">
                         <div
                           className={`grid h-12 w-12 place-items-center rounded-2xl ${
                             svc.color === "crimson"
-                              ? "bg-crimson/10 text-crimson ring-1 ring-crimson/20"
-                              : "bg-lavender/10 text-lavender ring-1 ring-lavender/20"
+                              ? "bg-crimson/8 text-crimson ring-1 ring-crimson/15"
+                              : "bg-lavender/8 text-lavender ring-1 ring-lavender/15"
                           }`}
                         >
                           <svc.icon className="h-5 w-5" />
@@ -153,7 +153,7 @@ export default function ServiciosPage() {
                     </div>
 
                     <div className="md:col-span-3">
-                      <div className="rounded-2xl border border-white/8 bg-dark-200/40 p-6">
+                      <div className="rounded-2xl border border-black/8 bg-dark-200/60 p-6">
                         <div className="text-xs text-ivory-muted mb-4 uppercase tracking-wider">
                           Qué incluye
                         </div>
@@ -175,12 +175,11 @@ export default function ServiciosPage() {
             ))}
           </div>
 
-          {/* CTA */}
           <FadeIn delay={0.1}>
             <div className="mt-20 text-center">
               <Card className="inline-block p-10 md:p-14">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-crimson/10 text-crimson ring-1 ring-crimson/20 mb-2">
+                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-crimson/8 text-crimson ring-1 ring-crimson/15 mb-2">
                     <Cpu className="h-6 w-6" />
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl text-ivory">
