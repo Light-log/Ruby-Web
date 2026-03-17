@@ -59,7 +59,7 @@ const projects: Project[] = [
       { label: "Adaptación", value: "Homologada" },
     ],
     image: "/odoo.jpg",
-    ctaHref: "#contacto",
+    ctaHref: "/contacto",
     ctaLabel: "Ver módulos",
   },
   {
@@ -87,7 +87,7 @@ const projects: Project[] = [
       { label: "Entorno", value: "Interfaz clínica" },
     ],
     image: "/Check.png",
-    ctaHref: "#contacto",
+    ctaHref: "/contacto",
     ctaLabel: "Ver caso",
   },
   {
@@ -97,7 +97,7 @@ const projects: Project[] = [
     tags: [],
     metrics: [],
     image: "/Ganancias.jpg",
-    ctaHref: "#contacto",
+    ctaHref: "/contacto",
     ctaLabel: "",
     isNext: true,
   },
@@ -159,7 +159,7 @@ export function Portfolio() {
                             </p>
                           </div>
                           <div className="flex justify-center">
-                            <a href="#contacto">
+                            <a href="/contacto">
                               <Button variant="lavender" size="sm">
                                 Hablemos
                               </Button>
@@ -192,7 +192,7 @@ export function Portfolio() {
                           </div>
 
                           <div className="mt-4">
-                            <a href={p.ctaHref ?? "#contacto"}>
+                            <a href={p.ctaHref ?? "/contacto"}>
                               <Button variant="secondary" size="sm" className="gap-2">
                                 {p.ctaLabel ?? "Ver más"} <ExternalLink className="h-3.5 w-3.5" />
                               </Button>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { FadeIn } from "@/components/animate/fade-in";
@@ -7,6 +8,35 @@ import {
   Code2, Database, Shield, Sparkles, Workflow, Wrench,
   ArrowRight, CheckCircle2, Layers, Cpu
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Servicios",
+  description:
+    "Desarrollo de software a medida, automatización de procesos, DevOps, ciberseguridad, inteligencia de datos y diseño UI/UX premium. Soluciones completas para cada desafío tecnológico.",
+  keywords: [
+    "desarrollo software a medida",
+    "automatización de procesos",
+    "DevOps",
+    "ciberseguridad",
+    "inteligencia de datos",
+    "diseño UI/UX",
+    "consultora tecnológica Venezuela",
+  ],
+  openGraph: {
+    title: "Servicios | Consultora Ruby",
+    description:
+      "6 servicios tecnológicos premium: desarrollo, automatización, DevOps, seguridad, datos y diseño.",
+    url: "https://devruby.org/servicios",
+    type: "website",
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Servicios | Consultora Ruby",
+    description: "Soluciones tecnológicas completas para cada desafío.",
+  },
+  alternates: { canonical: "https://devruby.org/servicios" },
+};
 
 const services = [
   {
@@ -145,7 +175,7 @@ export default function ServiciosPage() {
                       <h2 className="font-display text-2xl text-ivory mb-3">{svc.title}</h2>
                       <p className="text-sm leading-relaxed text-ivory-dim">{svc.desc}</p>
 
-                      <a href="/#contacto" className="inline-block mt-6">
+                      <a href="/contacto" className="inline-block mt-6">
                         <Button variant={svc.color === "crimson" ? "primary" : "lavender"} size="sm">
                           Solicitar información <ArrowRight className="h-4 w-4" />
                         </Button>
@@ -188,7 +218,7 @@ export default function ServiciosPage() {
                   <p className="max-w-lg text-ivory-dim">
                     Cuéntanos tu reto y diseñamos una solución personalizada para tu caso específico.
                   </p>
-                  <a href="/#contacto" className="mt-4">
+                  <a href="/contacto" className="mt-4">
                     <Button size="lg">
                       Hablemos de tu proyecto <ArrowRight className="h-4 w-4" />
                     </Button>

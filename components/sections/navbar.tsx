@@ -8,11 +8,11 @@ import { Menu, X } from "lucide-react";
 import * as React from "react";
 
 const links = [
-  { href: "/#servicios", label: "Servicios" },
-  { href: "/#proceso", label: "Proceso" },
-  { href: "/#portafolio", label: "Proyectos" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/proceso", label: "Proceso" },
+  { href: "/proyectos", label: "Proyectos" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/#contacto", label: "Contacto" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export function Navbar() {
@@ -66,7 +66,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-4">
           <Magnetic>
-            <Link href="/#contacto" className="hidden sm:block">
+            <Link href="/contacto" className="hidden sm:block">
               <Button variant="primary" size="sm">
                 Solicitar propuesta
               </Button>
@@ -96,7 +96,7 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link href="/#contacto" className="mt-3" onClick={() => setOpen(false)}>
+            <Link href="/contacto" className="mt-3" onClick={() => setOpen(false)}>
               <Button variant="primary" size="sm" className="w-full">
                 Solicitar propuesta
               </Button>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
@@ -8,6 +9,33 @@ import {
   ArrowRight, Users, Target, Heart, Lightbulb,
   Rocket, Shield, Code2, Sparkles
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Nosotros",
+  description:
+    "Somos un equipo de ingenieros, diseñadores y estrategas comprometidos con construir soluciones tecnológicas que transforman negocios en Latinoamérica.",
+  keywords: [
+    "consultora tecnológica",
+    "equipo desarrollo software",
+    "nosotros consultora Ruby",
+    "ingenieros software Venezuela",
+    "transformación digital Latinoamérica",
+  ],
+  openGraph: {
+    title: "Nosotros | Consultora Ruby",
+    description:
+      "Tecnología con propósito humano. Conoce al equipo detrás de +50 proyectos exitosos.",
+    url: "https://devruby.org/nosotros",
+    type: "website",
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nosotros | Consultora Ruby",
+    description: "Ingenieros, diseñadores y estrategas comprometidos con tu éxito.",
+  },
+  alternates: { canonical: "https://devruby.org/nosotros" },
+};
 
 const values = [
   {
@@ -166,7 +194,7 @@ export default function NosotrosPage() {
                     en el tiempo. Creemos que la buena ingeniería es la base de la transformación digital.
                   </p>
 
-                  <a href="/#contacto" className="inline-block mt-8">
+                  <a href="/contacto" className="inline-block mt-8">
                     <Button size="lg">
                       Trabaja con nosotros <ArrowRight className="h-4 w-4" />
                     </Button>

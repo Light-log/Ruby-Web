@@ -1,9 +1,36 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { Contact } from "@/components/sections/contact";
 import { FadeIn } from "@/components/animate/fade-in";
 import { Card } from "@/components/ui/card";
 import { Clock, Shield, FileText, Headphones } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Contacto",
+  description:
+    "Contáctanos para tu próximo proyecto tecnológico. Respuesta en menos de 24 horas. Propuesta clara con alcance, tiempo y costos detallados.",
+  keywords: [
+    "contacto consultora tecnológica",
+    "solicitar propuesta desarrollo software",
+    "cotización software a medida",
+    "consultoría tecnológica Venezuela",
+  ],
+  openGraph: {
+    title: "Contacto | Consultora Ruby",
+    description:
+      "Hablemos de tu próximo proyecto. Respuesta en menos de 24 horas.",
+    url: "https://devruby.org/contacto",
+    type: "website",
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contacto | Consultora Ruby",
+    description: "Cuéntanos tu proyecto y te devolvemos una propuesta clara.",
+  },
+  alternates: { canonical: "https://devruby.org/contacto" },
+};
 
 const guarantees = [
   {
