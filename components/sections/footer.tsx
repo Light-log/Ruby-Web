@@ -3,11 +3,11 @@ import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const navLinks = [
-  { href: "/#servicios", label: "Servicios" },
-  { href: "/#proceso", label: "Proceso" },
-  { href: "/#portafolio", label: "Proyectos" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/proceso", label: "Proceso" },
+  { href: "/proyectos", label: "Proyectos" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/#contacto", label: "Contacto" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 const serviceLinks = [
