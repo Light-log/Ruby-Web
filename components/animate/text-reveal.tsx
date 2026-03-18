@@ -22,7 +22,7 @@ export function TextReveal({
   const words = children.split(" ");
 
   return (
-    <span ref={ref} className={cn("inline", className)}>
+    <span ref={ref} className="inline">
       {words.map((word, i) => (
         <motion.span
           key={`${word}-${i}`}
@@ -39,7 +39,8 @@ export function TextReveal({
             delay: delay + i * stagger,
           }}
         >
-          {word}
+          {/* ✅ CORRECCIÓN: Aplicamos la clase del degradado dentro de la animación */}
+          <span className={cn(className)}>{word}</span>
           {i < words.length - 1 ? "\u00A0" : ""}
         </motion.span>
       ))}
