@@ -38,7 +38,7 @@ export function Hero() {
         duration: 4000,
         easing: "easeInOutSine",
       },
-      0
+      0,
     );
 
     return () => tl.pause();
@@ -66,7 +66,8 @@ export function Hero() {
         <Meteors count={6} />
       </div>
 
-      <div className="absolute inset-0 -z-10 opacity-[0.02]"
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.02]"
         style={{
           backgroundImage: `linear-gradient(rgba(26,26,46,0.08) 1px, transparent 1px),
                             linear-gradient(90deg, rgba(26,26,46,0.08) 1px, transparent 1px)`,
@@ -85,17 +86,21 @@ export function Hero() {
 
           <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-ivory sm:text-5xl md:text-6xl lg:text-7xl">
             <TextReveal>Reducimos tus costos operativos</TextReveal>{" "}
-            <span className="gradient-text">
-              <TextReveal delay={0.4}>hasta un 40%</TextReveal>
-            </span>{" "}
+            {/* ✅ Pasa la clase directamente como propiedad */}
+            <TextReveal delay={0.4} className="gradient-text">
+              hasta un 40%
+            </TextReveal>{" "}
             <TextReveal delay={0.7}>con tecnología inteligente</TextReveal>
           </h1>
 
           <FadeIn delay={0.3}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory-dim md:text-lg">
-              Más de <strong className="text-ivory">50 empresas</strong> ya confían en nosotros.
-              Desarrollamos software a medida, automatizamos procesos y blindamos tu
-              infraestructura. <strong className="text-crimson">Primera consulta sin costo.</strong>
+              Más de <strong className="text-ivory">50 empresas</strong> ya
+              confían en nosotros. Desarrollamos software a medida,
+              automatizamos procesos y blindamos tu infraestructura.{" "}
+              <strong className="text-crimson">
+                Primera consulta sin costo.
+              </strong>
             </p>
           </FadeIn>
 
@@ -103,14 +108,22 @@ export function Hero() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Magnetic>
                 <a href="/contacto">
-                  <Button size="lg" className="w-full sm:w-auto animate__animated animate__pulse animate__delay-2s animate__repeat-3">
-                    Solicita tu diagnóstico gratis <ArrowRight className="h-4 w-4" />
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto animate__animated animate__pulse animate__delay-2s animate__repeat-3"
+                  >
+                    Solicita tu diagnóstico gratis{" "}
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
               </Magnetic>
 
               <a href="/proyectos" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
                   Ver casos de éxito
                 </Button>
               </a>
@@ -126,17 +139,36 @@ export function Hero() {
             </div>
           </FadeIn>
 
-          <div ref={statsRef} className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <StatPill data-stat icon={<Code2 className="h-4 w-4" />} label="Proyectos">
+          <div
+            ref={statsRef}
+            className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4"
+          >
+            <StatPill
+              data-stat
+              icon={<Code2 className="h-4 w-4" />}
+              label="Proyectos"
+            >
               <Counter value={50} suffix="+" />
             </StatPill>
-            <StatPill data-stat icon={<Shield className="h-4 w-4" />} label="Uptime">
+            <StatPill
+              data-stat
+              icon={<Shield className="h-4 w-4" />}
+              label="Uptime"
+            >
               <Counter value={99} suffix=".9%" />
             </StatPill>
-            <StatPill data-stat icon={<Zap className="h-4 w-4" />} label="Más rápido">
+            <StatPill
+              data-stat
+              icon={<Zap className="h-4 w-4" />}
+              label="Más rápido"
+            >
               <Counter value={3} suffix="x" />
             </StatPill>
-            <StatPill data-stat icon={<BarChart3 className="h-4 w-4" />} label="Satisfacción">
+            <StatPill
+              data-stat
+              icon={<BarChart3 className="h-4 w-4" />}
+              label="Satisfacción"
+            >
               <Counter value={98} suffix="%" />
             </StatPill>
           </div>
@@ -145,7 +177,10 @@ export function Hero() {
         <FadeIn delay={0.15}>
           <div ref={logoRef} className="relative">
             <div className="absolute -top-8 -right-8 h-20 w-20 rounded-full bg-lavender/10 blur-2xl animate-pulse-glow" />
-            <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-crimson/10 blur-2xl animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
+            <div
+              className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-crimson/10 blur-2xl animate-pulse-glow"
+              style={{ animationDelay: "1.5s" }}
+            />
 
             <BorderBeam className="rounded-3xl" duration={6}>
               <div className="relative rounded-3xl bg-white/80 p-8 backdrop-blur-xl shadow-card overflow-hidden">
@@ -157,7 +192,9 @@ export function Hero() {
                 <div className="relative grid gap-6">
                   <div className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-crimson animate-pulse" />
-                    <span className="text-xs text-ivory-muted tracking-wider">CALIDAD &bull; VELOCIDAD &bull; CONFIANZA</span>
+                    <span className="text-xs text-ivory-muted tracking-wider">
+                      CALIDAD &bull; VELOCIDAD &bull; CONFIANZA
+                    </span>
                   </div>
 
                   <div className="grid place-items-center py-2">
@@ -176,7 +213,8 @@ export function Hero() {
                   <div className="space-y-4">
                     <blockquote className="text-center">
                       <p className="text-sm font-semibold text-ivory italic">
-                        &ldquo;Redujeron nuestro tiempo de procesamiento de 3 días a 4 horas. Increíble.&rdquo;
+                        &ldquo;Redujeron nuestro tiempo de procesamiento de 3
+                        días a 4 horas. Increíble.&rdquo;
                       </p>
                       <cite className="mt-2 block text-xs text-ivory-muted not-italic">
                         — Director de Operaciones, empresa fintech
