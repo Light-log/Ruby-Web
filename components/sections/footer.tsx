@@ -108,8 +108,14 @@ export function Footer() {
           <div className="text-sm text-ivory-muted">
             &copy; {new Date().getFullYear()} Consultora Ruby. Todos los derechos reservados.
           </div>
-          <div className="text-sm text-ivory-muted">
-            Ingeniería &bull; Diseño &bull; Innovación
+          <div className="flex flex-col gap-2 text-sm text-ivory-muted sm:flex-row sm:items-center sm:gap-4">
+            <Link
+              href="/politicas-ekono"
+              className="transition-colors hover:text-ivory"
+            >
+              Política de privacidad Ekono
+            </Link>
+            <span>Ingeniería &bull; Diseño &bull; Innovación</span>
           </div>
         </div>
       </div>
