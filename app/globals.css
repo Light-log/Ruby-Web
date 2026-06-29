@@ -82,3 +82,21 @@ html {
   background: rgba(196,30,58,0.15);
   color: #1A1A2E;
 }
+
+/* Accesibilidad: respeta la preferencia del sistema de reducir movimiento.
+   Neutraliza animaciones CSS (Tailwind keyframes, animate.css), scroll suave
+   y transiciones largas para usuarios sensibles al movimiento (WCAG 2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -21,6 +21,9 @@ export function Hero() {
     const el = logoRef.current;
     if (!el) return;
 
+    // Respeta prefers-reduced-motion: no arrancar el loop infinito del logo.
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
     const gem = el.querySelector("[data-gem]");
     const glow = el.querySelector("[data-glow]");
 
@@ -48,7 +51,17 @@ export function Hero() {
     const el = statsRef.current;
     if (!el) return;
 
-    const items = el.querySelectorAll("[data-stat]");
+    const items = el.querySelectorAll<HTMLElement>("[data-stat]");
+
+    // Con movimiento reducido las píldoras deben quedar visibles sin animar
+    // (su estado base es opacity-0, así que las forzamos a visibles).
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      items.forEach((it) => {
+        it.style.opacity = "1";
+      });
+      return;
+    }
+
     anime({
       targets: items,
       opacity: [0, 1],
@@ -110,7 +123,7 @@ export function Hero() {
                 <a href="/contacto">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto animate__animated animate__pulse animate__delay-2s animate__repeat-3"
+                    className="w-full sm:w-auto"
                   >
                     Solicita tu diagnóstico gratis{" "}
                     <ArrowRight className="h-4 w-4" />

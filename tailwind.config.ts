@@ -29,7 +29,7 @@ export default {
         ivory: {
           DEFAULT: "#1A1A2E",
           dim: "#3D3D55",
-          muted: "#6B6B85",
+          muted: "#54546B",
         },
         lavender: {
           DEFAULT: "#7C5CBF",

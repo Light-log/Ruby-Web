@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/animate/fade-in";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, ArrowRight, MessageSquare, Send } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, MessageSquare, Send, Loader2 } from "lucide-react";
 import * as React from "react";
 
 type Status = "idle" | "loading" | "ok" | "error";
@@ -82,16 +82,22 @@ export function Contact() {
           <FadeIn delay={0.05} className="md:col-span-3">
             <Card className="p-8">
               <form className="grid gap-5" onSubmit={onSubmit}>
-                <input name="hp" className="hidden" tabIndex={-1} autoComplete="off" />
+                <input
+                  name="hp"
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Input name="name" label="Nombre" placeholder="Tu nombre" required />
-                  <Input name="company" label="Empresa" placeholder="Nombre de tu empresa" />
+                  <Input name="name" label="Nombre" placeholder="Tu nombre" autoComplete="name" required />
+                  <Input name="company" label="Empresa" placeholder="Nombre de tu empresa" autoComplete="organization" />
                 </div>
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Input name="email" label="Email" placeholder="correo@empresa.com" type="email" required />
-                  <Input name="phone" label="Teléfono" placeholder="+58 ..." />
+                  <Input name="email" label="Email" placeholder="correo@empresa.com" type="email" inputMode="email" autoComplete="email" required />
+                  <Input name="phone" label="Teléfono" placeholder="+58 ..." type="tel" inputMode="tel" autoComplete="tel" />
                 </div>
 
                 <label className="grid gap-2 text-sm text-ivory/80">
@@ -104,9 +110,16 @@ export function Contact() {
                   />
                 </label>
 
-                <Button type="submit" className="justify-center" disabled={status === "loading"}>
+                <Button
+                  type="submit"
+                  className="justify-center"
+                  disabled={status === "loading"}
+                  aria-busy={status === "loading"}
+                >
                   {status === "loading" ? (
-                    <>Enviando...</>
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
+                    </>
                   ) : (
                     <>
                       Enviar mensaje <Send className="h-4 w-4" />
@@ -116,6 +129,8 @@ export function Contact() {
 
                 {msg ? (
                   <div
+                    role={status === "error" ? "alert" : "status"}
+                    aria-live={status === "error" ? "assertive" : "polite"}
                     className={`rounded-2xl border px-4 py-3 text-sm animate__animated animate__fadeIn ${
                       status === "ok"
                         ? "border-emerald-500/20 bg-emerald-50 text-emerald-700"

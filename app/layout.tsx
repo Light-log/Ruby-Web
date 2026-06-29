@@ -3,8 +3,11 @@ import "animate.css";
 
 import type { Metadata, Viewport } from "next";
 import { Open_Sans, Oswald } from "next/font/google";
+import Script from "next/script";
 import { cn } from "@/lib/utils";
 import { Spotlight } from "@/components/ui/spotlight";
+
+const GA_ID = "G-SEZY0Q1JSN";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -152,6 +155,18 @@ export default function RootLayout({
       <head>
         <JsonLd />
       </head>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ga-gtag" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}
+      </Script>
       <body className="relative min-h-screen bg-dark font-body antialiased">
         <div className="pointer-events-none fixed inset-0 z-[20]">
           <Spotlight

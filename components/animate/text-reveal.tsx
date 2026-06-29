@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TextRevealProps {
@@ -19,7 +19,13 @@ export function TextReveal({
 }: TextRevealProps) {
   const ref = React.useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const reduceMotion = useReducedMotion();
   const words = children.split(" ");
+
+  // Con movimiento reducido renderizamos el texto plano y visible de inmediato.
+  if (reduceMotion) {
+    return <span className={cn("inline", className)}>{children}</span>;
+  }
 
   return (
     <span ref={ref} className="inline">

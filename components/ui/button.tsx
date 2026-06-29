@@ -24,7 +24,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const base =
-      "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition-all duration-300 will-change-transform focus:outline-none focus:ring-2 focus:ring-crimson/40 disabled:pointer-events-none disabled:opacity-60";
+      "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition-all duration-300 will-change-transform touch-manipulation focus:outline-none focus:ring-2 focus:ring-crimson/40 disabled:pointer-events-none disabled:opacity-60";
 
     const variants: Record<ButtonVariant, string> = {
       primary:

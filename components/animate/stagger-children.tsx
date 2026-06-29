@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface StaggerChildrenProps {
@@ -19,6 +19,12 @@ export function StaggerChildren({
 }: StaggerChildrenProps) {
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const reduceMotion = useReducedMotion();
+
+  // Con movimiento reducido mostramos los hijos sin secuencia ni desplazamiento.
+  if (reduceMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
 
   const directionMap = {
     up: { y: 30, x: 0 },

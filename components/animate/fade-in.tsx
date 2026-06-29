@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,6 +19,16 @@ export function FadeIn({
 }) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const inView = useInView(ref, { margin: "-20% 0px -20% 0px", once: true });
+  const reduceMotion = useReducedMotion();
+
+  // Con movimiento reducido mostramos el contenido directamente, sin animar.
+  if (reduceMotion) {
+    return (
+      <motion.div ref={ref} className={cn(className)}>
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div

@@ -74,9 +74,10 @@ export function Navbar() {
           </Magnetic>
 
           <button
-            className="lg:hidden text-ivory p-2"
+            className="lg:hidden grid h-11 w-11 place-items-center text-ivory"
             onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
