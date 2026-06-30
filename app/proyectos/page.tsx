@@ -89,7 +89,7 @@ const projects: Project[] = [
       "Presupuestos, metas de ahorro y recordatorios",
       "Conversión de divisas Bs.S ↔ USD/EUR con tasas en vivo",
     ],
-    image: "/ekono-icon.png",
+    image: "/ekono-banner.png",
     ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
     ctaLabel: "Ver en Google Play",
   },
