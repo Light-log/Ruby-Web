@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FadeIn } from "@/components/animate/fade-in";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -108,6 +109,25 @@ export function Contact() {
                     placeholder="¿Qué necesitas construir o mejorar?"
                     required
                   />
+                </label>
+
+                <label className="flex items-start gap-3 text-sm text-ivory-dim">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    required
+                    className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-black/20 accent-crimson"
+                  />
+                  <span>
+                    He leído y acepto la{" "}
+                    <Link
+                      href="/privacidad"
+                      className="font-semibold text-crimson underline underline-offset-2 transition-colors hover:text-crimson-dark"
+                    >
+                      Política de Privacidad
+                    </Link>{" "}
+                    y el tratamiento de mis datos para responder a mi solicitud.
+                  </span>
                 </label>
 
                 <Button

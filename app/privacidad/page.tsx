@@ -37,15 +37,32 @@ const sections = [
           sobre el uso del sitio recogida mediante cookies de análisis, solo si
           das tu consentimiento.
         </li>
+        <li>
+          <strong>Datos técnicos:</strong> al enviar el formulario de contacto
+          registramos tu dirección IP de forma temporal, con el único fin de
+          prevenir abusos (anti-spam y limitación de solicitudes).
+        </li>
       </ul>
     ),
   },
   {
-    title: "3. Finalidad",
+    title: "3. Finalidad y base legal",
     body: (
       <ul>
-        <li>Responder a tus solicitudes y preparar propuestas comerciales.</li>
-        <li>Medir y mejorar el rendimiento y los contenidos del sitio.</li>
+        <li>
+          <strong>Atender tus solicitudes</strong> y preparar propuestas
+          comerciales. Base legal: tu <em>consentimiento</em> y la aplicación de
+          medidas precontractuales (Art. 6.1.a y 6.1.b RGPD).
+        </li>
+        <li>
+          <strong>Medir y mejorar</strong> el rendimiento y los contenidos del
+          sitio. Base legal: tu <em>consentimiento</em> para las cookies de
+          analítica (Art. 6.1.a RGPD).
+        </li>
+        <li>
+          <strong>Prevenir abusos</strong> del formulario. Base legal: nuestro{" "}
+          <em>interés legítimo</em> en proteger el servicio (Art. 6.1.f RGPD).
+        </li>
       </ul>
     ),
   },
@@ -91,13 +108,38 @@ const sections = [
       <>
         <p>Puedes ejercer en cualquier momento tus derechos de:</p>
         <ul>
-          <li>Acceso, rectificación y supresión de tus datos.</li>
-          <li>Oposición y limitación del tratamiento.</li>
-          <li>Retirada del consentimiento prestado.</li>
+          <li>
+            <strong>Acceso, rectificación y supresión</strong> de tus datos
+            (Art. 15-17 RGPD).
+          </li>
+          <li>
+            <strong>Oposición y limitación</strong> del tratamiento (Art. 18 y
+            21 RGPD).
+          </li>
+          <li>
+            <strong>Portabilidad</strong> de tus datos en un formato
+            estructurado y legible (Art. 20 RGPD).
+          </li>
+          <li>
+            <strong>Retirar el consentimiento</strong> prestado en cualquier
+            momento, sin que afecte a la licitud del tratamiento previo. Para
+            las cookies, usa el enlace{" "}
+            <strong>&ldquo;Gestionar cookies&rdquo;</strong> del pie de página.
+          </li>
         </ul>
         <p>
-          Para ejercerlos, escríbenos a{" "}
+          Para ejercer estos derechos, escríbenos a{" "}
           <a href="mailto:soporte@devruby.org">soporte@devruby.org</a>.
+          Atenderemos tu solicitud en un plazo máximo de un mes.
+        </p>
+        <p>
+          Si consideras que el tratamiento no se ajusta a la normativa, tienes
+          derecho a presentar una reclamación ante la autoridad de control
+          competente (en España, la{" "}
+          <a href="https://www.aepd.es" target="_blank" rel="noreferrer">
+            Agencia Española de Protección de Datos
+          </a>
+          ).
         </p>
       </>
     ),

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { CookieSettingsLink } from "@/components/ui/cookie-settings-link";
 
 const navLinks = [
   { href: "/servicios", label: "Servicios" },
@@ -110,12 +111,13 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-2 text-sm text-ivory-muted sm:flex-row sm:items-center sm:gap-4">
             <Link
-              href="/politicas-ekono"
+              href="/privacidad"
               className="transition-colors hover:text-ivory"
             >
-              Política de privacidad Ekono
+              Política de privacidad
             </Link>
-            <span>Ingeniería &bull; Diseño &bull; Innovación</span>
+            <CookieSettingsLink className="text-left transition-colors hover:text-ivory" />
+            <span className="hidden sm:inline">Ingeniería &bull; Diseño &bull; Innovación</span>
           </div>
         </div>
       </div>
