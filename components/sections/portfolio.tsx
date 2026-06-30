@@ -44,7 +44,7 @@ const projects: Project[] = [
       { label: "Privacidad", value: "100% local" },
       { label: "Registro", value: "Sin cuenta" },
     ],
-    image: "/ekono-banner.png",
+    image: "/ekono-icon.png",
     ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
     ctaLabel: "Ver en Google Play",
   },
