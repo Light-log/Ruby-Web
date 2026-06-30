@@ -54,6 +54,46 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "RubyQ",
+    subtitle: "Bots de IA omnicanal para atención al cliente",
+    description:
+      "Plataforma SaaS que automatiza la atención al cliente con IA conversacional, unificando todos los canales de mensajería de una empresa en un único panel con constructor visual de flujos sin código.",
+    tags: ["SaaS", "IA", "Omnicanal", "No-Code", "Next.js"],
+    metrics: [
+      { label: "Automatización", value: "Hasta 90%" },
+      { label: "Canales", value: "6+ integrados" },
+    ],
+    highlights: [
+      "Bandeja unificada de WhatsApp, Telegram, IG, Messenger, TikTok y web",
+      "Constructor visual de flujos de IA sin programación",
+      "Métricas y analítica de conversaciones en tiempo real",
+      "Derivación automática a agentes humanos cuando se necesita",
+    ],
+    image: "/RubyQ.png",
+    ctaHref: "https://q.devruby.org",
+    ctaLabel: "Ver plataforma",
+  },
+  {
+    title: "Ekono",
+    subtitle: "App de finanzas personales privacy-first",
+    description:
+      "App móvil de finanzas personales centrada en la privacidad: todos los datos se almacenan únicamente en el dispositivo, sin cuenta ni servidores. Ayuda a controlar gastos, ahorrar y manejar divisas en el contexto venezolano.",
+    tags: ["Mobile", "Fintech", "Privacy-first", "Android"],
+    metrics: [
+      { label: "Privacidad", value: "100% local" },
+      { label: "Registro", value: "Sin cuenta" },
+    ],
+    highlights: [
+      "Datos almacenados solo en tu dispositivo, sin servidores",
+      "No requiere registro ni cuenta de usuario",
+      "Presupuestos, metas de ahorro y recordatorios",
+      "Conversión de divisas Bs.S ↔ USD/EUR con tasas en vivo",
+    ],
+    image: "/ekono-icon.png",
+    ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
+    ctaLabel: "Ver en Google Play",
+  },
+  {
     title: "Obelium App",
     subtitle: "Marketplace de funerarias + comparación + chat",
     description:

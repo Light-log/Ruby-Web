@@ -21,6 +21,34 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "RubyQ",
+    subtitle: "Bots de IA omnicanal para atención al cliente",
+    description:
+      "Plataforma SaaS que unifica WhatsApp, Telegram, Instagram, Messenger, TikTok y web en un solo panel, con un constructor visual de flujos de IA sin código y derivación a agentes humanos.",
+    tags: ["SaaS", "IA", "Omnicanal", "No-Code"],
+    metrics: [
+      { label: "Automatización", value: "Hasta 90%" },
+      { label: "Canales", value: "6+ integrados" },
+    ],
+    image: "/RubyQ.png",
+    ctaHref: "https://q.devruby.org",
+    ctaLabel: "Ver plataforma",
+  },
+  {
+    title: "Ekono",
+    subtitle: "Finanzas personales privacy-first",
+    description:
+      "App móvil de finanzas personales centrada en la privacidad: tus datos se guardan solo en el dispositivo, sin cuenta ni servidores. Presupuestos, metas de ahorro y conversión de divisas (Bs.S ↔ USD/EUR).",
+    tags: ["Mobile", "Fintech", "Privacy-first"],
+    metrics: [
+      { label: "Privacidad", value: "100% local" },
+      { label: "Registro", value: "Sin cuenta" },
+    ],
+    image: "/ekono-icon.png",
+    ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
+    ctaLabel: "Ver en Google Play",
+  },
+  {
     title: "Obelium App",
     subtitle: "Marketplace de funerarias + comparación + chat",
     description:
