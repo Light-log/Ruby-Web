@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
+import { ArcRevealHero } from "@/components/ui/arc-preloader-hero";
 import { Clients } from "@/components/sections/clients";
 import { Services } from "@/components/sections/services";
 import { Process } from "@/components/sections/process";
@@ -14,7 +15,9 @@ export default function Page() {
   return (
     <main className="relative">
       <Navbar />
-      <Hero />
+      <ArcRevealHero storageKey="ruby-hero-intro">
+        <Hero />
+      </ArcRevealHero>
       <Clients />
       <Services />
       <Process />
