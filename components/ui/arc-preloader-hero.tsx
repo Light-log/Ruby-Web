@@ -8,7 +8,7 @@ import {
   useMotionValue,
   useReducedMotion,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 import { cn } from "@/lib/utils";
 
 /* ── types ───────────────────────────────────────────────────── */
@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 export type ArcRevealGreeting = {
   /** Greeting text in the target script */
   text: string;
-  /** Optional `lang` attribute applied to the span (helps screen readers / font rendering) */
+  /** Optional `lang` attribute applied to the span. */
   lang?: string;
 };
 
@@ -46,15 +46,20 @@ export interface ArcRevealHeroProps {
 
 /* ── defaults ────────────────────────────────────────────────── */
 
-/** Fondo crema de la web (dark.DEFAULT) usado para la cortina del reveal. */
-const CURTAIN_FILL = "#F5F1EC";
+/**
+ * Superficie clara (calma) con las palabras + cortina oscura que sube en arco.
+ * Adaptado a la marca: superficie crema, palabras ivory, cortina ivory oscuro.
+ */
+const SURFACE_CREAM = "#F5F1EC"; // dark.DEFAULT — superficie de la intro
+const CURTAIN_DARK = "#824570"; // mauve de marca — la cortina que sube
 
+/** Los pilares de Consultora Ruby, en secuencia (beats declarativos). */
 const DEFAULT_GREETINGS: ArcRevealGreeting[] = [
-  { text: "Calidad." },
-  { text: "Velocidad." },
-  { text: "Precisión." },
-  { text: "Confianza." },
-  { text: "Innovación." },
+  { text: "Escuchamos." },
+  { text: "Diseñamos." },
+  { text: "Automatizamos." },
+  { text: "Protegemos." },
+  { text: "Escalamos." },
   { text: "Consultora Ruby." },
 ];
 
@@ -64,7 +69,7 @@ type Phase = "intro" | "reveal" | "done";
 
 export function ArcRevealHero({
   greetings = DEFAULT_GREETINGS,
-  greetingHold = 560,
+  greetingHold = 1000,
   revealDuration = 1500,
   className,
   introClassName,
@@ -79,8 +84,8 @@ export function ArcRevealHero({
   const [index, setIndex] = React.useState(0);
 
   // Drive the arc shape from a single 0→1 progress.
-  // The curve is a quadratic bezier with a fixed concavity (control point
-  // sits 25 viewBox units below the chord), translated upward over time:
+  // A quadratic bezier with fixed concavity translated upward over time, so the
+  // boundary stays a single smooth arc the whole way up (never a flat slide):
   //   t=0 → chord at y=110 (off-screen below)  → no curtain visible
   //   t=1 → chord at y=-30 (off-screen above)  → full-screen curtain
   const progress = useMotionValue(0);
@@ -112,7 +117,7 @@ export function ArcRevealHero({
     if (phase !== "intro") return;
     const isLast = index >= greetings.length - 1;
     if (isLast) {
-      const t = window.setTimeout(() => setPhase("reveal"), greetingHold + 220);
+      const t = window.setTimeout(() => setPhase("reveal"), greetingHold + 240);
       return () => window.clearTimeout(t);
     }
     const t = window.setTimeout(() => setIndex((i) => i + 1), greetingHold);
@@ -141,14 +146,12 @@ export function ArcRevealHero({
 
   const showOverlay = phase !== "done";
   const current = greetings[Math.min(index, greetings.length - 1)];
+  const isLastWord = index >= greetings.length - 1;
 
   return (
     <section
       aria-label="Hero"
-      className={cn(
-        "relative isolate w-full bg-dark text-ivory",
-        className,
-      )}
+      className={cn("relative w-full bg-dark text-ivory", className)}
     >
       <div className={cn("relative z-0", revealClassName)}>{children}</div>
 
@@ -158,25 +161,27 @@ export function ArcRevealHero({
             key="arc-reveal-overlay"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className={cn(
-              "fixed inset-0 z-[2000] overflow-hidden bg-ivory",
+              "fixed inset-0 z-[2000] overflow-hidden",
               introClassName,
             )}
+            style={{ backgroundColor: SURFACE_CREAM }}
           >
-            {/* Cycled greeting */}
+            {/* Cycled greeting on the calm light surface */}
             <div className="absolute inset-0 flex items-center justify-center">
               <AnimatePresence mode="wait">
                 {phase === "intro" && current && (
                   <motion.span
                     key={`${index}-${current.text}`}
                     lang={current.lang}
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
                     className={cn(
-                      "select-none px-6 text-center font-display text-5xl font-semibold tracking-tight text-dark sm:text-6xl md:text-7xl",
+                      "select-none px-6 text-center font-display text-5xl font-semibold tracking-tight text-ivory sm:text-6xl md:text-7xl",
+                      isLastWord && "gradient-text",
                       greetingClassName,
                     )}
                   >
@@ -186,14 +191,14 @@ export function ArcRevealHero({
               </AnimatePresence>
             </div>
 
-            {/* Rising curved curtain */}
+            {/* Rising curved curtain — a single smooth dark arc */}
             <svg
               className="pointer-events-none absolute inset-0 h-full w-full"
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               aria-hidden
             >
-              <motion.path d={arcPath} style={{ fill: CURTAIN_FILL }} />
+              <motion.path d={arcPath} style={{ fill: CURTAIN_DARK }} />
             </svg>
           </motion.div>
         )}

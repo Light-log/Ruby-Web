@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <main className="relative">
       <Navbar />
-      <ArcRevealHero storageKey="ruby-hero-intro">
+      <ArcRevealHero>
         <Hero />
       </ArcRevealHero>
       <Clients />
