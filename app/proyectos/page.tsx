@@ -256,16 +256,16 @@ export default function ProyectosPage() {
               <FadeIn key={p.title} delay={idx * 0.05}>
                 <Card className="overflow-hidden transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
                   <div className="grid md:grid-cols-5">
-                    <div className="relative h-64 overflow-hidden bg-[radial-gradient(circle_at_20%_0%,rgba(124,92,191,0.14),transparent_45%),linear-gradient(135deg,#f8f5f1,#e8e1db)] p-5 md:h-auto md:col-span-2">
+                    <div className="relative h-64 overflow-hidden border-r border-crimson-dark/40 bg-crimson p-5 shadow-inner md:h-auto md:col-span-2">
                       <Image
                         src={p.image}
                         alt={p.title}
                         fill
-                        className="rounded-2xl object-contain bg-white/75 p-2 shadow-[0_18px_36px_rgba(26,26,46,0.15)]"
+                        className="rounded-2xl border border-white/35 object-contain bg-white/90 p-2 shadow-[0_18px_36px_rgba(72,8,21,0.42)]"
                         sizes="(max-width: 768px) 100vw, 40vw"
                       />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-white/30 hidden md:block" />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent md:hidden" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-crimson/15 hidden md:block" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-crimson/20 via-transparent to-transparent md:hidden" />
                     </div>
 
                     <div className="p-8 md:p-10 md:col-span-3">
