@@ -1,0 +1,18 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import test from "node:test";
+
+test("publishes DEVRUBY LLC public configuration", () => {
+  const source = fs.readFileSync("lib/site.ts", "utf8");
+
+  assert.match(source, /brand:\s*"DEVRUBY"/);
+  assert.match(source, /legalName:\s*"DEVRUBY LLC"/);
+  assert.match(source, /https:\/\/wa\.me\//);
+});
+
+test("booking configuration only accepts HTTPS URLs", () => {
+  const source = fs.readFileSync("lib/site.ts", "utf8");
+
+  assert.match(source, /url\.protocol === "https:"/);
+  assert.match(source, /return null/);
+});
