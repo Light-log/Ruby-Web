@@ -16,3 +16,9 @@ test("booking configuration only accepts HTTPS URLs", () => {
   assert.match(source, /url\.protocol === "https:"/);
   assert.match(source, /return null/);
 });
+
+test("counter renders its final value before client animation", () => {
+  const source = fs.readFileSync("components/animate/counter.tsx", "utf8");
+
+  assert.match(source, /useState\(String\(value\)\)/);
+});

@@ -4,10 +4,10 @@ import { FadeIn } from "@/components/animate/fade-in";
 import { Shield, Award, Clock, Users } from "lucide-react";
 
 const trustItems = [
-  { icon: Shield, label: "Datos protegidos", desc: "Seguridad en cada proyecto" },
-  { icon: Award, label: "Calidad premium", desc: "Estándares internacionales" },
-  { icon: Clock, label: "Entregas puntuales", desc: "Compromisos que cumplimos" },
-  { icon: Users, label: "Equipo dedicado", desc: "Talento especializado" },
+  { icon: Shield, label: "Seguridad técnica", desc: "Considerada desde el diseño" },
+  { icon: Award, label: "Criterio de ingeniería", desc: "Decisiones explicadas con claridad" },
+  { icon: Clock, label: "Trabajo por etapas", desc: "Prioridades y alcance visibles" },
+  { icon: Users, label: "Comunicación directa", desc: "Un canal claro durante el proyecto" },
 ];
 
 export function Clients() {
@@ -18,7 +18,7 @@ export function Clients() {
           <div className="rounded-3xl border border-black/6 bg-white/60 px-8 py-10 backdrop-blur-xl shadow-card">
             <div className="text-center mb-8">
               <p className="text-xs tracking-widest text-ivory-muted uppercase">
-                ¿Por qué confiar en nosotros?
+                Cómo trabajamos
               </p>
             </div>
 
