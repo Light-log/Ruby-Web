@@ -1,6 +1,7 @@
 "use client";
 
 import { GLSLHills } from "@/components/ui/glsl-hills";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic";
 import { TextReveal } from "@/components/animate/text-reveal";
@@ -18,8 +19,16 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden">
       <div className="absolute inset-0 -z-10">
+        <Image
+          src="/devruby-hero-v3.png"
+          alt="Equipo revisando arquitectura de software empresarial"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         <GLSLHills className="h-full w-full" />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/95 via-dark/70 to-dark/15" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
       </div>
 
@@ -78,4 +87,3 @@ export function Hero() {
     </section>
   );
 }
-

@@ -23,16 +23,16 @@ export const metadata: Metadata = {
     "consultora tecnológica Venezuela",
   ],
   openGraph: {
-    title: "Servicios | Consultora Ruby",
+    title: "Servicios | DEVRUBY",
     description:
       "6 servicios tecnológicos premium: desarrollo, automatización, DevOps, seguridad, datos y diseño.",
     url: "https://devruby.org/servicios",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Servicios | Consultora Ruby",
+    title: "Servicios | DEVRUBY",
     description: "Soluciones tecnológicas completas para cada desafío.",
   },
   alternates: { canonical: "https://devruby.org/servicios" },

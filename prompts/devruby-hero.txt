@@ -1,0 +1,7 @@
+Use case: ads-marketing
+Asset type: hero background for an international B2B software engineering company website
+Primary request: Ultra-realistic editorial technology image, 16:9 landscape. A sophisticated operations leader and software engineer reviewing an elegant web application architecture on a large glass display, subtle API connection lines and secure system dashboard, no readable UI text.
+Scene/backdrop: deep navy background with electric blue and lime green accents, soft studio lighting, shallow depth of field, premium SaaS marketing aesthetic.
+Composition/framing: subject placed on the right half, generous clean negative space on the left for website headline, cinematic and calm.
+Text: no text.
+Constraints: global enterprise credibility, subtle cyber-security signals, professional, natural faces, no watermark, no brand logos, no stock-photo cliches.

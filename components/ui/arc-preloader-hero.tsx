@@ -53,14 +53,14 @@ export interface ArcRevealHeroProps {
 const SURFACE_CREAM = "#F5F1EC"; // dark.DEFAULT — superficie de la intro
 const CURTAIN_DARK = "#824570"; // mauve de marca — la cortina que sube
 
-/** Los pilares de Consultora Ruby, en secuencia (beats declarativos). */
+/** Los pilares de DEVRUBY, en secuencia (beats declarativos). */
 const DEFAULT_GREETINGS: ArcRevealGreeting[] = [
   { text: "Escuchamos." },
   { text: "Diseñamos." },
   { text: "Automatizamos." },
   { text: "Protegemos." },
   { text: "Escalamos." },
-  { text: "Consultora Ruby." },
+  { text: "DEVRUBY." },
 ];
 
 type Phase = "intro" | "reveal" | "done";

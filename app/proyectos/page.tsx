@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Proyectos",
   description:
-    "Portafolio de proyectos: marketplaces, apps con IA, plataformas LegalTech, ERPs personalizados y más. +50 proyectos entregados con 98% de satisfacción.",
+    "Portafolio de productos y soluciones desarrolladas por DEVRUBY: plataformas web, aplicaciones, integraciones y sistemas empresariales.",
   keywords: [
     "portafolio desarrollo software",
     "proyectos tecnológicos",
@@ -25,17 +25,17 @@ export const metadata: Metadata = {
     "ERP Odoo",
   ],
   openGraph: {
-    title: "Proyectos | Consultora Ruby",
+    title: "Proyectos | DEVRUBY",
     description:
-      "Descubre nuestro portafolio: +50 proyectos con impacto real en negocios de toda Latinoamérica.",
+      "Conoce productos y soluciones desarrolladas por DEVRUBY.",
     url: "https://devruby.org/proyectos",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Proyectos | Consultora Ruby",
-    description: "+50 proyectos entregados con 98% de satisfacción.",
+    title: "Proyectos | DEVRUBY",
+    description: "Productos y soluciones desarrolladas por DEVRUBY.",
   },
   alternates: { canonical: "https://devruby.org/proyectos" },
 };
@@ -197,8 +197,8 @@ const projects: Project[] = [
 
 const stats = [
   { value: "50+", label: "Proyectos entregados" },
-  { value: "98%", label: "Clientes satisfechos" },
-  { value: "40%", label: "Ahorro operativo promedio" },
+  { value: "Web", label: "Aplicaciones y plataformas" },
+  { value: "API", label: "Integraciones y servicios" },
   { value: "6", label: "Industrias cubiertas" },
 ];
 
@@ -206,7 +206,7 @@ function PortfolioJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Portafolio de Proyectos - Consultora Ruby",
+    name: "Portafolio de proyectos - DEVRUBY",
     description:
       "Portafolio de proyectos tecnológicos: marketplaces, apps con IA, LegalTech, ERPs y más.",
     url: "https://devruby.org/proyectos",

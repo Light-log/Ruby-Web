@@ -22,16 +22,16 @@ export const metadata: Metadata = {
     "proceso consultora tecnológica",
   ],
   openGraph: {
-    title: "Proceso de Trabajo | Consultora Ruby",
+    title: "Proceso de Trabajo | DEVRUBY",
     description:
       "Metodología clara y eficiente en 4 fases para entregar soluciones tecnológicas de calidad.",
     url: "https://devruby.org/proceso",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Proceso de Trabajo | Consultora Ruby",
+    title: "Proceso de Trabajo | DEVRUBY",
     description: "4 fases claras para entregar soluciones tecnológicas premium.",
   },
   alternates: { canonical: "https://devruby.org/proceso" },
@@ -127,7 +127,7 @@ function ProcesoJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "Proceso de desarrollo de software - Consultora Ruby",
+    name: "Proceso de desarrollo de software - DEVRUBY",
     description:
       "Metodología de 4 fases para entregar soluciones tecnológicas de calidad: Descubrimiento, Estrategia, Desarrollo y Entrega.",
     step: steps.map((s) => ({

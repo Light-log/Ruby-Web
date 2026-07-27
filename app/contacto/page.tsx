@@ -9,7 +9,7 @@ import { Clock, Shield, FileText, Headphones } from "lucide-react";
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    "Contáctanos para tu próximo proyecto tecnológico. Respuesta en menos de 24 horas. Propuesta clara con alcance, tiempo y costos detallados.",
+    "Habla con DEVRUBY sobre aplicaciones web, APIs, sistemas internos o auditorías técnicas. Respondemos en menos de 24 horas hábiles.",
   keywords: [
     "contacto consultora tecnológica",
     "solicitar propuesta desarrollo software",
@@ -17,16 +17,16 @@ export const metadata: Metadata = {
     "consultoría tecnológica Venezuela",
   ],
   openGraph: {
-    title: "Contacto | Consultora Ruby",
+    title: "Contacto | DEVRUBY",
     description:
-      "Hablemos de tu próximo proyecto. Respuesta en menos de 24 horas.",
+      "Cuéntanos el contexto técnico de tu empresa. Respondemos en menos de 24 horas hábiles.",
     url: "https://devruby.org/contacto",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contacto | Consultora Ruby",
+    title: "Contacto | DEVRUBY",
     description: "Cuéntanos tu proyecto y te devolvemos una propuesta clara.",
   },
   alternates: { canonical: "https://devruby.org/contacto" },
@@ -36,7 +36,7 @@ const guarantees = [
   {
     icon: Clock,
     title: "Respuesta rápida",
-    desc: "Te respondemos en menos de 24 horas en días laborables.",
+    desc: "Respondemos en menos de 24 horas en días laborables.",
   },
   {
     icon: Shield,

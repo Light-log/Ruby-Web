@@ -22,16 +22,16 @@ export const metadata: Metadata = {
     "transformación digital Latinoamérica",
   ],
   openGraph: {
-    title: "Nosotros | Consultora Ruby",
+    title: "Nosotros | DEVRUBY",
     description:
-      "Tecnología con propósito humano. Conoce al equipo detrás de +50 proyectos exitosos.",
+      "Conoce el enfoque de DEVRUBY para construir software empresarial mantenible y seguro.",
     url: "https://devruby.org/nosotros",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "Consultora Ruby" }],
+    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nosotros | Consultora Ruby",
+    title: "Nosotros | DEVRUBY",
     description: "Ingenieros, diseñadores y estrategas comprometidos con tu éxito.",
   },
   alternates: { canonical: "https://devruby.org/nosotros" },
@@ -103,7 +103,7 @@ export default function NosotrosPage() {
                 <h2 className="font-display text-2xl text-ivory mb-4">Nuestra historia</h2>
                 <div className="grid gap-4 text-sm leading-relaxed text-ivory-dim">
                   <p>
-                    Consultora Ruby nació de una convicción: la tecnología debe ser una herramienta
+                    DEVRUBY nació de una convicción: la tecnología debe ser una herramienta
                     de empoderamiento, no una barrera. Hemos visto demasiadas empresas frustradas
                     por soluciones mediocres, entregas incompletas y promesas vacías.
                   </p>
@@ -126,14 +126,14 @@ export default function NosotrosPage() {
                   <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-crimson/6 via-transparent to-lavender/6 blur-3xl" />
                   <Image
                     src="/logo.svg"
-                    alt="Consultora Ruby"
+                    alt="DEVRUBY"
                     width={240}
                     height={240}
                     className="relative select-none drop-shadow-[0_16px_60px_rgba(196,30,58,.08)]"
                   />
                 </div>
                 <div className="mt-8 text-center">
-                  <div className="font-display text-2xl text-ivory">Consultora Ruby</div>
+                  <div className="font-display text-2xl text-ivory">DEVRUBY</div>
                   <div className="mt-1 text-sm text-ivory-muted">
                     Soluciones tecnológicas premium
                   </div>

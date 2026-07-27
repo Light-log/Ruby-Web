@@ -33,7 +33,7 @@ const steps = [
     icon: Rocket,
     title: "Entrega & Soporte",
     desc: "Desplegamos, documentamos y te acompañamos post-lanzamiento con soporte técnico dedicado.",
-    details: ["Deploy automatizado", "Documentación completa", "Acompañamiento acordado para la entrega"],
+    details: ["Deploy automatizado", "Documentación completa", "Soporte 24/7"],
   },
 ];
 

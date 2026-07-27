@@ -1,0 +1,7 @@
+Use case: ads-marketing
+Asset type: consultation call-to-action background for a B2B software company
+Primary request: Ultra-realistic premium technology scene, 16:9 landscape. A secure modern operations room with a professional laptop showing abstract software architecture and API flow, no readable UI text, subtle human presence, elegant and calm.
+Scene/backdrop: deep navy background with electric blue and lime green accents, soft studio lighting, shallow depth of field, premium SaaS marketing aesthetic.
+Composition/framing: visual interest on the right, broad dark negative space on the left for copy.
+Text: no text.
+Constraints: no watermark, no brand logos, no stock-photo cliches, no illegible text, professional enterprise security atmosphere.
