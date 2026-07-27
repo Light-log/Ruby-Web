@@ -11,6 +11,7 @@ const STORAGE_KEY = "ruby-cookie-consent";
 const POLICY_VERSION = "2025-06-29";
 /** Evento global para reabrir el panel (p. ej. desde el footer). */
 export const COOKIE_SETTINGS_EVENT = "cookie:open";
+const INITIAL_BANNER_DELAY_MS = 900;
 
 type StoredConsent = {
   analytics: boolean;
@@ -39,11 +40,13 @@ export function ConsentBanner() {
 
   React.useEffect(() => {
     const stored = readConsent();
+    let initialBannerTimer: ReturnType<typeof setTimeout> | undefined;
     if (stored) {
       setAnalytics(stored.analytics);
       setAnalyticsGranted(stored.analytics);
     } else {
-      setVisible(true);
+      // Espera a que finalice el loader inicial antes de abrir otro elemento fijo.
+      initialBannerTimer = setTimeout(() => setVisible(true), INITIAL_BANNER_DELAY_MS);
     }
     setMounted(true);
 
@@ -54,7 +57,10 @@ export function ConsentBanner() {
       setVisible(true);
     };
     window.addEventListener(COOKIE_SETTINGS_EVENT, open);
-    return () => window.removeEventListener(COOKIE_SETTINGS_EVENT, open);
+    return () => {
+      if (initialBannerTimer) clearTimeout(initialBannerTimer);
+      window.removeEventListener(COOKIE_SETTINGS_EVENT, open);
+    };
   }, []);
 
   function persist(analyticsValue: boolean) {
