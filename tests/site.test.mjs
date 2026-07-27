@@ -22,3 +22,11 @@ test("counter renders its final value before client animation", () => {
 
   assert.match(source, /useState\(String\(value\)\)/);
 });
+
+test("agenda page provides booking and WhatsApp fallback", () => {
+  const source = fs.readFileSync("app/agenda/page.tsx", "utf8");
+
+  assert.match(source, /bookingUrl\(\)/);
+  assert.match(source, /site\.whatsAppUrl/);
+  assert.match(source, /data-track="booking"/);
+});
