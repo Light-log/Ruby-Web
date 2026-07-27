@@ -17,7 +17,11 @@ No usar testimonios, calificaciones, número de clientes, porcentajes de ahorro 
 
 Paleta: azul noche `#1A1A2E`, marfil `#F5F1EC`, carmesí `#C41E3A` y lavanda `#7C5CBF`.
 
-Imágenes activas: `public/devruby-hero-v3.png` y `public/devruby-consultation-v2.png`.
+El hero mantiene su composición original con `GLSLHills`; se descartaron las
+imágenes generadas en el hero y CTA porque reducían el contraste. Los assets
+generados se conservan como alternativas no activas. Las siguientes mejoras
+visuales deben concentrarse en las imágenes de casos de proyecto, sin alterar
+logotipos ni interfaces de los productos.
 
 ## Siguiente fase
 
