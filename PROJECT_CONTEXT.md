@@ -29,6 +29,14 @@ retiraron contadores y métricas de proyectos sin evidencia verificable. El
 servidor local se reinició tras regenerar la caché `.next` y responde en el
 puerto 3000.
 
+## Despliegue
+
+El commit `67aac99` está enviado a `origin/main`: fija Calendly en el código,
+elimina métricas internas obsoletas y añade `public/og-devruby.png` (1200×630)
+para redes sociales. El dominio público seguía sirviendo la versión anterior
+de Consultora Ruby tras el push; falta identificar o esperar su integración de
+despliegue.
+
 ## Siguiente fase
 
 Campaña SEO de España con páginas específicas y contenido localizado; no usar redirecciones por IP.
