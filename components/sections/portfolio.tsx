@@ -14,6 +14,7 @@ type Project = {
   tags: string[];
   metrics: { label: string; value: string }[];
   image: string;
+  imageFit?: "contain";
   ctaHref?: string;
   ctaLabel?: string;
   isNext?: boolean;
@@ -45,6 +46,7 @@ const projects: Project[] = [
       { label: "Registro", value: "Sin cuenta" },
     ],
     image: "/ekono-icon.png",
+    imageFit: "contain",
     ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
     ctaLabel: "Ver en Google Play",
   },
@@ -161,15 +163,17 @@ export function Portfolio() {
               <Magnetic>
                 <ShineBorder className="h-full rounded-2xl">
                   <article className="group relative flex h-[520px] flex-col overflow-hidden rounded-2xl border border-black/8 bg-white/80 backdrop-blur-xl shadow-card">
-                    <div className="relative h-44 w-full overflow-hidden border-b border-crimson-dark/40 bg-crimson p-3 shadow-inner">
+                    <div className={`relative h-44 w-full overflow-hidden ${p.imageFit ? "bg-crimson p-4" : ""}`}>
                       <Image
                         src={p.image}
                         alt={p.title}
                         fill
-                        className="rounded-xl border border-white/30 object-contain bg-white/90 p-1.5 shadow-[0_12px_28px_rgba(72,8,21,0.38)] transition-transform duration-500 group-hover:scale-[1.025]"
+                        className={p.imageFit
+                          ? "rounded-2xl border border-white/30 object-contain bg-white shadow-[0_12px_28px_rgba(72,8,21,0.38)] transition-transform duration-500 group-hover:scale-[1.025]"
+                          : "object-cover opacity-90 transition-all duration-500 group-hover:scale-[1.06] group-hover:opacity-100"}
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-crimson/35 to-transparent" />
+                      {!p.imageFit && <div className="absolute inset-0 bg-gradient-to-t from-crimson/70 via-crimson/15 to-transparent" />}
                     </div>
 
                     <div className="flex flex-1 flex-col p-6">

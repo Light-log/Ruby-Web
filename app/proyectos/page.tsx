@@ -47,6 +47,7 @@ type Project = {
   tags: string[];
   metrics: { label: string; value: string }[];
   image: string;
+  imageFit?: "contain";
   ctaHref?: string;
   ctaLabel?: string;
   highlights?: string[];
@@ -90,6 +91,7 @@ const projects: Project[] = [
       "Conversión de divisas Bs.S ↔ USD/EUR con tasas en vivo",
     ],
     image: "/ekono-icon.png",
+    imageFit: "contain",
     ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
     ctaLabel: "Ver en Google Play",
   },
@@ -256,16 +258,18 @@ export default function ProyectosPage() {
               <FadeIn key={p.title} delay={idx * 0.05}>
                 <Card className="overflow-hidden transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
                   <div className="grid md:grid-cols-5">
-                    <div className="relative h-64 overflow-hidden border-r border-crimson-dark/40 bg-crimson p-5 shadow-inner md:h-auto md:col-span-2">
+                    <div className={`relative h-64 md:h-auto md:col-span-2 ${p.imageFit ? "bg-crimson p-8" : ""}`}>
                       <Image
                         src={p.image}
                         alt={p.title}
                         fill
-                        className="rounded-2xl border border-white/35 object-contain bg-white/90 p-2 shadow-[0_18px_36px_rgba(72,8,21,0.42)]"
+                        className={p.imageFit
+                          ? "rounded-3xl border border-white/35 object-contain bg-white p-4 shadow-[0_18px_36px_rgba(72,8,21,0.42)]"
+                          : "object-cover"}
                         sizes="(max-width: 768px) 100vw, 40vw"
                       />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-crimson/15 hidden md:block" />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-crimson/20 via-transparent to-transparent md:hidden" />
+                      {!p.imageFit && <div className="absolute inset-0 bg-gradient-to-r from-transparent to-crimson/30 hidden md:block" />}
+                      {!p.imageFit && <div className="absolute inset-0 bg-gradient-to-t from-crimson/70 via-crimson/20 to-transparent md:hidden" />}
                     </div>
 
                     <div className="p-8 md:p-10 md:col-span-3">
