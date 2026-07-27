@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/animate/fade-in";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic";
 import { ArrowRight, Rocket } from "lucide-react";
@@ -11,6 +12,14 @@ export function CTASection() {
       <div className="mx-auto max-w-7xl px-6">
         <FadeIn>
           <div className="relative overflow-hidden rounded-3xl border border-black/8 bg-white/70 p-12 md:p-20 text-center backdrop-blur-xl shadow-card">
+            <Image
+              src="/devruby-consultation-v2.png"
+              alt="Arquitectura de software y seguridad empresarial"
+              fill
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="object-cover object-right opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/35" />
             <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-crimson/6 blur-[100px]" />
             <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-lavender/6 blur-[100px]" />
 
