@@ -23,6 +23,12 @@ generados se conservan como alternativas no activas. Las siguientes mejoras
 visuales deben concentrarse en las imágenes de casos de proyecto, sin alterar
 logotipos ni interfaces de los productos.
 
+La portada de RubyQ fue refinada de forma no destructiva como
+`public/RubyQ-refined.png` y está activa en las dos vistas de portafolio. Se
+retiraron contadores y métricas de proyectos sin evidencia verificable. El
+servidor local se reinició tras regenerar la caché `.next` y responde en el
+puerto 3000.
+
 ## Siguiente fase
 
 Campaña SEO de España con páginas específicas y contenido localizado; no usar redirecciones por IP.
