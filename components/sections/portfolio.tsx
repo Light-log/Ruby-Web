@@ -12,7 +12,6 @@ type Project = {
   subtitle: string;
   description: string;
   tags: string[];
-  metrics: { label: string; value: string }[];
   image: string;
   imageFit?: "contain";
   ctaHref?: string;
@@ -27,10 +26,6 @@ const projects: Project[] = [
     description:
       "Plataforma SaaS que unifica WhatsApp, Telegram, Instagram, Messenger, TikTok y web en un solo panel, con un constructor visual de flujos de IA sin código y derivación a agentes humanos.",
     tags: ["SaaS", "IA", "Omnicanal", "No-Code"],
-    metrics: [
-      { label: "Automatización", value: "Hasta 90%" },
-      { label: "Canales", value: "6+ integrados" },
-    ],
     image: "/RubyQ-refined.png",
     ctaHref: "https://q.devruby.org",
     ctaLabel: "Ver plataforma",
@@ -41,10 +36,6 @@ const projects: Project[] = [
     description:
       "App móvil de finanzas personales centrada en la privacidad: tus datos se guardan solo en el dispositivo, sin cuenta ni servidores. Presupuestos, metas de ahorro y conversión de divisas (Bs.S ↔ USD/EUR).",
     tags: ["Mobile", "Fintech", "Privacy-first"],
-    metrics: [
-      { label: "Privacidad", value: "100% local" },
-      { label: "Registro", value: "Sin cuenta" },
-    ],
     image: "/ekono-icon.png",
     imageFit: "contain",
     ctaHref: "https://play.google.com/store/apps/details?id=com.ekono.app",
@@ -56,10 +47,6 @@ const projects: Project[] = [
     description:
       "Plataforma web donde las funerarias publican sus servicios y los clientes comparan opciones en tiempo real con filtros avanzados y mensajería directa.",
     tags: ["Web App", "Marketplace", "Filtros", "Chat"],
-    metrics: [
-      { label: "Descubrimiento", value: "Comparar fácil" },
-      { label: "Conversión", value: "Chat directo" },
-    ],
     image: "/Obelium.png",
     ctaHref: "http://app.obelium.com/",
     ctaLabel: "Ver proyecto",
@@ -70,10 +57,6 @@ const projects: Project[] = [
     description:
       "Web app para crear documentos legales de forma guiada y gratuita con formularios inteligentes, generación instantánea y exportación profesional.",
     tags: ["LegalTech", "Automatización", "UX"],
-    metrics: [
-      { label: "Tiempo", value: "Minutos" },
-      { label: "Acceso", value: "Gratuito" },
-    ],
     image: "/Altum.png",
     ctaHref: "https://app.altumiuris.com/",
     ctaLabel: "Ver proyecto",
@@ -84,10 +67,6 @@ const projects: Project[] = [
     description:
       "Distribución de Odoo adaptada a Venezuela con módulos específicos, personalizaciones e integraciones para operaciones locales.",
     tags: ["Odoo", "ERP", "Venezuela"],
-    metrics: [
-      { label: "Implementación", value: "Más rápida" },
-      { label: "Adaptación", value: "Homologada" },
-    ],
     image: "/odoo.jpg",
     ctaHref: "/contacto",
     ctaLabel: "Ver módulos",
@@ -98,10 +77,6 @@ const projects: Project[] = [
     description:
       "App móvil que estima calorías desde fotos de alimentos usando IA y genera rutinas personalizadas con seguimiento de progreso.",
     tags: ["Mobile", "IA", "Fitness"],
-    metrics: [
-      { label: "Valor clave", value: "Foto → Calorías" },
-      { label: "Personalización", value: "Rutinas IA" },
-    ],
     image: "/Titan.jpg",
     ctaHref: "https://titantraining.es/",
     ctaLabel: "Ver proyecto",
@@ -112,10 +87,6 @@ const projects: Project[] = [
     description:
       "Ejecutables para equipos médicos que despliegan notificaciones persistentes sobre la interfaz clínica sin interrumpir el flujo de trabajo.",
     tags: ["Windows", "Medical", "Overlay"],
-    metrics: [
-      { label: "Objetivo", value: "Aviso visible" },
-      { label: "Entorno", value: "Interfaz clínica" },
-    ],
     image: "/Check.png",
     ctaHref: "/contacto",
     ctaLabel: "Ver caso",
@@ -125,7 +96,6 @@ const projects: Project[] = [
     subtitle: "",
     description: "",
     tags: [],
-    metrics: [],
     image: "/Ganancias.jpg",
     ctaHref: "/contacto",
     ctaLabel: "",

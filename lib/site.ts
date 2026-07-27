@@ -8,7 +8,7 @@ export const site = {
 } as const;
 
 export function bookingUrl(
-  value = process.env.NEXT_PUBLIC_BOOKING_URL
+  value = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendly.com/hola-devruby/30min"
 ): string | null {
   if (!value) return null;
 

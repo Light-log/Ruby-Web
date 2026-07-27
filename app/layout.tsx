@@ -74,10 +74,10 @@ export const metadata: Metadata = {
       "Aplicaciones web, APIs, sistemas internos y auditorías técnicas para empresas.",
     images: [
       {
-        url: "/logo.svg",
-        width: 512,
-        height: 512,
-        alt: "DEVRUBY",
+        url: "/og-devruby.png",
+        width: 1200,
+        height: 630,
+        alt: "DEVRUBY — ingeniería de software para empresas",
       },
     ],
   },
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "DEVRUBY | Ingeniería de software para empresas",
     description:
       "Aplicaciones web, APIs, sistemas internos y auditorías técnicas.",
-    images: ["/logo.svg"],
+    images: ["/og-devruby.png"],
   },
   icons: {
     icon: [

@@ -45,7 +45,6 @@ type Project = {
   subtitle: string;
   description: string;
   tags: string[];
-  metrics: { label: string; value: string }[];
   image: string;
   imageFit?: "contain";
   ctaHref?: string;
@@ -60,10 +59,6 @@ const projects: Project[] = [
     description:
       "Plataforma SaaS que automatiza la atención al cliente con IA conversacional, unificando todos los canales de mensajería de una empresa en un único panel con constructor visual de flujos sin código.",
     tags: ["SaaS", "IA", "Omnicanal", "No-Code", "Next.js"],
-    metrics: [
-      { label: "Automatización", value: "Hasta 90%" },
-      { label: "Canales", value: "6+ integrados" },
-    ],
     highlights: [
       "Bandeja unificada de WhatsApp, Telegram, IG, Messenger, TikTok y web",
       "Constructor visual de flujos de IA sin programación",
@@ -80,10 +75,6 @@ const projects: Project[] = [
     description:
       "App móvil de finanzas personales centrada en la privacidad: todos los datos se almacenan únicamente en el dispositivo, sin cuenta ni servidores. Ayuda a controlar gastos, ahorrar y manejar divisas en el contexto venezolano.",
     tags: ["Mobile", "Fintech", "Privacy-first", "Android"],
-    metrics: [
-      { label: "Privacidad", value: "100% local" },
-      { label: "Registro", value: "Sin cuenta" },
-    ],
     highlights: [
       "Datos almacenados solo en tu dispositivo, sin servidores",
       "No requiere registro ni cuenta de usuario",
@@ -101,10 +92,6 @@ const projects: Project[] = [
     description:
       "Plataforma web donde las funerarias publican sus servicios y los clientes comparan opciones en tiempo real con filtros avanzados y mensajería directa.",
     tags: ["Web App", "Marketplace", "Filtros", "Chat", "Next.js"],
-    metrics: [
-      { label: "Descubrimiento", value: "Comparar fácil" },
-      { label: "Conversión", value: "Chat directo" },
-    ],
     highlights: [
       "Sistema de comparación en tiempo real",
       "Chat integrado entre cliente y proveedor",
@@ -121,10 +108,6 @@ const projects: Project[] = [
     description:
       "Web app para crear documentos legales de forma guiada y gratuita con formularios inteligentes, generación instantánea y exportación profesional.",
     tags: ["LegalTech", "Automatización", "UX", "React"],
-    metrics: [
-      { label: "Tiempo", value: "Minutos" },
-      { label: "Acceso", value: "Gratuito" },
-    ],
     highlights: [
       "Formularios inteligentes con validación",
       "Generación instantánea de documentos",
@@ -141,10 +124,6 @@ const projects: Project[] = [
     description:
       "Distribución de Odoo adaptada a Venezuela con módulos específicos, personalizaciones e integraciones para operaciones locales.",
     tags: ["Odoo", "ERP", "Venezuela", "Python"],
-    metrics: [
-      { label: "Implementación", value: "Más rápida" },
-      { label: "Adaptación", value: "Homologada" },
-    ],
     highlights: [
       "Módulos adaptados a legislación venezolana",
       "Integración con bancos y pasarelas locales",
@@ -161,10 +140,6 @@ const projects: Project[] = [
     description:
       "App móvil que estima calorías desde fotos de alimentos usando IA y genera rutinas personalizadas con seguimiento de progreso.",
     tags: ["Mobile", "IA", "Fitness", "React Native"],
-    metrics: [
-      { label: "Valor clave", value: "Foto → Calorías" },
-      { label: "Personalización", value: "Rutinas IA" },
-    ],
     highlights: [
       "Reconocimiento de alimentos con IA",
       "Estimación calórica automática por foto",
@@ -181,10 +156,6 @@ const projects: Project[] = [
     description:
       "Ejecutables para equipos médicos que despliegan notificaciones persistentes sobre la interfaz clínica sin interrumpir el flujo de trabajo.",
     tags: ["Windows", "Medical", "Overlay", "C#"],
-    metrics: [
-      { label: "Objetivo", value: "Aviso visible" },
-      { label: "Entorno", value: "Interfaz clínica" },
-    ],
     highlights: [
       "Notificaciones overlay no intrusivas",
       "Compatible con software clínico existente",
