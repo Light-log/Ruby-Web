@@ -21,8 +21,22 @@ const topics = [
   "Auditorías técnicas y de ciberseguridad",
 ];
 
-export default function AgendaPage() {
-  const configuredBookingUrl = bookingUrl();
+export default function AgendaPage({
+  searchParams,
+}: {
+  searchParams?: { origen?: string };
+}) {
+  const origin = searchParams?.origen === "espana" ? "espana" : undefined;
+  const rawBookingUrl = bookingUrl();
+  const configuredBookingUrl = rawBookingUrl && origin
+    ? (() => {
+        const url = new URL(rawBookingUrl);
+        url.searchParams.set("utm_source", "devruby.org");
+        url.searchParams.set("utm_medium", "organic");
+        url.searchParams.set("utm_campaign", origin);
+        return url.toString();
+      })()
+    : rawBookingUrl;
 
   return (
     <main className="relative">
@@ -60,7 +74,7 @@ export default function AgendaPage() {
                   <Button size="lg" className="w-full">Elegir horario</Button>
                 </a>
               ) : (
-                <Link href="/contacto" data-track="booking">
+                <Link href={origin ? `/contacto?origen=${origin}` : "/contacto"} data-track="booking">
                   <Button size="lg" className="w-full">Solicitar una consulta</Button>
                 </Link>
               )}
@@ -83,4 +97,3 @@ export default function AgendaPage() {
     </main>
   );
 }
-

@@ -29,6 +29,7 @@ test("agenda page provides booking and WhatsApp fallback", () => {
   assert.match(source, /bookingUrl\(\)/);
   assert.match(source, /site\.whatsAppUrl/);
   assert.match(source, /data-track="booking"/);
+  assert.match(source, /utm_campaign/);
 });
 
 test("primary CTAs link to the agenda route", () => {
@@ -69,6 +70,17 @@ test("lead tracking runs only after analytics consent and records successful for
   assert.match(tracking, /contact_whatsapp/);
   assert.match(tracking, /generate_lead/);
   assert.match(contact, /LEAD_SUBMITTED_EVENT/);
+});
+
+test("Spain leads retain their campaign origin through booking and contact", () => {
+  const agenda = fs.readFileSync("app/agenda/page.tsx", "utf8");
+  const contact = fs.readFileSync("components/sections/contact.tsx", "utf8");
+  const route = fs.readFileSync("app/api/contact/route.ts", "utf8");
+
+  assert.match(agenda, /origen === "espana"/);
+  assert.match(contact, /get\("origen"\)/);
+  assert.match(route, /Nuevo contacto\$\{sourceLabel\}/);
+  assert.match(route, /Origen:/);
 });
 
 test("contact emails do not retain visitor IP addresses", () => {

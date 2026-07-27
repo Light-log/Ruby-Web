@@ -31,6 +31,7 @@ export function Contact() {
       phone: String(fd.get("phone") ?? ""),
       message: String(fd.get("message") ?? ""),
       hp: String(fd.get("hp") ?? ""),
+      origin: new URLSearchParams(window.location.search).get("origen") ?? "sitio-web",
     };
 
     try {
