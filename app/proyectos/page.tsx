@@ -69,7 +69,7 @@ const projects: Project[] = [
       "Métricas y analítica de conversaciones en tiempo real",
       "Derivación automática a agentes humanos cuando se necesita",
     ],
-    image: "/RubyQ.png",
+    image: "/RubyQ-refined.png",
     ctaHref: "https://q.devruby.org",
     ctaLabel: "Ver plataforma",
   },
@@ -195,13 +195,6 @@ const projects: Project[] = [
   },
 ];
 
-const stats = [
-  { value: "50+", label: "Proyectos entregados" },
-  { value: "Web", label: "Aplicaciones y plataformas" },
-  { value: "API", label: "Integraciones y servicios" },
-  { value: "6", label: "Industrias cubiertas" },
-];
-
 function PortfolioJsonLd() {
   const schema = {
     "@context": "https://schema.org",
@@ -251,21 +244,9 @@ export default function ProyectosPage() {
                 <span className="gradient-text">impacto real</span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg text-ivory-dim">
-                Cada proyecto es una historia de transformación. Desde startups hasta
-                empresas consolidadas, construimos soluciones que generan resultados medibles.
+                Productos públicos y soluciones desarrolladas para resolver operaciones,
+                automatización y experiencias digitales concretas.
               </p>
-            </div>
-          </FadeIn>
-
-          {/* Stats bar */}
-          <FadeIn delay={0.05}>
-            <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
-              {stats.map((s) => (
-                <Card key={s.label} className="p-5 text-center transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
-                  <div className="font-display text-2xl md:text-3xl gradient-text">{s.value}</div>
-                  <div className="mt-1 text-xs text-ivory-dim">{s.label}</div>
-                </Card>
-              ))}
             </div>
           </FadeIn>
 
@@ -317,15 +298,6 @@ export default function ProyectosPage() {
                           </div>
                         </div>
                       )}
-
-                      <div className="mt-6 grid grid-cols-2 gap-3 max-w-xs">
-                        {p.metrics.map((m) => (
-                          <div key={m.label} className="rounded-xl border border-black/6 bg-dark-200/60 px-3 py-2">
-                            <div className="text-[10px] text-ivory-muted">{m.label}</div>
-                            <div className="font-display text-sm text-ivory">{m.value}</div>
-                          </div>
-                        ))}
-                      </div>
 
                       <div className="mt-6">
                         <a href={p.ctaHref ?? "/contacto"}>

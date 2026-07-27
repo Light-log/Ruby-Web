@@ -30,7 +30,7 @@ const projects: Project[] = [
       { label: "Automatización", value: "Hasta 90%" },
       { label: "Canales", value: "6+ integrados" },
     ],
-    image: "/RubyQ.png",
+    image: "/RubyQ-refined.png",
     ctaHref: "https://q.devruby.org",
     ctaLabel: "Ver plataforma",
   },
@@ -201,15 +201,6 @@ export function Portfolio() {
                           <p className="mt-4 text-sm leading-relaxed text-ivory-dim flex-1">
                             {p.description}
                           </p>
-
-                          <div className="mt-4 grid grid-cols-2 gap-2">
-                            {p.metrics.map((m) => (
-                              <div key={m.label} className="rounded-xl border border-black/6 bg-dark-200/60 px-3 py-2">
-                                <div className="text-[10px] text-ivory-muted">{m.label}</div>
-                                <div className="font-display text-xs text-ivory">{m.value}</div>
-                              </div>
-                            ))}
-                          </div>
 
                           <div className="mt-4 flex flex-wrap gap-1.5">
                             {p.tags.map((t) => (
