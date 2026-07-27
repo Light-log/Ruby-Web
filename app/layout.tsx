@@ -28,11 +28,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://devruby.org"),
   title: {
-    default: "Consultora Ruby | Desarrollo de Software a Medida y Automatización",
-    template: "%s | Consultora Ruby",
+    default: "DEVRUBY | Aplicaciones web, APIs y sistemas internos",
+    template: "%s | DEVRUBY",
   },
   description:
-    "Consultora tecnológica premium en Latinoamérica. Desarrollo de software a medida, automatización de procesos, DevOps, ciberseguridad e inteligencia de datos. +50 proyectos entregados con 98% de satisfacción.",
+    "DEVRUBY LLC diseña aplicaciones web, APIs, integraciones, sistemas internos y auditorías técnicas para empresas.",
   keywords: [
     "desarrollo de software",
     "software a medida",
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
   ],
-  authors: [{ name: "Consultora Ruby", url: "https://devruby.org" }],
-  creator: "Consultora Ruby",
-  publisher: "Consultora Ruby",
+  authors: [{ name: "DEVRUBY LLC", url: "https://devruby.org" }],
+  creator: "DEVRUBY LLC",
+  publisher: "DEVRUBY LLC",
   robots: {
     index: true,
     follow: true,
@@ -68,24 +68,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
     url: "https://devruby.org",
-    siteName: "Consultora Ruby",
-    title: "Consultora Ruby | Desarrollo de Software Premium",
+    siteName: "DEVRUBY",
+    title: "DEVRUBY | Ingeniería de software para empresas",
     description:
-      "Transformamos ideas en soluciones digitales que impulsan tu negocio. +50 proyectos, 98% satisfacción, soporte 24/7.",
+      "Aplicaciones web, APIs, sistemas internos y auditorías técnicas para empresas.",
     images: [
       {
         url: "/logo.svg",
         width: 512,
         height: 512,
-        alt: "Consultora Ruby - Soluciones Tecnológicas Premium",
+        alt: "DEVRUBY",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Consultora Ruby | Soluciones Tecnológicas Premium",
+    title: "DEVRUBY | Ingeniería de software para empresas",
     description:
-      "Desarrollo de software, automatización, DevOps y más. +50 proyectos entregados.",
+      "Aplicaciones web, APIs, sistemas internos y auditorías técnicas.",
     images: ["/logo.svg"],
   },
   icons: {
@@ -104,11 +104,11 @@ function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Consultora Ruby",
+    name: "DEVRUBY LLC",
     url: "https://devruby.org",
     logo: "https://devruby.org/logo.svg",
     description:
-      "Consultora tecnológica premium. Desarrollo de software a medida, automatización, DevOps, ciberseguridad e inteligencia de datos.",
+      "Aplicaciones web, APIs, sistemas internos e ingeniería de seguridad para empresas.",
     email: "soporte@devruby.org",
     telephone: "+584164118747",
     address: {
@@ -125,12 +125,6 @@ function JsonLd() {
       "Inteligencia de Datos",
       "Diseño UI/UX",
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "47",
-      bestRating: "5",
-    },
     priceRange: "$$",
     sameAs: [],
   };

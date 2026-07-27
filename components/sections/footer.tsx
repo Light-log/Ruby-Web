@@ -29,20 +29,19 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/logo.svg"
-                alt="Consultora Ruby"
+                alt="DEVRUBY"
                 width={40}
                 height={40}
                 className="rounded-xl"
               />
               <div className="flex flex-col">
                 <span className="font-display text-sm tracking-widest text-ivory">
-                  CONSULTORA RUBY
+                  DEVRUBY
                 </span>
               </div>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-ivory-dim">
-              Diseñamos, construimos e integramos soluciones tecnológicas con
-              estándares premium.
+              Aplicaciones web, APIs, sistemas internos y auditorías técnicas para empresas.
             </p>
           </div>
 
@@ -107,7 +106,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="text-sm text-ivory-muted">
-            &copy; {new Date().getFullYear()} Consultora Ruby. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} DEVRUBY LLC. Todos los derechos reservados.
           </div>
           <div className="flex flex-col gap-2 text-sm text-ivory-muted sm:flex-row sm:items-center sm:gap-4">
             <Link

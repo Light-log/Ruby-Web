@@ -5,6 +5,7 @@ import { FadeIn } from "@/components/animate/fade-in";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { site } from "@/lib/site";
 import { Mail, Phone, MapPin, ArrowRight, MessageSquare, Send, Loader2 } from "lucide-react";
 import * as React from "react";
 
@@ -47,7 +48,7 @@ export function Contact() {
       }
 
       setStatus("ok");
-      setMsg("Mensaje enviado correctamente. Te responderemos pronto.");
+      setMsg("Recibimos tu información. Revisaremos el contexto y te responderemos por el medio indicado para coordinar el siguiente paso.");
       form.reset();
       setTimeout(() => setStatus("idle"), 4000);
     } catch {
@@ -69,12 +70,12 @@ export function Contact() {
             </div>
 
             <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
-              Hablemos de tu{" "}
-              <span className="gradient-text">próximo proyecto</span>
+              Cuéntanos tu{" "}
+              <span className="gradient-text">necesidad técnica</span>
             </h2>
             <p className="mt-4 max-w-2xl text-ivory-dim">
-              Cuéntanos el objetivo. Te devolvemos una propuesta clara con alcance,
-              tiempo y próximos pasos.
+              Comparte el contexto de tu operación y los sistemas involucrados.
+              Así podremos entender si somos el equipo adecuado para ayudarte.
             </p>
           </div>
         </FadeIn>
@@ -106,7 +107,7 @@ export function Contact() {
                   <textarea
                     name="message"
                     className="min-h-[140px] resize-y rounded-2xl border border-black/10 bg-dark-200/60 px-4 py-3 text-ivory placeholder:text-ivory-muted/60 outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white"
-                    placeholder="¿Qué necesitas construir o mejorar?"
+                    placeholder="Cuéntanos el objetivo, el proceso actual y los sistemas que intervienen."
                     required
                   />
                 </label>
@@ -173,7 +174,7 @@ export function Contact() {
                   soporte@devruby.org
                 </InfoRow>
                 <InfoRow icon={<Phone className="h-4 w-4" />} label="Teléfono">
-                  +58 4164118747
+                  {site.phone}
                 </InfoRow>
                 <InfoRow icon={<MapPin className="h-4 w-4" />} label="Ubicación">
                   Caracas &bull; Remoto / Latam
@@ -183,24 +184,16 @@ export function Contact() {
               <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
 
               <div className="mt-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-3 py-1.5 text-xs text-lavender-dark mb-4">
-                  Tip
-                </div>
                 <div className="font-display text-xl text-ivory">
-                  ¿Tienes un documento o brief?
+                  ¿Prefieres reservar una conversación?
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-ivory-dim">
-                  Adjúntalo en tu mensaje. Nos ayuda a estimar más rápido y
-                  reducir iteraciones innecesarias.
+                  Puedes elegir el siguiente paso que te resulte más cómodo.
                 </p>
-              </div>
-
-              <div className="mt-8 rounded-2xl border border-black/8 bg-dark-200/60 p-5">
-                <div className="text-xs text-ivory-muted mb-2">Tiempo de respuesta promedio</div>
-                <div className="font-display text-2xl gradient-text">&lt; 24 horas</div>
-                <p className="mt-2 text-xs text-ivory-muted">
-                  En días laborables. Urgencias atendidas de inmediato.
-                </p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <Link href="/agenda" data-track="agenda"><Button className="w-full">Ver agenda</Button></Link>
+                  <a href={site.whatsAppUrl} target="_blank" rel="noreferrer" data-track="whatsapp"><Button variant="outline" className="w-full">WhatsApp</Button></a>
+                </div>
               </div>
             </Card>
           </FadeIn>

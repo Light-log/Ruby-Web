@@ -17,24 +17,24 @@ export function CTASection() {
             <div className="relative">
               <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-8">
                 <Rocket className="h-3.5 w-3.5" />
-                Empecemos hoy
+                Consulta inicial
               </div>
 
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight text-ivory">
-                ¿Listo para transformar{" "}
-                <span className="gradient-text">tu negocio?</span>
+                ¿Tienes un sistema que{" "}
+                <span className="gradient-text">necesita evolucionar?</span>
               </h2>
 
               <p className="mt-6 mx-auto max-w-2xl text-ivory-dim text-lg">
-                Agenda una consulta gratuita y descubre cómo podemos ayudarte a
-                construir la solución tecnológica que tu empresa necesita.
+                Cuéntanos el contexto técnico y revisemos el siguiente paso para
+                construir, integrar o asegurar tu sistema.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Magnetic>
-                  <a href="/contacto">
+                  <a href="/agenda" data-track="agenda">
                     <Button size="lg">
-                      Agenda tu consulta gratuita <ArrowRight className="h-4 w-4" />
+                      Agenda una consulta inicial <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>
                 </Magnetic>
@@ -47,7 +47,7 @@ export function CTASection() {
               </div>
 
               <p className="mt-6 text-xs text-ivory-muted">
-                Sin compromisos &bull; Respuesta en menos de 24h &bull; 100% confidencial
+                Aplicaciones web &bull; APIs &bull; Sistemas internos &bull; Auditorías técnicas
               </p>
             </div>
           </div>

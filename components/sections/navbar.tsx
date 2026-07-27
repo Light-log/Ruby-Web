@@ -37,14 +37,14 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo.svg"
-            alt="Consultora Ruby"
+            alt="DEVRUBY"
             width={48}
             height={48}
             className="rounded-xl transition-transform duration-300 group-hover:scale-105"
           />
           <div className="flex flex-col">
             <span className="font-display text-base tracking-widest text-ivory">
-              CONSULTORA RUBY
+              DEVRUBY
             </span>
             <span className="text-[10px] tracking-[0.2em] text-ivory-muted">
               SOLUCIONES TECNOLÓGICAS
@@ -66,9 +66,9 @@ export function Navbar() {
 
         <div className="flex items-center gap-4">
           <Magnetic>
-            <Link href="/contacto" className="hidden sm:block">
+            <Link href="/agenda" className="hidden sm:block" data-track="agenda">
               <Button variant="primary" size="sm">
-                Solicitar propuesta
+                Agenda una consulta
               </Button>
             </Link>
           </Magnetic>
@@ -97,9 +97,9 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link href="/contacto" className="mt-3" onClick={() => setOpen(false)}>
+            <Link href="/agenda" className="mt-3" onClick={() => setOpen(false)} data-track="agenda">
               <Button variant="primary" size="sm" className="w-full">
-                Solicitar propuesta
+                Agenda una consulta
               </Button>
             </Link>
           </nav>

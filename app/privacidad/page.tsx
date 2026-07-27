@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 export const metadata: Metadata = {
   title: "Política de Privacidad y Cookies",
   description:
-    "Política de privacidad y uso de cookies del sitio web de Consultora Ruby.",
+    "Política de privacidad y uso de cookies del sitio web de DEVRUBY LLC.",
   alternates: {
     canonical: "https://devruby.org/privacidad",
   },
@@ -18,7 +18,7 @@ const sections = [
     body: (
       <p>
         El responsable del tratamiento de los datos recogidos a través de este
-        sitio es <strong>Consultora Ruby</strong>. Puedes contactarnos en{" "}
+        sitio es <strong>DEVRUBY LLC</strong>. Puedes contactarnos en{" "}
         <a href="mailto:soporte@devruby.org">soporte@devruby.org</a>.
       </p>
     ),
@@ -163,7 +163,7 @@ export default function PrivacidadPage() {
           <Link href="/" aria-label="Volver al inicio">
             <Image
               src="/logo.svg"
-              alt="Consultora Ruby"
+              alt="DEVRUBY"
               width={56}
               height={56}
               priority
@@ -172,7 +172,7 @@ export default function PrivacidadPage() {
           </Link>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-crimson">
-              Consultora Ruby
+              DEVRUBY LLC
             </p>
             <p className="mt-1 text-sm text-ivory-muted">Sitio web</p>
           </div>
@@ -187,7 +187,7 @@ export default function PrivacidadPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-ivory-dim">
             Cómo tratamos tus datos y qué cookies utilizamos en el sitio web de
-            Consultora Ruby.
+            DEVRUBY LLC.
           </p>
         </div>
 
@@ -208,7 +208,7 @@ export default function PrivacidadPage() {
         </Card>
 
         <footer className="py-8 text-center text-xs text-ivory-muted">
-          © 2025 Consultora Ruby. Todos los derechos reservados.
+          © 2025 DEVRUBY LLC. Todos los derechos reservados.
         </footer>
       </section>
     </main>
