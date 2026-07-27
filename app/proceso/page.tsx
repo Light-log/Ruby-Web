@@ -42,16 +42,16 @@ const steps = [
     num: "01",
     icon: Search,
     title: "Descubrimiento",
-    desc: "Entendemos tu negocio, objetivos y contexto técnico. Identificamos oportunidades y definimos el alcance con precisión.",
+    desc: "Entendemos tu operación, objetivos y contexto técnico para acordar un primer alcance útil.",
     details: [
-      "Reunión inicial de 60-90 minutos",
-      "Análisis profundo de requerimientos",
+      "Consulta inicial y recopilación de contexto",
+      "Análisis de requerimientos prioritarios",
       "Mapeo de procesos actuales",
       "Identificación de stakeholders",
       "Documentación de casos de uso",
     ],
-    duration: "1-2 semanas",
-    deliverable: "Documento de alcance y requerimientos",
+    duration: "Según el alcance",
+    deliverable: "Resumen de alcance y siguientes pasos",
   },
   {
     num: "02",
@@ -65,8 +65,8 @@ const steps = [
       "Estimación detallada de costos",
       "Selección de stack tecnológico",
     ],
-    duration: "1-2 semanas",
-    deliverable: "Propuesta técnica + prototipos",
+    duration: "Según el alcance",
+    deliverable: "Propuesta técnica cuando aplique",
   },
   {
     num: "03",
@@ -74,14 +74,14 @@ const steps = [
     title: "Desarrollo & Testing",
     desc: "Construimos con prácticas modernas: código limpio, CI/CD, testing automatizado y revisiones constantes.",
     details: [
-      "Sprints semanales con demos",
-      "Code reviews obligatorios",
-      "Testing automatizado (unit + e2e)",
-      "CI/CD desde el día uno",
-      "Comunicación diaria por Slack/Discord",
+      "Iteraciones y demostraciones acordadas",
+      "Revisión de código según el proyecto",
+      "Pruebas adecuadas al alcance",
+      "Automatización de despliegue cuando aporta valor",
+      "Canal de comunicación definido con el equipo",
     ],
-    duration: "4-8 semanas",
-    deliverable: "Producto funcional + tests",
+    duration: "Definida en la propuesta",
+    deliverable: "Entrega validada contra el alcance",
   },
   {
     num: "04",
@@ -95,8 +95,8 @@ const steps = [
       "Monitoreo y alertas configuradas",
       "Soporte técnico 24/7 post-entrega",
     ],
-    duration: "1 semana + soporte continuo",
-    deliverable: "Sistema en producción + docs",
+    duration: "Según la entrega y soporte contratado",
+    deliverable: "Sistema, documentación y traspaso acordados",
   },
 ];
 
@@ -104,7 +104,7 @@ const advantages = [
   {
     icon: Clock,
     title: "Tiempos predecibles",
-    desc: "Cada proyecto tiene un cronograma claro con milestones semanales. Sin sorpresas ni retrasos.",
+    desc: "Definimos hitos y dependencias para que el avance sea visible y los cambios se traten a tiempo.",
   },
   {
     icon: MessageSquare,
@@ -113,8 +113,8 @@ const advantages = [
   },
   {
     icon: Shield,
-    title: "Calidad garantizada",
-    desc: "Code reviews, testing automatizado y CI/CD aseguran que cada entrega cumple estándares premium.",
+    title: "Calidad técnica",
+    desc: "Aplicamos revisiones, pruebas y automatización de despliegue de acuerdo con el riesgo y el alcance del sistema.",
   },
   {
     icon: Users,
@@ -237,7 +237,7 @@ export default function ProcesoPage() {
                   <span className="gradient-text">nuestro proceso</span>?
                 </h2>
                 <p className="mt-3 text-ivory-dim">
-                  Principios que garantizan entregas exitosas en cada proyecto.
+                  Principios para trabajar con claridad técnica y operativa en cada proyecto.
                 </p>
               </div>
             </FadeIn>

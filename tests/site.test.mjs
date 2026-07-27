@@ -78,3 +78,13 @@ test("contact emails do not retain visitor IP addresses", () => {
   assert.doesNotMatch(route, /IP:\s*\$\{ip\}/);
   assert.match(privacy, /No la\s+incluimos en el correo de contacto/);
 });
+
+test("general sales pages avoid unsupported results and compliance claims", () => {
+  const process = fs.readFileSync("app/proceso/page.tsx", "utf8");
+  const services = fs.readFileSync("app/servicios/page.tsx", "utf8");
+  const about = fs.readFileSync("app/nosotros/page.tsx", "utf8");
+
+  assert.doesNotMatch(process, /Sin sorpresas ni retrasos|Calidad garantizada|4-8 semanas/);
+  assert.doesNotMatch(services, /pentesting básico|Cumplimiento de normativas básicas/);
+  assert.doesNotMatch(about, /hemos acompañado a startups/i);
+});

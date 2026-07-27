@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Servicios",
   description:
-    "Desarrollo de software a medida, automatización de procesos, DevOps, ciberseguridad, inteligencia de datos y diseño UI/UX premium. Soluciones completas para cada desafío tecnológico.",
+    "Desarrollo de software a medida, automatización de procesos, infraestructura, auditorías técnicas, datos y experiencia de producto para empresas.",
   keywords: [
     "desarrollo software a medida",
     "automatización de procesos",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Servicios | DEVRUBY",
     description:
-      "6 servicios tecnológicos premium: desarrollo, automatización, DevOps, seguridad, datos y diseño.",
+      "Desarrollo, automatización, infraestructura, seguridad, datos y diseño para empresas.",
     url: "https://devruby.org/servicios",
     type: "website",
     images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
@@ -87,11 +87,11 @@ const services = [
     desc: "Protegemos tus sistemas con hardening, auditorías técnicas, controles de acceso y prácticas de seguridad en apps y servidores.",
     features: [
       "Hardening de servidores y aplicaciones",
-      "Auditorías de seguridad y pentesting básico",
+      "Revisión de superficies expuestas en el alcance autorizado",
       "Configuración de WAF y firewalls",
       "Gestión de secretos y credenciales",
       "Políticas de acceso y autenticación",
-      "Cumplimiento de normativas básicas",
+      "Informe técnico de hallazgos y prioridades",
     ],
     color: "lavender" as const,
   },

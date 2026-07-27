@@ -13,11 +13,11 @@ import {
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "Somos un equipo de ingenieros, diseñadores y estrategas comprometidos con construir soluciones tecnológicas que transforman negocios en Latinoamérica.",
+    "Conoce el enfoque de DEVRUBY LLC para diseñar software empresarial mantenible, seguro y orientado a la operación.",
   keywords: [
     "consultora tecnológica",
     "equipo desarrollo software",
-    "nosotros consultora Ruby",
+    "nosotros DEVRUBY",
     "ingenieros software Venezuela",
     "transformación digital Latinoamérica",
   ],
@@ -41,12 +41,12 @@ const values = [
   {
     icon: Target,
     title: "Enfoque en resultados",
-    desc: "Cada línea de código tiene un propósito. No construimos por construir, sino para generar impacto real en tu negocio.",
+    desc: "Partimos de un problema operativo y un objetivo concreto antes de proponer tecnología.",
   },
   {
     icon: Heart,
     title: "Compromiso genuino",
-    desc: "Tratamos cada proyecto como propio. Tu éxito es nuestro éxito, y eso se refleja en la calidad de cada entrega.",
+    desc: "Mantenemos una conversación directa sobre alcance, decisiones y próximos pasos.",
   },
   {
     icon: Lightbulb,
@@ -56,7 +56,7 @@ const values = [
   {
     icon: Shield,
     title: "Transparencia total",
-    desc: "Comunicación clara, precios justos y sin sorpresas. Sabrás exactamente qué estamos haciendo y por qué.",
+    desc: "Explicamos el alcance, las decisiones técnicas y los cambios que puedan afectar al trabajo.",
   },
 ];
 
@@ -91,8 +91,8 @@ export default function NosotrosPage() {
                 <span className="gradient-text">propósito humano</span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg text-ivory-dim">
-                Somos un equipo de ingenieros, diseñadores y estrategas comprometidos
-                con construir soluciones que realmente transforman negocios.
+                Diseñamos software, integraciones y auditorías técnicas para empresas que
+                necesitan una base tecnológica clara, mantenible y segura.
               </p>
             </div>
           </FadeIn>
@@ -103,18 +103,17 @@ export default function NosotrosPage() {
                 <h2 className="font-display text-2xl text-ivory mb-4">Nuestra historia</h2>
                 <div className="grid gap-4 text-sm leading-relaxed text-ivory-dim">
                   <p>
-                    DEVRUBY nació de una convicción: la tecnología debe ser una herramienta
-                    de empoderamiento, no una barrera. Hemos visto demasiadas empresas frustradas
-                    por soluciones mediocres, entregas incompletas y promesas vacías.
+                    DEVRUBY parte de una convicción: la tecnología debe facilitar la operación,
+                    no crear una nueva capa de complejidad. Por eso comenzamos por entender el
+                    proceso y el resultado que el equipo necesita conseguir.
                   </p>
                   <p>
-                    Decidimos crear una consultora diferente. Una donde la ingeniería de calidad,
-                    la comunicación transparente y el compromiso genuino sean la norma, no la excepción.
+                    Trabajamos con una práctica centrada en ingeniería mantenible, comunicación
+                    directa y decisiones que puedan explicarse con claridad.
                   </p>
                   <p>
-                    Desde nuestros inicios, hemos acompañado a startups, PyMEs y empresas
-                    consolidadas en su transformación digital, construyendo productos que
-                    no solo funcionan, sino que generan confianza y escalan con el negocio.
+                    DEVRUBY LLC presta servicios de forma remota para empresas que necesitan
+                    construir, integrar o revisar aplicaciones y sistemas internos.
                   </p>
                 </div>
               </Card>

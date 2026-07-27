@@ -40,8 +40,8 @@ const guarantees = [
   },
   {
     icon: Shield,
-    title: "100% Confidencial",
-    desc: "Tu información y tu proyecto están protegidos en todo momento.",
+    title: "Tratamiento confidencial",
+    desc: "Usamos tu información para revisar y responder a tu solicitud.",
   },
   {
     icon: FileText,
