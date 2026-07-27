@@ -35,11 +35,10 @@ export interface ArcRevealHeroProps {
   greetingClassName?: string;
   /** Class for the wrapper around `children` (the revealed content). */
   revealClassName?: string;
-  /**
-   * Optional `sessionStorage` key — when set, the intro plays only once per
-   * session for the same key. Leave unset to replay on every mount.
-   */
+  /** Optional key used to prevent replaying the intro. */
   storageKey?: string;
+  /** Where the replay flag is stored. */
+  storageScope?: "session" | "local";
   /** Content shown after the curtain reveal (the "landing"). */
   children?: React.ReactNode;
 }
@@ -52,6 +51,7 @@ export interface ArcRevealHeroProps {
  */
 const SURFACE_CREAM = "#F5F1EC"; // dark.DEFAULT — superficie de la intro
 const CURTAIN_DARK = "#824570"; // mauve de marca — la cortina que sube
+export const HERO_INTRO_COMPLETE_EVENT = "devruby:hero-intro-complete";
 
 /** Los pilares de DEVRUBY, en secuencia (beats declarativos). */
 const DEFAULT_GREETINGS: ArcRevealGreeting[] = [
@@ -76,6 +76,7 @@ export function ArcRevealHero({
   greetingClassName,
   revealClassName,
   storageKey,
+  storageScope = "session",
   children,
 }: ArcRevealHeroProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -103,14 +104,15 @@ export function ArcRevealHero({
     }
     if (storageKey && typeof window !== "undefined") {
       try {
-        if (window.sessionStorage.getItem(storageKey) === "done") {
+        const storage = storageScope === "local" ? window.localStorage : window.sessionStorage;
+        if (storage.getItem(storageKey) === "done") {
           setPhase("done");
         }
       } catch {
         /* sessionStorage can throw in private mode — fall through */
       }
     }
-  }, [prefersReducedMotion, storageKey]);
+  }, [prefersReducedMotion, storageKey, storageScope]);
 
   // Greeting cycle.
   React.useEffect(() => {
@@ -133,16 +135,18 @@ export function ArcRevealHero({
       onComplete: () => {
         if (storageKey && typeof window !== "undefined") {
           try {
-            window.sessionStorage.setItem(storageKey, "done");
+            const storage = storageScope === "local" ? window.localStorage : window.sessionStorage;
+            storage.setItem(storageKey, "done");
           } catch {
             /* ignore */
           }
         }
         setPhase("done");
+        window.dispatchEvent(new Event(HERO_INTRO_COMPLETE_EVENT));
       },
     });
     return () => controls.stop();
-  }, [phase, progress, revealDuration, storageKey]);
+  }, [phase, progress, revealDuration, storageKey, storageScope]);
 
   const showOverlay = phase !== "done";
   const current = greetings[Math.min(index, greetings.length - 1)];

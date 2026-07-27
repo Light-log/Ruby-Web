@@ -20,6 +20,8 @@ export interface GLSLHillsProps {
   colorValley?: string;
   /** Terrain opacity multiplier. */
   intensity?: number;
+  /** Called after the first WebGL frame is rendered. */
+  onReady?: () => void;
   className?: string;
 }
 
@@ -37,6 +39,7 @@ export function GLSLHills({
   colorPeak = "#C41E3A",
   colorValley = "#7C5CBF",
   intensity = 1.35,
+  onReady,
   className,
 }: GLSLHillsProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -239,6 +242,8 @@ export function GLSLHills({
       loop();
     }
 
+    onReady?.();
+
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       ro.disconnect();
@@ -246,7 +251,7 @@ export function GLSLHills({
       material.dispose();
       renderer.dispose();
     };
-  }, [cameraZ, planeSize, speed, colorPeak, colorValley, intensity]);
+  }, [cameraZ, planeSize, speed, colorPeak, colorValley, intensity, onReady]);
 
   return (
     <div

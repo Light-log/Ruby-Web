@@ -1,9 +1,9 @@
 "use client";
 
-export function PageLoader() {
+export function PageLoader({ className = "" }: { className?: string }) {
   return (
     <div
-      className="grid min-h-[100svh] place-items-center bg-[#F5F1EC]"
+      className={`grid h-full min-h-0 place-items-center bg-[#F5F1EC] ${className}`}
       role="status"
       aria-label="Cargando página"
     >
