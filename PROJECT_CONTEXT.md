@@ -42,3 +42,5 @@ despliegue.
 La campaña SEO de España se estructura en `/espana` y cuatro páginas específicas: software a medida, automatización de procesos, integraciones API y auditoría de seguridad de aplicaciones. No usar redirecciones por IP ni simular una oficina española; DEVRUBY LLC presta el servicio en remoto.
 
 Las CTA de la campaña llevan agenda/WhatsApp y los eventos de intención se miden solo tras consentimiento de analítica. Antes de anunciarse en la UE, revisar legalmente los proveedores reales y transferencias internacionales indicados en `docs/campana-espana-operacion.md`.
+
+Los commits `e5ad625` y `b334b40` están enviados a `origin/main`. El dominio público todavía sirve una versión estática anterior de Consultora Ruby; no considerar publicada la campaña hasta que el hosting construya la rama `main` como aplicación Next.js y se verifiquen las rutas públicas.
