@@ -163,17 +163,15 @@ export function Portfolio() {
               <Magnetic>
                 <ShineBorder className="h-full rounded-2xl">
                   <article className="group relative flex h-[520px] flex-col overflow-hidden rounded-2xl border border-black/8 bg-white/80 backdrop-blur-xl shadow-card">
-                    <div className={`relative h-44 w-full overflow-hidden ${p.imageFit ? "bg-crimson p-4" : ""}`}>
+                    <div className="relative h-44 w-full overflow-hidden">
                       <Image
                         src={p.image}
                         alt={p.title}
                         fill
-                        className={p.imageFit
-                          ? "rounded-2xl border border-white/30 object-contain bg-white shadow-[0_12px_28px_rgba(72,8,21,0.38)] transition-transform duration-500 group-hover:scale-[1.025]"
-                          : "object-cover opacity-90 transition-all duration-500 group-hover:scale-[1.06] group-hover:opacity-100"}
+                        className={`opacity-90 transition-all duration-500 group-hover:scale-[1.06] group-hover:opacity-100 ${p.imageFit ? "object-contain" : "object-cover"}`}
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      {!p.imageFit && <div className="absolute inset-0 bg-gradient-to-t from-crimson/70 via-crimson/15 to-transparent" />}
+                      <div className="absolute inset-0 bg-gradient-to-t from-crimson/70 via-crimson/15 to-transparent" />
                     </div>
 
                     <div className="flex flex-1 flex-col p-6">

@@ -258,18 +258,16 @@ export default function ProyectosPage() {
               <FadeIn key={p.title} delay={idx * 0.05}>
                 <Card className="overflow-hidden transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
                   <div className="grid md:grid-cols-5">
-                    <div className={`relative h-64 md:h-auto md:col-span-2 ${p.imageFit ? "bg-crimson p-8" : ""}`}>
+                    <div className="relative h-64 md:h-auto md:col-span-2">
                       <Image
                         src={p.image}
                         alt={p.title}
                         fill
-                        className={p.imageFit
-                          ? "rounded-3xl border border-white/35 object-contain bg-white p-4 shadow-[0_18px_36px_rgba(72,8,21,0.42)]"
-                          : "object-cover"}
+                        className={p.imageFit ? "object-contain" : "object-cover"}
                         sizes="(max-width: 768px) 100vw, 40vw"
                       />
-                      {!p.imageFit && <div className="absolute inset-0 bg-gradient-to-r from-transparent to-crimson/30 hidden md:block" />}
-                      {!p.imageFit && <div className="absolute inset-0 bg-gradient-to-t from-crimson/70 via-crimson/20 to-transparent md:hidden" />}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-crimson/30 hidden md:block" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-crimson/70 via-crimson/20 to-transparent md:hidden" />
                     </div>
 
                     <div className="p-8 md:p-10 md:col-span-3">
