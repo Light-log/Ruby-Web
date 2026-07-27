@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { LEAD_SUBMITTED_EVENT } from "@/components/analytics/conversion-events";
 import { Mail, Phone, MapPin, ArrowRight, MessageSquare, Send, Loader2 } from "lucide-react";
 import * as React from "react";
 
@@ -48,6 +49,7 @@ export function Contact() {
       }
 
       setStatus("ok");
+      window.dispatchEvent(new Event(LEAD_SUBMITTED_EVENT));
       setMsg("Recibimos tu información. Revisaremos el contexto y te responderemos por el medio indicado para coordinar el siguiente paso.");
       form.reset();
       setTimeout(() => setStatus("idle"), 4000);

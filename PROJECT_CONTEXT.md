@@ -39,4 +39,6 @@ despliegue.
 
 ## Siguiente fase
 
-Campaña SEO de España con páginas específicas y contenido localizado; no usar redirecciones por IP.
+La campaña SEO de España se estructura en `/espana` y cuatro páginas específicas: software a medida, automatización de procesos, integraciones API y auditoría de seguridad de aplicaciones. No usar redirecciones por IP ni simular una oficina española; DEVRUBY LLC presta el servicio en remoto.
+
+Las CTA de la campaña llevan agenda/WhatsApp y los eventos de intención se miden solo tras consentimiento de analítica. Antes de anunciarse en la UE, revisar legalmente los proveedores reales y transferencias internacionales indicados en `docs/campana-espana-operacion.md`.

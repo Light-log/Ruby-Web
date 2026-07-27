@@ -37,3 +37,44 @@ test("primary CTAs link to the agenda route", () => {
     assert.match(source, /href="\/agenda"/);
   }
 });
+
+test("Spain campaign publishes specific commercial routes", () => {
+  const campaign = fs.readFileSync("lib/spain-campaign.ts", "utf8");
+  const route = fs.readFileSync("app/espana/[service]/page.tsx", "utf8");
+  const hub = fs.readFileSync("app/espana/page.tsx", "utf8");
+  const sitemap = fs.readFileSync("app/sitemap.ts", "utf8");
+
+  for (const slug of [
+    "desarrollo-software-a-medida",
+    "automatizacion-de-procesos",
+    "integracion-api-sistemas",
+    "auditoria-seguridad-aplicaciones",
+  ]) {
+    assert.match(campaign, new RegExp(`"${slug}"`));
+    assert.match(sitemap, new RegExp(`/espana/${slug}`));
+  }
+  assert.match(hub, /trabaja en remoto con empresas de España/);
+  assert.match(route, /FAQPage/);
+  assert.match(route, /areaServed/);
+});
+
+test("lead tracking runs only after analytics consent and records successful forms", () => {
+  const banner = fs.readFileSync("components/ui/consent-banner.tsx", "utf8");
+  const tracking = fs.readFileSync("components/analytics/conversion-events.tsx", "utf8");
+  const contact = fs.readFileSync("components/sections/contact.tsx", "utf8");
+
+  assert.match(banner, /analyticsGranted &&/);
+  assert.match(banner, /<ConversionEvents/);
+  assert.match(tracking, /book_consultation/);
+  assert.match(tracking, /contact_whatsapp/);
+  assert.match(tracking, /generate_lead/);
+  assert.match(contact, /LEAD_SUBMITTED_EVENT/);
+});
+
+test("contact emails do not retain visitor IP addresses", () => {
+  const route = fs.readFileSync("app/api/contact/route.ts", "utf8");
+  const privacy = fs.readFileSync("app/privacidad/page.tsx", "utf8");
+
+  assert.doesNotMatch(route, /IP:\s*\$\{ip\}/);
+  assert.match(privacy, /No la\s+incluimos en el correo de contacto/);
+});

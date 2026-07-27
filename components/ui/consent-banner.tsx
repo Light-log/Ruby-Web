@@ -5,6 +5,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Cookie, ShieldCheck, BarChart3, Check } from "lucide-react";
 import { HERO_INTRO_COMPLETE_EVENT } from "@/components/ui/arc-preloader-hero";
+import { ConversionEvents } from "@/components/analytics/conversion-events";
 
 const GA_ID = "G-SEZY0Q1JSN";
 const STORAGE_KEY = "ruby-cookie-consent";
@@ -114,6 +115,7 @@ export function ConsentBanner() {
               gtag('config', '${GA_ID}', { anonymize_ip: true });
             `}
           </Script>
+          <ConversionEvents />
         </>
       )}
 

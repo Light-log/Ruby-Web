@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/proyectos", label: "Proyectos" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto", label: "Contacto" },
+  { href: "/espana", label: "Empresas en España" },
 ];
 
 const serviceLinks = [

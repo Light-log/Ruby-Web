@@ -107,7 +107,6 @@ export async function POST(req: NextRequest) {
       `Email: ${email}`,
       `Empresa: ${company || "-"}`,
       `Teléfono: ${phone || "-"}`,
-      `IP: ${ip}`,
       "",
       "Mensaje:",
       message,
@@ -120,7 +119,6 @@ export async function POST(req: NextRequest) {
         <p><b>Email:</b> ${email}</p>
         <p><b>Empresa:</b> ${company || "-"}</p>
         <p><b>Teléfono:</b> ${phone || "-"}</p>
-        <p><b>IP:</b> ${ip}</p>
         <hr style="border:none;border-top:1px solid #eee;margin:16px 0" />
         <p style="white-space:pre-wrap">${message}</p>
       </div>

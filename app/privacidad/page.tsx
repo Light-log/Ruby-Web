@@ -39,8 +39,9 @@ const sections = [
         </li>
         <li>
           <strong>Datos técnicos:</strong> al enviar el formulario de contacto
-          registramos tu dirección IP de forma temporal, con el único fin de
-          prevenir abusos (anti-spam y limitación de solicitudes).
+          usamos tu dirección IP de forma temporal en memoria con el único fin
+          de prevenir abusos (anti-spam y limitación de solicitudes). No la
+          incluimos en el correo de contacto.
         </li>
       </ul>
     ),
@@ -180,7 +181,7 @@ export default function PrivacidadPage() {
 
         <div className="mb-10 border-b border-black/10 pb-8">
           <p className="mb-3 inline-flex rounded-full border border-crimson/20 bg-crimson/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-crimson-dark">
-            Última actualización: 29 de junio de 2025
+            Última actualización: 27 de julio de 2026
           </p>
           <h1 className="font-display text-4xl uppercase leading-tight text-ivory sm:text-5xl">
             Política de Privacidad y Cookies
