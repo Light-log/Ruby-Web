@@ -31,7 +31,7 @@ En GA4, marcar como conversiones `book_consultation`, `contact_whatsapp` y `gene
 1. Responder cada lead en menos de 24 horas laborables.
 2. Pedir antes de la reunión: proceso afectado, resultado esperado, sistemas implicados, responsable de decisión y plazo deseado.
 3. En la consulta, cerrar con uno de tres resultados: no encaja, diagnóstico adicional pagado o propuesta con un primer alcance pequeño.
-4. Registrar fuente (`espana`, orgánico, WhatsApp, Calendly), estado, próximo paso y motivo de pérdida en una hoja o CRM.
+4. Registrar fuente (`espana`, orgánico, WhatsApp, Calendly), estado, próximo paso y motivo de pérdida en una hoja o CRM. Los contactos que lleguen desde la campaña incluyen `Origen: espana` en el correo y el asunto se marca con `[España]`.
 5. Revisar semanalmente impresiones, clics, consultas y conversiones por cada URL en Search Console y GA4.
 
 ## Lanzamiento técnico
