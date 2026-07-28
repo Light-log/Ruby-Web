@@ -77,10 +77,28 @@ test("Spain leads retain their campaign origin through booking and contact", () 
   const contact = fs.readFileSync("components/sections/contact.tsx", "utf8");
   const route = fs.readFileSync("app/api/contact/route.ts", "utf8");
 
-  assert.match(agenda, /origen === "espana"/);
+  assert.match(agenda, /\["espana", "us"\]\.includes/);
   assert.match(contact, /get\("origen"\)/);
   assert.match(route, /Nuevo contacto\$\{sourceLabel\}/);
   assert.match(route, /Origen:/);
+});
+
+test("U.S. campaign publishes English service pages and retains its origin", () => {
+  const campaign = fs.readFileSync("lib/us-campaign.ts", "utf8");
+  const hub = fs.readFileSync("app/us/page.tsx", "utf8");
+  const route = fs.readFileSync("app/us/[service]/page.tsx", "utf8");
+  const agenda = fs.readFileSync("app/agenda/page.tsx", "utf8");
+  const sitemap = fs.readFileSync("app/sitemap.ts", "utf8");
+  const contactRoute = fs.readFileSync("app/api/contact/route.ts", "utf8");
+
+  for (const slug of ["custom-internal-tools", "workflow-automation", "api-integration-services", "application-security-audit"]) {
+    assert.match(campaign, new RegExp(`"${slug}"`));
+    assert.match(sitemap, new RegExp(`/us/${slug}`));
+  }
+  assert.match(hub, /U\.S\. company working remotely nationwide/);
+  assert.match(route, /FAQPage/);
+  assert.match(agenda, /"us"/);
+  assert.match(contactRoute, /\[U\.S\.\]/);
 });
 
 test("contact emails do not retain visitor IP addresses", () => {

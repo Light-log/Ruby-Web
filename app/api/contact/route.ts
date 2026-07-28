@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
       auth: { user, pass },
     });
 
-    const sourceLabel = origin === "espana" ? " [España]" : "";
+    const sourceLabel = origin === "espana" ? " [España]" : origin === "us" ? " [U.S.]" : "";
     const subject = `Nuevo contacto${sourceLabel} — ${name}${company ? ` (${company})` : ""}`;
 
     const text = [

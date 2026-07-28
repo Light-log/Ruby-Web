@@ -39,7 +39,7 @@ Usar en inglés una oferta central: **Custom internal tools, workflow automation
 
 La LLC es una señal de facilidad contractual en EE. UU., no una razón suficiente para comprar. La página debe decir que DEVRUBY LLC trabaja de forma remota a nivel nacional y no afirmar oficinas que no existen.
 
-### Páginas por construir
+### Páginas construidas
 
 - `/us`
 - `/us/custom-internal-tools`
@@ -47,7 +47,7 @@ La LLC es una señal de facilidad contractual en EE. UU., no una razón suficien
 - `/us/api-integration-services`
 - `/us/application-security-audit`
 
-Estas páginas deben ser contenido inglés original, no una copia con “USA” añadido. Añadir `en-US` y relaciones `hreflang` únicamente cuando existan equivalentes reales y revisados; no usar redirecciones por IP.
+Las páginas ya usan contenido inglés original, no una copia con “USA” añadido. Añadir `en-US` y relaciones `hreflang` únicamente cuando existan equivalentes reales y revisados; no usar redirecciones por IP.
 
 ### Estrategia de adquisición en EE. UU.
 

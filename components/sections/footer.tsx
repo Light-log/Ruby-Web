@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto", label: "Contacto" },
   { href: "/espana", label: "Empresas en España" },
+  { href: "/us", label: "U.S. Businesses" },
 ];
 
 const serviceLinks = [

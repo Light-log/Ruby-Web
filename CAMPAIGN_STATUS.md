@@ -30,6 +30,16 @@ La consulta inicial dura 30 minutos. La vía principal es Calendly y las alterna
 
 Cada página incorpora contenido propio, CTA a agenda y WhatsApp, FAQ visible y JSON-LD `Service` + `FAQPage`. No hay redirecciones por IP ni afirmaciones de tener oficina española.
 
+## Campaña Estados Unidos publicada en el repositorio
+
+- `/us`
+- `/us/custom-internal-tools`
+- `/us/workflow-automation`
+- `/us/api-integration-services`
+- `/us/application-security-audit`
+
+La campaña está escrita en inglés, usa su propio schema `Service` + `FAQPage`, enlaza agenda, WhatsApp y formulario con origen `us`, y presenta Lazo y Maintenance Check como evidencia de producto sin inventar métricas.
+
 ## Verificación de producción realizada
 
 El 2026-07-28 se verificó públicamente que las cinco rutas de España, `/agenda` y `/contacto` responden HTTP 200. Las URLs España están incluidas en `https://devruby.org/sitemap.xml`; `https://devruby.org/robots.txt` permite rastreo. La página de software a medida expone title, description, canonical, schema y enlaces a Calendly/WhatsApp.

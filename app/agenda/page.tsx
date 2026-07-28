@@ -26,7 +26,7 @@ export default function AgendaPage({
 }: {
   searchParams?: { origen?: string };
 }) {
-  const origin = searchParams?.origen === "espana" ? "espana" : undefined;
+  const origin = ["espana", "us"].includes(searchParams?.origen ?? "") ? searchParams?.origen : undefined;
   const rawBookingUrl = bookingUrl();
   const configuredBookingUrl = rawBookingUrl && origin
     ? (() => {
