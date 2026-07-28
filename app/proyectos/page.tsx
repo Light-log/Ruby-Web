@@ -87,6 +87,23 @@ const projects: Project[] = [
     ctaLabel: "Ver en Google Play",
   },
   {
+    title: "Lazo",
+    subtitle: "Aplicación móvil publicada para conexión en pareja",
+    description:
+      "Aplicación móvil publicada en Google Play y Apple App Store. Facilita actividades diarias, estados compartidos, cuentas vinculadas y notificaciones para acompañar la conexión entre parejas.",
+    tags: ["Mobile", "iOS", "Android", "Producto digital"],
+    highlights: [
+      "Cuentas vinculadas entre integrantes de una pareja",
+      "Actividades y retos diarios para conversar y conectar",
+      "Estado emocional compartido y progreso conjunto",
+      "Notificaciones para acompañar los momentos compartidos",
+    ],
+    image: "/lazo-icon.svg",
+    imageFit: "contain",
+    ctaHref: "https://play.google.com/store/apps/details?id=app.lazo.com",
+    ctaLabel: "Ver en Google Play",
+  },
+  {
     title: "Obelium App",
     subtitle: "Marketplace de funerarias + comparación + chat",
     description:
@@ -152,15 +169,15 @@ const projects: Project[] = [
   },
   {
     title: "Maintenance Check",
-    subtitle: "Suite para equipos médicos + alertas overlay",
+    subtitle: "Software Windows + panel web para mantenimiento de equipos médicos",
     description:
-      "Ejecutables para equipos médicos que despliegan notificaciones persistentes sobre la interfaz clínica sin interrumpir el flujo de trabajo.",
-    tags: ["Windows", "Medical", "Overlay", "C#"],
+      "Sistema conectado para programar alertas nativas en equipos médicos, registrar acciones de mantenimiento y operar equipos, escaneos QR, personal y actividad desde un panel web.",
+    tags: ["Windows", "Web app", "Medical", "QR"],
     highlights: [
-      "Notificaciones overlay no intrusivas",
-      "Compatible con software clínico existente",
-      "Alertas de mantenimiento programadas",
-      "Configuración por equipo médico",
+      "Notificaciones nativas y persistentes en equipos Windows",
+      "Registro de acciones y estado al resolver alertas",
+      "Vinculación y consulta de equipos mediante códigos QR",
+      "Panel web para equipos, actividad, personal y empresa",
     ],
     image: "/Check.png",
     ctaHref: "/contacto",

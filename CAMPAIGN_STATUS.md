@@ -30,7 +30,7 @@ La consulta inicial dura 30 minutos. La vía principal es Calendly y las alterna
 
 Cada página incorpora contenido propio, CTA a agenda y WhatsApp, FAQ visible y JSON-LD `Service` + `FAQPage`. No hay redirecciones por IP ni afirmaciones de tener oficina española.
 
-## Campaña Estados Unidos publicada en el repositorio
+## Campaña Estados Unidos publicada
 
 - `/us`
 - `/us/custom-internal-tools`
@@ -38,7 +38,7 @@ Cada página incorpora contenido propio, CTA a agenda y WhatsApp, FAQ visible y 
 - `/us/api-integration-services`
 - `/us/application-security-audit`
 
-La campaña está escrita en inglés, usa su propio schema `Service` + `FAQPage`, enlaza agenda, WhatsApp y formulario con origen `us`, y presenta Lazo y Maintenance Check como evidencia de producto sin inventar métricas.
+La campaña está escrita en inglés, usa su propio schema `Service` + `FAQPage`, enlaza agenda, WhatsApp y formulario con origen `us`, y presenta Lazo y Maintenance Check como evidencia de producto sin inventar métricas. El 2026-07-28 se confirmó HTTP 200 en `/us` y `/us/custom-internal-tools` después del despliegue.
 
 ## Verificación de producción realizada
 
@@ -49,8 +49,8 @@ El 2026-07-28 se verificó públicamente que las cinco rutas de España, `/agend
 - **RubyQ:** plataforma SaaS de atención omnicanal con IA; pública en `q.devruby.org`.
 - **Ekono:** aplicación móvil publicada en Google Play.
 - **Obelium App, Altum Legal, ODAV, Titan Fitness:** productos listados en `/proyectos` con sus características públicas.
-- **Maintenance Check:** suite Windows para alertas overlay y mantenimiento en equipos médicos. Caso de éxito autorizado por el usuario, sin resultados cuantificados publicados.
-- **Lazo:** aplicación publicada en Apple App Store y Google Play; caso de éxito autorizado por el usuario. Faltan URLs de tienda, descripción verificada, capturas y autorización de copy antes de publicarlo como ficha detallada.
+- **Maintenance Check:** aplicación Windows para alertas persistentes, registro de acciones y mantenimiento en equipos médicos, conectada a panel web de equipos, QR/notificaciones, personal y empresa. Caso de éxito autorizado por el usuario, sin resultados cuantificados publicados.
+- **Lazo:** aplicación móvil publicada en [Google Play](https://play.google.com/store/apps/details?id=app.lazo.com) y [Apple App Store](https://apps.apple.com/app/id6772797010). El sitio presenta sus funciones autorizadas: cuentas vinculadas, actividades diarias, estados compartidos y notificaciones. No se atribuyen resultados comerciales ni métricas.
 
 ## Límites conocidos
 

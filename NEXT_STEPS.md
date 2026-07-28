@@ -61,14 +61,9 @@ Las páginas ya usan contenido inglés original, no una copia con “USA” aña
 
 ### Lazo
 
-Para publicar Lazo correctamente, recopilar:
+Ya se verificaron las publicaciones en [Google Play](https://play.google.com/store/apps/details?id=app.lazo.com) y [Apple App Store](https://apps.apple.com/app/id6772797010). El portafolio incluye una ficha pública sin métricas: producto móvil con cuentas vinculadas, actividades diarias, estado compartido y notificaciones.
 
-- URL exacta de Apple App Store.
-- URL exacta de Google Play.
-- Descripción funcional confirmada por el responsable.
-- 2–4 capturas o el icono oficial con permiso de uso.
-- Qué construyó DEVRUBY y qué puede decirse públicamente.
-- Resultado cualitativo o métrica autorizada, si existe.
+Para convertirlo en caso de éxito completo, faltan autorización explícita sobre qué construyó DEVRUBY, 2–4 capturas limpias u originales de uso autorizado y un resultado cualitativo o métrica que el responsable permita publicar.
 
 ### Maintenance Check
 

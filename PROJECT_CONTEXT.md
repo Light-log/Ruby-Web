@@ -45,4 +45,6 @@ Las CTA de la campaña llevan agenda/WhatsApp y los eventos de intención se mid
 
 La campaña fue comprobada en producción: sus cinco rutas responden 200, aparecen en sitemap y exponen canonical, schema y CTA. El commit `6302b0b` añade atribución de origen para que los contactos españoles lleguen identificados al correo y Calendly conserve UTM de campaña.
 
-La campaña de EE. UU. está en `origin/main` desde el commit `1c18a8e`: `/us` y cuatro rutas de servicio en inglés, con schema, sitemap, CTA y origen `us`. En la comprobación posterior al push, `https://devruby.org/us` devolvía 404; falta esperar o revisar el despliegue automático antes de declarar la campaña pública.
+La campaña de EE. UU. está activa: `/us` y sus cuatro rutas de servicio en inglés responden HTTP 200. Incluyen schema, sitemap, CTA y origen `us`.
+
+La evidencia comercial autorizada incluye Lazo (publicada en Google Play y App Store) y Maintenance Check. Lazo se presenta como producto móvil con cuentas vinculadas, actividades diarias y notificaciones. Maintenance Check se describe con precisión como una aplicación Windows para alertas y registro de mantenimiento, conectada a un panel web para equipos, actividad QR, personal y empresa. No publicar capturas ni datos internos de clínicas, empleados, números de serie o actividad sin anonimización y autorización específica.

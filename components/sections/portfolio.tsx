@@ -42,6 +42,17 @@ const projects: Project[] = [
     ctaLabel: "Ver en Google Play",
   },
   {
+    title: "Lazo",
+    subtitle: "Aplicación móvil publicada para conexión en pareja",
+    description:
+      "Aplicación móvil publicada en Google Play y Apple App Store. Incluye cuentas vinculadas, actividades diarias, estados compartidos y notificaciones para acompañar la conexión entre parejas.",
+    tags: ["Mobile", "iOS", "Android", "Producto digital"],
+    image: "/lazo-icon.svg",
+    imageFit: "contain",
+    ctaHref: "https://play.google.com/store/apps/details?id=app.lazo.com",
+    ctaLabel: "Ver en Google Play",
+  },
+  {
     title: "Obelium App",
     subtitle: "Marketplace de funerarias + comparación + chat",
     description:
@@ -83,10 +94,10 @@ const projects: Project[] = [
   },
   {
     title: "Maintenance Check",
-    subtitle: "Suite para equipos médicos + alertas overlay",
+    subtitle: "Software Windows + panel web para mantenimiento de equipos médicos",
     description:
-      "Ejecutables para equipos médicos que despliegan notificaciones persistentes sobre la interfaz clínica sin interrumpir el flujo de trabajo.",
-    tags: ["Windows", "Medical", "Overlay"],
+      "Solución conectada para programar alertas nativas en equipos médicos, registrar acciones de mantenimiento y consultar equipos, escaneos QR, personal y actividad desde un panel web.",
+    tags: ["Windows", "Web app", "Medical", "QR"],
     image: "/Check.png",
     ctaHref: "/contacto",
     ctaLabel: "Ver caso",
