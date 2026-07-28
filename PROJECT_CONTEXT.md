@@ -44,3 +44,5 @@ La campaña SEO de España se estructura en `/espana` y cuatro páginas específ
 Las CTA de la campaña llevan agenda/WhatsApp y los eventos de intención se miden solo tras consentimiento de analítica. Antes de anunciarse en la UE, revisar legalmente los proveedores reales y transferencias internacionales indicados en `docs/campana-espana-operacion.md`.
 
 La campaña fue comprobada en producción: sus cinco rutas responden 200, aparecen en sitemap y exponen canonical, schema y CTA. El commit `6302b0b` añade atribución de origen para que los contactos españoles lleguen identificados al correo y Calendly conserve UTM de campaña.
+
+La campaña de EE. UU. está en `origin/main` desde el commit `1c18a8e`: `/us` y cuatro rutas de servicio en inglés, con schema, sitemap, CTA y origen `us`. En la comprobación posterior al push, `https://devruby.org/us` devolvía 404; falta esperar o revisar el despliegue automático antes de declarar la campaña pública.
