@@ -28,11 +28,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://devruby.org"),
   title: {
-    default: "DEVRUBY | Aplicaciones web, APIs y sistemas internos",
+    default: "DEVRUBY LLC | Consultoría de software, aplicaciones web y APIs",
     template: "%s | DEVRUBY",
   },
   description:
-    "DEVRUBY LLC diseña aplicaciones web, APIs, integraciones, sistemas internos y auditorías técnicas para empresas.",
+    "Consultoría de desarrollo de software para empresas: aplicaciones web, APIs, sistemas internos, automatización y auditorías técnicas. DEVRUBY LLC trabaja en remoto con clientes internacionales.",
   keywords: [
     "desarrollo de software",
     "software a medida",
@@ -69,9 +69,9 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: "https://devruby.org",
     siteName: "DEVRUBY",
-    title: "DEVRUBY | Ingeniería de software para empresas",
+    title: "DEVRUBY LLC | Consultoría de software para empresas",
     description:
-      "Aplicaciones web, APIs, sistemas internos y auditorías técnicas para empresas.",
+      "Consultoría de desarrollo de software: aplicaciones web, APIs, sistemas internos, automatización y auditorías técnicas.",
     images: [
       {
         url: "/og-devruby.png",
@@ -83,9 +83,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DEVRUBY | Ingeniería de software para empresas",
+    title: "DEVRUBY LLC | Consultoría de software para empresas",
     description:
-      "Aplicaciones web, APIs, sistemas internos y auditorías técnicas.",
+      "Consultoría de desarrollo de software: aplicaciones web, APIs, sistemas internos y auditorías técnicas.",
     images: ["/og-devruby.png"],
   },
   icons: {
@@ -105,6 +105,7 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "DEVRUBY LLC",
+    alternateName: "DEVRUBY",
     url: "https://devruby.org",
     logo: "https://devruby.org/logo.svg",
     description:
@@ -117,6 +118,7 @@ function JsonLd() {
       addressCountry: "VE",
     },
     areaServed: ["VE", "LATAM", "ES", "US"],
+    knowsLanguage: ["es", "en"],
     serviceType: [
       "Desarrollo de Software",
       "Automatización de Procesos",

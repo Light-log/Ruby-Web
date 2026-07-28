@@ -44,6 +44,13 @@ La campaña está escrita en inglés, usa su propio schema `Service` + `FAQPage`
 
 El 2026-07-28 se verificó públicamente que las cinco rutas de España, `/agenda` y `/contacto` responden HTTP 200. Las URLs España están incluidas en `https://devruby.org/sitemap.xml`; `https://devruby.org/robots.txt` permite rastreo. La página de software a medida expone title, description, canonical, schema y enlaces a Calendly/WhatsApp.
 
+## Revisión de Search Console — 2026-07-28
+
+- Rendimiento de los últimos 3 meses: **136 impresiones**, **7 clics**, CTR medio **5,1 %** y posición media **25,6**.
+- La portada concentra 96 impresiones y 6 clics; todavía no existen datos suficientes para evaluar las nuevas URLs de España o EE. UU.
+- La consulta con más impresiones es `ruby development consulting` (27 impresiones; posición 9,1; sin clics). Se actualizaron title y description de la portada hacia “consultoría de desarrollo de software”, una oferta real de DEVRUBY, sin afirmar que el servicio sea exclusivamente Ruby/Rails.
+- Sitemap correcto reenviado el 2026-07-28. La inspección registra `/espana` y `/us` como “descubierta: actualmente sin indexar”; se solicitaron para indexación. Google puede tardar días o semanas en procesarlo.
+
 ## Casos y activos disponibles
 
 - **RubyQ:** plataforma SaaS de atención omnicanal con IA; pública en `q.devruby.org`.

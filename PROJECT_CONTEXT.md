@@ -48,3 +48,7 @@ La campaña fue comprobada en producción: sus cinco rutas responden 200, aparec
 La campaña de EE. UU. está activa: `/us` y sus cuatro rutas de servicio en inglés responden HTTP 200. Incluyen schema, sitemap, CTA y origen `us`.
 
 La evidencia comercial autorizada incluye Lazo (publicada en Google Play y App Store) y Maintenance Check. Lazo se presenta como producto móvil con cuentas vinculadas, actividades diarias y notificaciones. Maintenance Check se describe con precisión como una aplicación Windows para alertas y registro de mantenimiento, conectada a un panel web para equipos, actividad QR, personal y empresa. No publicar capturas ni datos internos de clínicas, empleados, números de serie o actividad sin anonimización y autorización específica.
+
+## Search Console — 2026-07-28
+
+El sitemap se reenvió correctamente. Google registraba 136 impresiones, 7 clics y posición media 25,6 en los últimos tres meses; la portada concentraba casi todo el tráfico. `/espana` y `/us` aparecen como “descubierta: actualmente sin indexar”, por lo que se enviaron solicitudes de indexación. Esperar el siguiente rastreo antes de evaluar cambios; no crear más páginas solo por este primer conjunto de datos.
