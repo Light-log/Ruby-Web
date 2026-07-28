@@ -180,8 +180,8 @@ const projects: Project[] = [
       "Panel web para equipos, actividad, personal y empresa",
     ],
     image: "/Check.png",
-    ctaHref: "/contacto",
-    ctaLabel: "Ver caso",
+    ctaHref: "https://mcheck.devruby.org/",
+    ctaLabel: "Ver plataforma",
   },
 ];
 

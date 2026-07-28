@@ -49,7 +49,7 @@ El 2026-07-28 se verificó públicamente que las cinco rutas de España, `/agend
 - **RubyQ:** plataforma SaaS de atención omnicanal con IA; pública en `q.devruby.org`.
 - **Ekono:** aplicación móvil publicada en Google Play.
 - **Obelium App, Altum Legal, ODAV, Titan Fitness:** productos listados en `/proyectos` con sus características públicas.
-- **Maintenance Check:** aplicación Windows para alertas persistentes, registro de acciones y mantenimiento en equipos médicos, conectada a panel web de equipos, QR/notificaciones, personal y empresa. Caso de éxito autorizado por el usuario, sin resultados cuantificados publicados.
+- **Maintenance Check:** aplicación Windows para alertas persistentes, registro de acciones y mantenimiento en equipos médicos, conectada a panel web de equipos, QR/notificaciones, personal y empresa, disponible en [mcheck.devruby.org](https://mcheck.devruby.org/). Caso de éxito autorizado por el usuario, sin resultados cuantificados publicados.
 - **Lazo:** aplicación móvil publicada en [Google Play](https://play.google.com/store/apps/details?id=app.lazo.com) y [Apple App Store](https://apps.apple.com/app/id6772797010). El sitio presenta sus funciones autorizadas: cuentas vinculadas, actividades diarias, estados compartidos y notificaciones. No se atribuyen resultados comerciales ni métricas.
 
 ## Límites conocidos

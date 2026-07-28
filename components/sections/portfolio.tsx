@@ -99,8 +99,8 @@ const projects: Project[] = [
       "Solución conectada para programar alertas nativas en equipos médicos, registrar acciones de mantenimiento y consultar equipos, escaneos QR, personal y actividad desde un panel web.",
     tags: ["Windows", "Web app", "Medical", "QR"],
     image: "/Check.png",
-    ctaHref: "/contacto",
-    ctaLabel: "Ver caso",
+    ctaHref: "https://mcheck.devruby.org/",
+    ctaLabel: "Ver plataforma",
   },
   {
     title: "Tu próximo proyecto",
