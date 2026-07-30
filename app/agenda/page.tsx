@@ -21,12 +21,13 @@ const topics = [
   "Auditorías técnicas y de ciberseguridad",
 ];
 
-export default function AgendaPage({
+export default async function AgendaPage({
   searchParams,
 }: {
-  searchParams?: { origen?: string };
+  searchParams?: Promise<{ origen?: string }>;
 }) {
-  const origin = ["espana", "us"].includes(searchParams?.origen ?? "") ? searchParams?.origen : undefined;
+  const params = await searchParams;
+  const origin = ["espana", "us"].includes(params?.origen ?? "") ? params?.origen : undefined;
   const rawBookingUrl = bookingUrl();
   const configuredBookingUrl = rawBookingUrl && origin
     ? (() => {

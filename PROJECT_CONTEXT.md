@@ -49,6 +49,47 @@ La campaña de EE. UU. está activa: `/us` y sus cuatro rutas de servicio en ing
 
 La evidencia comercial autorizada incluye Lazo (publicada en Google Play y App Store) y Maintenance Check. Lazo se presenta como producto móvil con cuentas vinculadas, actividades diarias y notificaciones. Maintenance Check se describe con precisión como una aplicación Windows para alertas y registro de mantenimiento, conectada a un panel web para equipos, actividad QR, personal y empresa. No publicar capturas ni datos internos de clínicas, empleados, números de serie o actividad sin anonimización y autorización específica.
 
+## Dependencias y seguridad — 2026-07-30
+
+Se cerraron las 18 vulnerabilidades reportadas (1 crítica, 11 altas, 6
+moderadas) más 2 que aparecieron durante la actualización. `npm audit` queda en
+cero.
+
+Next 14.2.35 estaba EOL para esos avisos: no había parche en la línea 14.x, así
+que se subió a **Next 15.5.22**, el salto mínimo que cubre los 21 avisos de Next
+(el más exigente pedía 15.5.21). Eso obliga a **React 19**, y a la API async de
+`params`/`searchParams` en `app/espana/[service]`, `app/us/[service]` y
+`app/agenda`. Se mantuvo `framer-motion@11`, que ya declara compatibilidad con
+React 19; no se subió a Next 16 para conservar `next lint` y evitar la migración
+a eslint 9 flat config.
+
+`nodemailer` subió de 7 a **9.0.3** (major). El uso en `app/api/contact/route.ts`
+es mínimo —`createTransport` + `sendMail`— y se verificó que sigue funcionando.
+`@types/nodemailer` se quedó en 8.0.1 porque no existe la línea 9.x todavía.
+
+Hay tres `overrides` en `package.json` y conviene no borrarlos sin revisar:
+
+- `brace-expansion: ^5.0.8` — CVE-2026-14257 solo tiene parche en la 5.x; las
+  líneas 1.x y 2.x que arrastra la cadena de eslint no lo reciben.
+- `postcss: $postcss` — Next vendorizaba su propio postcss 8.4.31; el override
+  lo fuerza al 8.5.25 de la dependencia directa.
+- `sharp: ^0.35.3` — Next 15 pasa a depender de sharp (Next 14 no lo hacía) y la
+  0.34.x hereda CVEs de libvips. El sitio usa `images: { unoptimized: true }`,
+  así que sharp no se ejecuta, pero se fija igual.
+
+El lockfile venía desincronizado del parcheo anterior (`npm ci` fallaba por
+`nanoid`); se regeneró completo.
+
+Pendiente conocido, preexistente: **no hay configuración de ESLint en el repo**,
+por lo que `npm run lint` abre el asistente interactivo de `next lint` en vez de
+analizar. Además `next lint` desaparece en Next 16. Falta decidir la config y
+migrar a la CLI de ESLint.
+
+Verificación tras la actualización: `tsc --noEmit` limpio, `next build` genera
+las 25 rutas, los 11 tests de `tests/site.test.mjs` pasan, y con el servidor de
+producción las 10 rutas comprobadas responden 200, un slug inexistente da 404 y
+`/agenda?origen=espana` conserva el `utm_campaign`.
+
 ## Search Console — 2026-07-28
 
 El sitemap se reenvió correctamente. Google registraba 136 impresiones, 7 clics y posición media 25,6 en los últimos tres meses; la portada concentraba casi todo el tráfico. `/espana` y `/us` aparecen como “descubierta: actualmente sin indexar”, por lo que se enviaron solicitudes de indexación. Esperar el siguiente rastreo antes de evaluar cambios; no crear más páginas solo por este primer conjunto de datos.

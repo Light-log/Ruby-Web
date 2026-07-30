@@ -5,14 +5,15 @@ import { Navbar } from "@/components/sections/navbar";
 import { USServicePage } from "@/components/sections/us-service-page";
 import { isUSServiceSlug, usServices, usServiceSlugs } from "@/lib/us-campaign";
 
-type Props = { params: { service: string } };
+type Props = { params: Promise<{ service: string }> };
 
 export function generateStaticParams() { return usServiceSlugs.map((service) => ({ service })); }
 
-export function generateMetadata({ params }: Props): Metadata {
-  if (!isUSServiceSlug(params.service)) return {};
-  const service = usServices[params.service];
-  const url = `https://devruby.org/us/${params.service}`;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { service: slug } = await params;
+  if (!isUSServiceSlug(slug)) return {};
+  const service = usServices[slug];
+  const url = `https://devruby.org/us/${slug}`;
   return { title: service.title, description: service.description, alternates: { canonical: url }, openGraph: { title: service.title, description: service.description, url, type: "website" }, twitter: { card: "summary_large_image", title: service.title, description: service.description } };
 }
 
@@ -25,7 +26,8 @@ function ServiceSchema({ service: slug }: { service: keyof typeof usServices }) 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export default function USServiceRoute({ params }: Props) {
-  if (!isUSServiceSlug(params.service)) notFound();
-  return <main className="relative"><ServiceSchema service={params.service} /><Navbar /><USServicePage slug={params.service} /><Footer /></main>;
+export default async function USServiceRoute({ params }: Props) {
+  const { service: slug } = await params;
+  if (!isUSServiceSlug(slug)) notFound();
+  return <main className="relative"><ServiceSchema service={slug} /><Navbar /><USServicePage slug={slug} /><Footer /></main>;
 }

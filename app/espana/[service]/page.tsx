@@ -5,16 +5,17 @@ import { Navbar } from "@/components/sections/navbar";
 import { SpainServicePage } from "@/components/sections/spain-service-page";
 import { isSpainServiceSlug, spainServices, spainServiceSlugs } from "@/lib/spain-campaign";
 
-type Props = { params: { service: string } };
+type Props = { params: Promise<{ service: string }> };
 
 export function generateStaticParams() {
   return spainServiceSlugs.map((service) => ({ service }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  if (!isSpainServiceSlug(params.service)) return {};
-  const service = spainServices[params.service];
-  const url = `https://devruby.org/espana/${params.service}`;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { service: slug } = await params;
+  if (!isSpainServiceSlug(slug)) return {};
+  const service = spainServices[slug];
+  const url = `https://devruby.org/espana/${slug}`;
   return {
     title: service.title,
     description: service.description,
@@ -53,13 +54,14 @@ function ServiceSchema({ service: slug }: { service: keyof typeof spainServices 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }
 
-export default function SpainServiceRoute({ params }: Props) {
-  if (!isSpainServiceSlug(params.service)) notFound();
+export default async function SpainServiceRoute({ params }: Props) {
+  const { service: slug } = await params;
+  if (!isSpainServiceSlug(slug)) notFound();
   return (
     <main className="relative">
-      <ServiceSchema service={params.service} />
+      <ServiceSchema service={slug} />
       <Navbar />
-      <SpainServicePage slug={params.service} />
+      <SpainServicePage slug={slug} />
       <Footer />
     </main>
   );
