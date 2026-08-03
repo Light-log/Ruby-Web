@@ -117,9 +117,9 @@ const projects: Project[] = [
 export function Portfolio() {
   return (
     <section id="portafolio" className="relative py-24">
-      <div className="section-divider mx-auto max-w-5xl mb-24" />
+      <div className="section-divider mx-auto mb-12 max-w-5xl md:mb-16" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">

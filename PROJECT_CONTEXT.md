@@ -93,3 +93,32 @@ producción las 10 rutas comprobadas responden 200, un slug inexistente da 404 y
 ## Search Console — 2026-07-28
 
 El sitemap se reenvió correctamente. Google registraba 136 impresiones, 7 clics y posición media 25,6 en los últimos tres meses; la portada concentraba casi todo el tráfico. `/espana` y `/us` aparecen como “descubierta: actualmente sin indexar”, por lo que se enviaron solicitudes de indexación. Esperar el siguiente rastreo antes de evaluar cambios; no crear más páginas solo por este primer conjunto de datos.
+
+## Espaciado inicial — 2026-08-03
+
+Los heroes de las rutas comerciales comienzan con `pt-3` (12 px) bajo el `Navbar` sticky, conservando su padding inferior. La portada mantiene la misma regla y su chip inicial no usa `FadeIn`, porque la traslación inicial de 18 px de esa animación desplazaba visualmente el primer elemento hasta 30 px bajo la barra. La comprobación visual en escritorio, tablet y móvil confirmó el offset de 12 px, incluido con el menú móvil abierto y cerrado.
+
+## SEO, copy y SEM — 2026-08-03
+
+Se reforzaron las rutas de servicio globales, España y EE. UU. con breadcrumbs
+visibles y JSON-LD `BreadcrumbList` compartido, manteniendo `Service` y
+`FAQPage` alineados con el contenido visible. El schema de organización se
+concentró en software a medida, automatización, integraciones API y auditorías
+de seguridad; se retiró la lista `keywords` genérica. Las rutas de EE. UU.
+ahora declaran su contenido `en-US` dentro de la página.
+
+Los paquetes operativos de búsqueda de España y EE. UU. quedaron documentados
+en `docs/campana-espana-operacion.md`, `docs/campana-us-operacion.md` y
+`docs/sem-launch-checklist.md`: grupos por intención, keywords iniciales,
+negativas, activos RSA y UTMs. No se creó ni activó ninguna campaña de Ads:
+faltan acceso autorizado a la cuenta, titular de facturación, límite diario y
+prueba de conversiones tras consentimiento.
+
+El usuario confirmó que la adquisición de pago activa es **Google Ads Search**.
+La estructura publicada debe respetar las campañas/grupos, negativas, URLs y
+controles de medición documentados; no se verificó ni modificó la cuenta desde
+este entorno.
+
+Verificación local: `node --test tests/site.test.mjs`, `npx tsc --noEmit` y
+`npm run build` completados correctamente. No se añadieron `hreflang` entre
+España y EE. UU. porque no son equivalentes directos de idioma/mercado.

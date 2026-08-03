@@ -27,8 +27,8 @@ const principles = [
 export function Proof() {
   return (
     <section id="enfoque" className="relative py-24">
-      <div className="section-divider mx-auto mb-24 max-w-5xl" />
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="section-divider mx-auto mb-12 max-w-5xl md:mb-16" />
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark">
@@ -74,4 +74,3 @@ export function Proof() {
     </section>
   );
 }
-

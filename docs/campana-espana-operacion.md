@@ -26,6 +26,34 @@ Los eventos se emiten solo después de que la persona acepte analítica:
 
 En GA4, marcar como conversiones `book_consultation`, `contact_whatsapp` y `generate_lead`. Una reserva debe confirmarse después en Calendly; el clic no prueba que la reunión se haya reservado.
 
+## Google Ads Search — configuración lista para cargar
+
+Estado confirmado: la adquisición de pago activa utiliza **Google Ads Search**. Las reglas siguientes definen sus grupos, mensajes y controles; revisar el presupuesto y las conversiones antes de ampliar cobertura.
+
+Crear una campaña de **solo búsqueda**, idioma español y ubicación España. Mantener desactivados Display, socios de búsqueda, expansión automática y concordancia amplia en el lanzamiento. Usar CPC manual o Maximizar clics con un tope de presupuesto confirmado; no usar CPA objetivo hasta registrar leads cualificados.
+
+| Grupo | Landing | Keywords iniciales (exacta y de frase) |
+| --- | --- | --- |
+| `software_a_medida` | `/espana/desarrollo-software-a-medida` | `software a medida empresas`, `desarrollo de software empresarial`, `sistema interno a medida` |
+| `automatizacion_procesos` | `/espana/automatizacion-de-procesos` | `automatización de procesos empresariales`, `automatización de backoffice`, `consultoría automatización procesos` |
+| `integracion_api` | `/espana/integracion-api-sistemas` | `integración api`, `integración crm erp`, `integración de sistemas empresariales` |
+| `auditoria_seguridad` | `/espana/auditoria-seguridad-aplicaciones` | `auditoría seguridad aplicaciones`, `auditoría de api`, `revisión seguridad aplicación web` |
+
+### Activos RSA por intención
+
+Usar estos titulares y descripciones dentro del grupo correspondiente; no fijar posiciones salvo que una revisión posterior lo justifique.
+
+| Grupo | Titulares sugeridos | Descripciones sugeridas |
+| --- | --- | --- |
+| Software | Software a medida para empresas; Sistema interno para tu operación; Deja atrás procesos dispersos; Consulta inicial de 30 minutos | Diseñamos software alrededor de los flujos, usuarios y sistemas que ya usa tu empresa.\nValora un primer alcance útil con DEVRUBY LLC, trabajando en remoto con España. |
+| Automatización | Automatización de procesos; Reduce tareas manuales repetidas; Mantén aprobaciones y control; Consulta inicial de 30 minutos | Conecta captura, validación y avisos sin eliminar el criterio del equipo.\nRevisamos proceso, sistemas y excepciones antes de proponer una automatización. |
+| API | Integración API para empresas; Conecta CRM, ERP y plataformas; Datos consistentes entre sistemas; Consulta inicial de 30 minutos | Diseñamos integraciones con validación, registros y manejo de excepciones.\nAclara viabilidad y riesgos antes de comprometer un alcance técnico. |
+| Seguridad | Auditoría de seguridad de apps; Revisión de aplicaciones y APIs; Prioriza riesgos técnicos; Consulta inicial de 30 minutos | Revisión técnica dentro de un alcance autorizado, con evidencia y remediación priorizada.\nNo sustituye certificaciones ni asesoría legal; aporta un siguiente paso técnico claro. |
+
+### Negativas iniciales
+
+Aplicar a nivel de campaña en concordancia de frase: `empleo`, `trabajo`, `sueldo`, `curso`, `tutorial`, `plantilla`, `gratis`, `software gratis`, `open source`, `descargar`. Añadir marcas o términos de soporte ajenos únicamente tras revisar el informe de términos de búsqueda.
+
 ## Rutina comercial
 
 1. Responder cada lead en menos de 24 horas laborables.

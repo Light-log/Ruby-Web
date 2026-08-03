@@ -21,7 +21,7 @@ export function Hero() {
   const handleVisualReady = useCallback(() => setVisualReady(true), []);
 
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden">
+    <section className="relative flex min-h-[92vh] items-start overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <GLSLHills className="h-full w-full" onReady={handleVisualReady} />
         {!visualReady && <PageLoader className="absolute inset-0 bg-dark" />}
@@ -29,13 +29,11 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-16 md:pt-24">
+      <div className="mx-auto w-full max-w-7xl px-5 pb-20 pt-3 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <div className="max-w-3xl">
-          <FadeIn>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark">
-              Ingeniería de software para empresas
-            </div>
-          </FadeIn>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-lavender/20 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark">
+            Ingeniería de software para empresas
+          </div>
 
           <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-ivory sm:text-5xl md:text-6xl lg:text-7xl">
             <TextReveal>Construimos software que</TextReveal>{" "}

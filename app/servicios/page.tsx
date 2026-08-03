@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { FadeIn } from "@/components/animate/fade-in";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { ArrowRight, Cpu, Layers, Compass, Rocket, Wrench } from "lucide-react";
 import {
-  Code2, Database, Shield, Sparkles, Workflow, Wrench,
-  ArrowRight, CheckCircle2, Layers, Cpu
-} from "lucide-react";
+  businessAreas,
+  engagementModels,
+  servicesCatalog,
+  serviceSlugs,
+  startingPoints,
+} from "@/lib/services-catalog";
 
 export const metadata: Metadata = {
   title: "Servicios",
   description:
-    "Desarrollo de software a medida, automatización de procesos, infraestructura, auditorías técnicas, datos y experiencia de producto para empresas.",
+    "Desarrollo de software a medida, apps móviles, automatización, IA aplicada, datos y KPIs, infraestructura, seguridad y UI/UX para empresas.",
   keywords: [
     "desarrollo software a medida",
+    "apps móviles",
     "automatización de procesos",
+    "inteligencia artificial aplicada",
     "DevOps",
     "ciberseguridad",
     "inteligencia de datos",
@@ -25,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Servicios | DEVRUBY",
     description:
-      "Desarrollo, automatización, infraestructura, seguridad, datos y diseño para empresas.",
+      "Software, automatización e inteligencia artificial para convertir procesos en productos digitales que funcionan.",
     url: "https://devruby.org/servicios",
     type: "website",
     images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
@@ -38,191 +46,322 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://devruby.org/servicios" },
 };
 
-const services = [
-  {
-    icon: Code2,
-    title: "Desarrollo de software a medida",
-    desc: "Construimos aplicaciones web, APIs, paneles administrativos, plataformas digitales y productos completos con arquitectura limpia, escalable y mantenible.",
-    features: [
-      "Aplicaciones web modernas con React / Next.js",
-      "APIs REST y GraphQL con documentación completa",
-      "Paneles de administración y dashboards",
-      "Integraciones con servicios externos y ERPs",
-      "Arquitectura de microservicios",
-      "Code reviews y buenas prácticas",
-    ],
-    color: "crimson" as const,
-  },
-  {
-    icon: Workflow,
-    title: "Automatización de procesos",
-    desc: "Diseñamos flujos inteligentes que eliminan tareas repetitivas y reducen errores en ventas, operaciones, soporte y backoffice.",
-    features: [
-      "Automatización de flujos de trabajo con n8n / Zapier",
-      "Integración entre herramientas (CRM, ERP, email)",
-      "Reportes y alertas automatizadas",
-      "Procesamiento de documentos e información",
-      "Bots y asistentes automatizados",
-      "Monitoreo y optimización continua",
-    ],
-    color: "lavender" as const,
-  },
-  {
-    icon: Wrench,
-    title: "DevOps e infraestructura",
-    desc: "Implementamos pipelines de CI/CD, contenedores, observabilidad y entornos robustos en cloud o híbrido para que tu equipo despliegue con confianza.",
-    features: [
-      "Pipelines CI/CD (GitHub Actions, GitLab CI)",
-      "Contenedores con Docker y Kubernetes",
-      "Infraestructura como código (Terraform)",
-      "Monitoreo y alertas (Grafana, Prometheus)",
-      "Administración de servidores Linux",
-      "Ambientes de staging y producción",
-    ],
-    color: "crimson" as const,
-  },
-  {
-    icon: Shield,
-    title: "Seguridad informática",
-    desc: "Protegemos tus sistemas con hardening, auditorías técnicas, controles de acceso y prácticas de seguridad en apps y servidores.",
-    features: [
-      "Hardening de servidores y aplicaciones",
-      "Revisión de superficies expuestas en el alcance autorizado",
-      "Configuración de WAF y firewalls",
-      "Gestión de secretos y credenciales",
-      "Políticas de acceso y autenticación",
-      "Informe técnico de hallazgos y prioridades",
-    ],
-    color: "lavender" as const,
-  },
-  {
-    icon: Database,
-    title: "Datos e inteligencia",
-    desc: "Diseñamos modelos de datos, pipelines de procesamiento, dashboards analíticos y procesos ETL para que tomes decisiones basadas en señales reales.",
-    features: [
-      "Modelado de bases de datos (SQL/NoSQL)",
-      "Pipelines ETL y procesamiento de datos",
-      "Dashboards interactivos con Metabase",
-      "Reportes automatizados con KPIs",
-      "Integración de fuentes de datos",
-      "Analítica descriptiva y predictiva",
-    ],
-    color: "crimson" as const,
-  },
-  {
-    icon: Sparkles,
-    title: "UI moderna y experiencia",
-    desc: "Diseñamos interfaces con motion design que conectan: microinteracciones, transiciones fluidas y animaciones con intención que elevan la experiencia del usuario.",
-    features: [
-      "Diseño de interfaces modernas y responsivas",
-      "Motion design y microinteracciones",
-      "Sistemas de diseño y componentes reutilizables",
-      "Auditorías de UX y mejoras de usabilidad",
-      "Prototipos interactivos de alta fidelidad",
-      "Accesibilidad y performance web",
-    ],
-    color: "lavender" as const,
-  },
-];
+/** Frentes que atendemos sin ficha propia en el catálogo. */
+const alsoSolved = [
+  "Modernización de sistemas",
+  "Auditorías de UX",
+  "Migraciones y testing",
+  "Observabilidad",
+  "Soporte de producto",
+] as const;
 
 export default function ServiciosPage() {
   return (
     <main className="relative">
       <Navbar />
 
-      <section className="relative py-24">
+      {/* Hero */}
+      {/* `overflow-hidden`: las manchas decorativas se salen del viewport y
+          provocaban scroll horizontal en móvil. */}
+      <section className="relative overflow-hidden pt-3 pb-24">
         <div className="absolute inset-0 -z-10 opacity-30">
           <div className="absolute -top-40 left-1/4 h-[400px] w-[400px] rounded-full bg-crimson/6 blur-[100px]" />
           <div className="absolute top-20 right-1/4 h-[350px] w-[350px] rounded-full bg-lavender/6 blur-[100px]" />
         </div>
 
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
           <FadeIn>
             <div className="flex flex-col items-center text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark">
                 <Layers className="h-3.5 w-3.5" />
-                Servicios
+                Catálogo de servicios
               </div>
 
               <h1 className="font-display text-4xl tracking-tight text-ivory md:text-6xl">
-                Soluciones completas para{" "}
-                <span className="gradient-text">cada desafío</span>
+                Encuentra una solución para{" "}
+                <span className="gradient-text">tu necesidad</span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg text-ivory-dim">
-                Cada servicio combina estrategia, ingeniería y diseño para construir
-                sistemas que funcionan, escalan y se mantienen en el tiempo.
+                Software, automatización e inteligencia artificial para
+                convertir procesos en productos digitales que funcionan. Un
+                catálogo claro para identificar oportunidades, priorizar alcance
+                y comenzar con el servicio correcto.
               </p>
             </div>
           </FadeIn>
 
-          <div className="mt-20 grid gap-8">
-            {services.map((svc, idx) => (
-              <FadeIn key={svc.title} delay={idx * 0.05}>
-                <Card className="p-8 md:p-10 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover">
-                  <div className="grid gap-8 md:grid-cols-5">
-                    <div className="md:col-span-2">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div
-                          className={`grid h-12 w-12 place-items-center rounded-2xl ${
-                            svc.color === "crimson"
-                              ? "bg-crimson/8 text-crimson ring-1 ring-crimson/15"
-                              : "bg-lavender/8 text-lavender ring-1 ring-lavender/15"
-                          }`}
-                        >
-                          <svc.icon className="h-5 w-5" />
+          {/* Grid de servicios */}
+          <div
+            data-spotlight-grid
+            className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {serviceSlugs.map((slug, idx) => {
+              const svc = servicesCatalog[slug];
+              return (
+                <FadeIn key={slug} delay={idx * 0.05}>
+                  <SpotlightCard
+                    accent={svc.color}
+                    className="group block h-full"
+                  >
+                    <Link href={`/servicios/${slug}`} className="block h-full">
+                      <Card className="flex h-full flex-col bg-white/80 p-7 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-black/12 group-hover:shadow-card-hover">
+                        <div className="flex items-center gap-4">
+                          <div
+                            className={`grid h-12 w-12 place-items-center rounded-2xl transition-all duration-300 ${
+                              svc.color === "crimson"
+                                ? "bg-crimson/8 text-crimson ring-1 ring-crimson/15 group-hover:bg-crimson/12 group-hover:shadow-glow"
+                                : "bg-lavender/8 text-lavender ring-1 ring-lavender/15 group-hover:bg-lavender/12 group-hover:shadow-glow-lavender"
+                            }`}
+                          >
+                            <svc.icon className="h-5 w-5" />
+                          </div>
+                          <p className="text-xs uppercase tracking-wider text-ivory-muted">
+                            {svc.eyebrow}
+                          </p>
                         </div>
-                      </div>
-                      <h2 className="font-display text-2xl text-ivory mb-3">{svc.title}</h2>
-                      <p className="text-sm leading-relaxed text-ivory-dim">{svc.desc}</p>
 
-                      <a href="/contacto" className="inline-block mt-6">
-                        <Button variant={svc.color === "crimson" ? "primary" : "lavender"} size="sm">
-                          Solicitar información <ArrowRight className="h-4 w-4" />
-                        </Button>
-                      </a>
-                    </div>
+                        <h2 className="mt-5 font-display text-xl text-ivory">
+                          {svc.shortTitle}
+                        </h2>
+                        <p className="mt-3 text-sm leading-relaxed text-ivory-dim">
+                          {svc.summary}
+                        </p>
 
-                    <div className="md:col-span-3">
-                      <div className="rounded-2xl border border-black/8 bg-dark-200/60 p-6">
-                        <div className="text-xs text-ivory-muted mb-4 uppercase tracking-wider">
-                          Qué incluye
-                        </div>
-                        <div className="grid gap-3 sm:grid-cols-2">
-                          {svc.features.map((f) => (
-                            <div key={f} className="flex items-start gap-2">
-                              <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${
-                                svc.color === "crimson" ? "text-crimson" : "text-lavender"
-                              }`} />
-                              <span className="text-sm text-ivory-dim">{f}</span>
-                            </div>
+                        <ul className="mt-5 grid gap-2">
+                          {svc.highlights.map((h) => (
+                            <li
+                              key={h}
+                              className="flex items-center gap-2 text-sm text-ivory-dim"
+                            >
+                              <span
+                                className={`h-1.5 w-1.5 shrink-0 rounded-full ${
+                                  svc.color === "crimson"
+                                    ? "bg-crimson"
+                                    : "bg-lavender"
+                                }`}
+                              />
+                              {h}
+                            </li>
                           ))}
+                        </ul>
+
+                        {/* `mt-auto` fija el pie al fondo: en una fila con
+                            tarjetas de distinta altura, si no, cada "Ver
+                            detalle" queda a una altura distinta. */}
+                        <div className="mt-auto pt-6">
+                          <div className="h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
+
+                          <div className="mt-5 flex items-center justify-between">
+                            <span className="text-sm font-semibold text-ivory transition-colors group-hover:text-crimson">
+                              Ver detalle
+                            </span>
+                            <ArrowRight className="h-4 w-4 text-ivory-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-crimson" />
+                          </div>
                         </div>
+                      </Card>
+                    </Link>
+                  </SpotlightCard>
+                </FadeIn>
+              );
+            })}
+
+            {/* Novena tarjeta: ocupa el hueco que dejan 8 servicios en una
+                rejilla de 3 columnas y recoge los frentes que no tienen ficha
+                propia en el catálogo. */}
+            <FadeIn delay={serviceSlugs.length * 0.05}>
+              <SpotlightCard accent="lavender" className="group block h-full">
+                <Link href="/contacto" className="block h-full">
+                  {/* Fondo opaco como el de las hermanas: con un tinte
+                      translúcido, el halo del spotlight se ve a través de la
+                      tarjeta y borra el texto. El acento lo da el borde. */}
+                  <Card className="flex h-full flex-col border-lavender/20 bg-white/80 p-7 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-lavender/30 group-hover:shadow-card-hover">
+                    <div className="flex items-center gap-4">
+                      <div className="grid h-12 w-12 place-items-center rounded-2xl bg-lavender/8 text-lavender ring-1 ring-lavender/15 transition-all duration-300 group-hover:bg-lavender/12 group-hover:shadow-glow-lavender">
+                        <Wrench className="h-5 w-5" />
+                      </div>
+                      <p className="text-xs uppercase tracking-wider text-ivory-muted">
+                        Otros frentes
+                      </p>
+                    </div>
+
+                    <h2 className="mt-5 font-display text-xl text-ivory">
+                      También resolvemos
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-ivory-dim">
+                      Trabajo que no siempre encaja en una ficha de catálogo,
+                      pero que hacemos con la misma profundidad.
+                    </p>
+
+                    <ul className="mt-5 grid gap-2">
+                      {alsoSolved.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-center gap-2 text-sm text-ivory-dim"
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-lavender" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-auto pt-6">
+                      <div className="h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
+
+                      <div className="mt-5 flex items-center justify-between">
+                        <span className="text-sm font-semibold text-ivory transition-colors group-hover:text-lavender">
+                          Cuéntanos tu caso
+                        </span>
+                        <ArrowRight className="h-4 w-4 text-ivory-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-lavender" />
                       </div>
                     </div>
-                  </div>
+                  </Card>
+                </Link>
+              </SpotlightCard>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Casos de uso por área */}
+      <section className="py-16">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
+          <FadeIn>
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-4 py-2 text-xs text-lavender">
+                <Compass className="h-3.5 w-3.5" />
+                Soluciones por área
+              </div>
+              <h2 className="font-display text-3xl tracking-tight text-ivory md:text-4xl">
+                Casos de uso para cada parte del negocio
+              </h2>
+              <p className="mt-4 max-w-2xl text-ivory-dim">
+                Una guía rápida para que cada equipo identifique oportunidades
+                concretas.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05}>
+            <Card className="mt-12 overflow-hidden p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[36rem] border-collapse text-left">
+                  <thead>
+                    <tr className="bg-dark-200/60">
+                      <th className="px-6 py-4 text-xs uppercase tracking-wider text-ivory-muted">
+                        Área
+                      </th>
+                      <th className="px-6 py-4 text-xs uppercase tracking-wider text-ivory-muted">
+                        Oportunidades frecuentes
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {businessAreas.map((row) => (
+                      <tr key={row.area} className="border-t border-black/8">
+                        <td className="px-6 py-5 align-top font-semibold text-ivory">
+                          {row.area}
+                        </td>
+                        <td className="px-6 py-5 text-sm leading-relaxed text-ivory-dim">
+                          {row.opportunities}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Formas de comenzar */}
+      <section className="py-16">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
+          <FadeIn>
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark">
+                <Rocket className="h-3.5 w-3.5" />
+                Punto de partida
+              </div>
+              <h2 className="font-display text-3xl tracking-tight text-ivory md:text-4xl">
+                Formas frecuentes de comenzar
+              </h2>
+              <p className="mt-4 max-w-2xl text-ivory-dim">
+                El alcance se adapta al punto de partida: una idea, un proceso
+                manual, un sistema existente o un producto en crecimiento.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {startingPoints.map((point, idx) => (
+              <FadeIn key={point.title} delay={idx * 0.05}>
+                <Card className="h-full p-6 text-center">
+                  <h3 className="font-display text-xl text-ivory">
+                    {point.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ivory-dim">
+                    {point.desc}
+                  </p>
                 </Card>
               </FadeIn>
             ))}
           </div>
 
+          {/* Modalidades de colaboración */}
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {engagementModels.map((model, idx) => (
+              <FadeIn key={model.title} delay={idx * 0.05}>
+                <Card className="h-full p-7 md:p-9">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-crimson-dark">
+                    {model.eyebrow}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl text-ivory">
+                    {model.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ivory-dim">
+                    {model.desc}
+                  </p>
+                  <ul className="mt-5 grid gap-2">
+                    {model.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-2 text-sm text-ivory-dim"
+                      >
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-lavender" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="pb-24">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
           <FadeIn delay={0.1}>
-            <div className="mt-20 text-center">
+            <div className="text-center">
               <Card className="inline-block p-10 md:p-14">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-crimson/8 text-crimson ring-1 ring-crimson/15 mb-2">
+                  <div className="mb-2 grid h-14 w-14 place-items-center rounded-2xl bg-crimson/8 text-crimson ring-1 ring-crimson/15">
                     <Cpu className="h-6 w-6" />
                   </div>
-                  <h3 className="font-display text-2xl md:text-3xl text-ivory">
+                  <h2 className="font-display text-2xl text-ivory md:text-3xl">
                     ¿No encuentras lo que buscas?
-                  </h3>
+                  </h2>
                   <p className="max-w-lg text-ivory-dim">
-                    Cuéntanos tu reto y diseñamos una solución personalizada para tu caso específico.
+                    Cuéntanos tu reto y diseñamos una solución personalizada
+                    para tu caso específico.
                   </p>
-                  <a href="/contacto" className="mt-4">
+                  <Link href="/contacto" className="mt-4">
                     <Button size="lg">
                       Hablemos de tu proyecto <ArrowRight className="h-4 w-4" />
                     </Button>
-                  </a>
+                  </Link>
                 </div>
               </Card>
             </div>

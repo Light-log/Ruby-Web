@@ -60,13 +60,13 @@ export default function ContactoPage() {
     <main className="relative">
       <Navbar />
 
-      <section className="relative py-24">
+      <section className="relative pt-3 pb-24">
         <div className="absolute inset-0 -z-10 opacity-30">
           <div className="absolute -top-40 left-1/3 h-[400px] w-[400px] rounded-full bg-crimson/6 blur-[100px]" />
           <div className="absolute top-40 right-1/3 h-[350px] w-[350px] rounded-full bg-lavender/6 blur-[100px]" />
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 mb-16">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem] mb-16">
           <FadeIn>
             <div className="grid gap-6 md:grid-cols-4">
               {guarantees.map((g) => (

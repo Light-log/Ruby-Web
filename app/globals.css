@@ -83,6 +83,78 @@ html {
   color: #1A1A2E;
 }
 
+/* Tarjetas con foco de luz que sigue al cursor (`SpotlightCard`).
+
+   El truco: los gradientes se posicionan con coordenadas de viewport y
+   `background-attachment: fixed`, así que el foco atraviesa la rejilla como una
+   sola linterna en vez de repetirse dentro de cada tarjeta.
+
+   Se activa cuando `SpotlightCard` detecta un puntero real (ratón o lápiz) y
+   marca `<html data-spotlight-pointer>`. En táctil no hay puntero que seguir y
+   el borde se queda en su estado normal. */
+[data-spotlight-pointer] [data-spotlight]::before,
+[data-spotlight-pointer] [data-spotlight]::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Halo exterior: se desborda por detrás de la tarjeta.
+   Sin `filter: blur()` a propósito — un filtro convertiría al elemento en bloque
+   contenedor y `background-attachment: fixed` dejaría de referirse al viewport,
+   que es justo lo que da la continuidad entre tarjetas. La suavidad viene del
+   propio gradiente. */
+[data-spotlight-pointer] [data-spotlight]::before {
+  inset: -10px;
+  z-index: -1;
+  background-image: radial-gradient(
+    calc(var(--spot-size, 420px) * 1.1) calc(var(--spot-size, 420px) * 1.1) at
+      calc(var(--spot-x, 0) * 1px) calc(var(--spot-y, 0) * 1px),
+    hsl(var(--spot-hue, 350) 80% 58% / 0.5),
+    hsl(var(--spot-hue, 350) 80% 58% / 0.15) 35%,
+    transparent 65%
+  );
+}
+
+/* Borde iluminado: el gradiente se recorta al marco con dos máscaras que se
+   intersecan, de modo que solo pinta el contorno. */
+[data-spotlight-pointer] [data-spotlight]::after {
+  padding: 2px;
+  background-image: radial-gradient(
+    calc(var(--spot-size, 420px) * 0.75) calc(var(--spot-size, 420px) * 0.75) at
+      calc(var(--spot-x, 0) * 1px) calc(var(--spot-y, 0) * 1px),
+    hsl(var(--spot-hue, 350) 85% 52%),
+    hsl(var(--spot-hue, 350) 85% 52% / 0.55) 40%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+  mask-composite: exclude;
+}
+
+/* El foco solo se enciende en la tarjeta bajo el cursor: sin esto, todas
+   brillarían a la vez, porque el gradiente está fijado al viewport. */
+[data-spotlight-pointer] [data-spotlight]:hover::before,
+[data-spotlight-pointer] [data-spotlight]:hover::after {
+  opacity: 1;
+}
+
+/* Las vecinas responden con menos intensidad y dan sensación de continuidad. */
+[data-spotlight-pointer] [data-spotlight-grid]:hover [data-spotlight]::after {
+  opacity: 0.35;
+}
+
+[data-spotlight-pointer] [data-spotlight-grid]:hover [data-spotlight]:hover::after {
+  opacity: 1;
+}
+
 /* Accesibilidad: respeta la preferencia del sistema de reducir movimiento.
    Neutraliza animaciones CSS (Tailwind keyframes, animate.css), scroll suave
    y transiciones largas para usuarios sensibles al movimiento (WCAG 2.3.3). */

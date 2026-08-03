@@ -8,7 +8,7 @@ import { ArrowRight, Rocket } from "lucide-react";
 export function CTASection() {
   return (
     <section className="relative py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <FadeIn>
           <div className="relative overflow-hidden rounded-3xl border border-black/8 bg-white/70 p-12 md:p-20 text-center backdrop-blur-xl shadow-card">
             <div className="absolute -top-32 -left-32 h-64 w-64 rounded-full bg-crimson/6 blur-[100px]" />

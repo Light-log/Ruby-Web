@@ -42,7 +42,7 @@ export default async function AgendaPage({
   return (
     <main className="relative">
       <Navbar />
-      <section className="relative py-20 md:py-28">
+      <section className="relative pt-3 pb-20 md:pb-28">
         <div className="mx-auto max-w-5xl px-6">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark">

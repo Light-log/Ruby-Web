@@ -29,11 +29,14 @@ export function SpainServicePage({ slug }: { slug: SpainServiceSlug }) {
 
   return (
     <>
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden pt-3 pb-20 md:pb-28">
         <div className="absolute -left-32 top-8 -z-10 h-80 w-80 rounded-full bg-crimson/10 blur-[100px]" />
         <div className="absolute -right-24 bottom-0 -z-10 h-72 w-72 rounded-full bg-lavender/10 blur-[100px]" />
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
           <div className="max-w-4xl">
+            <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-sm text-ivory-muted">
+              <Link href="/">Inicio</Link><span aria-hidden>/</span><Link href="/espana">España</Link><span aria-hidden>/</span><span aria-current="page">{service.shortTitle}</span>
+            </nav>
             <p className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs font-semibold text-crimson-dark">
               <ShieldCheck className="h-3.5 w-3.5" /> {service.eyebrow} · España
             </p>

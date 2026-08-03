@@ -33,7 +33,10 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      {/* Mismo contenedor que las páginas: antes se quedaba en 80rem con px-6
+          mientras el contenido crecía a 88rem con px-8, así que en monitores
+          anchos el navbar iba más estrecho y desalineado respecto a la página. */}
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo.svg"

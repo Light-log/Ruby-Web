@@ -1,50 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { FadeIn } from "@/components/animate/fade-in";
 import { Card } from "@/components/ui/card";
 import { ShineBorder } from "@/components/ui/shine-border";
-import { Code2, Database, Shield, Sparkles, Workflow, Wrench, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
+import { servicesCatalog, serviceSlugs } from "@/lib/services-catalog";
 import anime from "animejs";
 import * as React from "react";
-
-const items = [
-  {
-    icon: Code2,
-    title: "Desarrollo a medida",
-    desc: "Web apps, APIs, paneles, plataformas y productos digitales con arquitectura limpia y escalable.",
-    color: "crimson",
-  },
-  {
-    icon: Workflow,
-    title: "Automatización",
-    desc: "Flujos inteligentes para ventas, operaciones, soporte y backoffice. Menos tareas repetitivas.",
-    color: "lavender",
-  },
-  {
-    icon: Wrench,
-    title: "DevOps & Infra",
-    desc: "CI/CD, contenedores, observabilidad y entornos robustos en cloud o híbrido.",
-    color: "crimson",
-  },
-  {
-    icon: Shield,
-    title: "Seguridad",
-    desc: "Hardening, auditorías técnicas, controles y mejores prácticas de seguridad en apps y servidores.",
-    color: "lavender",
-  },
-  {
-    icon: Database,
-    title: "Datos & Analytics",
-    desc: "Modelado de datos, dashboards, pipelines y analítica para decisiones basadas en datos reales.",
-    color: "crimson",
-  },
-  {
-    icon: Sparkles,
-    title: "UI/UX Premium",
-    desc: "Interfaces modernas con motion design: microinteracciones, transiciones y animaciones con intención.",
-    color: "lavender",
-  },
-];
 
 export function Services() {
   const gridRef = React.useRef<HTMLDivElement | null>(null);
@@ -80,9 +43,9 @@ export function Services() {
 
   return (
     <section id="servicios" className="relative py-24">
-      <div className="section-divider mx-auto max-w-5xl mb-24" />
+      <div className="section-divider mx-auto mb-12 max-w-5xl md:mb-16" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <FadeIn>
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
@@ -102,38 +65,53 @@ export function Services() {
         </FadeIn>
 
         <div ref={gridRef} className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((it) => (
-            <div key={it.title} data-svc className="opacity-0">
-              <ShineBorder className="h-full">
-                <Card className="group h-full p-7 transition-all duration-300 hover:border-black/12 hover:shadow-card-hover hover:-translate-y-1">
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`grid h-12 w-12 place-items-center rounded-2xl transition-all duration-300 ${
-                        it.color === "crimson"
-                          ? "bg-crimson/8 text-crimson ring-1 ring-crimson/15 group-hover:bg-crimson/12 group-hover:shadow-glow"
-                          : "bg-lavender/8 text-lavender ring-1 ring-lavender/15 group-hover:bg-lavender/12 group-hover:shadow-glow-lavender"
-                      }`}
-                    >
-                      <it.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="font-display text-xl text-ivory">{it.title}</h3>
-                  </div>
+          {serviceSlugs.map((slug) => {
+            const it = servicesCatalog[slug];
+            return (
+              <div key={slug} data-svc className="opacity-0">
+                <ShineBorder className="h-full">
+                  <Link href={`/servicios/${slug}`} className="group block h-full">
+                    <Card className="h-full p-7 transition-all duration-300 group-hover:border-black/12 group-hover:shadow-card-hover group-hover:-translate-y-1">
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={`grid h-12 w-12 place-items-center rounded-2xl transition-all duration-300 ${
+                            it.color === "crimson"
+                              ? "bg-crimson/8 text-crimson ring-1 ring-crimson/15 group-hover:bg-crimson/12 group-hover:shadow-glow"
+                              : "bg-lavender/8 text-lavender ring-1 ring-lavender/15 group-hover:bg-lavender/12 group-hover:shadow-glow-lavender"
+                          }`}
+                        >
+                          <it.icon className="h-5 w-5" />
+                        </div>
+                        <h3 className="font-display text-xl text-ivory">{it.shortTitle}</h3>
+                      </div>
 
-                  <p className="mt-5 text-sm leading-relaxed text-ivory-dim">{it.desc}</p>
+                      <p className="mt-5 text-sm leading-relaxed text-ivory-dim">{it.summary}</p>
 
-                  <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
+                      <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-black/8 to-transparent" />
 
-                  <div className="mt-5 flex items-center justify-between">
-                    <p className="text-xs text-ivory-muted">
-                      Arquitectura + Código + Documentación
-                    </p>
-                    <ArrowRight className="h-4 w-4 text-ivory-muted transition-all duration-300 group-hover:text-crimson group-hover:translate-x-1" />
-                  </div>
-                </Card>
-              </ShineBorder>
-            </div>
-          ))}
+                      <div className="mt-5 flex items-center justify-between">
+                        <p className="text-xs text-ivory-muted">Ver detalle del servicio</p>
+                        <ArrowRight className="h-4 w-4 text-ivory-muted transition-all duration-300 group-hover:text-crimson group-hover:translate-x-1" />
+                      </div>
+                    </Card>
+                  </Link>
+                </ShineBorder>
+              </div>
+            );
+          })}
         </div>
+
+        <FadeIn delay={0.1}>
+          <div className="mt-14 text-center">
+            <Link
+              href="/servicios"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-ivory transition-colors hover:text-crimson"
+            >
+              Ver el catálogo completo
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

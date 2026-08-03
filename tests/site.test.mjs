@@ -118,3 +118,44 @@ test("general sales pages avoid unsupported results and compliance claims", () =
   assert.doesNotMatch(services, /pentesting básico|Cumplimiento de normativas básicas/);
   assert.doesNotMatch(about, /hemos acompañado a startups/i);
 });
+
+test("service landing pages publish breadcrumb structured data", () => {
+  const helper = fs.readFileSync("lib/structured-data.ts", "utf8");
+  assert.match(helper, /"@type": "BreadcrumbList"/);
+
+  for (const file of [
+    "app/servicios/[slug]/page.tsx",
+    "app/espana/[service]/page.tsx",
+    "app/us/[service]/page.tsx",
+  ]) {
+    const source = fs.readFileSync(file, "utf8");
+    assert.match(source, /breadcrumbList/);
+  }
+});
+
+test("service landing pages expose matching visible breadcrumbs", () => {
+  for (const file of [
+    "components/sections/service-detail-page.tsx",
+    "components/sections/spain-service-page.tsx",
+    "components/sections/us-service-page.tsx",
+  ]) {
+    const source = fs.readFileSync(file, "utf8");
+    assert.match(source, /aria-label="Breadcrumb"/);
+  }
+});
+
+test("organization schema describes the focused commercial offer", () => {
+  const layout = fs.readFileSync("app/layout.tsx", "utf8");
+
+  assert.match(layout, /"Workflow Automation"/);
+  assert.match(layout, /"API Integration Services"/);
+  assert.doesNotMatch(layout, /"Inteligencia de Datos"/);
+  assert.doesNotMatch(layout, /keywords:/);
+});
+
+test("U.S. routes expose English content language", () => {
+  for (const file of ["app/us/page.tsx", "components/sections/us-service-page.tsx"]) {
+    const source = fs.readFileSync(file, "utf8");
+    assert.match(source, /lang="en-US"/);
+  }
+});

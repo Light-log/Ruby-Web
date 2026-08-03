@@ -22,7 +22,7 @@ export function StackMarquee() {
 
   return (
     <section className="relative py-12">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <FadeIn>
           <div className="rounded-3xl border border-black/6 bg-white/60 px-8 py-10 backdrop-blur-xl overflow-hidden shadow-card">
             <div className="flex flex-col gap-2 mb-8 md:flex-row md:items-center md:justify-between">

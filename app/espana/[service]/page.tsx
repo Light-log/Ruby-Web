@@ -4,6 +4,7 @@ import { Footer } from "@/components/sections/footer";
 import { Navbar } from "@/components/sections/navbar";
 import { SpainServicePage } from "@/components/sections/spain-service-page";
 import { isSpainServiceSlug, spainServices, spainServiceSlugs } from "@/lib/spain-campaign";
+import { breadcrumbList } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ service: string }> };
 
@@ -40,6 +41,11 @@ function ServiceSchema({ service: slug }: { service: keyof typeof spainServices 
         areaServed: { "@type": "Country", name: "España" },
         serviceType: data.shortTitle,
       },
+      breadcrumbList([
+        { name: "Inicio", url: "https://devruby.org" },
+        { name: "España", url: "https://devruby.org/espana" },
+        { name: data.shortTitle, url },
+      ]),
       {
         "@type": "FAQPage",
         mainEntity: data.faqs.map((faq) => ({

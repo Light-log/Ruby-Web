@@ -1,7 +1,15 @@
 import type { MetadataRoute } from "next";
+import { serviceSlugs } from "@/lib/services-catalog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://devruby.org";
+
+  const serviceDetailPages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
+    url: `${baseUrl}/servicios/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
 
   return [
     {
@@ -16,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    ...serviceDetailPages,
     {
       url: `${baseUrl}/nosotros`,
       lastModified: new Date(),

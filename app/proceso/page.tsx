@@ -152,13 +152,13 @@ export default function ProcesoPage() {
       <ProcesoJsonLd />
       <Navbar />
 
-      <section className="relative py-24">
+      <section className="relative pt-3 pb-24">
         <div className="absolute inset-0 -z-10 opacity-30">
           <div className="absolute -top-40 left-1/4 h-[400px] w-[400px] rounded-full bg-lavender/6 blur-[100px]" />
           <div className="absolute top-20 right-1/4 h-[350px] w-[350px] rounded-full bg-crimson/6 blur-[100px]" />
         </div>
 
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
           <FadeIn>
             <div className="flex flex-col items-center text-center">
               <div className="inline-flex items-center gap-2 rounded-full border border-lavender/15 bg-lavender/5 px-4 py-2 text-xs text-lavender-dark mb-6">

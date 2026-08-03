@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { CookieSettingsLink } from "@/components/ui/cookie-settings-link";
+import { servicesCatalog, serviceSlugs } from "@/lib/services-catalog";
 
 const navLinks = [
   { href: "/servicios", label: "Servicios" },
@@ -13,19 +14,15 @@ const navLinks = [
   { href: "/us", label: "U.S. Businesses" },
 ];
 
-const serviceLinks = [
-  "Desarrollo a medida",
-  "Automatización",
-  "DevOps & Infra",
-  "Seguridad",
-  "Datos & Analytics",
-  "UI/UX Premium",
-];
+const serviceLinks = serviceSlugs.map((slug) => ({
+  href: `/servicios/${slug}`,
+  label: servicesCatalog[slug].label,
+}));
 
 export function Footer() {
   return (
     <footer className="border-t border-black/6 bg-dark-50/80">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem] py-16">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-3">
@@ -71,12 +68,12 @@ export function Footer() {
             </h4>
             <ul className="grid gap-2">
               {serviceLinks.map((svc) => (
-                <li key={svc}>
+                <li key={svc.href}>
                   <Link
-                    href="/servicios"
+                    href={svc.href}
                     className="text-sm text-ivory-dim transition-colors hover:text-ivory"
                   >
-                    {svc}
+                    {svc.label}
                   </Link>
                 </li>
               ))}
