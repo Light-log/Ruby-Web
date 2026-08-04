@@ -159,3 +159,9 @@ test("U.S. routes expose English content language", () => {
     assert.match(source, /lang="en-US"/);
   }
 });
+
+test("production assets use a path outside Hostinger's broken _next proxy rule", () => {
+  const config = fs.readFileSync("next.config.mjs", "utf8");
+
+  assert.match(config, /assetPrefix:\s*isDevelopment\s*\?\s*undefined\s*:\s*"\/devruby-assets"/);
+});
