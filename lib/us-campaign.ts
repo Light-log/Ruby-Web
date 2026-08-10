@@ -111,4 +111,5 @@ export const usServices = {
 
 export type USServiceSlug = keyof typeof usServices;
 export const usServiceSlugs = Object.keys(usServices) as USServiceSlug[];
-export const isUSServiceSlug = (value: string): value is USServiceSlug => value in usServices;
+export const isUSServiceSlug = (value: string): value is USServiceSlug =>
+  Object.hasOwn(usServices, value);

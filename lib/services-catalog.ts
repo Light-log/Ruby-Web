@@ -784,7 +784,9 @@ export const servicesCatalog: Record<ServiceSlug, ServiceEntry> = catalog;
 export const serviceSlugs = Object.keys(catalog) as ServiceSlug[];
 
 export function isServiceSlug(value: string): value is ServiceSlug {
-  return value in catalog;
+  // `in` también acierta sobre el prototipo (`toString`, `constructor`…), lo que
+  // dejaba pasar slugs inválidos hasta reventar el render con un 500 en vez de 404.
+  return Object.hasOwn(catalog, value);
 }
 
 /** Áreas del negocio y oportunidades frecuentes (catálogo de servicios, p. 7). */

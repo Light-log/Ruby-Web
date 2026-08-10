@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | DEVRUBY",
   },
   description:
-    "Consultoría de desarrollo de software para empresas: aplicaciones web, APIs, sistemas internos, automatización y auditorías técnicas. DEVRUBY LLC trabaja en remoto con clientes internacionales.",
+    "Consultoría de desarrollo de software para empresas: aplicaciones web, APIs, sistemas internos, automatización y auditorías técnicas. DEVRUBY LLC, en remoto.",
   authors: [{ name: "DEVRUBY LLC", url: "https://devruby.org" }],
   creator: "DEVRUBY LLC",
   publisher: "DEVRUBY LLC",
@@ -87,10 +87,13 @@ function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    // `@id` estable: el bloque se repite en todas las páginas, y sin un
+    // identificador Google trata cada copia como una entidad distinta.
+    "@id": "https://devruby.org/#organization",
     name: "DEVRUBY LLC",
     alternateName: "DEVRUBY",
     url: "https://devruby.org",
-    logo: "https://devruby.org/logo.svg",
+    logo: "https://devruby.org/logo.png",
     description:
       "Software a medida, automatización de procesos, integraciones API y auditorías técnicas de seguridad para empresas.",
     email: "soporte@devruby.org",
@@ -109,7 +112,6 @@ function JsonLd() {
       "Application Security Audits",
     ],
     priceRange: "$$",
-    sameAs: [],
   };
 
   return (

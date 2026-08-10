@@ -1,119 +1,46 @@
 import type { MetadataRoute } from "next";
 import { serviceSlugs } from "@/lib/services-catalog";
+import { spainServiceSlugs } from "@/lib/spain-campaign";
+import { usServiceSlugs } from "@/lib/us-campaign";
+import { SITE_URL } from "@/lib/seo";
+
+/**
+ * Fecha de publicación del contenido, no del build. Con `new Date()` cada deploy
+ * marcaba las 26 URLs como «modificadas ahora», y Google acaba ignorando el
+ * `lastmod` de un sitio que siempre dice lo mismo. Súbela al tocar el contenido.
+ */
+const CONTENT_UPDATED = new Date("2026-08-03");
+
+type Entry = MetadataRoute.Sitemap[number];
+
+const entry = (
+  path: string,
+  priority: number,
+  changeFrequency: Entry["changeFrequency"] = "monthly"
+): Entry => ({
+  url: `${SITE_URL}${path}`,
+  lastModified: CONTENT_UPDATED,
+  changeFrequency,
+  priority,
+});
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://devruby.org";
-
-  const serviceDetailPages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
-    url: `${baseUrl}/servicios/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/servicios`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    ...serviceDetailPages,
-    {
-      url: `${baseUrl}/nosotros`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/proceso`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/proyectos`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/contacto`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/agenda`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/espana`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/espana/desarrollo-software-a-medida`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/espana/automatizacion-de-procesos`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/espana/integracion-api-sistemas`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/espana/auditoria-seguridad-aplicaciones`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/us`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/us/custom-internal-tools`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/us/workflow-automation`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/us/api-integration-services`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/us/application-security-audit`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+    entry("", 1, "weekly"),
+    entry("/servicios", 0.9),
+    ...serviceSlugs.map((slug) => entry(`/servicios/${slug}`, 0.8)),
+    entry("/proyectos", 0.9, "weekly"),
+    entry("/proceso", 0.8),
+    entry("/nosotros", 0.7),
+    entry("/agenda", 0.9),
+    entry("/contacto", 0.8),
+
+    entry("/espana", 0.9),
+    ...spainServiceSlugs.map((slug) => entry(`/espana/${slug}`, 0.8)),
+
+    entry("/us", 0.9),
+    ...usServiceSlugs.map((slug) => entry(`/us/${slug}`, 0.8)),
+
+    entry("/privacidad", 0.3, "yearly"),
   ];
 }

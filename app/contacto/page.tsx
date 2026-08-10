@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ogImages } from "@/lib/seo";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { Contact } from "@/components/sections/contact";
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
       "Cuéntanos el contexto técnico de tu empresa. Respondemos en menos de 24 horas hábiles.",
     url: "https://devruby.org/contacto",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
+    images: ogImages,
   },
   twitter: {
     card: "summary_large_image",
@@ -67,6 +69,31 @@ export default function ContactoPage() {
         </div>
 
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem] mb-16">
+          <FadeIn>
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <h1 className="font-display text-4xl tracking-tight text-ivory md:text-6xl">
+                Contacta con <span className="gradient-text">DEVRUBY</span>
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-ivory-dim">
+                Cuéntanos qué necesita tu empresa: una aplicación web, una API,
+                un sistema interno, automatizar un proceso manual o auditar la
+                seguridad de una aplicación existente. Respondemos en menos de
+                24 horas hábiles con una lectura honesta de si encajamos.
+              </p>
+              <p className="mt-4 text-ivory-muted">
+                Trabajamos en remoto con empresas de España, Estados Unidos y
+                Latinoamérica. Si prefieres hablarlo en directo, puedes{" "}
+                <Link
+                  href="/agenda"
+                  className="font-semibold text-crimson hover:text-crimson-dark"
+                >
+                  agendar una consulta de 30 minutos
+                </Link>
+                .
+              </p>
+            </div>
+          </FadeIn>
+
           <FadeIn>
             <div className="grid gap-6 md:grid-cols-4">
               {guarantees.map((g) => (

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/sections/navbar";
 import { SpainServicePage } from "@/components/sections/spain-service-page";
 import { isSpainServiceSlug, spainServices, spainServiceSlugs } from "@/lib/spain-campaign";
 import { breadcrumbList } from "@/lib/structured-data";
+import { ogImages, spainAlternates } from "@/lib/seo";
 
 type Props = { params: Promise<{ service: string }> };
 
@@ -20,9 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: service.title,
     description: service.description,
-    alternates: { canonical: url },
-    openGraph: { title: service.title, description: service.description, url, type: "website" },
-    twitter: { card: "summary_large_image", title: service.title, description: service.description },
+    alternates: spainAlternates(slug),
+    openGraph: { title: service.title, description: service.description, url, type: "website", locale: "es_ES", images: ogImages },
+    twitter: { card: "summary_large_image", title: service.title, description: service.description, images: ogImages.map((i) => i.url) },
   };
 }
 

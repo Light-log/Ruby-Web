@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { bookingUrl, site } from "@/lib/site";
 import type { SpainServiceSlug } from "@/lib/spain-campaign";
 import { spainServices } from "@/lib/spain-campaign";
+import { generalServiceFor } from "@/lib/seo";
+import { servicesCatalog, type ServiceSlug } from "@/lib/services-catalog";
 
 function campaignUrl() {
   const url = bookingUrl();
@@ -26,6 +28,7 @@ export function SpainServicePage({ slug }: { slug: SpainServiceSlug }) {
   const service = spainServices[slug];
   const booking = campaignUrl();
   const isExternalBooking = booking.startsWith("https://");
+  const generalService = generalServiceFor(slug);
 
   return (
     <>
@@ -57,6 +60,19 @@ export function SpainServicePage({ slug }: { slug: SpainServiceSlug }) {
               </a>
             </div>
             <p className="mt-4 text-xs text-ivory-muted">Consulta inicial de 30 minutos · Trabajo remoto con empresas de España</p>
+            {generalService ? (
+              <p className="mt-6 text-sm text-ivory-muted">
+                Esta página cubre el enfoque para empresas en España. Si buscas
+                el detalle completo del servicio, consulta{" "}
+                <Link
+                  href={`/servicios/${generalService}`}
+                  className="font-semibold text-crimson hover:text-crimson-dark"
+                >
+                  {servicesCatalog[generalService as ServiceSlug].shortTitle}
+                </Link>
+                .
+              </p>
+            ) : null}
           </div>
         </div>
       </section>

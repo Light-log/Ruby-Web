@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/seo";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
 import { FadeIn } from "@/components/animate/fade-in";
@@ -12,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Proceso de Trabajo",
   description:
-    "Conoce nuestra metodología de 4 fases: Descubrimiento, Estrategia & Diseño, Desarrollo & Testing, y Entrega & Soporte. Proceso claro, transparente y orientado a resultados.",
+    "Nuestra metodología en 4 fases: descubrimiento, estrategia y diseño, desarrollo y testing, entrega y soporte. Claro, transparente y orientado a resultados.",
   keywords: [
     "metodología desarrollo software",
     "proceso desarrollo web",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
       "Metodología clara y eficiente en 4 fases para entregar soluciones tecnológicas de calidad.",
     url: "https://devruby.org/proceso",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
+    images: ogImages,
   },
   twitter: {
     card: "summary_large_image",
