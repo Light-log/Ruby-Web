@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/seo";
 import Link from "next/link";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
       "Software, automatización e inteligencia artificial para convertir procesos en productos digitales que funcionan.",
     url: "https://devruby.org/servicios",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
+    images: ogImages,
   },
   twitter: {
     card: "summary_large_image",

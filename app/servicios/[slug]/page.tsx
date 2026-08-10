@@ -5,6 +5,7 @@ import { Footer } from "@/components/sections/footer";
 import { ServiceDetailPage } from "@/components/sections/service-detail-page";
 import { isServiceSlug, servicesCatalog, serviceSlugs, type ServiceSlug } from "@/lib/services-catalog";
 import { breadcrumbList } from "@/lib/structured-data";
+import { ogImages } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: service.description,
       url,
       type: "website",
-      images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
+      images: ogImages,
     },
     twitter: {
       card: "summary_large_image",

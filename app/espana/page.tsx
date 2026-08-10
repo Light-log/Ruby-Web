@@ -6,17 +6,26 @@ import { Navbar } from "@/components/sections/navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { spainServices } from "@/lib/spain-campaign";
+import { ogImages, spainAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Software a medida y automatización para empresas en España",
   description:
     "DEVRUBY ayuda a empresas españolas a ordenar operaciones mediante software a medida, automatización, integraciones API y auditorías técnicas de aplicaciones.",
-  alternates: { canonical: "https://devruby.org/espana" },
+  alternates: spainAlternates(),
   openGraph: {
     title: "Software a medida y automatización para empresas en España | DEVRUBY",
     description: "Aplicaciones web, automatización, integraciones API y auditorías técnicas para operaciones empresariales.",
     url: "https://devruby.org/espana",
     type: "website",
+    locale: "es_ES",
+    images: ogImages,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Software a medida y automatización para empresas en España | DEVRUBY",
+    description: "Aplicaciones web, automatización, integraciones API y auditorías técnicas para operaciones empresariales.",
+    images: ogImages.map((i) => i.url),
   },
 };
 

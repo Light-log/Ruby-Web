@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImages } from "@/lib/seo";
 import Image from "next/image";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
       "Conoce el enfoque de DEVRUBY para construir software empresarial mantenible y seguro.",
     url: "https://devruby.org/nosotros",
     type: "website",
-    images: [{ url: "/logo.svg", width: 512, height: 512, alt: "DEVRUBY" }],
+    images: ogImages,
   },
   twitter: {
     card: "summary_large_image",

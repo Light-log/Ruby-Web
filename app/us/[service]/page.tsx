@@ -5,6 +5,7 @@ import { Navbar } from "@/components/sections/navbar";
 import { USServicePage } from "@/components/sections/us-service-page";
 import { isUSServiceSlug, usServices, usServiceSlugs } from "@/lib/us-campaign";
 import { breadcrumbList } from "@/lib/structured-data";
+import { ogImages, usAlternates } from "@/lib/seo";
 
 type Props = { params: Promise<{ service: string }> };
 
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isUSServiceSlug(slug)) return {};
   const service = usServices[slug];
   const url = `https://devruby.org/us/${slug}`;
-  return { title: service.title, description: service.description, alternates: { canonical: url }, openGraph: { title: service.title, description: service.description, url, type: "website" }, twitter: { card: "summary_large_image", title: service.title, description: service.description } };
+  return { title: service.title, description: service.description, alternates: usAlternates(slug), openGraph: { title: service.title, description: service.description, url, type: "website", locale: "en_US", images: ogImages }, twitter: { card: "summary_large_image", title: service.title, description: service.description, images: ogImages.map((i) => i.url) } };
 }
 
 function ServiceSchema({ service: slug }: { service: keyof typeof usServices }) {
@@ -32,5 +33,5 @@ function ServiceSchema({ service: slug }: { service: keyof typeof usServices }) 
 export default async function USServiceRoute({ params }: Props) {
   const { service: slug } = await params;
   if (!isUSServiceSlug(slug)) notFound();
-  return <main className="relative"><ServiceSchema service={slug} /><Navbar /><USServicePage slug={slug} /><Footer /></main>;
+  return <main lang="en-US" className="relative"><ServiceSchema service={slug} /><Navbar /><USServicePage slug={slug} /><Footer /></main>;
 }

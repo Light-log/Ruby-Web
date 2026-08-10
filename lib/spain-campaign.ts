@@ -44,38 +44,38 @@ export const spainServices = {
     shortTitle: "Automatización de procesos",
     title: "Automatización de procesos para empresas en España",
     description:
-      "Automatiza tareas de backoffice, operaciones y atención con flujos conectados a los sistemas que ya utiliza tu empresa.",
-    eyebrow: "Automatización de procesos empresariales",
-    headline: "Menos pasos manuales; más control sobre la operación",
+      "Automatizamos el backoffice de empresas españolas: facturación, conciliación bancaria, remesas SEPA y traspaso a la gestoría, con trazabilidad completa.",
+    eyebrow: "Backoffice y administración · España",
+    headline: "El cierre de mes, sin teclear el mismo dato en tres sitios",
     intro:
-      "Automatizar no es añadir un bot sin contexto. Analizamos qué inicia cada tarea, quién debe validarla y dónde debe quedar registrada para conectar el proceso sin perder trazabilidad ni control humano.",
+      "En una empresa española media el mismo dato pasa por el ERP, una hoja de cálculo, el correo de la gestoría y el banco. Conectamos esos pasos dejando registro de qué se emitió, cuándo y quién lo aprobó, que es exactamente lo que hace falta cuando la asesoría, un cliente o una inspección piden explicaciones.",
     painPoints: [
-      "El equipo copia los mismos datos entre correo, CRM, ERP, documentos y hojas de cálculo.",
-      "Las solicitudes se retrasan porque dependen de recordatorios y seguimientos manuales.",
-      "No existe una forma consistente de detectar excepciones o pasos pendientes.",
+      "Cada cierre se va en cuadrar a mano facturas, extractos y albaranes antes de mandarlo todo a la gestoría.",
+      "La factura electrónica B2B y los sistemas de facturación verificable obligan a revisar cómo se emiten, numeran y conservan los documentos.",
+      "Las remesas SEPA, los vencimientos y los impagos se siguen en una hoja de cálculo que solo entiende una persona.",
     ],
     deliverables: [
-      "Mapa del flujo actual, responsables, excepciones y puntos de aprobación.",
-      "Automatizaciones de captura, validación, notificación y actualización de datos.",
-      "Alertas y registros para que el equipo pueda revisar lo que requiere decisión.",
-      "Documentación del flujo y criterios para su mantenimiento.",
+      "Mapa del circuito real: quién emite, quién valida y qué acaba en la gestoría o en la AEAT.",
+      "Emisión, envío y archivo automáticos de facturas y albaranes, con numeración y registro consistentes.",
+      "Conciliación de extractos y remesas SEPA, con avisos de vencimientos e impagos.",
+      "Traspaso periódico a tu asesoría en el formato que ya utiliza, sin reescribir datos.",
     ],
-    fit: "Equipos de administración, ventas, soporte u operaciones que ya repiten un proceso digital y quieren reducir dependencia de tareas manuales.",
+    fit: "Empresas españolas de servicios, distribución, instalación o comercio con administración interna y gestoría externa, que cierran el mes a base de horas manuales.",
     faqs: [
       {
-        question: "¿Hay que sustituir todas nuestras herramientas para automatizar?",
+        question: "¿Esto nos deja listos para la facturación electrónica obligatoria?",
         answer:
-          "No necesariamente. El punto de partida es aprovechar las herramientas que ya aportan valor y conectar solo los pasos que generan duplicidad, retrasos o falta de información.",
+          "Preparamos el circuito interno para que cada documento se emita, numere y conserve de forma consistente y exportable. El calendario y la homologación concretos dependen de la normativa vigente y del software de facturación que uséis, así que el alcance se define junto a vuestra asesoría. DEVRUBY no presta asesoramiento fiscal ni legal.",
       },
       {
-        question: "¿La automatización elimina las revisiones humanas?",
+        question: "¿Hay que cambiar de ERP o de gestoría?",
         answer:
-          "No. Un buen flujo conserva aprobaciones y excepciones donde aportan criterio. El objetivo es retirar el trabajo repetitivo, no automatizar decisiones que necesitan contexto.",
+          "No. Partimos de lo que ya funciona: si vuestro ERP, vuestro TPV o vuestra gestoría cubren bien su parte, se conectan. Solo se sustituye aquello que obliga a duplicar trabajo o impide tener el dato a tiempo.",
       },
       {
-        question: "¿Qué se revisa en la consulta inicial?",
+        question: "¿Cómo se trata la información de clientes y empleados?",
         answer:
-          "El proceso actual, el volumen aproximado, los sistemas que intervienen y el resultado que necesita el equipo. Con ello se determina si conviene automatizar, integrar o crear una herramienta propia.",
+          "Los flujos se diseñan para que cada dato viaje solo donde hace falta, con acceso por rol y registro de quién consultó qué. Es un criterio técnico que ayuda a sostener vuestras obligaciones de protección de datos, pero no sustituye la asesoría jurídica ni un análisis de riesgos formal.",
       },
     ],
   },
@@ -124,38 +124,38 @@ export const spainServices = {
     shortTitle: "Auditoría de seguridad de aplicaciones",
     title: "Auditoría de seguridad de aplicaciones y APIs para empresas en España",
     description:
-      "Revisa la seguridad técnica de aplicaciones web, APIs y entornos cloud para identificar riesgos y ordenar mejoras priorizadas.",
-    eyebrow: "Auditoría técnica de aplicaciones y APIs",
-    headline: "Conoce los riesgos técnicos antes de que afecten a tu operación",
+      "Auditoría técnica de aplicaciones web, APIs y cloud para empresas españolas que deben responder a un cuestionario de cliente, un pliego o una due diligence.",
+    eyebrow: "Revisión técnica para clientes y licitaciones · España",
+    headline: "Cuando un cliente o un pliego os pide pruebas de que la aplicación es segura",
     intro:
-      "Una auditoría útil no se limita a una lista de hallazgos. Revisamos el alcance acordado, documentamos evidencias y entregamos recomendaciones priorizadas para que el equipo sepa qué corregir primero y por qué.",
+      "En España la exigencia técnica rara vez llega como una sanción: llega en el cuestionario de seguridad de un cliente grande, en un pliego de licitación o en la due diligence de una ronda. Revisamos la aplicación sobre un alcance autorizado por escrito y entregamos un informe con evidencias que podéis enseñar.",
     painPoints: [
-      "La aplicación ha crecido y no existe una revisión reciente de accesos, secretos o exposición pública.",
-      "La empresa necesita ordenar riesgos técnicos antes de una migración, integración o lanzamiento.",
-      "No hay una visión clara de las dependencias, configuraciones o controles de una API.",
+      "Un cliente o un pliego exige evidencias de revisión técnica y no hay ningún informe reciente que presentar.",
+      "Existe obligación de notificar brechas dentro de plazo, pero nadie sabe con certeza qué expone hoy la aplicación.",
+      "Se acerca una migración, una integración o una salida a producción sin una lectura ordenada del riesgo.",
     ],
     deliverables: [
-      "Definición de alcance y autorización antes de cualquier comprobación.",
-      "Revisión técnica de aplicación, API y/o configuración cloud acordada.",
-      "Informe de hallazgos con evidencia, prioridad e indicaciones de remediación.",
-      "Sesión de entrega para interpretar el resultado y planificar los siguientes pasos.",
+      "Alcance y autorización por escrito antes de cualquier comprobación, con entornos y ventanas acordados.",
+      "Revisión técnica de la aplicación web, la API o la configuración cloud incluidas en ese alcance.",
+      "Informe en castellano con evidencias, criticidad y remediación priorizada, redactado para poder adjuntarse a un cuestionario de cliente.",
+      "Sesión de entrega con el equipo técnico y un resumen ejecutivo para dirección.",
     ],
-    fit: "Equipos con una aplicación web, API o infraestructura cloud existente que necesitan una revisión técnica acotada y accionable.",
+    fit: "Empresas españolas con una aplicación o API en producción que deben responder ante clientes, pliegos o inversores y necesitan una revisión acotada y presentable.",
     faqs: [
       {
-        question: "¿Esta auditoría equivale a una certificación de cumplimiento?",
+        question: "¿El informe sirve para acreditar el ENS, la ISO 27001 o el RGPD?",
         answer:
-          "No. Es una auditoría técnica de seguridad de un alcance concreto. No sustituye certificaciones, asesoría legal ni evaluaciones regulatorias como ENS, ISO 27001, RGPD, NIS2 o DORA.",
+          "No. Es una auditoría técnica de un alcance concreto y puede aportarse como evidencia de que la revisión se ha hecho, pero no sustituye una certificación, una auditoría acreditada ni asesoría jurídica. Marcos como el ENS, la ISO 27001, el RGPD, NIS2 o DORA los evalúan entidades habilitadas para ello.",
       },
       {
-        question: "¿Qué necesitan para empezar?",
+        question: "¿Firmáis NDA y el acuerdo de encargado de tratamiento?",
         answer:
-          "Una explicación del sistema, el alcance autorizado, los entornos que pueden revisarse y un contacto técnico. Nunca se realizan comprobaciones fuera del alcance acordado por escrito.",
+          "Sí. El NDA se firma antes de recibir información. Si la revisión implica acceso a datos personales, el encargo se documenta antes de empezar; DEVRUBY LLC es una empresa estadounidense que trabaja en remoto, algo que conviene reflejar en vuestro registro de actividades de tratamiento.",
       },
       {
-        question: "¿Pueden corregir los hallazgos?",
+        question: "¿Interrumpe el servicio en producción?",
         answer:
-          "Sí. Tras la revisión podemos proponer un alcance de remediación para el software o infraestructura, sujeto a la prioridad y al contexto técnico encontrado.",
+          "No es el objetivo. Las comprobaciones intrusivas se acuerdan previamente y, cuando existe entorno de preproducción, se prioriza. Los límites y las ventanas quedan por escrito antes de la primera prueba.",
       },
     ],
   },
@@ -166,5 +166,5 @@ export type SpainServiceSlug = keyof typeof spainServices;
 export const spainServiceSlugs = Object.keys(spainServices) as SpainServiceSlug[];
 
 export function isSpainServiceSlug(value: string): value is SpainServiceSlug {
-  return value in spainServices;
+  return Object.hasOwn(spainServices, value);
 }

@@ -6,12 +6,14 @@ import { Navbar } from "@/components/sections/navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { usServices } from "@/lib/us-campaign";
+import { ogImages, usAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Custom Software, Automation & API Integrations for U.S. Businesses",
   description: "DEVRUBY LLC helps U.S. businesses build internal tools, automate workflows, connect systems, and review application security.",
-  alternates: { canonical: "https://devruby.org/us" },
-  openGraph: { title: "Custom Software & Workflow Automation | DEVRUBY LLC", description: "Internal tools, workflow automation, API integrations, and application security reviews for U.S. businesses.", url: "https://devruby.org/us", type: "website" },
+  alternates: usAlternates(),
+  openGraph: { title: "Custom Software & Workflow Automation | DEVRUBY LLC", description: "Internal tools, workflow automation, API integrations, and application security reviews for U.S. businesses.", url: "https://devruby.org/us", type: "website", locale: "en_US", images: ogImages },
+  twitter: { card: "summary_large_image", title: "Custom Software & Workflow Automation | DEVRUBY LLC", description: "Internal tools, workflow automation, API integrations, and application security reviews for U.S. businesses.", images: ogImages.map((i) => i.url) },
 };
 
 const services = [
