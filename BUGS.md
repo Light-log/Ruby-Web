@@ -130,7 +130,11 @@ dependía del edge que tocara.
    `public, max-age=0, s-maxage=300, stale-while-revalidate=86400` para todo lo
    que no cuelgue de `_next/` ni `devruby-assets/`, de modo que el HTML deje de
    ser cacheable un año mientras los assets con hash siguen inmutables.
-   **Pendiente de desplegar y verificar** (ver copia local rota, abajo).
+   Desplegado el 19-ago-2026 (commit `039e6b6`, build
+   `01a01783-6d70-7231-b092-af8d35131a76`) y verificado en producción: las 26
+   URLs del sitemap responden 200 con la cabecera nueva y los 30 chunks que
+   referencian resuelven; los assets con hash conservan
+   `max-age=31536000, immutable`.
 
 **Regla operativa:** purgar la caché del sitio en Hostinger después de cada
 despliegue. Sin eso, el HTML viejo sobrevive al build nuevo.
@@ -147,6 +151,12 @@ sha1 inválido.
 
 Producción **no** está afectada: sirve un build íntegro del 10-ago 06:04.
 
-**No construir ni desplegar desde esta copia.** `origin/main` sigue en GitHub
-(`Light-log/Ruby-Web`, `e2eb7ff`), así que la vía de recuperación es volver a
-clonar el repositorio en limpio y reaplicar sobre él el cambio de `next.config.mjs`.
+**Recuperada el 19-ago-2026.** El commit local dañado (`868449e`) estaba
+íntegro en `origin/main`, así que no se perdió trabajo: se sustituyó el `.git`
+por un clon limpio y se restauraron los 18 archivos desde `HEAD`. Verificado con
+`git fsck` limpio, `tsc --noEmit` sin errores, `next build` generando 33 rutas y
+20/20 tests. `BUGS.md` también estaba vaciado y se restauró desde git.
+
+No se determinó la causa: 18 archivos y un objeto de git truncados a 0 bytes a
+la misma hora apuntan a un corte de energía o un fallo del sistema de archivos,
+no a nada del proyecto. Si se repite, revisar `dmesg` y el SMART del disco.
