@@ -160,3 +160,30 @@ por un clon limpio y se restauraron los 18 archivos desde `HEAD`. Verificado con
 No se determinó la causa: 18 archivos y un objeto de git truncados a 0 bytes a
 la misma hora apuntan a un corte de energía o un fallo del sistema de archivos,
 no a nada del proyecto. Si se repite, revisar `dmesg` y el SMART del disco.
+
+## Vulnerabilidades altas en el build de Hostinger — 2026-08-19 (corregida)
+
+El `npm install` del despliegue reportaba 3 avisos altos. No era una regresión:
+son avisos publicados después de la ronda de parcheo del 30-jul, y uno apunta
+justo a la versión que entonces se fijó como parche.
+
+| Paquete | Estaba | Aviso | Ahora |
+| --- | --- | --- | --- |
+| `brace-expansion` | 5.0.8 | GHSA-rgw5-rvv9-x895, DoS por arrays intermedios sin límite que evade la mitigación de CVE-2026-14257 | 5.0.9 |
+| `js-yaml` | 4.3.0 | GHSA-5p4m-2wfm-xmqj, consumo cuadrático de CPU al resolver `!!omap` | 4.3.1 |
+| `nanoid` | 3.3.16 | GHSA-2v37-7h3g-55p8, bucle infinito con `size` cero | 3.3.18 |
+
+Decisiones al parchear:
+
+- El `override` de `brace-expansion` apuntaba a `^5.0.8`, la versión afectada.
+  Sube a `^5.0.9`. El override sigue haciendo falta: las líneas 1.x y 2.x que
+  arrastra la cadena de `eslint` no reciben el parche.
+- `js-yaml` se fija con `override` a `^4.3.1` en lugar de saltar a la 5.x, para
+  no arriesgar la compatibilidad con `eslint` 8.
+- `nanoid` no se toca directamente: subir `postcss` a `^8.5.26` basta, porque su
+  rango `^3.3.17` ya admite la 3.3.18.
+
+`npm audit` queda en 0, también con `--omit=dev`. Verificado en local con `tsc`
+limpio, 20/20 tests, `next build` con las 33 rutas y `npm ci --dry-run`; y en el
+servidor, cuyo log de build ahora imprime `found 0 vulnerabilities`
+(commit `d049e4d`, build `01a017ad-10c9-738f-b209-d9843379f555`).

@@ -80,6 +80,12 @@ Hay tres `overrides` en `package.json` y conviene no borrarlos sin revisar:
 El lockfile venía desincronizado del parcheo anterior (`npm ci` fallaba por
 `nanoid`); se regeneró completo.
 
+**Actualización 2026-08-19:** aparecieron 3 avisos altos nuevos
+(`brace-expansion` 5.0.8, `js-yaml` 4.3.0, `nanoid` 3.3.16) y se cerraron sin
+cambios mayores; el override de `brace-expansion` pasa a `^5.0.9`, se añade uno
+para `js-yaml` en `^4.3.1` y `postcss` sube a `^8.5.26`. `npm audit` vuelve a
+cero. Los overrides son ahora cuatro y conviene revisarlos, no borrarlos.
+
 Pendiente conocido, preexistente: **no hay configuración de ESLint en el repo**,
 por lo que `npm run lint` abre el asistente interactivo de `next lint` en vez de
 analizar. Además `next lint` desaparece en Next 16. Falta decidir la config y
