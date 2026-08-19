@@ -94,3 +94,59 @@ incluido `/_next/static/*`, se reenvían o se sirven desde
 `/home/u750364973/domains/devruby.org/nodejs/.next/static`. Si la configuración
 ya se regeneró, abrir ticket con Hostinger con el UUID del último build y la
 respuesta 404 descrita arriba.
+
+
+## ChunkLoadError en devruby.org por HTML cacheado en el CDN — 2026-08-18
+
+**Síntoma:** "Application error: a client-side exception has occurred" en la
+portada. En consola, 404 de `/devruby-assets/_next/static/chunks/978-*.js`,
+`app/page-*.js`, `app/layout-*.js` y `main-app-*.js`, seguidos de
+`Uncaught ChunkLoadError: Loading chunk 978 failed`.
+
+**Causa raíz:** Next 15 responde las páginas prerenderizadas con
+`cache-control: s-maxage=31536000`. El CDN de Hostinger (`hcdn`) lo respeta al
+pie de la letra y guarda el HTML un año sin revalidar. Tras el despliegue del
+10-ago-2026 06:04 UTC cambiaron los hashes de varios chunks, pero los edges
+seguían sirviendo HTML anterior al despliegue (edad medida: 5 y 8 días, y hasta
+13 días el 18-ago), que apunta a hashes ya borrados del disco. Los chunks que no
+cambiaron entre builds seguían dando 200; solo fallaban los que sí cambiaron, de
+ahí que el fallo pareciera aleatorio.
+
+**Por qué funcionaba en incógnito:** el perfil normal revalidaba su copia en
+disco contra el CDN, que confirmaba su propio HTML caducado (mismo ETag), así
+que el navegador conservaba indefinidamente la página rota. Además cada edge
+tenía una copia distinta (`imm-edge4` vs `imm-edge6`), así que el resultado
+dependía del edge que tocara.
+
+**Diagnóstico reproducible:** `curl https://devruby.org/` devolvía HTML con
+`x-hcdn-cache-status: HIT` y `age` de días apuntando a chunks 404; con
+`?cachebust=N` la respuesta era `DYNAMIC` (origen) y todos sus chunks daban 200.
+
+**Solución aplicada:**
+1. Purga de caché del sitio en Hostinger (`clearWebsiteCache` sobre
+   `u750364973` / `devruby.org`). Verificado: la portada y las 26 URLs del
+   sitemap responden 200 y ningún chunk referenciado da 404.
+2. `next.config.mjs` añade `headers()` con
+   `public, max-age=0, s-maxage=300, stale-while-revalidate=86400` para todo lo
+   que no cuelgue de `_next/` ni `devruby-assets/`, de modo que el HTML deje de
+   ser cacheable un año mientras los assets con hash siguen inmutables.
+   **Pendiente de desplegar y verificar** (ver copia local rota, abajo).
+
+**Regla operativa:** purgar la caché del sitio en Hostinger después de cada
+despliegue. Sin eso, el HTML viejo sobrevive al build nuevo.
+
+## Copia local corrupta — detectada 2026-08-18
+
+18 archivos fuente quedaron en 0 bytes (`app/layout.tsx`, `app/sitemap.ts`,
+`lib/seo.ts`, `lib/services-catalog.ts`, `lib/spain-campaign.ts`,
+`lib/us-campaign.ts`, las `page.tsx` de proceso/proyectos/servicios/nosotros/
+contacto/us/espana y sus rutas dinámicas, `components/sections/spain-service-page.tsx`,
+`tests/site.test.mjs`), con fecha 10-ago-2026 02:02. El repositorio git también
+está dañado: `.git/objects/86/8449e3…` vacío y `refs/heads/main` con puntero
+sha1 inválido.
+
+Producción **no** está afectada: sirve un build íntegro del 10-ago 06:04.
+
+**No construir ni desplegar desde esta copia.** `origin/main` sigue en GitHub
+(`Light-log/Ruby-Web`, `e2eb7ff`), así que la vía de recuperación es volver a
+clonar el repositorio en limpio y reaplicar sobre él el cambio de `next.config.mjs`.

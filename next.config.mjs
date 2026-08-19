@@ -9,6 +9,24 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async headers() {
+    return [
+      {
+        // Next 15 envía `s-maxage=31536000` en las páginas prerenderizadas y el
+        // CDN de Hostinger lo respeta durante un año: tras cada despliegue el
+        // HTML cacheado sigue apuntando a hashes de chunks que ya no existen y
+        // el navegador revienta con ChunkLoadError. Los assets con hash
+        // (`/devruby-assets/_next/static/*`) sí pueden seguir siendo inmutables.
+        source: "/((?!_next/|devruby-assets/).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, s-maxage=300, stale-while-revalidate=86400",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
