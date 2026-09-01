@@ -60,3 +60,16 @@ Thumbs.db
 /.idea
 .vscode/
 *.swp
+# --- Herramientas de agentes (no se versionan) ---
+.claude/
+.agents/
+.codex/
+.superpowers/
+.cursor/
+.windsurf/
+.aider*
+.mcp.json
+CLAUDE.md
+AGENTS.md
+docs/superpowers/
+**/docs/superpowers/
