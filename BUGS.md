@@ -1,5 +1,37 @@
 # Incidencias activas
 
+## El formulario de contacto no envía correos — 2026-09-14 (abierta)
+
+**Síntoma:** cualquier envío del formulario de `/contacto` (y de las landings de
+España y EE. UU.) muestra "No se pudo enviar" y ningún correo llega a
+`soporte@devruby.org`.
+
+**Reproducción:** `POST https://devruby.org/api/contact` con un JSON válido
+responde HTTP 500 con `{"ok":false,"error":"Falta variable de entorno: SMTP_HOST"}`.
+
+**Causa raíz:** el sitio Node.js de Hostinger (`u750364973` / `devruby.org`)
+**no tiene ninguna variable de entorno configurada**: la API de Hostinger
+devuelve la lista vacía y no existe `.env` en el servidor. `app/api/contact/route.ts`
+exige `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` y
+`CONTACT_TO` mediante `mustEnv`, así que falla en la primera antes de tocar
+nodemailer. No es un problema de código, DNS ni de nodemailer 9: el dominio ya
+tiene MX, SPF y DKIM de Hostinger Mail correctos.
+
+**Solución pendiente:** cargar las seis variables en hPanel > Node.js >
+Variables de entorno (o vía API `replaceNodeJsEnvironmentVariables`) con las
+credenciales del buzón `soporte@devruby.org` de Hostinger Mail
+(`smtp.hostinger.com`, puerto 465 con SSL), reiniciar o reconstruir la app y
+repetir el POST de prueba hasta obtener `{"ok":true}` y el correo en el buzón.
+Después, purgar la caché del sitio (regla operativa ya conocida).
+
+**Mejora sugerida:** el `catch` del endpoint devuelve al navegador el mensaje
+crudo de la excepción (`e.message`), lo que expone nombres de variables y
+errores SMTP al público. Conviene registrar el error en servidor y responder un
+texto genérico.
+
+Nota: los `WARN` "Server Reference ID did not match the expected format" de los
+logs de runtime son sondeos de bots contra server actions y no tienen relación.
+
 ## Auditoría de indexación — 2026-08-10 (corregida)
 
 Auditoría de las 28 rutas contra un servidor de producción real. Todo lo listado
