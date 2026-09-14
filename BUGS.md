@@ -1,6 +1,6 @@
 # Incidencias activas
 
-## El formulario de contacto no envía correos — 2026-09-14 (abierta)
+## El formulario de contacto no envía correos — 2026-09-14 (corregida)
 
 **Síntoma:** cualquier envío del formulario de `/contacto` (y de las landings de
 España y EE. UU.) muestra "No se pudo enviar" y ningún correo llega a
@@ -17,12 +17,18 @@ exige `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` y
 nodemailer. No es un problema de código, DNS ni de nodemailer 9: el dominio ya
 tiene MX, SPF y DKIM de Hostinger Mail correctos.
 
-**Solución pendiente:** cargar las seis variables en hPanel > Node.js >
-Variables de entorno (o vía API `replaceNodeJsEnvironmentVariables`) con las
-credenciales del buzón `soporte@devruby.org` de Hostinger Mail
-(`smtp.hostinger.com`, puerto 465 con SSL), reiniciar o reconstruir la app y
-repetir el POST de prueba hasta obtener `{"ok":true}` y el correo en el buzón.
-Después, purgar la caché del sitio (regla operativa ya conocida).
+**Solución aplicada (2026-09-14):** se cargaron las seis variables vía API
+(`replaceNodeJsEnvironmentVariables`) con el buzón `soporte@devruby.org` de
+Hostinger Mail (`smtp.hostinger.com`, puerto 465 con SSL) y `CONTACT_TO` al
+mismo buzón. Ni el guardado ni un reinicio explícito bastaron: el proceso
+seguía sin ver `SMTP_HOST`. Hizo falta una reconstrucción completa (commit
+`2db8ecf`, build `01a0a0a9-233b-73d6-8838-5ff7f6dfe506`), tras la cual el POST
+de prueba respondió `{"ok":true}` y se purgó la caché del sitio.
+
+**Regla operativa:** en este hosting, cambiar variables de entorno de Next.js
+exige un build nuevo (push a `main`); el reinicio no las aplica. Además el
+endpoint limita a 10 envíos por IP cada 10 minutos, así que al probar en serie
+aparece HTTP 429 hasta que el proceso se reinicia.
 
 **Mejora sugerida:** el `catch` del endpoint devuelve al navegador el mensaje
 crudo de la excepción (`e.message`), lo que expone nombres de variables y
