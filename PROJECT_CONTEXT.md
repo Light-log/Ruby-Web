@@ -86,6 +86,21 @@ cambios mayores; el override de `brace-expansion` pasa a `^5.0.9`, se añade uno
 para `js-yaml` en `^4.3.1` y `postcss` sube a `^8.5.26`. `npm audit` vuelve a
 cero. Los overrides son ahora cuatro y conviene revisarlos, no borrarlos.
 
+**Actualización 2026-09-14:** el build de Hostinger reportaba 4 avisos nuevos
+(1 crítico, 3 altos), todos posteriores a la ronda del 19-ago:
+
+| Paquete | Estaba | Aviso | Ahora |
+| --- | --- | --- | --- |
+| `next` | 15.5.22 | GHSA-p293-qw3h-jr36 y GHSA-2xp9-vwfh-vxw4, RCE sin autenticación (Windows y AVIF en Image Optimization) | 15.5.25 |
+| `nodemailer` | 9.0.3 | GHSA-8m3c-c648-2xjj, GHSA-wmmp-3585-3rmp, GHSA-cc9r-2j5m-2m83, GHSA-2x7j-588g-ccc2: bypass de dominio de destino y DoS en `addressparser` | 9.1.1 |
+| `sharp` (override) | 0.35.3 | GHSA-rgj7-g3m4-5g8c, libheif | 0.35.4 |
+| `js-yaml` (override) | 4.3.1 | GHSA-2883-xcg3-v3hh, CPU sin límite con merge keys vacíos | 4.3.2 |
+
+Se mantuvo la línea 15.x de Next (`eslint-config-next` acompaña a 15.5.25) y la
+9.x de nodemailer; ninguno de los dos saltos de major era necesario. `npm audit`
+vuelve a cero también con `--omit=dev`. Verificado con `tsc` limpio, 20/20
+tests, `next build` con 33 rutas y `npm ci --dry-run`.
+
 Pendiente conocido, preexistente: **no hay configuración de ESLint en el repo**,
 por lo que `npm run lint` abre el asistente interactivo de `next lint` en vez de
 analizar. Además `next lint` desaparece en Next 16. Falta decidir la config y
