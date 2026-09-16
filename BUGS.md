@@ -1,6 +1,6 @@
 # Incidencias activas
 
-## El servidor Node responde 504 en casi todas las rutas — 2026-09-16 (ABIERTA)
+## El servidor Node responde 504 en casi todas las rutas — 2026-09-16 (corregida)
 
 **Síntoma:** desde el 16/09 (medido a las 19:30 UTC) solo la portada `/` responde
 200, y eso porque el CDN de Hostinger la sirve cacheada (`x-nextjs-cache: HIT`);
@@ -18,12 +18,20 @@ no es el build (los 17 builds están `completed`, el último `01a0a0bc…` del
 el último build. La API de Hostinger devuelve 503 al pedir los logs de runtime,
 lo que refuerza que el runtime no responde.
 
-**Acción pendiente:** reiniciar la app Node desde hPanel (o vía API
-`restartNodeJsApplication`), purgar la caché, y volver a medir
-`curl -o /dev/null -w "%{http_code} %{time_total}s" https://devruby.org/sitemap.xml`
-x3. Si sigue en 504, lanzar un build nuevo desde `main` y revisar los logs de
-runtime. Después, en Search Console, reenviar el sitemap y pedir indexación de
-las 5 URLs de España y las 5 de EE. UU.
+**Resolución (16/09, 20:20 UTC):** la API de reinicio devolvía 503, y el build
+automático que disparó el push del blog (`01a0abcf…`) falló **sin escribir ni
+una línea de log** (nunca llegó a `npm install`). Un segundo build lanzado a
+mano por API (`startNodeJsBuild`, `01a0abde…`) completó en 3 min y dejó la app
+sana: todas las rutas responden 200 en <1 s, `www` devuelve 308 al canónico y
+el sitemap incluye el blog. Se purgó la caché del CDN.
+
+**Regla operativa:** si el nodo de Hostinger está degradado, el reinicio y los
+logs de runtime devuelven 503 y los builds pueden fallar con 0 líneas; relanzar
+el build por API suele bastar. Si dos builds seguidos fallan sin log, abrir
+ticket con Hostinger.
+
+**Pendiente en Search Console:** reenviar `sitemap.xml`, pedir indexación de
+`/blog` y de las 4 entradas, y de las 10 landings de España/EE. UU.
 
 **Impacto SEO (export de Search Console 16/06–14/09):** 239 impresiones y 3
 clics en 3 meses; la mitad de las impresiones son de EE. UU. y España en
