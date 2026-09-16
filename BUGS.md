@@ -1,5 +1,43 @@
 # Incidencias activas
 
+## El servidor Node responde 504 en casi todas las rutas — 2026-09-16 (ABIERTA)
+
+**Síntoma:** desde el 16/09 (medido a las 19:30 UTC) solo la portada `/` responde
+200, y eso porque el CDN de Hostinger la sirve cacheada (`x-nextjs-cache: HIT`);
+aun así tarda 6 s en la mitad de las peticiones. `/espana`, `/servicios`,
+`/sitemap.xml`, `/robots.txt` y `www.devruby.org` devuelven **504 Gateway
+Time-out** o un `307` de nginx hacia la misma URL tras ~11 s. Google no puede
+leer ni el sitemap ni el robots.
+
+**Descartado:** no es red local (google.com y hostinger.com responden en <1,3 s);
+no es el build (los 17 builds están `completed`, el último `01a0a0bc…` del
+14/09 con el commit `f9919c0`); no es DNS ni SSL (la portada llega con cabeceras
+`platform: hostinger`).
+
+**Causa probable:** el proceso Node de la app está colgado o sin arrancar tras
+el último build. La API de Hostinger devuelve 503 al pedir los logs de runtime,
+lo que refuerza que el runtime no responde.
+
+**Acción pendiente:** reiniciar la app Node desde hPanel (o vía API
+`restartNodeJsApplication`), purgar la caché, y volver a medir
+`curl -o /dev/null -w "%{http_code} %{time_total}s" https://devruby.org/sitemap.xml`
+x3. Si sigue en 504, lanzar un build nuevo desde `main` y revisar los logs de
+runtime. Después, en Search Console, reenviar el sitemap y pedir indexación de
+las 5 URLs de España y las 5 de EE. UU.
+
+**Impacto SEO (export de Search Console 16/06–14/09):** 239 impresiones y 3
+clics en 3 meses; la mitad de las impresiones son de EE. UU. y España en
+posición media 40–46, es decir, fuera de la primera página. Google indexaba
+además duplicados con `www.` (`www.devruby.org/espana/...`) porque el host
+`www` (CNAME `www.devruby.org.cdn.hstgr.net`, ya existente en DNS) servía la
+misma app sin redirigir. **Corregido el 16/09** con una 301 por host en
+`next.config.mjs` (`www.devruby.org/* → devruby.org/*`); verificar tras el
+deploy con `curl -sI https://www.devruby.org/espana`.
+
+**Contenido (16/09):** se publicó la sección `/blog` con 4 artículos propios
+enlazados a las landings de España/EE. UU. y al catálogo de servicios, con
+JSON-LD `Blog`/`BlogPosting`, entrada en sitemap, navbar y footer.
+
 ## El formulario de contacto no envía correos — 2026-09-14 (corregida)
 
 **Síntoma:** cualquier envío del formulario de `/contacto` (y de las landings de

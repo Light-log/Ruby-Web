@@ -4,6 +4,8 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 
 ## Prioridad 0 — completar esta semana
 
+0. **Servidor (16/09):** confirmar que tras el build del blog `/espana`, `/sitemap.xml` y `www.` responden 200/301 en <2 s. Si siguen en 504, reiniciar la app Node en hPanel (la API devolvía 503) y abrir ticket con Hostinger. Ver BUGS.md.
+
 1. **Search Console:** desde la cuenta propietaria de `devruby.org`, enviar `https://devruby.org/sitemap.xml` y solicitar indexación de las cinco URLs de España. Registrar fecha y estado por URL.
 2. **GA4:** aceptar analítica en una sesión de prueba y confirmar que aparecen `book_consultation`, `contact_whatsapp` y `generate_lead`. Marcar esos tres como conversiones; un clic no equivale a una reunión reservada.
 3. **SMTP:** enviar un formulario de prueba y confirmar que llega a `CONTACT_TO` con respuesta posible al email del lead.
@@ -13,6 +15,8 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 ## Prioridad 1 — ventas de España, primeros 60 días
 
 ### Canal 1: búsqueda orgánica
+
+- Blog publicado el 16/09 en `/blog` (4 artículos). Ritmo objetivo: 1 artículo cada 2 semanas, cada uno atado a una consulta real de Search Console y enlazando a una landing. Subir `updatedAt` en `lib/blog.ts` al retocar un artículo.
 
 - Mantener las cinco URLs publicadas y medir impresiones, clics, posición y conversiones por URL cada semana.
 - No crear páginas de ciudades vacías. Crear una nueva página solo cuando responda a una necesidad concreta, por ejemplo logística, servicios profesionales o SaaS, y cuando exista ejemplo/experiencia relevante.

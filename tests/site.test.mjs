@@ -227,3 +227,34 @@ test("sitemap lastmod tracks content, not build time", () => {
   assert.match(sitemap, /CONTENT_UPDATED = new Date\("\d{4}-\d{2}-\d{2}"\)/);
   assert.match(sitemap, /entry\("\/privacidad"/);
 });
+
+test("blog posts have unique slugs, dates and links to real service pages", () => {
+  const source = fs.readFileSync("lib/blog.ts", "utf8");
+  const slugs = [...source.matchAll(/^\s{4}slug: "([a-z0-9-]+)",$/gm)].map((m) => m[1]);
+
+  assert.ok(slugs.length >= 3, "at least three articles");
+  assert.equal(new Set(slugs).size, slugs.length, "slugs are unique");
+  assert.match(source, /publishedAt: "\d{4}-\d{2}-\d{2}"/);
+
+  const hrefs = [...source.matchAll(/href: "(\/[^"]+)"/g)].map((m) => m[1]);
+  for (const href of hrefs) {
+    if (href === "/agenda") continue;
+    const [, area, slug] = href.split("/");
+    const catalog = { espana: "lib/spain-campaign.ts", us: "lib/us-campaign.ts", servicios: "lib/services-catalog.ts" }[area];
+    assert.ok(catalog, `unknown area in ${href}`);
+    assert.match(fs.readFileSync(catalog, "utf8"), new RegExp(`"${slug}":`), `${href} points to a real page`);
+  }
+});
+
+test("blog is reachable from navigation and sitemap", () => {
+  assert.match(fs.readFileSync("components/sections/navbar.tsx", "utf8"), /href: "\/blog"/);
+  assert.match(fs.readFileSync("components/sections/footer.tsx", "utf8"), /href: "\/blog"/);
+  assert.match(fs.readFileSync("app/sitemap.ts", "utf8"), /\/blog\/\$\{post\.slug\}/);
+});
+
+test("www host redirects permanently to the canonical domain", () => {
+  const source = fs.readFileSync("next.config.mjs", "utf8");
+  assert.match(source, /type: "host", value: "www\.devruby\.org"/);
+  assert.match(source, /destination: "https:\/\/devruby\.org\/:path\*"/);
+  assert.match(source, /permanent: true/);
+});

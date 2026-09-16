@@ -9,6 +9,19 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        // Search Console indexaba duplicados bajo `www.devruby.org/...` porque el
+        // host `www` (CNAME al CDN de Hostinger) servía la misma app sin
+        // redirigir. Una 301 al dominio canónico consolida las señales.
+        source: "/:path*",
+        has: [{ type: "host", value: "www.devruby.org" }],
+        destination: "https://devruby.org/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
