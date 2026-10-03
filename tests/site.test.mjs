@@ -200,7 +200,7 @@ test("regional landing pages declare a reciprocal hreflang cluster", () => {
 
 test("social cards use a raster og:image, never SVG", () => {
   const seo = fs.readFileSync("lib/seo.ts", "utf8");
-  assert.match(seo, /og-devruby\.png/);
+  assert.match(seo, /og-devruby\.jpg/);
 
   for (const file of [
     "app/contacto/page.tsx",
@@ -282,5 +282,23 @@ test("legal pages, form consent and keyboard-safe buttons", () => {
     .filter((f) => f.endsWith(".tsx"));
   for (const f of files) {
     assert.doesNotMatch(fs.readFileSync(f, "utf8"), /<(Link|a)\b[^>]*>\s*<Button(?! as="span")/, f);
+  }
+});
+
+test("launch checklist: 404, favicon, HSTS, WhatsApp and light images", () => {
+  assert.match(fs.readFileSync("app/not-found.tsx", "utf8"), /Esta página no existe/);
+  for (const icon of ["app/favicon.ico", "app/icon.png", "app/apple-icon.png"]) assert.ok(fs.existsSync(icon), icon);
+  assert.match(fs.readFileSync("next.config.mjs", "utf8"), /Strict-Transport-Security/);
+  assert.match(fs.readFileSync("app/layout.tsx", "utf8"), /<WhatsAppButton \/>/);
+
+  // Toda imagen de public/ referenciada desde el código debe existir y pesar menos de 300 KB.
+  const sources = ["app", "components", "lib"].flatMap((dir) =>
+    fs.readdirSync(dir, { recursive: true }).filter((f) => /\.tsx?$/.test(f)).map((f) => fs.readFileSync(`${dir}/${f}`, "utf8")),
+  ).join("\n");
+  const images = new Set([...sources.matchAll(/"(\/[\w./-]+\.(?:png|jpe?g|webp|svg))"/g)].map((m) => m[1]));
+  assert.ok(images.size > 5);
+  for (const image of images) {
+    const { size } = fs.statSync(`public${image}`);
+    assert.ok(size < 300 * 1024, `${image} pesa ${Math.round(size / 1024)} KB`);
   }
 });

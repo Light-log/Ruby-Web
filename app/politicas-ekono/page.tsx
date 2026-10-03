@@ -211,7 +211,7 @@ export default function PoliticasEkonoPage() {
             </p>
             <div className="mt-2 flex items-center gap-2">
               <Image
-                src="/logo.svg"
+                src="/logo-mark.webp"
                 alt="Consultora Ruby"
                 width={18}
                 height={18}

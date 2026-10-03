@@ -167,3 +167,26 @@ servicios). Al retirar el consentimiento, `consent-banner.tsx` activa
 `ga-disable-<ID>` y borra `_ga*`; se comprobó en el navegador. El "soporte 24/7"
 se matiza como "según plan contratado", porque el contrato real excluye el
 mantenimiento posterior a la entrega salvo adenda.
+
+## Checklist de lanzamiento (20 puntos) — 2026-10-03
+
+Auditoría contra la lista "20 cosas antes de lanzar tu web". Cerrado en código:
+404 propia en español (`app/not-found.tsx`); favicon por convención de Next
+(`app/favicon.ico`, `icon.png`, `apple-icon.png`) en lugar de `logo.svg`, que
+pesaba 290 KB por llevar un PNG en base64 (el logo visible usa ahora
+`public/logo-mark.webp`, 28 KB); RubyQ y Altum en WebP; og-image en JPG (84 KB;
+WhatsApp no muestra previews pesadas); botón flotante de WhatsApp
+(`components/ui/whatsapp-button.tsx`, bajo el banner de cookies); HSTS sin
+`includeSubDomains`; orden de encabezados del footer.
+
+Velocidad: three.js sale del bundle inicial (`next/dynamic`, First Load de `/`
+394 → 248 KB), el párrafo LCP del hero ya no anima desde opacity 0, el shader se
+pausa fuera de pantalla y, sin WebGL, la página ya no revienta. Lighthouse
+móvil local sin WebGL: 61 (antes 35 en producción). Con WebGL, Lighthouse en
+esta máquina emula la GPU por CPU y no es representativo. Lo que queda es el
+intro de saludos de `ArcRevealHero` (~5 s en la primera visita): es decisión de
+diseño, no se tocó.
+
+Los PNG generados que no se usan siguen en `public/` a propósito (alternativas
+no activas, ver "Visual"); no afectan a la carga. El test "launch checklist"
+de `tests/site.test.mjs` falla si una imagen referenciada pasa de 300 KB.

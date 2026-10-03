@@ -5,6 +5,7 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 ## Prioridad 0 — completar esta semana
 
 - **Legal, decisiones de Dav:** (1) representante en la UE (art. 27 RGPD) o justificar la excepción de tratamiento ocasional; (2) actualizar `/politicas-ekono` y `/privacidad-cascada-app`, que aún nombran a "Consultora Ruby" (y Cascada usa consultoraruby@gmail.com), cuidando la coherencia con las fichas de las tiendas; (3) tener por escrito la autorización de portafolio de cada proyecto publicado (la cláusula 12 del contrato tipo la exige); (4) revisar "Distribución homologada" en ODAV.
+- **Ficha de Google (Business Profile):** crearla como empresa de zona de servicio, sin dirección pública (no hay oficina), con web `https://devruby.org` y categoría de desarrollo de software. Es el único punto de la checklist de lanzamiento que no se resuelve en código.
 - **Aviso legal:** revisar con un asesor los textos de `/privacidad`, `/cookies` y `/aviso-legal`, y confirmar la retención configurada en GA4.
 
 0. **Servidor (16/09):** confirmar que tras el build del blog `/espana`, `/sitemap.xml` y `www.` responden 200/301 en <2 s. Si siguen en 504, reiniciar la app Node en hPanel (la API devolvía 503) y abrir ticket con Hostinger. Ver BUGS.md.

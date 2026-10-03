@@ -1,13 +1,16 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { GLSLHills } from "@/components/ui/glsl-hills";
+import dynamic from "next/dynamic";
 import { PageLoader } from "@/components/ui/page-loader";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic";
 import { TextReveal } from "@/components/animate/text-reveal";
 import { FadeIn } from "@/components/animate/fade-in";
 import { ArrowRight, Braces, Code2, ShieldCheck, Workflow } from "lucide-react";
+
+// three.js (~200 KB) fuera del bundle inicial: el texto del hero pinta sin esperarlo.
+const GLSLHills = dynamic(() => import("@/components/ui/glsl-hills").then((m) => m.GLSLHills), { ssr: false });
 
 const capabilities = [
   { icon: Code2, label: "Aplicaciones web" },
@@ -43,12 +46,11 @@ export function Hero() {
             <TextReveal delay={0.7}>tu operación</TextReveal>
           </h1>
 
-          <FadeIn delay={0.3}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory-dim md:text-lg">
-              En DEVRUBY diseñamos aplicaciones web, APIs y sistemas internos para
-              empresas que necesitan una base técnica clara, mantenible y segura.
-            </p>
-          </FadeIn>
+          {/* Sin FadeIn: es el elemento LCP y animarlo desde opacity 0 retrasaba el LCP ~4 s en móvil. */}
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory-dim md:text-lg">
+            En DEVRUBY diseñamos aplicaciones web, APIs y sistemas internos para
+            empresas que necesitan una base técnica clara, mantenible y segura.
+          </p>
 
           <FadeIn delay={0.5}>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">

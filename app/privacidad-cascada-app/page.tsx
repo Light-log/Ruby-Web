@@ -184,7 +184,7 @@ export default function PrivacidadCascadaAppPage() {
       <section className="mx-auto max-w-4xl">
         <div className="mb-8 flex items-center gap-4">
           <Image
-            src="/logo.svg"
+            src="/logo-mark.webp"
             alt="Consultora Ruby"
             width={56}
             height={56}

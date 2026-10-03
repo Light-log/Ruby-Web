@@ -7,7 +7,7 @@ export const SITE_URL = "https://devruby.org";
  * no renderizan SVG en `og:image`, así que un `/logo.svg` deja la tarjeta vacía.
  */
 export const ogImage = {
-  url: "/og-devruby.png",
+  url: "/og-devruby.jpg",
   width: 1200,
   height: 630,
   alt: "DEVRUBY — ingeniería de software para empresas",

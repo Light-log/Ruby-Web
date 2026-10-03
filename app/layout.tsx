@@ -6,6 +6,7 @@ import { Open_Sans, Oswald } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Spotlight } from "@/components/ui/spotlight";
 import { ConsentBanner } from "@/components/ui/consent-banner";
+import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
       "Consultoría de desarrollo de software: aplicaciones web, APIs, sistemas internos, automatización y auditorías técnicas.",
     images: [
       {
-        url: "/og-devruby.png",
+        url: "/og-devruby.jpg",
         width: 1200,
         height: 630,
         alt: "DEVRUBY — ingeniería de software para empresas",
@@ -69,13 +70,7 @@ export const metadata: Metadata = {
     title: "DEVRUBY LLC | Consultoría de software para empresas",
     description:
       "Consultoría de desarrollo de software: aplicaciones web, APIs, sistemas internos y auditorías técnicas.",
-    images: ["/og-devruby.png"],
-  },
-  icons: {
-    icon: [
-      { url: "/logo.svg", type: "image/svg+xml" },
-    ],
-    apple: "/logo.svg",
+    images: ["/og-devruby.jpg"],
   },
   alternates: {
     canonical: "https://devruby.org",
@@ -145,6 +140,7 @@ export default function RootLayout({
         </div>
         <div className="noise pointer-events-none fixed inset-0 z-[21]" />
         <div className="relative z-[30]">{children}</div>
+        <WhatsAppButton />
         <ConsentBanner />
       </body>
     </html>

@@ -38,6 +38,12 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // HSTS solo para el dominio raíz: `includeSubDomains` obligaría a HTTPS
+        // en subdominios de Hostinger que no controlamos desde aquí.
+        source: "/:path*",
+        headers: [{ key: "Strict-Transport-Security", value: "max-age=31536000" }],
+      },
     ];
   },
 };

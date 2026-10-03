@@ -40,7 +40,7 @@ export function Navbar() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
         <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="/logo.svg"
+            src="/logo-mark.webp"
             alt="DEVRUBY"
             width={48}
             height={48}

@@ -26,7 +26,7 @@ const projects: Project[] = [
     description:
       "Plataforma SaaS que unifica WhatsApp, Telegram, Instagram, Messenger, TikTok y web en un solo panel, con un constructor visual de flujos de IA sin código y derivación a agentes humanos.",
     tags: ["SaaS", "IA", "Omnicanal", "No-Code"],
-    image: "/RubyQ-refined.png",
+    image: "/RubyQ-refined.webp",
     ctaHref: "https://q.devruby.org",
     ctaLabel: "Ver plataforma",
   },
@@ -68,7 +68,7 @@ const projects: Project[] = [
     description:
       "Web app para crear documentos legales de forma guiada y gratuita con formularios inteligentes, generación instantánea y exportación profesional.",
     tags: ["LegalTech", "Automatización", "UX"],
-    image: "/Altum.png",
+    image: "/Altum.webp",
     ctaHref: "https://app.altumiuris.com/",
     ctaLabel: "Ver proyecto",
   },

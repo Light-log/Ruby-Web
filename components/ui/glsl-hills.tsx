@@ -197,7 +197,16 @@ export function GLSLHills({
       `,
     });
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+    } catch {
+      // Sin WebGL (bloqueado, GPU en lista negra): queda el degradado del hero en lugar de romper la página.
+      geometry.dispose();
+      material.dispose();
+      onReady?.();
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setClearColor(0x000000, 0);
 
@@ -211,6 +220,7 @@ export function GLSLHills({
 
     const clock = new THREE.Clock();
     let rafId = 0;
+    let io: IntersectionObserver | undefined;
 
     const resize = () => {
       const w = container.clientWidth || window.innerWidth;
@@ -239,13 +249,24 @@ export function GLSLHills({
         renderFrame();
         rafId = requestAnimationFrame(loop);
       };
-      loop();
+      // Fuera de pantalla no se dibuja: en móvil el shader competía con el scroll del resto de la página.
+      io = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && !rafId) {
+          clock.getDelta(); // descarta el tiempo pausado para que el relieve no salte
+          loop();
+        } else if (!entry.isIntersecting && rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = 0;
+        }
+      });
+      io.observe(container);
     }
 
     onReady?.();
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
+      io?.disconnect();
       ro.disconnect();
       geometry.dispose();
       material.dispose();

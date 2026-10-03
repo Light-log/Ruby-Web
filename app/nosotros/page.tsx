@@ -125,7 +125,7 @@ export default function NosotrosPage() {
                 <div className="relative">
                   <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-crimson/6 via-transparent to-lavender/6 blur-3xl" />
                   <Image
-                    src="/logo.svg"
+                    src="/logo-mark.webp"
                     alt="DEVRUBY"
                     width={240}
                     height={240}

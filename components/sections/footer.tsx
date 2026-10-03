@@ -28,7 +28,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src="/logo.svg"
+                src="/logo-mark.webp"
                 alt="DEVRUBY"
                 width={40}
                 height={40}
@@ -46,9 +46,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-sm tracking-wider text-ivory mb-4">
+            <h2 className="font-display text-sm tracking-wider text-ivory mb-4">
               NAVEGACIÓN
-            </h4>
+            </h2>
             <ul className="grid gap-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -64,9 +64,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-sm tracking-wider text-ivory mb-4">
+            <h2 className="font-display text-sm tracking-wider text-ivory mb-4">
               SERVICIOS
-            </h4>
+            </h2>
             <ul className="grid gap-2">
               {serviceLinks.map((svc) => (
                 <li key={svc.href}>
@@ -82,9 +82,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-sm tracking-wider text-ivory mb-4">
+            <h2 className="font-display text-sm tracking-wider text-ivory mb-4">
               CONTACTO
-            </h4>
+            </h2>
             <div className="grid gap-3">
               <div className="flex items-center gap-2 text-sm text-ivory-dim">
                 <Mail className="h-4 w-4 text-crimson" />
