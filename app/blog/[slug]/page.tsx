@@ -166,7 +166,7 @@ export default async function BlogPostRoute({ params }: Props) {
               </p>
               <div className="mt-8 flex justify-center">
                 <Link href="/agenda" data-track="agenda">
-                  <Button size="lg">
+                  <Button as="span" size="lg">
                     Agenda una consulta <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>

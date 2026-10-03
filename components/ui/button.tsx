@@ -10,6 +10,8 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /** "span" cuando el botón va dentro de un enlace: evita anidar controles interactivos. */
+  as?: "button" | "span";
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -19,12 +21,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "primary",
       size = "md",
       type = "button",
+      as = "button",
       ...rest
     },
     ref
   ) => {
     const base =
-      "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition-all duration-300 will-change-transform touch-manipulation focus:outline-none focus:ring-2 focus:ring-crimson/40 disabled:pointer-events-none disabled:opacity-60";
+      "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition-all duration-300 will-change-transform touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/40 disabled:pointer-events-none disabled:opacity-60";
 
     const variants: Record<ButtonVariant, string> = {
       primary:
@@ -36,7 +39,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       outline:
         "border border-black/12 bg-transparent text-ivory hover:bg-black/5 hover:border-black/20",
       lavender:
-        "bg-lavender text-white shadow-glow-lavender hover:bg-lavender-light hover:translate-y-[-2px] active:translate-y-[0px] active:opacity-90",
+        "bg-lavender text-white shadow-glow-lavender hover:bg-lavender-dark hover:translate-y-[-2px] active:translate-y-[0px] active:opacity-90",
     };
 
     const sizes: Record<ButtonSize, string> = {
@@ -44,6 +47,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       md: "px-6 py-3 text-sm",
       lg: "px-8 py-4 text-base",
     };
+
+    if (as === "span") {
+      const { children } = rest;
+      return <span className={cn(base, variants[variant], sizes[size], className)}>{children}</span>;
+    }
 
     return (
       <button

@@ -65,7 +65,7 @@ export function Proof() {
             </p>
             <Magnetic>
               <a className="mt-6 inline-flex" href="/agenda" data-track="agenda">
-                <Button>Hablar de tu sistema <ArrowRight className="h-4 w-4" /></Button>
+                <Button as="span">Hablar de tu sistema <ArrowRight className="h-4 w-4" /></Button>
               </a>
             </Magnetic>
           </div>

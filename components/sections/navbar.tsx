@@ -71,7 +71,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <Magnetic>
             <Link href="/agenda" className="hidden sm:block" data-track="agenda">
-              <Button variant="primary" size="sm">
+              <Button as="span" variant="primary" size="sm">
                 Agenda una consulta
               </Button>
             </Link>

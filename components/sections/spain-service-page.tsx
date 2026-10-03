@@ -50,13 +50,13 @@ export function SpainServicePage({ slug }: { slug: SpainServiceSlug }) {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               {isExternalBooking ? (
                 <a href={booking} target="_blank" rel="noreferrer" data-track="booking">
-                  <Button size="lg" className="w-full sm:w-auto">Agendar diagnóstico inicial <CalendarDays className="h-4 w-4" /></Button>
+                  <Button as="span" size="lg" className="w-full sm:w-auto">Agendar diagnóstico inicial <CalendarDays className="h-4 w-4" /></Button>
                 </a>
               ) : (
-                <Link href={booking} data-track="agenda"><Button size="lg" className="w-full sm:w-auto">Solicitar diagnóstico inicial <CalendarDays className="h-4 w-4" /></Button></Link>
+                <Link href={booking} data-track="agenda"><Button as="span" size="lg" className="w-full sm:w-auto">Solicitar diagnóstico inicial <CalendarDays className="h-4 w-4" /></Button></Link>
               )}
               <a href={whatsappUrl(service.shortTitle)} target="_blank" rel="noreferrer" data-track="whatsapp">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto"><MessageCircle className="h-4 w-4" /> Hablar por WhatsApp</Button>
+                <Button as="span" variant="outline" size="lg" className="w-full sm:w-auto"><MessageCircle className="h-4 w-4" /> Hablar por WhatsApp</Button>
               </a>
             </div>
             <p className="mt-4 text-xs text-ivory-muted">Consulta inicial de 30 minutos · Trabajo remoto con empresas de España</p>
@@ -123,7 +123,7 @@ export function SpainServicePage({ slug }: { slug: SpainServiceSlug }) {
         <div className="mx-auto max-w-5xl px-6 text-center">
           <h2 className="font-display text-3xl text-ivory md:text-4xl">¿Quieres valorar el caso con contexto?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-ivory-dim">Cuéntanos el proceso, los sistemas que intervienen y el resultado que necesitas. Prepararemos la conversación para aprovechar los 30 minutos.</p>
-          <Link href="/contacto?origen=espana" data-track="contact"><Button size="lg" className="mt-8">Contar mi caso <ArrowRight className="h-4 w-4" /></Button></Link>
+          <Link href="/contacto?origen=espana" data-track="contact"><Button as="span" size="lg" className="mt-8">Contar mi caso <ArrowRight className="h-4 w-4" /></Button></Link>
         </div>
       </section>
     </>

@@ -20,7 +20,7 @@ export default {
         },
         crimson: {
           DEFAULT: "#C41E3A",
-          light: "#E8294A",
+          light: "#D21F3D",
           dark: "#8B1A2B",
           50: "rgba(196,30,58,0.05)",
           100: "rgba(196,30,58,0.10)",
@@ -32,7 +32,7 @@ export default {
           muted: "#54546B",
         },
         lavender: {
-          DEFAULT: "#7C5CBF",
+          DEFAULT: "#6E4FB0",
           light: "#A78BFA",
           dark: "#5B3D99",
         },

@@ -38,8 +38,8 @@ export function USServicePage({ slug }: { slug: USServiceSlug }) {
           <h1 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-ivory md:text-6xl">{service.headline}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ivory-dim">{service.intro}</p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            {externalBooking ? <a href={booking} target="_blank" rel="noreferrer" data-track="booking"><Button size="lg" className="w-full sm:w-auto">Book a discovery call <CalendarDays className="h-4 w-4" /></Button></a> : <Link href={booking} data-track="agenda"><Button size="lg" className="w-full sm:w-auto">Request a discovery call <CalendarDays className="h-4 w-4" /></Button></Link>}
-            <a href={usWhatsAppUrl(service.label)} target="_blank" rel="noreferrer" data-track="whatsapp"><Button variant="outline" size="lg" className="w-full sm:w-auto"><MessageCircle className="h-4 w-4" /> Contact us on WhatsApp</Button></a>
+            {externalBooking ? <a href={booking} target="_blank" rel="noreferrer" data-track="booking"><Button as="span" size="lg" className="w-full sm:w-auto">Book a discovery call <CalendarDays className="h-4 w-4" /></Button></a> : <Link href={booking} data-track="agenda"><Button as="span" size="lg" className="w-full sm:w-auto">Request a discovery call <CalendarDays className="h-4 w-4" /></Button></Link>}
+            <a href={usWhatsAppUrl(service.label)} target="_blank" rel="noreferrer" data-track="whatsapp"><Button as="span" variant="outline" size="lg" className="w-full sm:w-auto"><MessageCircle className="h-4 w-4" /> Contact us on WhatsApp</Button></a>
           </div>
           <p className="mt-4 text-xs text-ivory-muted">30-minute initial call · DEVRUBY LLC works remotely with U.S. businesses.</p>
         </div></div>
@@ -54,7 +54,7 @@ export function USServicePage({ slug }: { slug: USServiceSlug }) {
 
       <section className="py-12 md:py-16" aria-labelledby="us-faq-title"><div className="mx-auto max-w-5xl px-6"><div className="flex items-center gap-3"><CircleHelp className="h-6 w-6 text-crimson" /><h2 id="us-faq-title" className="font-display text-3xl text-ivory">Frequently asked questions</h2></div><div className="mt-8 grid gap-4">{service.faqs.map(([question, answer]) => <details key={question} className="rounded-2xl border border-black/8 bg-white/75 px-6 py-5 shadow-card"><summary className="cursor-pointer list-none font-semibold text-ivory marker:hidden">{question}</summary><p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory-dim">{answer}</p></details>)}</div></div></section>
 
-      <section className="pb-24 pt-12"><div className="mx-auto max-w-5xl px-6 text-center"><h2 className="font-display text-3xl text-ivory md:text-4xl">Want to evaluate the situation with context?</h2><p className="mx-auto mt-4 max-w-2xl text-ivory-dim">Tell us about the workflow, systems involved, and outcome you need. We will use the call to determine a practical next step.</p><Link href="/contacto?origen=us" data-track="contact"><Button size="lg" className="mt-8">Tell us about your project <ArrowRight className="h-4 w-4" /></Button></Link></div></section>
+      <section className="pb-24 pt-12"><div className="mx-auto max-w-5xl px-6 text-center"><h2 className="font-display text-3xl text-ivory md:text-4xl">Want to evaluate the situation with context?</h2><p className="mx-auto mt-4 max-w-2xl text-ivory-dim">Tell us about the workflow, systems involved, and outcome you need. We will use the call to determine a practical next step.</p><Link href="/contacto?origen=us" data-track="contact"><Button as="span" size="lg" className="mt-8">Tell us about your project <ArrowRight className="h-4 w-4" /></Button></Link></div></section>
     </div>
   );
 }

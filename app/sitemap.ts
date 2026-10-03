@@ -56,5 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
 
     entry("/privacidad", 0.3, "yearly"),
+    entry("/cookies", 0.3, "yearly"),
+    entry("/aviso-legal", 0.3, "yearly"),
   ];
 }

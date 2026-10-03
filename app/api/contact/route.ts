@@ -60,11 +60,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = safe(String(body?.name ?? "")).trim();
-  const email = safe(String(body?.email ?? "")).trim();
-  const company = safe(String(body?.company ?? "")).trim();
-  const phone = safe(String(body?.phone ?? "")).trim();
-  const message = safe(String(body?.message ?? "")).trim();
+  if (body?.consent !== true) {
+    return NextResponse.json(
+      { ok: false, error: "Debes aceptar la Política de Privacidad para enviar el formulario." },
+      { status: 400 }
+    );
+  }
+
+  const name = safe(String(body?.name ?? "")).trim().slice(0, 120);
+  const email = safe(String(body?.email ?? "")).trim().slice(0, 254);
+  const company = safe(String(body?.company ?? "")).trim().slice(0, 120);
+  const phone = safe(String(body?.phone ?? "")).trim().slice(0, 40);
+  const message = safe(String(body?.message ?? "")).trim().slice(0, 5000);
+  const consentAt = new Date().toISOString();
   const origin = safe(String(body?.origin ?? "sitio-web")).trim().slice(0, 80);
 
   if (!name || !email || !message) {
@@ -110,6 +118,7 @@ export async function POST(req: NextRequest) {
       `Empresa: ${company || "-"}`,
       `Teléfono: ${phone || "-"}`,
       `Origen: ${origin || "sitio-web"}`,
+      `Consentimiento de privacidad: aceptado (${consentAt})`,
       "",
       "Mensaje:",
       message,
@@ -123,6 +132,7 @@ export async function POST(req: NextRequest) {
         <p><b>Empresa:</b> ${company || "-"}</p>
         <p><b>Teléfono:</b> ${phone || "-"}</p>
         <p><b>Origen:</b> ${origin || "sitio-web"}</p>
+        <p><b>Consentimiento de privacidad:</b> aceptado (${consentAt})</p>
         <hr style="border:none;border-top:1px solid #eee;margin:16px 0" />
         <p style="white-space:pre-wrap">${message}</p>
       </div>
@@ -138,9 +148,10 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (e: any) {
+  } catch (e) {
+    console.error("[contact] envío fallido:", e);
     return NextResponse.json(
-      { ok: false, error: e?.message ?? "Error enviando correo" },
+      { ok: false, error: "No se pudo enviar el mensaje. Escríbenos a soporte@devruby.org o por WhatsApp." },
       { status: 500 }
     );
   }

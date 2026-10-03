@@ -292,7 +292,7 @@ export default function ProyectosPage() {
 
                       <div className="mt-6">
                         <a href={p.ctaHref ?? "/contacto"}>
-                          <Button variant="primary" size="sm" className="gap-2">
+                          <Button as="span" variant="primary" size="sm" className="gap-2">
                             {p.ctaLabel ?? "Ver más"} <ExternalLink className="h-3.5 w-3.5" />
                           </Button>
                         </a>
@@ -321,7 +321,7 @@ export default function ProyectosPage() {
                     Cuéntanos tu idea y la convertimos en un producto que genere impacto real en tu negocio.
                   </p>
                   <a href="/contacto" className="mt-4">
-                    <Button size="lg">
+                    <Button as="span" size="lg">
                       Hablemos de tu proyecto <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>

@@ -113,7 +113,7 @@ test("contact emails do not retain visitor IP addresses", () => {
   const privacy = fs.readFileSync("app/privacidad/page.tsx", "utf8");
 
   assert.doesNotMatch(route, /IP:\s*\$\{ip\}/);
-  assert.match(privacy, /No la\s+incluimos en el correo de contacto/);
+  assert.match(privacy, /ni la incluimos en el correo de contacto/);
 });
 
 test("general sales pages avoid unsupported results and compliance claims", () => {
@@ -257,4 +257,30 @@ test("www host redirects permanently to the canonical domain", () => {
   assert.match(source, /type: "host", value: "www\.devruby\.org"/);
   assert.match(source, /destination: "https:\/\/devruby\.org\/:path\*"/);
   assert.match(source, /permanent: true/);
+});
+
+test("legal pages, form consent and keyboard-safe buttons", () => {
+  const footer = fs.readFileSync("components/sections/footer.tsx", "utf8");
+  const route = fs.readFileSync("app/api/contact/route.ts", "utf8");
+  const legal = fs.readFileSync("app/aviso-legal/page.tsx", "utf8");
+
+  for (const path of ["/privacidad", "/cookies", "/aviso-legal"]) {
+    assert.match(footer, new RegExp(`href="${path}"`));
+  }
+  assert.match(legal, /id: "reembolsos"/);
+  // El servidor exige el consentimiento y no filtra errores internos (nombres de variables SMTP).
+  assert.match(route, /body\?\.consent !== true/);
+  assert.doesNotMatch(route, /error: e\?\.message/);
+  // Retirar el consentimiento desactiva GA y borra sus cookies (si no, gtag reescribe _ga_*).
+  const banner = fs.readFileSync("components/ui/consent-banner.tsx", "utf8");
+  assert.match(banner, /ga-disable-\$\{GA_ID\}/);
+  assert.match(banner, /max-age=0; path=\/; domain=/);
+
+  // Un <Button> dentro de un enlace debe renderizarse como span: nada de controles anidados.
+  const files = fs.readdirSync("app", { recursive: true }).map((f) => `app/${f}`)
+    .concat(fs.readdirSync("components", { recursive: true }).map((f) => `components/${f}`))
+    .filter((f) => f.endsWith(".tsx"));
+  for (const f of files) {
+    assert.doesNotMatch(fs.readFileSync(f, "utf8"), /<(Link|a)\b[^>]*>\s*<Button(?! as="span")/, f);
+  }
 });

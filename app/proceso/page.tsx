@@ -94,7 +94,7 @@ const steps = [
       "Documentación técnica y de usuario",
       "Capacitación al equipo",
       "Monitoreo y alertas configuradas",
-      "Soporte técnico 24/7 post-entrega",
+      "Soporte técnico 24/7 post-entrega según plan contratado",
     ],
     duration: "Según la entrega y soporte contratado",
     deliverable: "Sistema, documentación y traspaso acordados",
@@ -272,7 +272,7 @@ export default function ProcesoPage() {
                     Cuéntanos tu proyecto y te mostramos cómo este proceso se adapta a tus necesidades específicas.
                   </p>
                   <a href="/contacto" className="mt-4">
-                    <Button size="lg">
+                    <Button as="span" size="lg">
                       Iniciar mi proyecto <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>

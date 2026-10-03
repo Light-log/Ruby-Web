@@ -33,14 +33,14 @@ export function CTASection() {
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Magnetic>
                   <a href="/agenda" data-track="agenda">
-                    <Button size="lg">
+                    <Button as="span" size="lg">
                       Agenda una consulta inicial <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>
                 </Magnetic>
 
                 <a href="/servicios">
-                  <Button variant="outline" size="lg">
+                  <Button as="span" variant="outline" size="lg">
                     Ver nuestros servicios
                   </Button>
                 </a>

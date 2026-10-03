@@ -143,3 +143,27 @@ este entorno.
 Verificación local: `node --test tests/site.test.mjs`, `npx tsc --noEmit` y
 `npm run build` completados correctamente. No se añadieron `hreflang` entre
 España y EE. UU. porque no son equivalentes directos de idioma/mercado.
+
+## Cumplimiento y accesibilidad — 2026-09-25
+
+Checklist legal/UX aplicada (19 puntos): páginas `/privacidad` (reescrita, con
+proveedores, transferencias y conservación), `/cookies` (tabla de cookies) y
+`/aviso-legal` (titular, marcas de terceros, contratación, `#reembolsos` "según
+contrato", soporte 24/7 según plan). Las tres usan `components/sections/legal-page.tsx`
+y están en footer y sitemap. Los datos registrales viven en `site.registry`
+(`lib/site.ts`), tomados de `~/Descargas/Docs/Empresa_LLC/Ficha_Identificacion_DEVRUBY_LLC.pdf`:
+LLC de Nuevo México, NM SOS Business ID 0008118174. El EIN no se publica a propósito.
+
+Contraste: `crimson.light` → `#D21F3D` y `lavender` → `#6E4FB0` (≥4,5:1), y los
+placeholders sin opacidad. Teclado: `<Button as="span">` dentro de enlaces (había
+37 controles anidados) y `:focus-visible` global. Formulario: campos opcionales
+etiquetados, `maxLength`, consentimiento exigido también en servidor y registrado
+en el correo, y error SMTP genérico (el detalle solo va al log).
+
+Revisión legal 2026-09-25 (segunda pasada): la privacidad cubre ya el art. 13 RGPD
+(obligatoriedad de datos, decisiones automatizadas, menores, tratamiento desde
+EE. UU./Venezuela y Unsplash como tercero, que recibe la IP al servir fotos de
+servicios). Al retirar el consentimiento, `consent-banner.tsx` activa
+`ga-disable-<ID>` y borra `_ga*`; se comprobó en el navegador. El "soporte 24/7"
+se matiza como "según plan contratado", porque el contrato real excluye el
+mantenimiento posterior a la entrega salvo adenda.

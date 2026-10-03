@@ -359,7 +359,7 @@ export default function ServiciosPage() {
                     para tu caso específico.
                   </p>
                   <Link href="/contacto" className="mt-4">
-                    <Button size="lg">
+                    <Button as="span" size="lg">
                       Hablemos de tu proyecto <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>

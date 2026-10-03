@@ -172,3 +172,9 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* Foco visible para navegación por teclado (WCAG 2.4.7). */
+:focus-visible {
+  outline: 2px solid #C41E3A;
+  outline-offset: 3px;
+}

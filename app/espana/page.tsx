@@ -54,8 +54,8 @@ export default function EspanaPage() {
           <h1 className="mx-auto mt-6 max-w-5xl font-display text-4xl leading-[1.04] tracking-tight text-ivory md:text-6xl">Convierte procesos dispersos en una operación <span className="gradient-text">clara y conectada</span></h1>
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-ivory-dim">Diseñamos software a medida, automatizaciones e integraciones para empresas que necesitan dejar atrás tareas repetitivas, datos aislados y herramientas que ya no encajan.</p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/agenda?origen=espana" data-track="agenda"><Button size="lg" className="w-full sm:w-auto">Agendar diagnóstico inicial <CalendarDays className="h-4 w-4" /></Button></Link>
-            <Link href="#soluciones"><Button variant="outline" size="lg" className="w-full sm:w-auto">Ver soluciones <ArrowRight className="h-4 w-4" /></Button></Link>
+            <Link href="/agenda?origen=espana" data-track="agenda"><Button as="span" size="lg" className="w-full sm:w-auto">Agendar diagnóstico inicial <CalendarDays className="h-4 w-4" /></Button></Link>
+            <Link href="#soluciones"><Button as="span" variant="outline" size="lg" className="w-full sm:w-auto">Ver soluciones <ArrowRight className="h-4 w-4" /></Button></Link>
           </div>
           <p className="mt-5 text-xs text-ivory-muted">DEVRUBY LLC trabaja en remoto con empresas de España.</p>
         </div>
@@ -89,7 +89,7 @@ export default function EspanaPage() {
 
       <section className="py-16 md:py-24"><div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]"><div className="mx-auto max-w-3xl text-center"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-crimson-dark">Forma de trabajo</p><h2 className="mt-3 font-display text-3xl text-ivory md:text-4xl">Primero entendemos; después proponemos</h2></div><ol className="mt-12 grid gap-5 md:grid-cols-4">{steps.map(([number, title, text]) => <li key={number}><Card className="h-full p-6"><span className="font-display text-4xl text-crimson/60">{number}</span><h3 className="mt-5 font-display text-xl text-ivory">{title}</h3><p className="mt-3 text-sm leading-relaxed text-ivory-dim">{text}</p></Card></li>)}</ol></div></section>
 
-      <section className="pb-24 pt-12"><div className="mx-auto max-w-5xl px-6"><Card className="border-crimson/15 bg-crimson/5 p-8 text-center md:p-12"><h2 className="font-display text-3xl text-ivory md:text-4xl">¿Tienes un proceso que ya no escala bien?</h2><p className="mx-auto mt-4 max-w-2xl text-ivory-dim">Reserva 30 minutos para explicarnos qué ocurre hoy, qué sistemas participan y qué resultado necesitas. Si no encajamos, te lo diremos con claridad.</p><Link href="/agenda?origen=espana" data-track="agenda"><Button size="lg" className="mt-8">Ver horarios disponibles <CalendarDays className="h-4 w-4" /></Button></Link></Card></div></section>
+      <section className="pb-24 pt-12"><div className="mx-auto max-w-5xl px-6"><Card className="border-crimson/15 bg-crimson/5 p-8 text-center md:p-12"><h2 className="font-display text-3xl text-ivory md:text-4xl">¿Tienes un proceso que ya no escala bien?</h2><p className="mx-auto mt-4 max-w-2xl text-ivory-dim">Reserva 30 minutos para explicarnos qué ocurre hoy, qué sistemas participan y qué resultado necesitas. Si no encajamos, te lo diremos con claridad.</p><Link href="/agenda?origen=espana" data-track="agenda"><Button as="span" size="lg" className="mt-8">Ver horarios disponibles <CalendarDays className="h-4 w-4" /></Button></Link></Card></div></section>
       <Footer />
     </main>
   );

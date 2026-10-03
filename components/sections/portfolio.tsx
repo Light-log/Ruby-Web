@@ -171,7 +171,7 @@ export function Portfolio() {
                           </div>
                           <div className="flex justify-center">
                             <a href="/contacto">
-                              <Button variant="lavender" size="sm">
+                              <Button as="span" variant="lavender" size="sm">
                                 Hablemos
                               </Button>
                             </a>
@@ -195,7 +195,7 @@ export function Portfolio() {
 
                           <div className="mt-4">
                             <a href={p.ctaHref ?? "/contacto"}>
-                              <Button variant="secondary" size="sm" className="gap-2">
+                              <Button as="span" variant="secondary" size="sm" className="gap-2">
                                 {p.ctaLabel ?? "Ver más"} <ExternalLink className="h-3.5 w-3.5" />
                               </Button>
                             </a>

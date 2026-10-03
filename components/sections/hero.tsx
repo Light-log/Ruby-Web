@@ -54,13 +54,13 @@ export function Hero() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Magnetic>
                 <a href="/agenda" data-track="agenda">
-                  <Button size="lg" className="w-full sm:w-auto">
+                  <Button as="span" size="lg" className="w-full sm:w-auto">
                     Agenda una consulta inicial <ArrowRight className="h-4 w-4" />
                   </Button>
                 </a>
               </Magnetic>
               <a href="/proyectos" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                <Button as="span" variant="outline" size="lg" className="w-full sm:w-auto">
                   Ver proyectos públicos
                 </Button>
               </a>

@@ -91,8 +91,17 @@ export function ConsentBanner() {
     setVisible(false);
     setShowPrefs(false);
 
-    // Si se retira un consentimiento ya activo, recargamos para detener GA.
+    // Si se retira un consentimiento ya activo, borramos las cookies de GA y
+    // recargamos para detenerlo (GA las fija en el dominio raíz).
     if (wasGranted && !analyticsValue) {
+      // Flag oficial de opt-out: sin él, gtag reescribe _ga_* antes de recargar.
+      (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] = true;
+      const root = window.location.hostname.replace(/^www\./, "");
+      for (const name of document.cookie.split("; ").map((c) => c.split("=")[0])) {
+        if (!name.startsWith("_ga")) continue;
+        document.cookie = `${name}=; max-age=0; path=/`;
+        document.cookie = `${name}=; max-age=0; path=/; domain=.${root}`;
+      }
       window.location.reload();
       return;
     }
@@ -145,14 +154,21 @@ export function ConsentBanner() {
                 id="cookie-desc"
                 className="mt-4 text-sm leading-relaxed text-ivory-dim"
               >
-                Usamos cookies propias para que el sitio funcione y, con tu
-                permiso, cookies de analítica (Google Analytics) para medir y
+                Usamos almacenamiento técnico para que el sitio funcione y, con
+                tu permiso, cookies de analítica (Google Analytics) para medir y
                 mejorar la experiencia. Consulta nuestra{" "}
                 <Link
                   href="/privacidad"
                   className="font-semibold text-crimson underline underline-offset-2 transition-colors hover:text-crimson-dark"
                 >
                   Política de Privacidad
+                </Link>{" "}
+                y nuestra{" "}
+                <Link
+                  href="/cookies"
+                  className="font-semibold text-crimson underline underline-offset-2 transition-colors hover:text-crimson-dark"
+                >
+                  Política de cookies
                 </Link>
                 .
               </p>
@@ -168,7 +184,7 @@ export function ConsentBanner() {
                   <CategoryRow
                     icon={<BarChart3 className="h-4 w-4" />}
                     title="Analítica"
-                    desc="Estadísticas anónimas de uso (Google Analytics)."
+                    desc="Estadísticas de uso del sitio (Google Analytics)."
                     checked={analytics}
                     onToggle={() => setAnalytics((v) => !v)}
                   />

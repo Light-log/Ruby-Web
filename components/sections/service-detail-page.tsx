@@ -403,14 +403,14 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
               {/* La primera llamada a la acción estaba al final de la página */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href={`/contacto?servicio=${slug}`} data-track="contact">
-                  <Button size="lg" className="w-full sm:w-auto">
+                  <Button as="span" size="lg" className="w-full sm:w-auto">
                     Solicitar propuesta <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
 
                 {booking ? (
                   <a href={booking} target="_blank" rel="noreferrer" data-track="booking">
-                    <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                    <Button as="span" variant="outline" size="lg" className="w-full sm:w-auto">
                       <CalendarDays className="h-4 w-4" /> Agendar diagnóstico
                     </Button>
                   </a>
@@ -737,14 +737,14 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
 
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <Link href={`/contacto?servicio=${slug}`} data-track="contact">
-                <Button size="lg" className="w-full sm:w-auto">
+                <Button as="span" size="lg" className="w-full sm:w-auto">
                   Solicitar propuesta <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
 
               {booking ? (
                 <a href={booking} target="_blank" rel="noreferrer" data-track="booking">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  <Button as="span" variant="outline" size="lg" className="w-full sm:w-auto">
                     <CalendarDays className="h-4 w-4" /> Agendar diagnóstico
                   </Button>
                 </a>
@@ -756,7 +756,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
                 rel="noreferrer"
                 data-track="whatsapp"
               >
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                <Button as="span" variant="outline" size="lg" className="w-full sm:w-auto">
                   <MessageCircle className="h-4 w-4" /> WhatsApp
                 </Button>
               </a>

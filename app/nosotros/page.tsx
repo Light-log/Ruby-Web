@@ -195,7 +195,7 @@ export default function NosotrosPage() {
                   </p>
 
                   <a href="/contacto" className="inline-block mt-8">
-                    <Button size="lg">
+                    <Button as="span" size="lg">
                       Trabaja con nosotros <ArrowRight className="h-4 w-4" />
                     </Button>
                   </a>

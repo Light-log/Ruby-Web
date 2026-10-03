@@ -31,6 +31,7 @@ export function Contact() {
       phone: String(fd.get("phone") ?? ""),
       message: String(fd.get("message") ?? ""),
       hp: String(fd.get("hp") ?? ""),
+      consent: fd.get("consent") === "on",
       origin: new URLSearchParams(window.location.search).get("origen") ?? "sitio-web",
     };
 
@@ -96,24 +97,30 @@ export function Contact() {
                 />
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Input name="name" label="Nombre" placeholder="Tu nombre" autoComplete="name" required />
-                  <Input name="company" label="Empresa" placeholder="Nombre de tu empresa" autoComplete="organization" />
+                  <Input name="name" label="Nombre" placeholder="Tu nombre" autoComplete="name" maxLength={120} required />
+                  <Input name="company" label="Empresa (opcional)" placeholder="Nombre de tu empresa" autoComplete="organization" maxLength={120} />
                 </div>
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Input name="email" label="Email" placeholder="correo@empresa.com" type="email" inputMode="email" autoComplete="email" required />
-                  <Input name="phone" label="Teléfono" placeholder="+58 ..." type="tel" inputMode="tel" autoComplete="tel" />
+                  <Input name="email" label="Email" placeholder="correo@empresa.com" type="email" inputMode="email" autoComplete="email" maxLength={254} required />
+                  <Input name="phone" label="Teléfono (opcional)" placeholder="+58 ..." type="tel" maxLength={40} inputMode="tel" autoComplete="tel" />
                 </div>
 
                 <label className="grid gap-2 text-sm text-ivory/80">
                   <span className="font-semibold">Mensaje</span>
                   <textarea
                     name="message"
-                    className="min-h-[140px] resize-y rounded-2xl border border-black/10 bg-dark-200/60 px-4 py-3 text-ivory placeholder:text-ivory-muted/60 outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white"
+                    className="min-h-[140px] resize-y rounded-2xl border border-black/10 bg-dark-200/60 px-4 py-3 text-ivory placeholder:text-ivory-muted outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white"
                     placeholder="Cuéntanos el objetivo, el proceso actual y los sistemas que intervienen."
+                    minLength={10}
+                    maxLength={5000}
                     required
                   />
                 </label>
+
+                <p className="text-xs text-ivory-muted">
+                  Solo pedimos lo necesario para responderte. Nombre, email y mensaje son obligatorios.
+                </p>
 
                 <label className="flex items-start gap-3 text-sm text-ivory-dim">
                   <input
@@ -194,8 +201,8 @@ export function Contact() {
                   Puedes elegir el siguiente paso que te resulte más cómodo.
                 </p>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <Link href="/agenda" data-track="agenda"><Button className="w-full">Ver agenda</Button></Link>
-                  <a href={site.whatsAppUrl} target="_blank" rel="noreferrer" data-track="whatsapp"><Button variant="outline" className="w-full">WhatsApp</Button></a>
+                  <Link href="/agenda" data-track="agenda"><Button as="span" className="w-full">Ver agenda</Button></Link>
+                  <a href={site.whatsAppUrl} target="_blank" rel="noreferrer" data-track="whatsapp"><Button as="span" variant="outline" className="w-full">WhatsApp</Button></a>
                 </div>
               </div>
             </Card>

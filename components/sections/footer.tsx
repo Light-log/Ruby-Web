@@ -115,6 +115,12 @@ export function Footer() {
             >
               Política de privacidad
             </Link>
+            <Link href="/cookies" className="transition-colors hover:text-ivory">
+              Política de cookies
+            </Link>
+            <Link href="/aviso-legal" className="transition-colors hover:text-ivory">
+              Aviso legal y términos
+            </Link>
             <CookieSettingsLink className="text-left transition-colors hover:text-ivory" />
             <span className="hidden sm:inline">Ingeniería &bull; Diseño &bull; Innovación</span>
           </div>

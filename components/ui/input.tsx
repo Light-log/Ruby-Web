@@ -13,7 +13,7 @@ export function Input(
       <input
         id={inputId}
         className={cn(
-          "h-12 rounded-2xl border border-black/10 bg-dark-200/60 px-4 text-ivory placeholder:text-ivory-muted/60 outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white",
+          "h-12 rounded-2xl border border-black/10 bg-dark-200/60 px-4 text-ivory placeholder:text-ivory-muted outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white",
           className
         )}
         {...rest}

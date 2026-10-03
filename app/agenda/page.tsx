@@ -72,15 +72,15 @@ export default async function AgendaPage({
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               {configuredBookingUrl ? (
                 <a href={configuredBookingUrl} target="_blank" rel="noreferrer" data-track="booking">
-                  <Button size="lg" className="w-full">Elegir horario</Button>
+                  <Button as="span" size="lg" className="w-full">Elegir horario</Button>
                 </a>
               ) : (
                 <Link href={origin ? `/contacto?origen=${origin}` : "/contacto"} data-track="booking">
-                  <Button size="lg" className="w-full">Solicitar una consulta</Button>
+                  <Button as="span" size="lg" className="w-full">Solicitar una consulta</Button>
                 </Link>
               )}
               <a href={site.whatsAppUrl} target="_blank" rel="noreferrer" data-track="whatsapp">
-                <Button variant="outline" size="lg" className="w-full">
+                <Button as="span" variant="outline" size="lg" className="w-full">
                   <MessageCircle className="h-4 w-4" /> Hablar por WhatsApp
                 </Button>
               </a>
