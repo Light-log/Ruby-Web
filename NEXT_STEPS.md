@@ -5,6 +5,7 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 ## Prioridad 0 — completar esta semana
 
 - **Legal, decisiones de Dav:** (1) representante en la UE (art. 27 RGPD) o justificar la excepción de tratamiento ocasional; (2) actualizar `/politicas-ekono` y `/privacidad-cascada-app`, que aún nombran a "Consultora Ruby" (y Cascada usa consultoraruby@gmail.com), cuidando la coherencia con las fichas de las tiendas; (3) tener por escrito la autorización de portafolio de cada proyecto publicado (la cláusula 12 del contrato tipo la exige); (4) revisar "Distribución homologada" en ODAV.
+- **Directorios (03/10):** ver estado en `docs/directorios-ficha.md`. Pendiente de Dav: verificar Google Business (vídeo/llamada), pedir reseñas en Clutch a clientes reales, terminar GoodFirms cuando su formulario funcione y crear la página de LinkedIn.
 - **Ficha de Google (Business Profile):** crearla como empresa de zona de servicio, sin dirección pública (no hay oficina), con web `https://devruby.org` y categoría de desarrollo de software. Es el único punto de la checklist de lanzamiento que no se resuelve en código.
 - **Aviso legal:** revisar con un asesor los textos de `/privacidad`, `/cookies` y `/aviso-legal`, y confirmar la retención configurada en GA4.
 
