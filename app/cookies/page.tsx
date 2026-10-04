@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const rows = [
   ["ruby-cookie-consent", "Propia (almacenamiento local)", "Técnica: recuerda tu elección de cookies", "Hasta que la borres"],
   ["_ga", "Google Analytics", "Analítica: distinguir visitantes", "2 años"],
-  ["_ga_SEZY0Q1JSN", "Google Analytics", "Analítica: mantener el estado de la sesión", "2 años"],
+  ["_ga_8N39T9ZRQD", "Google Analytics", "Analítica: mantener el estado de la sesión", "2 años"],
 ];
 
 const sections: LegalSection[] = [

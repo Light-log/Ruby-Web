@@ -12,7 +12,7 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 
 1. **Search Console (03/10):** pedir indexación de `/us/ruby-on-rails-consulting`, `/us/ai-workflow-automation` y `/blog/automatizacion-de-procesos-con-ia`; en 4–6 semanas comparar impresiones de «ruby on rails consulting» y «automatización de procesos con IA», y el CTR de las páginas con título nuevo.
 1b. **Search Console:** desde la cuenta propietaria de `devruby.org`, enviar `https://devruby.org/sitemap.xml` y solicitar indexación de las cinco URLs de España. Registrar fecha y estado por URL.
-2. **GA4:** aceptar analítica en una sesión de prueba y confirmar que aparecen `book_consultation`, `contact_whatsapp` y `generate_lead`. Marcar esos tres como conversiones; un clic no equivale a una reunión reservada.
+2. **GA4 (propiedad nueva `G-8N39T9ZRQD`, 03/10):** en cuanto aparezcan en Administrar → Eventos, marcar con la estrella `book_consultation`, `contact_whatsapp` y `generate_lead` como eventos clave. Antes: aceptar analítica en una sesión de prueba y confirmar que aparecen `book_consultation`, `contact_whatsapp` y `generate_lead`. Marcar esos tres como conversiones; un clic no equivale a una reunión reservada.
 3. **SMTP:** enviar un formulario de prueba y confirmar que llega a `CONTACT_TO` con respuesta posible al email del lead.
 4. **Calendly:** comprobar una reserva de prueba, zona horaria de EE. UU./España y preguntas de calificación: empresa, problema, sistemas implicados, plazo y presupuesto aproximado si se desea filtrar.
 5. **Registro de leads:** crear una hoja o CRM con: fecha, origen, URL/UTM, empresa, contacto, necesidad, presupuesto, estado, siguiente paso, resultado y motivo de pérdida.

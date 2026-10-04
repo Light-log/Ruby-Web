@@ -212,3 +212,13 @@ servicio.
 Con poca demanda según autocompletado: «custom internal tools», «integración
 de sistemas erp crm», «auditoría de seguridad de aplicaciones» (se prefirió
 «auditoría de seguridad web»). «Traspaso gestoría» se busca para vehículos.
+
+## Google Analytics 4 — 2026-10-03
+
+La cuenta GA anterior (`G-SEZY0Q1JSN`) se perdió. Nueva propiedad **DEVRUBY Web**
+(`p557276085`) en la cuenta DEVRUBY (`a410599147`, Google de Dav), flujo web
+`https://devruby.org` (ID 16030031447), **ID de medición `G-8N39T9ZRQD`** en
+`components/ui/consent-banner.tsx` y en la tabla de `/cookies`. Hora de Venezuela,
+USD, retención de eventos y de usuario a 14 meses (lo que promete `/privacidad`),
+medición mejorada activa y vinculada a Search Console (`sc-domain:devruby.org`).
+La propiedad «RDX Web» de la misma cuenta es de `rdx.devruby.org`: no tocar.

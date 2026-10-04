@@ -6,7 +6,7 @@ import Script from "next/script";
 import { Cookie, ShieldCheck, BarChart3, Check } from "lucide-react";
 import { ConversionEvents } from "@/components/analytics/conversion-events";
 
-const GA_ID = "G-SEZY0Q1JSN";
+const GA_ID = "G-8N39T9ZRQD";
 const STORAGE_KEY = "ruby-cookie-consent";
 /** Versión de la política. Si cambia, se vuelve a pedir el consentimiento. */
 const POLICY_VERSION = "2025-06-29";
