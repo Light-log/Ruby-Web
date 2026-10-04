@@ -241,3 +241,11 @@ comprobados ese día: veto de Meta a chatbots de IA de propósito general en la
 API de WhatsApp desde el 15/01/2026; Verifactu aplazado a 01/01/2027 (IS) y
 01/07/2027 (resto) por el RDL 15/2025. Revisar si cambian. Ruby/Rails figura en
 `/servicios/desarrollo-de-software` (FAQ y capacidades) y en `/nosotros`.
+
+## Blog: tanda del 04/10 e indexación
+
+Publicados `/blog/whatsapp-business-api-como-funciona`, `/blog/automatizacion-procesos-administrativos-ejemplos`
+y `/us/blog/rails-8-0-to-8-1-upgrade` (hechos de Rails 8.1 tomados de sus release notes oficiales; tarifas
+de WhatsApp sin cifras, solo el modelo por mensaje). El 03/10 se pidió indexación en Search Console de las
+10 URLs nuevas anteriores (Rails, IA, /us/blog y los 6 artículos): todas «Se ha solicitado la indexación».
+Ritmo objetivo: 1 artículo cada 2 semanas con demanda comprobada en autocompletado.

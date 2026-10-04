@@ -181,6 +181,78 @@ export const usBlogPosts: BlogPost[] = [
       { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
     ],
   },
+  {
+    slug: "rails-8-0-to-8-1-upgrade",
+    title: "Upgrading from Rails 8.0 to 8.1: What Changes and What to Check",
+    seoTitle: "Rails 8.0 to 8.1 Upgrade: What to Check",
+    description:
+      "What changes when you upgrade a production app from Rails 8.0 to 8.1: removed behaviors, new deprecations, features to adopt later, and a checklist.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-04",
+    updatedAt: "2026-10-04",
+    readingMinutes: 6,
+    intro:
+      "Rails 8.1, released in October 2025, is a smaller step than the jump from 7.2 to 8.0, but it still removes a few behaviors that real applications rely on. If your app is already on 8.0 with a clean deprecation log, the upgrade is usually a short project. This guide separates what you need to fix now from what you can adopt later.",
+    sections: [
+      {
+        heading: "Start from a clean 8.0",
+        paragraphs: [
+          "Upgrade from 8.0, not from an older version, and make sure the test suite runs without deprecation warnings before changing the Gemfile. Rails 8.1 turns several 8.0 deprecations into removals, so any warning you ignore today is a failure tomorrow. If you are still on Rails 7, follow our Rails 7 to 8 guide first.",
+        ],
+      },
+      {
+        heading: "Changes that can break existing code",
+        paragraphs: [
+          "These are the items from the official release notes that most often affect production applications.",
+        ],
+        list: [
+          "Parameter parsing: the deprecated skipping of leading brackets in parameter names is removed, so keys like [foo] are no longer silently rewritten. Check any integration that sends unusual query strings.",
+          "Semicolons are no longer accepted as query string separators. Old clients or webhooks that build URLs with ; between parameters need fixing.",
+          "Routes defined with multiple paths in a single declaration are no longer supported; split them into separate route definitions.",
+          "Finder methods that depend on record order now warn when called without an explicit order, so add order clauses where results must be deterministic.",
+          "schema.rb now lists table columns in alphabetical order. The first migration after upgrading produces a large but harmless diff: regenerate and commit it on its own.",
+        ],
+      },
+      {
+        heading: "New features you can adopt later",
+        paragraphs: [
+          "None of these are required to finish the upgrade. Plan them as separate improvements once the app is stable on 8.1.",
+        ],
+        list: [
+          "Active Job continuations: include ActiveJob::Continuable and split long jobs into steps that resume from the last completed step after a restart or deploy.",
+          "Structured event reporting with Rails.event, which gives a single, taggable stream of application events for logging and observability.",
+          "Local CI: bin/ci runs the steps defined in config/ci.rb, useful for small teams that want the same checks locally and in CI.",
+          "Deprecated associations: mark an association with deprecated: true to find every place that still uses it before removing it.",
+          "Markdown responses with format.md and render markdown:, plus registry-free deployments with Kamal 2.8 or newer.",
+        ],
+      },
+      {
+        heading: "A short upgrade checklist",
+        paragraphs: [
+          "For most applications already on 8.0, the work fits in a few steps.",
+        ],
+        list: [
+          "Confirm the deprecation log is empty on 8.0 and that critical gems support 8.1.",
+          "Bump Rails, run bin/rails app:update, and review each proposed change instead of accepting all of them.",
+          "Regenerate schema.rb and commit the reordering separately from code changes.",
+          "Run the full suite plus a manual pass over integrations that build URLs or parse unusual parameters.",
+          "Deploy, watch error tracking for a few days, and only then switch config.load_defaults to 8.1.",
+        ],
+        ordered: true,
+      },
+    ],
+    takeaways: [
+      "Upgrade from a clean 8.0 with no deprecation warnings.",
+      "Check parameter parsing, semicolon query strings, multi-path routes, and implicit ordering.",
+      "Commit the alphabetical schema.rb diff on its own.",
+      "Adopt job continuations, Rails.event, and bin/ci after the upgrade, not during it.",
+    ],
+    related: [
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
+      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+    ],
+  },
 ];
 
 export const usBlogSlugs = usBlogPosts.map((post) => post.slug);

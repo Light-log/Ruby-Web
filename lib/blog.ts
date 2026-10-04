@@ -662,6 +662,135 @@ export const blogPosts: BlogPost[] = [
       { href: "/agenda", label: "Consulta inicial de 30 minutos" },
     ],
   },
+  {
+    slug: "whatsapp-business-api-como-funciona",
+    title: "WhatsApp Business API: cómo funciona, qué cuesta y cuándo la necesita tu empresa",
+    seoTitle: "WhatsApp Business API: cómo funciona",
+    description:
+      "Qué es la API de WhatsApp Business, en qué se diferencia de la app, cómo cobra Meta por mensaje y qué hace falta para conectarla con tu CRM o un chatbot.",
+    eyebrow: "Integraciones",
+    publishedAt: "2026-10-04",
+    updatedAt: "2026-10-04",
+    readingMinutes: 7,
+    intro:
+      "Muchas empresas atienden por WhatsApp desde un móvil compartido hasta que el volumen lo hace imposible: mensajes que nadie contesta, conversaciones que solo ve una persona y ningún registro en el CRM. La API de WhatsApp Business resuelve eso, pero funciona con reglas distintas a las de la aplicación. Este artículo explica cómo funciona, cómo cobra Meta y qué conviene decidir antes de conectarla.",
+    sections: [
+      {
+        heading: "App Business frente a API: dos productos distintos",
+        paragraphs: [
+          "La aplicación WhatsApp Business es gratuita y está pensada para atender desde uno o pocos dispositivos: catálogo, respuestas rápidas y mensajes de ausencia. La API, que Meta llama plataforma para empresas de WhatsApp, no tiene interfaz propia: es un servicio al que se conecta software. Los mensajes llegan a tu sistema, que puede ser un CRM, una bandeja compartida para varios agentes o un chatbot.",
+          "Desde finales de 2025 la vía oficial es la Cloud API, alojada por Meta; la versión que las empresas instalaban en sus propios servidores dejó de estar disponible. Se accede directamente desde Meta o a través de un proveedor autorizado, que añade herramientas como bandejas de entrada o plantillas gestionadas.",
+        ],
+      },
+      {
+        heading: "La ventana de 24 horas y las plantillas",
+        paragraphs: [
+          "Cuando un cliente escribe, se abre una ventana de 24 horas en la que la empresa puede responder con mensajes libres, tantos como necesite. Fuera de esa ventana, la empresa solo puede iniciar la conversación con plantillas aprobadas previamente por Meta.",
+          "Las plantillas se clasifican en categorías que determinan su uso y su coste: marketing (promociones y avisos comerciales), utilidad (confirmaciones de pedido, recordatorios de cita, avisos de envío) y autenticación (códigos de un solo uso). Meta revisa cada plantilla y puede reclasificarla si el contenido no corresponde a la categoría declarada.",
+        ],
+      },
+      {
+        heading: "Cómo cobra Meta",
+        paragraphs: [
+          "Meta factura por mensaje de plantilla entregado, con precios que dependen de la categoría y del país del destinatario. Las respuestas que la empresa envía dentro de la ventana de 24 horas abierta por el cliente no tienen coste de Meta, y las plantillas de utilidad enviadas dentro de esa ventana tampoco.",
+          "En la práctica, un uso centrado en atención al cliente cuesta muy poco en tarifas de Meta, mientras que las campañas de marketing por WhatsApp se pagan mensaje a mensaje. Los precios cambian a menudo: consulta la tabla vigente de Meta antes de presupuestar y suma el coste del proveedor o del desarrollo propio, que suele pesar más que las tarifas.",
+        ],
+      },
+      {
+        heading: "Qué hay que preparar antes de conectarla",
+        paragraphs: [
+          "La parte técnica es la más sencilla. Lo que más retrasa un proyecto suele ser lo administrativo.",
+        ],
+        list: [
+          "Una cuenta de Meta Business verificada a nombre de la empresa.",
+          "Un número de teléfono que no esté en uso en la app de WhatsApp, o la decisión de migrar el actual.",
+          "Consentimiento de los clientes para recibir mensajes por WhatsApp, registrado en tu sistema.",
+          "Las plantillas que vas a usar, redactadas y aprobadas antes del lanzamiento.",
+          "Quién responde y en qué horario, y cuándo un bot deriva la conversación a una persona.",
+        ],
+      },
+      {
+        heading: "Integrarla con tu operación",
+        paragraphs: [
+          "El valor de la API aparece cuando se conecta con el resto de sistemas: cada conversación queda asociada a su cliente en el CRM, los pedidos disparan avisos automáticos de estado y las preguntas frecuentes las resuelve un asistente que deriva a una persona cuando hace falta. Desde enero de 2026 Meta solo admite en la plataforma bots al servicio de un negocio concreto, no asistentes de IA de propósito general.",
+          "Si tu equipo ya usa un CRM con integración oficial de WhatsApp, empieza por ahí. Cuando el flujo depende de sistemas propios o de reglas específicas, una integración a medida conecta la API con lo que ya tienes sin obligarte a cambiar de herramientas.",
+        ],
+      },
+    ],
+    takeaways: [
+      "La app Business sirve para un móvil; la API conecta WhatsApp con tu software.",
+      "Dentro de la ventana de 24 horas se responde libremente; fuera, solo con plantillas aprobadas.",
+      "Meta cobra por plantilla entregada según categoría y país; la atención al cliente cuesta poco.",
+      "Lo que más retrasa el proyecto es la verificación, el número y las plantillas, no el código.",
+    ],
+    related: [
+      { href: "/espana/integracion-api-sistemas", label: "Integración de APIs y sistemas en España" },
+      { href: "/servicios/ia-aplicada", label: "Automatización con IA para empresas" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
+  {
+    slug: "automatizacion-procesos-administrativos-ejemplos",
+    title: "Automatización de procesos administrativos: 7 ejemplos que una pyme puede empezar este mes",
+    seoTitle: "Automatización administrativa: 7 ejemplos",
+    description:
+      "Siete procesos administrativos que una pyme puede automatizar sin cambiar de ERP: altas, presupuestos, cobros, facturas, gastos, informes y contratos.",
+    eyebrow: "Automatización",
+    publishedAt: "2026-10-04",
+    updatedAt: "2026-10-04",
+    readingMinutes: 7,
+    intro:
+      "Cuando se habla de automatizar procesos administrativos, la conversación suele saltar directamente a la herramienta. Es más útil empezar por los procesos: cuáles se repiten cada semana, cuánto tiempo consumen y qué pasa cuando alguien se equivoca. Estos siete ejemplos son los que más vemos en pymes de servicios, ordenados de los más sencillos a los que requieren algo más de trabajo.",
+    sections: [
+      {
+        heading: "Antes de empezar: elige por volumen y por coste del error",
+        paragraphs: [
+          "Un buen candidato a automatizar se repite a menudo, sigue siempre los mismos pasos y hoy obliga a copiar datos de un sitio a otro. Si además un error en ese paso tiene consecuencias —una factura mal emitida, un cobro olvidado—, el beneficio es doble: menos horas y menos incidencias.",
+        ],
+      },
+      {
+        heading: "Siete procesos que suelen dar resultado",
+        paragraphs: [
+          "Ninguno exige cambiar de ERP ni de CRM: se conectan los sistemas que ya existen y se eliminan los pasos manuales entre ellos.",
+        ],
+        list: [
+          "Alta de clientes: el formulario de la web o del comercial crea la ficha en el CRM y en el ERP a la vez, con los datos validados, sin teclearlos dos veces.",
+          "Presupuestos: a partir de una plantilla y de los precios vigentes se genera el documento, se envía y se avisa al comercial si el cliente no responde en unos días.",
+          "Seguimiento de cobros: las facturas vencidas generan recordatorios escalonados y una lista diaria para quien gestiona los cobros.",
+          "Registro de facturas de proveedores: los PDF que llegan al correo se leen, se validan y pasan a contabilidad, con revisión humana solo para los casos dudosos.",
+          "Notas de gastos: los tiques fotografiados se clasifican por proyecto y categoría y se agrupan para la aprobación mensual.",
+          "Informes periódicos: las cifras que alguien monta cada lunes en una hoja de cálculo se calculan solas y llegan por correo a quien las necesita.",
+          "Contratos y altas de servicio: al cerrar una venta se genera el contrato con los datos del cliente, se envía a firmar y, al firmarse, se activa el servicio.",
+        ],
+        ordered: true,
+      },
+      {
+        heading: "Herramientas: de menos a más",
+        paragraphs: [
+          "Muchos de estos flujos se resuelven con las automatizaciones nativas del CRM o del ERP, o con plataformas como Make, n8n o Zapier conectando aplicaciones conocidas. Cuando el proceso tiene reglas propias, mucho volumen o datos sensibles, una integración a medida suele ser más fiable y más barata de mantener a medio plazo.",
+          "La inteligencia artificial encaja en los pasos que hoy requieren leer: facturas en PDF, tiques, correos de clientes. En los pasos con datos estructurados, las reglas fijas siguen siendo la mejor opción.",
+        ],
+      },
+      {
+        heading: "Cómo medir si ha funcionado",
+        paragraphs: [
+          "Antes de automatizar, anota tres cifras del proceso: cuántas veces ocurre al mes, cuánto tarda cada vez y cuántos errores se detectan. Repite la medición dos meses después. Si no puedes contestar esas preguntas antes de empezar, ese es el primer trabajo: sin una línea base, cualquier resultado es una impresión.",
+          "Y deja siempre un registro: qué se automatizó, qué entradas recibió cada ejecución y qué casos acabaron en revisión manual. Es lo que permite corregir y lo que te pedirá tu asesoría si algo no cuadra.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Empieza por procesos frecuentes, repetitivos y con un coste de error conocido.",
+      "Ninguno de estos ejemplos exige cambiar de ERP o de CRM.",
+      "Reglas fijas para datos estructurados; IA solo para los pasos que requieren leer.",
+      "Mide frecuencia, tiempo y errores antes y después de automatizar.",
+    ],
+    related: [
+      { href: "/servicios/automatizacion-de-procesos", label: "Automatización de procesos empresariales" },
+      { href: "/espana/automatizacion-de-procesos", label: "Automatización de procesos para empresas en España" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
 ];
 
 export const blogSlugs = blogPosts.map((post) => post.slug);
