@@ -93,3 +93,23 @@ web y de aplicaciones · Desarrollo en Ruby on Rails
 | LinkedIn | Creada: linkedin.com/company/devruby (ID 146681420). Portada generada con ChatGPT Plus (`docs/marca/linkedin-cover.jpg`), logo, lema, resumen, 6 especialidades, botón «Contactar con nosotros» → /agenda. Enlazada en el pie y en `sameAs` del schema | No poner DEVRUBY como empresa actual en el perfil personal si se quiere anonimato |
 
 Las reseñas verificadas son lo que más pesa en el ranking de Clutch y GoodFirms.
+
+## Mensaje para el soporte de GoodFirms (si el formulario sigue sin guardar)
+
+Enviar desde hola@devruby.org a support@goodfirms.co (o el formulario «Contact Us» del panel):
+
+> Subject: Company profile – Step 1 cannot be saved ("Please fix the highlighted fields")
+>
+> Hi GoodFirms team,
+>
+> I'm creating the company profile for DEVRUBY (https://devruby.org) with the account hola@devruby.org.
+> In "Create Your Company Profile – Step 1 General Information", every required field is filled
+> (name, tagline, logo, founded 2026, Freelancer, $25–$49/hr, website, phone, sales email,
+> description and the three "Why choose you" reasons), but clicking "Save & Next" always shows
+> "Please fix the highlighted fields before saving" and no field is highlighted.
+> The "AI Autofill from website" option also fails with an "Edge Function" error.
+>
+> Could you check the account or let me know which field is failing validation?
+>
+> Thank you,
+> DEVRUBY LLC
