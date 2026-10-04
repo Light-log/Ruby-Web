@@ -326,3 +326,11 @@ test("U.S. hub links the Rails and AI automation pages", () => {
     assert.match(hub, new RegExp(`"${slug}"`));
   }
 });
+
+test("home has no blocking intro and the cookie banner does not wait for one", () => {
+  assert.doesNotMatch(fs.readFileSync("app/page.tsx", "utf8"), /ArcRevealHero/);
+  // Antes el banner esperaba al evento de fin de la intro: sin intro no saldría nunca.
+  const banner = fs.readFileSync("components/ui/consent-banner.tsx", "utf8");
+  assert.doesNotMatch(banner, /HERO_INTRO|ruby-hero-intro/);
+  assert.match(banner, /setTimeout\(\(\) => setVisible\(true\), INITIAL_BANNER_DELAY_MS\)/);
+});

@@ -183,9 +183,10 @@ Velocidad: three.js sale del bundle inicial (`next/dynamic`, First Load de `/`
 394 → 248 KB), el párrafo LCP del hero ya no anima desde opacity 0, el shader se
 pausa fuera de pantalla y, sin WebGL, la página ya no revienta. Lighthouse
 móvil local sin WebGL: 61 (antes 35 en producción). Con WebGL, Lighthouse en
-esta máquina emula la GPU por CPU y no es representativo. Lo que queda es el
-intro de saludos de `ArcRevealHero` (~5 s en la primera visita): es decisión de
-diseño, no se tocó.
+esta máquina emula la GPU por CPU y no es representativo. El intro de saludos
+(`ArcRevealHero`, ~7,7 s en la primera visita) y el loader del hero se
+eliminaron el 03/10 por decisión de Dav; el banner de cookies ya no espera al
+evento de fin de intro (test de regresión en `tests/site.test.mjs`).
 
 Los PNG generados que no se usan siguen en `public/` a propósito (alternativas
 no activas, ver "Visual"); no afectan a la carga. El test "launch checklist"

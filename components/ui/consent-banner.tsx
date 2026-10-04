@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import Script from "next/script";
 import { Cookie, ShieldCheck, BarChart3, Check } from "lucide-react";
-import { HERO_INTRO_COMPLETE_EVENT } from "@/components/ui/arc-preloader-hero";
 import { ConversionEvents } from "@/components/analytics/conversion-events";
 
 const GA_ID = "G-SEZY0Q1JSN";
@@ -43,20 +42,11 @@ export function ConsentBanner() {
   React.useEffect(() => {
     const stored = readConsent();
     let initialBannerTimer: ReturnType<typeof setTimeout> | undefined;
-    const showAfterIntro = () => setVisible(true);
     if (stored) {
       setAnalytics(stored.analytics);
       setAnalyticsGranted(stored.analytics);
     } else {
-      const isHomeIntroPending =
-        window.location.pathname === "/" &&
-        window.localStorage.getItem("ruby-hero-intro") !== "done";
-
-      if (isHomeIntroPending) {
-        window.addEventListener(HERO_INTRO_COMPLETE_EVENT, showAfterIntro, { once: true });
-      } else {
-        initialBannerTimer = setTimeout(() => setVisible(true), INITIAL_BANNER_DELAY_MS);
-      }
+      initialBannerTimer = setTimeout(() => setVisible(true), INITIAL_BANNER_DELAY_MS);
     }
     setMounted(true);
 
@@ -69,7 +59,6 @@ export function ConsentBanner() {
     window.addEventListener(COOKIE_SETTINGS_EVENT, open);
     return () => {
       if (initialBannerTimer) clearTimeout(initialBannerTimer);
-      window.removeEventListener(HERO_INTRO_COMPLETE_EVENT, showAfterIntro);
       window.removeEventListener(COOKIE_SETTINGS_EVENT, open);
     };
   }, []);

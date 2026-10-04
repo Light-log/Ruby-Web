@@ -1,8 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
-import { PageLoader } from "@/components/ui/page-loader";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic";
 import { TextReveal } from "@/components/animate/text-reveal";
@@ -20,14 +18,10 @@ const capabilities = [
 ];
 
 export function Hero() {
-  const [visualReady, setVisualReady] = useState(false);
-  const handleVisualReady = useCallback(() => setVisualReady(true), []);
-
   return (
     <section className="relative flex min-h-[92vh] items-start overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <GLSLHills className="h-full w-full" onReady={handleVisualReady} />
-        {!visualReady && <PageLoader className="absolute inset-0 bg-dark" />}
+        <GLSLHills className="h-full w-full" />
         <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
       </div>
