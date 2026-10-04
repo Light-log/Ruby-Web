@@ -96,7 +96,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-ivory-dim">
                 <MapPin className="h-4 w-4 text-crimson" />
-                Caracas &bull; Remoto / Latam
+                Remoto &bull; LLC en Nuevo México, EE. UU.
               </div>
             </div>
           </div>

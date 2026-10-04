@@ -187,7 +187,7 @@ export function Contact() {
                   {site.phone}
                 </InfoRow>
                 <InfoRow icon={<MapPin className="h-4 w-4" />} label="Ubicación">
-                  Caracas &bull; Remoto / Latam
+                  Remoto &bull; España, EE. UU. y Latam
                 </InfoRow>
               </div>
 

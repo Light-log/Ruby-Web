@@ -302,3 +302,27 @@ test("launch checklist: 404, favicon, HSTS, WhatsApp and light images", () => {
     assert.ok(size < 300 * 1024, `${image} pesa ${Math.round(size / 1024)} KB`);
   }
 });
+
+test("SEO titles fit in Google's ~60-character limit with the « | DEVRUBY» suffix", () => {
+  // Los catálogos usan `title` solo para <title>; el H1 sale de `headline`.
+  for (const file of ["lib/us-campaign.ts", "lib/spain-campaign.ts", "lib/services-catalog.ts"]) {
+    for (const [, title] of fs.readFileSync(file, "utf8").matchAll(/^\s{4}title: "([^"]+)"/gm)) {
+      assert.ok(title.length <= 50, `${file}: "${title}" (${title.length})`);
+    }
+  }
+  // En el blog `title` es el H1: si pasa de 50, el artículo necesita `seoTitle`.
+  const blog = fs.readFileSync("lib/blog.ts", "utf8");
+  for (const [, title, seo] of blog.matchAll(/^\s{4}title: "([^"]+)",\n(?:\s{4}seoTitle: "([^"]+)",)?/gm)) {
+    assert.ok((seo ?? title).length <= 50, `blog: "${seo ?? title}"`);
+  }
+  for (const [, desc] of blog.matchAll(/description:\s*"([^"]+)"/g)) assert.ok(desc.length <= 160, desc);
+  assert.match(fs.readFileSync("app/blog/[slug]/page.tsx", "utf8"), /post\.seoTitle \?\? post\.title/);
+});
+
+test("U.S. hub links the Rails and AI automation pages", () => {
+  const hub = fs.readFileSync("app/us/page.tsx", "utf8");
+  for (const slug of ["ruby-on-rails-consulting", "ai-workflow-automation"]) {
+    assert.match(fs.readFileSync("lib/us-campaign.ts", "utf8"), new RegExp(`"${slug}":`));
+    assert.match(hub, new RegExp(`"${slug}"`));
+  }
+});

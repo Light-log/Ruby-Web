@@ -229,7 +229,7 @@ const catalog = {
     color: "crimson",
     label: "Automatización",
     shortTitle: "Automatización y sistemas",
-    title: "Automatización de procesos y sistemas de gestión",
+    title: "Automatización de procesos empresariales",
     description:
       "Flujos que conectan ventas, finanzas, operaciones y soporte: facturación, ERP/CRM, documentos, bots y atención omnicanal.",
     eyebrow: "Automatización y sistemas",
@@ -321,7 +321,7 @@ const catalog = {
     color: "lavender",
     label: "IA aplicada",
     shortTitle: "IA especializada",
-    title: "Inteligencia artificial aplicada al negocio",
+    title: "Automatización con IA para empresas",
     description:
       "Asistentes, IA documental, visión por computador y modelos aplicados a casos concretos, conectados con datos y operación real.",
     eyebrow: "IA aplicada",
@@ -599,7 +599,7 @@ const catalog = {
     color: "crimson",
     label: "Seguridad",
     shortTitle: "Seguridad técnica",
-    title: "Seguridad técnica y auditorías",
+    title: "Auditoría de seguridad web y de aplicaciones",
     description:
       "Controles para reducir riesgos en aplicaciones y servidores: hardening, gestión de secretos, acceso seguro y auditoría técnica.",
     eyebrow: "Seguridad",

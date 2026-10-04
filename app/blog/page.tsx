@@ -12,7 +12,7 @@ import { breadcrumbList } from "@/lib/structured-data";
 
 const title = "Blog: criterio técnico para operaciones que crecen";
 const description =
-  "Artículos prácticos sobre software a medida, integración de sistemas, automatización administrativa y seguridad de aplicaciones, escritos por el equipo de DEVRUBY.";
+  "Artículos prácticos sobre software a medida, integración de sistemas, automatización administrativa y seguridad de aplicaciones, del equipo de DEVRUBY.";
 
 export const metadata: Metadata = {
   title: "Blog",

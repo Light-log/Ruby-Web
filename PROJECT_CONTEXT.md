@@ -190,3 +190,24 @@ diseño, no se tocó.
 Los PNG generados que no se usan siguen en `public/` a propósito (alternativas
 no activas, ver "Visual"); no afectan a la carga. El test "launch checklist"
 de `tests/site.test.mjs` falla si una imagen referenciada pasa de 300 KB.
+
+## SEO: palabras clave y títulos — 2026-10-03
+
+Fuente: Search Console (`sc-domain:devruby.org`, 16 meses: 395 impresiones, 20
+clics, posición 24, 32 páginas indexadas) + autocompletado de Google es-ES,
+es-VE, es-MX y en-US. La consulta con más impresiones es «ruby development
+consulting» (40): Google asocia «DEVRUBY» con Ruby/Rails. Dav confirmó que se
+ofrece Rails → `/us/ruby-on-rails-consulting` y «Ruby on Rails» en el stack de
+la portada. Tendencia fuerte: «automatización de procesos con IA» →
+`/us/ai-workflow-automation` y el artículo `/blog/automatizacion-de-procesos-con-ia`.
+
+Títulos: los catálogos (`lib/*-campaign.ts`, `lib/services-catalog.ts`) usan
+`title` solo para `<title>` (el H1 es `headline`); en el blog el H1 es `title`
+y el `<title>` sale de `seoTitle`. Límite 50 car. + « | DEVRUBY», vigilado por
+test. Dirección: solo remoto; el schema usa la ciudad de la LLC (Albuquerque,
+NM) sin calle, coherente con el aviso legal y una ficha de Google de zona de
+servicio.
+
+Con poca demanda según autocompletado: «custom internal tools», «integración
+de sistemas erp crm», «auditoría de seguridad de aplicaciones» (se prefirió
+«auditoría de seguridad web»). «Traspaso gestoría» se busca para vehículos.

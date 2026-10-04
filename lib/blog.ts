@@ -14,6 +14,8 @@ export type BlogSection = {
 export type BlogPost = {
   slug: string;
   title: string;
+  /** <title> corto (≤ 50 car. + « | DEVRUBY»). Google corta hacia los 60; el H1 sigue siendo `title`. */
+  seoTitle?: string;
   description: string;
   eyebrow: string;
   publishedAt: string;
@@ -29,6 +31,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "software-a-medida-o-ajustar-herramientas",
     title: "¿Software a medida o ajustar las herramientas que ya usas? Cómo decidirlo",
+    seoTitle: "¿Software a medida o adaptar tus herramientas?",
     description:
       "Cinco preguntas para saber si tu empresa necesita desarrollar un sistema propio o si basta con configurar mejor el CRM, el ERP o las hojas de cálculo actuales.",
     eyebrow: "Software a medida",
@@ -88,8 +91,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "detectar-datos-duplicados-crm-erp-hojas-de-calculo",
     title: "Datos duplicados entre CRM, ERP y hojas de cálculo: cómo detectarlos y qué hacer",
+    seoTitle: "Datos duplicados en CRM y ERP: cómo detectarlos",
     description:
-      "Un método práctico para encontrar el mismo dato repetido en varios sistemas, medir cuánto trabajo cuesta mantenerlo y decidir qué integración resolverlo primero.",
+      "Un método práctico para encontrar el mismo dato repetido en varios sistemas, medir cuánto cuesta mantenerlo y decidir qué integración resolver primero.",
     eyebrow: "Integración de sistemas",
     publishedAt: "2026-09-16",
     updatedAt: "2026-09-16",
@@ -150,8 +154,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "automatizar-traspaso-gestoria-por-donde-empezar",
     title: "Automatizar el traspaso a la gestoría: por dónde empezar sin cambiar de ERP",
+    seoTitle: "Automatización de facturas para la gestoría",
     description:
-      "Qué partes del cierre mensual conviene automatizar primero en una pyme española que trabaja con asesoría externa, y qué documentar para que la automatización sea auditable.",
+      "Qué partes del cierre mensual automatizar primero en una pyme española con asesoría externa, y qué documentar para que la automatización sea auditable.",
     eyebrow: "Automatización de procesos",
     publishedAt: "2026-09-16",
     updatedAt: "2026-09-16",
@@ -212,8 +217,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "priorizar-hallazgos-auditoria-seguridad-aplicaciones",
     title: "Cómo priorizar los hallazgos de una auditoría de seguridad de aplicaciones",
+    seoTitle: "Priorizar hallazgos de una auditoría de seguridad",
     description:
-      "Un informe de seguridad con cuarenta hallazgos no sirve si no dice qué arreglar esta semana. Criterios para ordenar vulnerabilidades por impacto real en tu aplicación, no solo por severidad genérica.",
+      "Criterios para ordenar los hallazgos de una auditoría de seguridad por impacto real en tu aplicación, no solo por severidad, y saber qué arreglar primero.",
     eyebrow: "Seguridad de aplicaciones",
     publishedAt: "2026-09-16",
     updatedAt: "2026-09-16",
@@ -270,6 +276,73 @@ export const blogPosts: BlogPost[] = [
       { href: "/espana/auditoria-seguridad-aplicaciones", label: "Auditoría de seguridad de aplicaciones para empresas en España" },
       { href: "/us/application-security-audit", label: "Application security audit (EE. UU.)" },
       { href: "/servicios/seguridad-tecnica", label: "Servicio de seguridad técnica" },
+    ],
+  },
+  {
+    slug: "automatizacion-de-procesos-con-ia",
+    title: "Automatización de procesos con IA: qué automatizar primero y qué dejar en manos de personas",
+    seoTitle: "Automatización de procesos con IA: qué priorizar",
+    description:
+      "Cómo elegir qué procesos de tu empresa automatizar con IA, cuándo bastan reglas fijas y cómo mantener la revisión humana donde un error cuesta caro.",
+    eyebrow: "Automatización con IA",
+    publishedAt: "2026-10-03",
+    updatedAt: "2026-10-03",
+    readingMinutes: 7,
+    intro:
+      "La inteligencia artificial ha vuelto a poner la automatización de procesos en la agenda de muchas empresas. El riesgo es empezar por la herramienta y no por el proceso: un piloto vistoso que nadie usa a la semana siguiente. Este artículo resume cómo decidimos dónde encaja un modelo de lenguaje, dónde basta una regla fija y qué controles necesita cualquier automatización con IA para llegar a producción.",
+    sections: [
+      {
+        heading: "Primero las reglas, después la IA",
+        paragraphs: [
+          "Buena parte del trabajo repetitivo de una empresa no necesita IA. Si el dato llega siempre en el mismo formato —un formulario, una exportación del ERP, una API— una integración con reglas fijas es más barata, más rápida y más fácil de auditar. Usar un modelo de lenguaje ahí solo añade coste y una fuente de error.",
+          "La IA aporta cuando la información es predecible pero el formato no lo es: facturas de cien proveedores distintos, correos de clientes redactados cada uno a su manera, contratos o albaranes escaneados. Ahí una persona lee y teclea porque ninguna regla cubre todas las variantes, y ese es el trabajo que un modelo puede preparar.",
+        ],
+      },
+      {
+        heading: "Cuatro tareas donde la IA suele funcionar bien",
+        paragraphs: [
+          "Estas son las tareas en las que un modelo de lenguaje aporta valor con un riesgo controlable, siempre que el resultado se valide antes de entrar en el sistema de destino.",
+        ],
+        list: [
+          "Extracción de datos de documentos: importes, fechas, NIF y líneas de factura a partir de PDF o imágenes.",
+          "Clasificación y enrutado: decidir a qué equipo va cada correo o solicitud y con qué prioridad.",
+          "Resumen de textos largos: incidencias, actas o historiales de cliente reducidos a lo que necesita quien decide.",
+          "Borradores de respuesta: el modelo prepara el texto y una persona lo revisa y lo envía.",
+        ],
+      },
+      {
+        heading: "Qué debe quedar en manos de personas",
+        paragraphs: [
+          "Aprobar pagos, cambiar condiciones a un cliente o enviar comunicaciones con efectos legales no debería depender de un modelo sin supervisión. La pregunta útil no es si la IA puede hacerlo, sino cuánto cuesta un error y quién lo detectaría.",
+          "El diseño que mejor funciona en estos casos es que la IA prepare el trabajo y una persona lo confirme. El ahorro sigue siendo grande —nadie teclea ni busca—, pero la decisión y la responsabilidad no cambian de manos.",
+        ],
+      },
+      {
+        heading: "Cómo pasar del piloto a producción",
+        paragraphs: [
+          "Un piloto que acierta con cinco ejemplos elegidos a mano no dice nada sobre el mes siguiente. Antes de automatizar conviene reunir un conjunto de casos reales, incluidos los raros, y medir cuántos resuelve bien el modelo. Ese mismo conjunto sirve después para comprobar que un cambio de modelo o de instrucciones no empeora los resultados.",
+          "En producción, cada resultado debe llevar una señal de confianza y un registro: qué entró, qué devolvió el modelo y quién lo validó. Los casos dudosos van a una cola de revisión en lugar de entrar directamente en el ERP o el CRM. Y antes de enviar datos a un proveedor de IA hay que acordar qué información sale de la empresa, con qué condiciones y si algún campo debe enmascararse.",
+        ],
+        list: [
+          "Elige un proceso con volumen suficiente y un coste de error conocido.",
+          "Reúne ejemplos reales y mide la precisión antes de prometer nada.",
+          "Conecta la IA a las herramientas actuales por API, sin cambiar de ERP o CRM.",
+          "Deja una cola de revisión humana y un registro de cada decisión.",
+        ],
+        ordered: true,
+      },
+    ],
+    takeaways: [
+      "Si el formato del dato es fijo, una integración con reglas es mejor que la IA.",
+      "La IA aporta en documentos, correos y textos libres que hoy alguien lee y teclea.",
+      "Pagos, condiciones y comunicaciones sensibles se quedan con revisión humana.",
+      "Sin un conjunto de casos reales para medir, un piloto no es una prueba.",
+    ],
+    related: [
+      { href: "/servicios/ia-aplicada", label: "Automatización con IA para empresas" },
+      { href: "/servicios/automatizacion-de-procesos", label: "Automatización de procesos empresariales" },
+      { href: "/espana/automatizacion-de-procesos", label: "Automatización de procesos para empresas en España" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
     ],
   },
 ];

@@ -10,7 +10,7 @@ import { blogPosts, blogUpdatedAt } from "@/lib/blog";
  * marcaba las 26 URLs como «modificadas ahora», y Google acaba ignorando el
  * `lastmod` de un sitio que siempre dice lo mismo. Súbela al tocar el contenido.
  */
-const CONTENT_UPDATED = new Date("2026-08-03");
+const CONTENT_UPDATED = new Date("2026-10-03");
 
 type Entry = MetadataRoute.Sitemap[number];
 

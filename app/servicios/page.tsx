@@ -17,7 +17,7 @@ import {
 } from "@/lib/services-catalog";
 
 export const metadata: Metadata = {
-  title: "Servicios",
+  title: "Servicios de software, automatización e IA",
   description:
     "Desarrollo de software a medida, apps móviles, automatización, IA aplicada, datos y KPIs, infraestructura, seguridad y UI/UX para empresas.",
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "consultora tecnológica Venezuela",
   ],
   openGraph: {
-    title: "Servicios | DEVRUBY",
+    title: "Servicios de software, automatización e IA | DEVRUBY",
     description:
       "Software, automatización e inteligencia artificial para convertir procesos en productos digitales que funcionan.",
     url: "https://devruby.org/servicios",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Servicios | DEVRUBY",
+    title: "Servicios de software, automatización e IA | DEVRUBY",
     description: "Soluciones tecnológicas completas para cada desafío.",
   },
   alternates: { canonical: "https://devruby.org/servicios" },

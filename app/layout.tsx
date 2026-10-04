@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://devruby.org"),
   title: {
-    default: "DEVRUBY LLC | Consultoría de software, aplicaciones web y APIs",
+    default: "Desarrollo de software a medida para empresas | DEVRUBY",
     template: "%s | DEVRUBY",
   },
   description:
@@ -95,10 +95,13 @@ function JsonLd() {
     telephone: "+584164118747",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Caracas",
-      addressCountry: "VE",
+      // Sin calle a propósito: servicio 100 % remoto. Ciudad de registro de la LLC
+      // (coherente con el aviso legal y con una ficha de Google de zona de servicio).
+      addressLocality: "Albuquerque",
+      addressRegion: "NM",
+      addressCountry: "US",
     },
-    areaServed: ["VE", "LATAM", "ES", "US"],
+    areaServed: ["ES", "US", "VE", "Latinoamérica"],
     knowsLanguage: ["es", "en"],
     serviceType: [
       "Custom Software Development",

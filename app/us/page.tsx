@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, CheckCircle2, Code2, Link2, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowRight, Bot, CalendarDays, CheckCircle2, Code2, Gem, Link2, ShieldCheck, Workflow } from "lucide-react";
 import { Footer } from "@/components/sections/footer";
 import { Navbar } from "@/components/sections/navbar";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,7 @@ import { usServices } from "@/lib/us-campaign";
 import { ogImages, usAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Custom Software, Automation & API Integrations for U.S. Businesses",
+  title: "Custom Software & Workflow Automation, USA",
   description: "DEVRUBY LLC helps U.S. businesses build internal tools, automate workflows, connect systems, and review application security.",
   alternates: usAlternates(),
   openGraph: { title: "Custom Software & Workflow Automation | DEVRUBY LLC", description: "Internal tools, workflow automation, API integrations, and application security reviews for U.S. businesses.", url: "https://devruby.org/us", type: "website", locale: "en_US", images: ogImages },
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 
 const services = [
   ["custom-internal-tools", Code2], ["workflow-automation", Workflow], ["api-integration-services", Link2], ["application-security-audit", ShieldCheck],
+  ["ai-workflow-automation", Bot], ["ruby-on-rails-consulting", Gem],
 ] as const;
 
 export default function USPage() {

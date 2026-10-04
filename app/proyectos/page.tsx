@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Proyectos",
+  title: "Proyectos de software a medida",
   description:
     "Portafolio de productos y soluciones desarrolladas por DEVRUBY: plataformas web, aplicaciones, integraciones y sistemas empresariales.",
   keywords: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "ERP Odoo",
   ],
   openGraph: {
-    title: "Proyectos | DEVRUBY",
+    title: "Proyectos de software a medida | DEVRUBY",
     description:
       "Conoce productos y soluciones desarrolladas por DEVRUBY.",
     url: "https://devruby.org/proyectos",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Proyectos | DEVRUBY",
+    title: "Proyectos de software a medida | DEVRUBY",
     description: "Productos y soluciones desarrolladas por DEVRUBY.",
   },
   alternates: { canonical: "https://devruby.org/proyectos" },

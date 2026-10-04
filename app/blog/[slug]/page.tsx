@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
   const url = `${SITE_URL}/blog/${post.slug}`;
   return {
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.description,
     alternates: { canonical: url },
     openGraph: {

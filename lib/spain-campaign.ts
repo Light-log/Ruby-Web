@@ -2,9 +2,9 @@ export const spainServices = {
   "desarrollo-software-a-medida": {
     label: "Software a medida",
     shortTitle: "Desarrollo de software a medida",
-    title: "Desarrollo de software a medida para empresas en España",
+    title: "Desarrollo de software a medida en España",
     description:
-      "DEVRUBY diseña aplicaciones web, portales y sistemas internos para empresas españolas que necesitan sustituir procesos dispersos por una operación clara y mantenible.",
+      "Aplicaciones web, portales y sistemas internos a medida para empresas españolas que quieren sustituir procesos dispersos por una operación clara y mantenible.",
     eyebrow: "Software a medida para empresas",
     headline: "Un sistema propio para la forma en que realmente opera tu empresa",
     intro:
@@ -82,7 +82,7 @@ export const spainServices = {
   "integracion-api-sistemas": {
     label: "Integraciones API y sistemas",
     shortTitle: "Integraciones API y sistemas",
-    title: "Integración de APIs y sistemas empresariales en España",
+    title: "Integración de APIs y sistemas en España",
     description:
       "Conecta CRM, ERP, plataformas SaaS, portales y datos con integraciones API mantenibles y diseñadas para el proceso de tu empresa.",
     eyebrow: "Integraciones API para empresas",
@@ -122,7 +122,7 @@ export const spainServices = {
   "auditoria-seguridad-aplicaciones": {
     label: "Auditoría de seguridad",
     shortTitle: "Auditoría de seguridad de aplicaciones",
-    title: "Auditoría de seguridad de aplicaciones y APIs para empresas en España",
+    title: "Auditoría de seguridad web y apps en España",
     description:
       "Auditoría técnica de aplicaciones web, APIs y cloud para empresas españolas que deben responder a un cuestionario de cliente, un pliego o una due diligence.",
     eyebrow: "Revisión técnica para clientes y licitaciones · España",

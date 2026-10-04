@@ -418,7 +418,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
               </div>
 
               <p className="mt-5 text-xs text-ivory-muted lg:text-sm">
-                Consulta inicial de 30 minutos · Caracas · Remoto / Latam
+                Consulta inicial de 30 minutos · Remoto · España, EE. UU. y Latam
               </p>
             </div>
 
@@ -763,7 +763,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
             </div>
 
             <p className="mt-6 text-xs text-ivory-muted">
-              Consulta inicial de 30 minutos · {site.email} · Caracas · Remoto / Latam
+              Consulta inicial de 30 minutos · {site.email} · Remoto · España, EE. UU. y Latam
             </p>
           </Card>
         </div>

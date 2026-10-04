@@ -82,7 +82,7 @@ export const usServices = {
   },
   "application-security-audit": {
     label: "Application security audit",
-    title: "Application Security Audit Services for U.S. Businesses",
+    title: "Application Security Audit Services",
     description:
       "A focused technical review of web applications, APIs, and cloud configuration to identify security risks and prioritize practical remediation.",
     eyebrow: "Application and API security review",
@@ -105,6 +105,60 @@ export const usServices = {
       ["Is this a compliance certification?", "No. This is a technical security review for an agreed scope. It does not replace legal advice, compliance certification, or formal assessments such as SOC 2, HIPAA, PCI DSS, or ISO 27001."],
       ["What do you need before starting?", "We need a description of the system, written authorization, allowed environments, and a technical contact. Nothing is tested outside the agreed scope."],
       ["Can you remediate the findings?", "Yes. After the review, we can propose a separate remediation scope for the software or infrastructure based on the findings and their priority."],
+    ],
+  },
+  "ruby-on-rails-consulting": {
+    label: "Ruby on Rails consulting",
+    title: "Ruby on Rails Consulting & Development",
+    description:
+      "Ruby on Rails consulting and development for U.S. businesses: new Rails applications, upgrades of legacy apps, APIs, performance work, and security reviews.",
+    eyebrow: "Ruby on Rails development",
+    headline: "Rails engineering for applications your business depends on",
+    intro:
+      "Many U.S. businesses run core operations on a Rails application that has grown for years. We help build new Rails products and keep existing ones upgradeable, tested, and secure, without rewriting what still works.",
+    pains: [
+      "The application runs on an outdated Ruby or Rails version and every upgrade feels risky.",
+      "Releases slow down because test coverage is thin and nobody wants to touch certain models.",
+      "Background jobs, slow queries, or N+1 issues are hurting response times as data grows.",
+    ],
+    deliverables: [
+      "A technical assessment of the codebase, gems, Ruby/Rails versions, tests, and deployment.",
+      "Incremental Ruby and Rails upgrades with a tested path for each step.",
+      "New features, APIs, and integrations built in idiomatic Rails with automated tests.",
+      "Performance and security fixes backed by profiling and tools such as Brakeman and bundler-audit.",
+    ],
+    fit: "Best for teams that own a Rails application in production, or are starting one, and need senior help without hiring a full in-house team.",
+    faqs: [
+      ["Can you take over an existing Rails application?", "Yes. We start with a read-only assessment of the repository, dependencies, tests, and deployment so the first scope is based on what the code actually needs, not on assumptions."],
+      ["Do you recommend rewriting old Rails apps?", "Rarely. An incremental upgrade usually preserves business rules that are hard to rediscover. A rewrite is discussed only when the assessment shows the existing code cannot be safely evolved."],
+      ["Can you work alongside our developers?", "Yes. We can contribute through your repository, pull requests, and review process, and leave documentation so your team keeps ownership of the code."],
+    ],
+  },
+  "ai-workflow-automation": {
+    label: "AI workflow automation",
+    title: "AI Workflow Automation Services",
+    description:
+      "AI workflow automation for U.S. businesses: document extraction, email triage, and data entry handled by language models with human review where it matters.",
+    eyebrow: "AI-assisted process automation",
+    headline: "Use AI where it removes real work, with people in control of decisions",
+    intro:
+      "Language models are good at reading documents, emails, and free text that rule-based automation cannot handle. We add them to existing workflows with validation, audit trails, and a human review step for anything that carries risk.",
+    pains: [
+      "Staff read invoices, forms, or emails just to retype the same fields into another system.",
+      "Requests arrive by email in different formats and someone has to sort and route each one.",
+      "A previous AI pilot produced impressive demos but no reliable process anyone uses daily.",
+    ],
+    deliverables: [
+      "Selection of the workflow steps where AI is useful and the ones that should stay rule-based.",
+      "Extraction, classification, or summarization connected to your current tools through APIs.",
+      "Confidence checks, human review queues, and logs for every automated decision.",
+      "An evaluation set built from your own examples to measure accuracy before and after launch.",
+    ],
+    fit: "Best for teams handling a steady volume of documents, emails, or requests where the information is predictable but the format is not.",
+    faqs: [
+      ["Will AI make decisions without human approval?", "Only where you decide the risk is acceptable. Approvals, payments, and anything customer-facing can stay behind a review step, with the model preparing the work instead of finalizing it."],
+      ["What happens to our data?", "We agree on the data flow before building: which provider processes it, under what terms, and what is stored. Sensitive fields can be masked or kept out of the model entirely."],
+      ["How is this different from your workflow automation service?", "Workflow automation connects systems with fixed rules. AI workflow automation adds a model for the steps that require reading or interpreting unstructured content, and usually builds on the same integrations."],
     ],
   },
 } as const;

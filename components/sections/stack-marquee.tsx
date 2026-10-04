@@ -2,10 +2,11 @@
 
 import { FadeIn } from "@/components/animate/fade-in";
 import { cn } from "@/lib/utils";
-import { Cpu, Lock, Cloud, Braces, Database, Gauge, Boxes, Globe, Smartphone, Palette } from "lucide-react";
+import { Cpu, Lock, Cloud, Braces, Database, Gauge, Boxes, Globe, Smartphone, Palette, Gem } from "lucide-react";
 
 const techItems = [
   { icon: Braces, label: "Next.js" },
+  { icon: Gem, label: "Ruby on Rails" },
   { icon: Database, label: "PostgreSQL" },
   { icon: Boxes, label: "Docker" },
   { icon: Cloud, label: "AWS" },
