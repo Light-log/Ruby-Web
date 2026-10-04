@@ -90,6 +90,6 @@ web y de aplicaciones · Desarrollo en Ruby on Rails
 | Clutch | Perfil gratuito enviado, en revisión (7–10 días hábiles). Sede: Albuquerque, NM. Servicios 40/20/20/10/10 | Pedir 3–5 reseñas a clientes reales desde «Reviews» |
 | DesignRush | Enviado, en revisión. Clientes: Lazo, Maintenance Check, Obelium App, Altum Legal, Titan Fitness (confirmados por Dav) | Portafolio (pide coste, plazo y año reales de cada proyecto) |
 | GoodFirms | Cuenta creada; el paso 1 no guarda («Please fix the highlighted fields» sin campo marcado) y su autofill da error de Edge Function | Reintentar más tarde o escribir a su soporte |
-| LinkedIn | Sin crear | Página de empresa (los administradores no son públicos) |
+| LinkedIn | Creada: linkedin.com/company/devruby (ID 146681420). Portada generada con ChatGPT Plus (`docs/marca/linkedin-cover.jpg`), logo, lema, resumen, 6 especialidades, botón «Contactar con nosotros» → /agenda. Enlazada en el pie y en `sameAs` del schema | No poner DEVRUBY como empresa actual en el perfil personal si se quiere anonimato |
 
 Las reseñas verificadas son lo que más pesa en el ranking de Clutch y GoodFirms.

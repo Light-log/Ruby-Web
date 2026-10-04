@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { site } from "@/lib/site";
 import { CookieSettingsLink } from "@/components/ui/cookie-settings-link";
 import { servicesCatalog, serviceSlugs } from "@/lib/services-catalog";
 
@@ -98,6 +99,15 @@ export function Footer() {
                 <MapPin className="h-4 w-4 text-crimson" />
                 Remoto &bull; LLC en Nuevo México, EE. UU.
               </div>
+              <a
+                href={site.linkedInUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-sm text-ivory-dim transition-colors hover:text-ivory"
+              >
+                <Linkedin className="h-4 w-4 text-crimson" />
+                LinkedIn
+              </a>
             </div>
           </div>
         </div>

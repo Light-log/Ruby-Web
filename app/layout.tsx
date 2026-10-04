@@ -110,6 +110,7 @@ function JsonLd() {
       "Application Security Audits",
     ],
     priceRange: "$$",
+    sameAs: ["https://www.linkedin.com/company/devruby"],
   };
 
   return (
