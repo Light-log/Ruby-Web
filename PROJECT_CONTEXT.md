@@ -222,3 +222,22 @@ La cuenta GA anterior (`G-SEZY0Q1JSN`) se perdió. Nueva propiedad **DEVRUBY Web
 USD, retención de eventos y de usuario a 14 meses (lo que promete `/privacidad`),
 medición mejorada activa y vinculada a Search Console (`sc-domain:devruby.org`).
 La propiedad «RDX Web» de la misma cuenta es de `rdx.devruby.org`: no tocar.
+
+## Diagnóstico de tráfico y blog — 2026-10-03
+
+Por qué entra poca gente (Search Console): 9 enlaces externos de 3 sitios
+(autoridad casi nula), páginas comerciales en posición 39–76, la marca rankea
+bien pero se busca poco, y el blog ya posiciona mejor que los servicios
+(posiciones 4,1 y 7,5). Estrategia: artículos long-tail con demanda comprobada
+en el autocompletado + enlaces (Google Business, Clutch, GoodFirms, DesignRush,
+LinkedIn, fichas de Lazo en las tiendas).
+
+Blog: `components/sections/blog-views.tsx` es la plantilla común de `/blog`
+(`lib/blog.ts`, es-ES) y `/us/blog` (`lib/us-blog.ts`, en-US); cada uno aporta
+su `BlogCopy`. Publicados el 03/10: make-vs-n8n-vs-zapier, chatbot-ia-whatsapp-empresas,
+automatizar-facturas-con-ia, automatizar-conciliacion-bancaria y, en inglés,
+rails-7-to-8-upgrade-guide y ai-automation-for-small-businesses. Hechos
+comprobados ese día: veto de Meta a chatbots de IA de propósito general en la
+API de WhatsApp desde el 15/01/2026; Verifactu aplazado a 01/01/2027 (IS) y
+01/07/2027 (resto) por el RDL 15/2025. Revisar si cambian. Ruby/Rails figura en
+`/servicios/desarrollo-de-software` (FAQ y capacidades) y en `/nosotros`.

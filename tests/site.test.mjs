@@ -311,12 +311,12 @@ test("SEO titles fit in Google's ~60-character limit with the « | DEVRUBY» suf
     }
   }
   // En el blog `title` es el H1: si pasa de 50, el artículo necesita `seoTitle`.
-  const blog = fs.readFileSync("lib/blog.ts", "utf8");
+  const blog = fs.readFileSync("lib/blog.ts", "utf8") + fs.readFileSync("lib/us-blog.ts", "utf8");
   for (const [, title, seo] of blog.matchAll(/^\s{4}title: "([^"]+)",\n(?:\s{4}seoTitle: "([^"]+)",)?/gm)) {
     assert.ok((seo ?? title).length <= 50, `blog: "${seo ?? title}"`);
   }
   for (const [, desc] of blog.matchAll(/description:\s*"([^"]+)"/g)) assert.ok(desc.length <= 160, desc);
-  assert.match(fs.readFileSync("app/blog/[slug]/page.tsx", "utf8"), /post\.seoTitle \?\? post\.title/);
+  assert.match(fs.readFileSync("components/sections/blog-views.tsx", "utf8"), /post\.seoTitle \?\? post\.title/);
 });
 
 test("U.S. hub links the Rails and AI automation pages", () => {
@@ -333,4 +333,18 @@ test("home has no blocking intro and the cookie banner does not wait for one", (
   const banner = fs.readFileSync("components/ui/consent-banner.tsx", "utf8");
   assert.doesNotMatch(banner, /HERO_INTRO|ruby-hero-intro/);
   assert.match(banner, /setTimeout\(\(\) => setVisible\(true\), INITIAL_BANNER_DELAY_MS\)/);
+});
+
+test("U.S. blog reuses the shared views, is in English and links to real pages", () => {
+  const data = fs.readFileSync("lib/us-blog.ts", "utf8");
+  assert.match(data, /basePath: "\/us\/blog"/);
+  assert.match(data, /locale: "en-US"/);
+  for (const [, href] of data.matchAll(/href: "(\/us\/[a-z0-9-]+)"/g)) {
+    assert.match(fs.readFileSync("lib/us-campaign.ts", "utf8"), new RegExp(`"${href.split("/")[2]}":`), href);
+  }
+  assert.match(fs.readFileSync("app/sitemap.ts", "utf8"), /\/us\/blog\/\$\{post\.slug\}/);
+  assert.match(fs.readFileSync("app/us/page.tsx", "utf8"), /href="\/us\/blog"/);
+  for (const route of ["app/blog/page.tsx", "app/us/blog/page.tsx"]) {
+    assert.match(fs.readFileSync(route, "utf8"), /BlogIndexView/);
+  }
 });

@@ -68,6 +68,7 @@ const catalog = {
           "Portales de clientes y proveedores",
           "Sistemas de suscripción y roles",
           "Paneles administrativos y marketplaces",
+          "Desarrollo en Ruby y Ruby on Rails",
         ],
       },
       {
@@ -131,6 +132,11 @@ const catalog = {
         question: "¿Qué recibimos al final del proyecto?",
         answer:
           "El código, la documentación técnica y funcional, el entorno desplegado y una sesión de transferencia. El sistema queda operable por tu equipo, con o sin nuestro acompañamiento posterior.",
+      },
+      {
+        question: "¿Con qué lenguajes y tecnologías trabajáis?",
+        answer:
+          "Trabajamos con el lenguaje de programación Ruby y el framework Ruby on Rails, además de TypeScript, Next.js y PostgreSQL. También mantenemos y actualizamos aplicaciones Ruby on Rails existentes. Elegimos la tecnología según el sistema que ya tienes y el equipo que lo va a mantener.",
       },
     ],
   },

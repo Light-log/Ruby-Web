@@ -1,3 +1,5 @@
+import type { BlogCopy } from "@/components/sections/blog-views";
+
 /**
  * Artículos del blog. Contenido propio, sin métricas inventadas ni testimonios.
  * Cada entrada enlaza a la página de servicio que responde a la misma intención
@@ -25,6 +27,38 @@ export type BlogPost = {
   sections: BlogSection[];
   takeaways: string[];
   related: { href: string; label: string }[];
+};
+
+export const blogCopy: BlogCopy = {
+  basePath: "/blog",
+  lang: "es",
+  locale: "es-ES",
+  ogLocale: "es_ES",
+  crumbs: [{ name: "Inicio", url: "https://devruby.org" }],
+  blogName: "Blog de DEVRUBY",
+  indexTitle: "Blog: criterio técnico para operaciones que crecen",
+  indexDescription:
+    "Artículos prácticos sobre software a medida, integración de sistemas, automatización administrativa y seguridad de aplicaciones, del equipo de DEVRUBY.",
+  heading: ["Criterio técnico para", "operaciones que crecen"],
+  intro:
+    "Lo que revisamos en las primeras conversaciones con empresas: cuándo construir, qué integrar primero, cómo automatizar con trazabilidad y cómo leer un informe de seguridad. Sin cifras inventadas ni promesas genéricas.",
+  agendaHref: "/agenda",
+  t: {
+    read: "Leer artículo",
+    back: "Volver al blog",
+    author: "Equipo DEVRUBY",
+    minRead: "min de lectura",
+    summary: "En resumen",
+    related: "Relacionado",
+    more: "Más artículos",
+    caseTitle: "¿Tienes un caso parecido?",
+    caseText:
+      "Cuéntanos el proceso, los sistemas que intervienen y el resultado que necesitas. Revisamos el caso en una consulta inicial de 30 minutos.",
+    ctaTitle: "¿Quieres revisar tu caso con contexto?",
+    ctaText:
+      "Cuéntanos el proceso, los sistemas implicados y el resultado que necesitas. Prepararemos la conversación para aprovechar los 30 minutos.",
+    cta: "Agenda una consulta",
+  },
 };
 
 export const blogPosts: BlogPost[] = [
@@ -345,6 +379,289 @@ export const blogPosts: BlogPost[] = [
       { href: "/agenda", label: "Consulta inicial de 30 minutos" },
     ],
   },
+  {
+    slug: "make-vs-n8n-vs-zapier",
+    title: "Make vs n8n vs Zapier: cuál elegir para automatizar tu empresa y cuándo programar a medida",
+    seoTitle: "Make vs n8n vs Zapier: cuál elegir",
+    description:
+      "Diferencias reales entre Make, n8n y Zapier: cómo cobra cada uno, dónde quedan tus datos y en qué punto conviene pasar a una integración a medida.",
+    eyebrow: "Automatización",
+    publishedAt: "2026-10-03",
+    updatedAt: "2026-10-03",
+    readingMinutes: 7,
+    intro:
+      "Make, n8n y Zapier resuelven el mismo problema: conectar aplicaciones para que los datos pasen de una a otra sin que nadie los copie. Las comparativas suelen quedarse en la lista de integraciones, pero en una empresa la elección depende de otras tres cosas: cómo crece la factura con el volumen, dónde se procesan los datos y quién va a mantener los flujos cuando fallen. Este artículo repasa esas diferencias y explica cuándo ninguna de las tres es la herramienta adecuada.",
+    sections: [
+      {
+        heading: "Qué tienen en común",
+        paragraphs: [
+          "Las tres funcionan con el mismo modelo: un disparador (llega un correo, se crea un contacto, cambia una fila) y una serie de pasos que leen, transforman y escriben datos en otras aplicaciones. Todas tienen conectores para las herramientas habituales —CRM, hojas de cálculo, correo, facturación— y un paso genérico de llamada HTTP para lo que no tiene conector.",
+          "Para un flujo sencillo entre dos SaaS conocidos, cualquiera de las tres lo resuelve en una tarde. Las diferencias aparecen cuando el flujo crece, se ejecuta miles de veces al mes o maneja datos sensibles.",
+        ],
+      },
+      {
+        heading: "Cómo cobra cada una (y por qué importa más que el precio)",
+        paragraphs: [
+          "No compares solo la cuota de entrada: compara la unidad que se factura, porque determina cuánto cuesta el mismo flujo cuando el volumen sube. Los precios cambian a menudo, así que consulta siempre la tabla vigente de cada proveedor.",
+        ],
+        list: [
+          "Zapier cobra por tarea: cada acción que se completa con éxito cuenta. Un flujo de cinco pasos que se ejecuta mil veces consume miles de tareas.",
+          "Make cobra por operación: cada módulo que se ejecuta cuenta, incluidos los de filtrado y transformación. Suele salir más barato que Zapier a igual volumen, pero los escenarios con muchos módulos lo encarecen.",
+          "n8n cobra por ejecución en su versión en la nube: un flujo completo cuenta una vez, tenga los pasos que tenga. Además puede instalarse en un servidor propio, y entonces el coste es el de ese servidor y su mantenimiento.",
+        ],
+      },
+      {
+        heading: "Dónde quedan tus datos",
+        paragraphs: [
+          "Con Zapier y Make, los datos que atraviesan el flujo se procesan en la infraestructura del proveedor. Para una empresa en España eso significa revisar su contrato de encargado del tratamiento, la región donde se alojan los datos y las transferencias internacionales, igual que con cualquier otro SaaS que trate datos personales de clientes o empleados.",
+          "n8n autoalojado cambia ese equilibrio: los datos se quedan en tu servidor, pero la seguridad, las copias de seguridad y las actualizaciones pasan a ser responsabilidad tuya. Su licencia permite el uso interno en la empresa; si piensas revenderlo como servicio a terceros, revisa sus condiciones antes.",
+        ],
+      },
+      {
+        heading: "Cuál elegir según el caso",
+        paragraphs: [
+          "Sin conocer el proceso no hay respuesta universal, pero estos criterios cubren la mayoría de los casos que vemos.",
+        ],
+        list: [
+          "Zapier: equipos no técnicos, pocos flujos y volumen bajo, cuando la prioridad es montarlo sin ayuda y la factura no preocupa.",
+          "Make: flujos con más lógica (ramas, iteraciones, transformaciones) y volumen medio, con alguien en el equipo cómodo con una herramienta visual más compleja.",
+          "n8n: volumen alto, datos que no deben salir de tu infraestructura o necesidad de código propio dentro de los pasos, siempre que haya alguien técnico para mantener el servidor.",
+        ],
+      },
+      {
+        heading: "Cuándo ninguna de las tres es la respuesta",
+        paragraphs: [
+          "Las plataformas de automatización son excelentes para conectar herramientas. Empiezan a sufrir cuando el flujo se convierte en una pieza central del negocio: reglas que cambian con cada cliente, validaciones que deben probarse antes de cada cambio, errores que no pueden perderse en un historial de ejecuciones o volúmenes en los que la factura mensual supera lo que costaría mantener código propio.",
+          "Ese es el punto en el que tiene sentido una integración a medida: un servicio pequeño, versionado y con pruebas, que hace exactamente lo que el proceso necesita y registra cada error donde alguien lo va a ver. No hace falta migrar todo de golpe; lo habitual es sacar de la plataforma solo el flujo crítico y dejar el resto donde funciona bien.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Compara la unidad de cobro (tarea, operación o ejecución), no solo la cuota de entrada.",
+      "Con datos personales, revisa dónde se procesan y el contrato de encargo del proveedor.",
+      "n8n autoalojado da control sobre los datos a cambio de mantener tú el servidor.",
+      "Cuando un flujo se vuelve crítico, una integración a medida suele ser más barata y fiable.",
+    ],
+    related: [
+      { href: "/servicios/automatizacion-de-procesos", label: "Automatización de procesos empresariales" },
+      { href: "/espana/integracion-api-sistemas", label: "Integración de APIs y sistemas en España" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
+  {
+    slug: "chatbot-ia-whatsapp-empresas",
+    title: "Chatbot con IA en WhatsApp para empresas: qué puede hacer, qué no y qué exige Meta",
+    seoTitle: "Chatbot con IA en WhatsApp para empresas",
+    description:
+      "Qué necesita una empresa para poner un chatbot con IA en WhatsApp: la API oficial, las plantillas, la ventana de 24 horas y las normas de Meta desde 2026.",
+    eyebrow: "IA aplicada",
+    publishedAt: "2026-10-03",
+    updatedAt: "2026-10-03",
+    readingMinutes: 7,
+    intro:
+      "WhatsApp es el canal por el que muchos clientes prefieren escribir, y un asistente con IA puede responder a cualquier hora las preguntas que hoy ocupan al equipo. Pero WhatsApp no es un canal abierto: Meta fija qué tipo de bots están permitidos, cuándo puede escribir la empresa y cuánto cuesta cada conversación. Antes de elegir proveedor conviene conocer esas reglas, porque condicionan el diseño del bot más que el modelo de IA que haya detrás.",
+    sections: [
+      {
+        heading: "La aplicación de WhatsApp Business no basta",
+        paragraphs: [
+          "La aplicación gratuita de WhatsApp Business sirve para atender desde un móvil, con respuestas rápidas y mensajes de ausencia. Para conectar un chatbot, un CRM o varios agentes a la vez hace falta la plataforma para empresas de WhatsApp (la API oficial), a la que se accede directamente a través de Meta o mediante un proveedor autorizado.",
+          "Con la API, el número queda gestionado por software: los mensajes entran en tu sistema, el bot responde y, cuando hace falta, la conversación pasa a una persona. Es la base de cualquier chatbot serio en WhatsApp.",
+        ],
+      },
+      {
+        heading: "Las reglas que condicionan el diseño",
+        paragraphs: [
+          "Tres normas de la plataforma afectan directamente a lo que el bot puede hacer.",
+        ],
+        list: [
+          "Ventana de 24 horas: después del último mensaje del cliente, la empresa puede responder libremente durante 24 horas. Fuera de esa ventana solo puede escribir con plantillas aprobadas previamente por Meta.",
+          "Plantillas y coste: los mensajes que inicia la empresa (recordatorios, avisos, promociones) usan plantillas que Meta clasifica por categoría y cobra según la categoría y el país del destinatario. Consulta la tabla de precios vigente antes de calcular el coste.",
+          "Consentimiento: el cliente debe haber aceptado recibir mensajes de la empresa por WhatsApp. Sin ese consentimiento, además del problema legal, el número se arriesga a bloqueos.",
+        ],
+      },
+      {
+        heading: "Qué tipo de bot permite Meta desde 2026",
+        paragraphs: [
+          "Desde el 15 de enero de 2026, los términos de la plataforma no permiten asistentes de IA de propósito general, es decir, bots cuyo producto es conversar sobre cualquier tema, como un ChatGPT dentro de WhatsApp. Lo que sí está permitido es lo que la plataforma siempre ha buscado: bots al servicio de un negocio concreto.",
+          "En la práctica, un chatbot de empresa debe ceñirse a su función: atención al cliente, reservas y citas, estado de pedidos, preguntas sobre productos o servicios, cualificación de contactos comerciales. La IA puede entender preguntas escritas de cualquier forma y redactar respuestas naturales, siempre que el bot no se convierta en un asistente genérico.",
+        ],
+      },
+      {
+        heading: "Qué debe hacer bien un chatbot con IA",
+        paragraphs: [
+          "La diferencia entre un bot útil y uno que frustra a los clientes no está en el modelo, sino en los límites que se le ponen.",
+        ],
+        list: [
+          "Responder solo con información de la empresa (catálogo, horarios, condiciones, estado del pedido) y decir que no sabe cuando la pregunta se sale de ahí.",
+          "Pasar la conversación a una persona de forma visible, con el historial, cuando el cliente lo pide o el caso lo requiere.",
+          "No prometer lo que solo puede decidir una persona: devoluciones fuera de política, descuentos o plazos.",
+          "Registrar cada conversación para revisar errores y mejorar las respuestas con casos reales.",
+          "Tratar los datos personales con la misma base legal e información al cliente que el resto de canales.",
+        ],
+      },
+      {
+        heading: "Por dónde empezar",
+        paragraphs: [
+          "Revisa las conversaciones de un mes: casi siempre un puñado de preguntas concentra la mayor parte del volumen. Ese es el primer alcance del bot. Conecta solo las fuentes que necesita para responderlas —catálogo, agenda, sistema de pedidos— y define desde el principio cuándo deriva a una persona.",
+          "Es el enfoque con el que construimos RubyQ, nuestra plataforma de bots de IA para WhatsApp y otros canales: flujos con IA acotados al negocio y derivación a agentes humanos en el mismo panel. Si tu caso necesita integrarse con sistemas propios, lo revisamos en una consulta inicial.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Para un chatbot en WhatsApp hace falta la API oficial, no la aplicación Business.",
+      "Fuera de la ventana de 24 horas solo se escribe con plantillas aprobadas y de pago.",
+      "Desde enero de 2026 Meta solo permite bots al servicio de un negocio, no asistentes generales.",
+      "Un buen bot conoce sus límites y deriva a una persona con el historial.",
+    ],
+    related: [
+      { href: "/servicios/ia-aplicada", label: "Automatización con IA para empresas" },
+      { href: "/servicios/automatizacion-de-procesos", label: "Automatización de procesos empresariales" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
+  {
+    slug: "automatizar-facturas-con-ia",
+    title: "Cómo automatizar facturas con IA: de la bandeja de entrada al ERP con revisión humana",
+    seoTitle: "Cómo automatizar facturas con IA",
+    description:
+      "Cómo extraer con IA los datos de las facturas de proveedores, validarlos antes de que lleguen al ERP y dejar en manos de una persona solo los casos dudosos.",
+    eyebrow: "Automatización con IA",
+    publishedAt: "2026-10-03",
+    updatedAt: "2026-10-03",
+    readingMinutes: 7,
+    intro:
+      "Registrar facturas de proveedores es uno de los trabajos administrativos más repetitivos de una pyme: abrir el correo, descargar el PDF, leer el NIF, la fecha, la base, el IVA y el total, y teclearlo en el ERP o en la hoja que se envía a la gestoría. Es también uno de los casos en los que la IA funciona bien, porque los datos son siempre los mismos aunque cada proveedor los presente a su manera. Este artículo describe un flujo realista, con las validaciones que evitan que un error llegue a la contabilidad.",
+    sections: [
+      {
+        heading: "Primero, separa lo que no necesita IA",
+        paragraphs: [
+          "Si un proveedor ya envía factura electrónica estructurada (por ejemplo, en formato Facturae o en un XML de su ERP), los datos se leen directamente del fichero, sin interpretar nada. Lo mismo ocurre con plataformas que ofrecen exportación o API. Esos casos se integran con reglas fijas y son más fiables que cualquier modelo.",
+          "La IA aporta en el resto: PDF generados por programas distintos, facturas escaneadas o fotografiadas, tiques y documentos con formatos que cambian. Ahí es donde hoy una persona lee y teclea.",
+        ],
+      },
+      {
+        heading: "El flujo, paso a paso",
+        paragraphs: [
+          "Un flujo de facturas con IA que funciona en producción suele tener estas etapas.",
+        ],
+        list: [
+          "Captura: un buzón dedicado (facturas@) o una carpeta compartida donde llegan todos los documentos.",
+          "Extracción: el modelo lee el documento y devuelve los campos en un formato fijo: emisor, NIF, número, fecha, base imponible por tipo de IVA, cuotas, retenciones, total y, si hace falta, las líneas.",
+          "Validación automática: reglas que comprueban lo que la IA no debe dar por bueno (ver la siguiente sección).",
+          "Revisión: los documentos que pasan todas las validaciones siguen adelante; los demás van a una cola donde una persona corrige el dato marcado, no la factura entera.",
+          "Registro: los datos validados se envían al ERP por su API o se exportan en el formato que usa la gestoría, con el PDF original enlazado.",
+        ],
+        ordered: true,
+      },
+      {
+        heading: "Las validaciones que evitan errores",
+        paragraphs: [
+          "La extracción con IA acierta en la mayoría de los documentos, pero no en todos, y un importe mal leído en contabilidad cuesta más que el tiempo ahorrado. Por eso las comprobaciones no dependen del modelo: son reglas.",
+        ],
+        list: [
+          "La suma de bases y cuotas coincide con el total, y los tipos de IVA son válidos.",
+          "El NIF tiene un formato correcto y corresponde a un proveedor dado de alta.",
+          "El número de factura no se ha registrado antes para ese proveedor (evita duplicados por reenvíos).",
+          "La fecha es coherente con el periodo contable abierto.",
+          "Si existe pedido o albarán, el importe cuadra dentro de una tolerancia acordada.",
+        ],
+      },
+      {
+        heading: "Qué pasa con Verifactu",
+        paragraphs: [
+          "Verifactu regula los sistemas con los que las empresas emiten sus propias facturas, no la recepción de las de proveedores. Tras el aplazamiento del Real Decreto-ley 15/2025, será obligatorio desde el 1 de enero de 2027 para los contribuyentes del Impuesto sobre Sociedades y desde el 1 de julio de 2027 para el resto de obligados.",
+          "Automatizar la entrada de facturas recibidas no choca con Verifactu. Si además quieres automatizar la emisión, el software que genere tus facturas debe cumplir sus requisitos; conviene confirmarlo con tu proveedor de facturación o tu asesoría.",
+        ],
+      },
+      {
+        heading: "Cómo empezar sin cambiar de ERP",
+        paragraphs: [
+          "Elige un mes de facturas reales y úsalo como banco de pruebas: mide cuántas extrae bien el sistema y cuántas acaban en revisión antes de conectarlo a la contabilidad. Empieza con los proveedores de más volumen y deja la integración con el ERP para cuando las validaciones estén afinadas.",
+          "El resultado esperable no es eliminar a la persona que registra facturas, sino que deje de teclear y dedique su tiempo a resolver las excepciones, que es donde realmente aporta.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Las facturas estructuradas se integran con reglas; la IA es para PDF, escaneos y formatos variables.",
+      "Las validaciones (sumas, NIF, duplicados, periodo) son reglas fijas, no confianza en el modelo.",
+      "Los casos dudosos van a una cola de revisión donde se corrige solo el dato marcado.",
+      "Verifactu afecta a la emisión de facturas, obligatoria desde 2027 según el tipo de contribuyente.",
+    ],
+    related: [
+      { href: "/servicios/ia-aplicada", label: "Automatización con IA para empresas" },
+      { href: "/espana/automatizacion-de-procesos", label: "Automatización de procesos para empresas en España" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
+  {
+    slug: "automatizar-conciliacion-bancaria",
+    title: "Automatizar la conciliación bancaria en una pyme: del extracto al asiento sin copiar y pegar",
+    seoTitle: "Automatizar la conciliación bancaria en una pyme",
+    description:
+      "Cómo automatizar la conciliación bancaria: qué datos del banco usar, las reglas que cruzan cobros y pagos con facturas y qué hacer con lo que no cuadra.",
+    eyebrow: "Automatización",
+    publishedAt: "2026-10-03",
+    updatedAt: "2026-10-03",
+    readingMinutes: 6,
+    intro:
+      "Conciliar es comprobar que cada movimiento del banco corresponde a algo registrado en la contabilidad: un cobro a una factura emitida, un pago a una factura de proveedor, una comisión a su gasto. En muchas pymes se hace a mano con el extracto en una pantalla y el ERP en otra, y se acumula hasta el cierre del mes. Automatizarla no exige cambiar de banco ni de ERP; exige ordenar de dónde salen los datos y escribir bien las reglas de cruce.",
+    sections: [
+      {
+        heading: "Revisa primero lo que ya tienes",
+        paragraphs: [
+          "Muchos ERP y programas de contabilidad incluyen un módulo de conciliación que importa extractos y propone cruces. Antes de construir nada, comprueba si está activado y por qué no se usa: a veces el problema es que las facturas no llevan una referencia que el banco pueda devolver, no la falta de una herramienta.",
+        ],
+      },
+      {
+        heading: "De dónde salen los datos del banco",
+        paragraphs: [
+          "Hay tres vías habituales, de menos a más automática.",
+        ],
+        list: [
+          "Exportación manual en Excel o CSV desde la banca online: sirve para empezar, pero depende de que alguien la descargue.",
+          "Fichero de movimientos en Norma 43 (cuaderno 43 de la AEB), que la mayoría de bancos españoles ofrece y que los programas contables saben leer: el formato es estable y fiable.",
+          "Conexión automática a través de un proveedor de agregación bancaria autorizado bajo PSD2, que descarga los movimientos cada día sin intervención.",
+        ],
+      },
+      {
+        heading: "Las reglas de cruce",
+        paragraphs: [
+          "El corazón de la automatización son las reglas que deciden qué movimiento corresponde a qué apunte. Conviene aplicarlas en orden, de la más segura a la más flexible, y dejar sin conciliar lo que ninguna resuelve con certeza.",
+        ],
+        list: [
+          "Coincidencia exacta: mismo importe y una referencia reconocible (número de factura, de remesa o de cliente) en el concepto.",
+          "Importe y contraparte: mismo importe, mismo cliente o proveedor (por IBAN o nombre) y fecha dentro de un margen de días.",
+          "Uno a varios: una transferencia que paga varias facturas del mismo cliente y cuyo total coincide con la suma.",
+          "Movimientos recurrentes: comisiones, cuotas, nóminas o impuestos que se asignan por patrón de concepto a su cuenta contable.",
+        ],
+        ordered: true,
+      },
+      {
+        heading: "Lo que no cuadra",
+        paragraphs: [
+          "Siempre quedarán movimientos sin cruzar: pagos parciales, transferencias sin referencia, importes con diferencias por comisiones. Lo importante es que no se pierdan: deben ir a una lista de pendientes con el motivo por el que no se conciliaron, para que una persona los resuelva en minutos en lugar de revisar el extracto entero.",
+          "Aquí la IA puede ayudar sin decidir: sugerir el cliente probable a partir de un concepto mal escrito o proponer la cuenta contable de un gasto nuevo. La confirmación sigue siendo de una persona, y cada decisión queda registrada para la revisión de la gestoría.",
+        ],
+      },
+      {
+        heading: "Un detalle que multiplica el resultado",
+        paragraphs: [
+          "La mejor regla de cruce es la que no hace falta escribir: si las facturas emitidas piden que la transferencia incluya su número o una referencia de cliente, la mayoría de los cobros se concilian por coincidencia exacta. Es un cambio en la plantilla de factura que no cuesta nada y que suele ser el primer paso del proyecto.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Comprueba antes si el módulo de conciliación de tu ERP resuelve el caso.",
+      "Norma 43 o una conexión PSD2 dan datos bancarios estables sin descargas manuales.",
+      "Aplica las reglas de cruce de la más segura a la más flexible.",
+      "Lo que no cuadra va a una lista de pendientes con su motivo, no se pierde.",
+    ],
+    related: [
+      { href: "/servicios/automatizacion-de-procesos", label: "Automatización de procesos empresariales" },
+      { href: "/espana/automatizacion-de-procesos", label: "Automatización de procesos para empresas en España" },
+      { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
 ];
 
 export const blogSlugs = blogPosts.map((post) => post.slug);
@@ -357,8 +674,8 @@ export function isBlogSlug(slug: string): boolean {
   return blogSlugs.includes(slug);
 }
 
-export function formatPostDate(iso: string): string {
-  return new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
+export function formatPostDate(iso: string, locale = "es-ES"): string {
+  return new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
     new Date(`${iso}T00:00:00Z`)
   );
 }

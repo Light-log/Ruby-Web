@@ -8,8 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight, Users, Target, Heart, Lightbulb,
-  Rocket, Shield, Code2, Sparkles
-} from "lucide-react";
+  Rocket, Shield, Code2, Sparkles, Gem } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Nosotros",
@@ -63,6 +62,7 @@ const values = [
 
 const capabilities = [
   { icon: Code2, label: "Desarrollo Full-Stack" },
+  { icon: Gem, label: "Ruby y Ruby on Rails" },
   { icon: Rocket, label: "DevOps & Cloud" },
   { icon: Shield, label: "Ciberseguridad" },
   { icon: Sparkles, label: "Diseño UI/UX" },

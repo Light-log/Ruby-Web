@@ -4,6 +4,7 @@ import { spainServiceSlugs } from "@/lib/spain-campaign";
 import { usServiceSlugs } from "@/lib/us-campaign";
 import { SITE_URL } from "@/lib/seo";
 import { blogPosts, blogUpdatedAt } from "@/lib/blog";
+import { usBlogPosts } from "@/lib/us-blog";
 
 /**
  * Fecha de publicación del contenido, no del build. Con `new Date()` cada deploy
@@ -50,6 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...blogPosts.map<Entry>((post) => ({
       url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    })),
+
+    entry("/us/blog", 0.7, "weekly"),
+    ...usBlogPosts.map<Entry>((post) => ({
+      url: `${SITE_URL}/us/blog/${post.slug}`,
       lastModified: new Date(post.updatedAt),
       changeFrequency: "monthly",
       priority: 0.7,
