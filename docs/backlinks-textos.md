@@ -1,4 +1,10 @@
-# Menciones de DEVRUBY en blogs con permiso — textos listos para pegar
+# Menciones de DEVRUBY en blogs con permiso
+
+**Estado (07/10/2026): las 5 publicadas y comprobadas en la web pública**, vía API REST de WordPress
+con la sesión «WP Admin» de hPanel (`https://hpanel.hostinger.com/redirect/<dominio>?l=wpAdmin&domain=<dominio>`).
+Copias del contenido original de cada entrada en `~/.local/share/devruby-backlinks-backup/`
+(fuera del repo: es contenido de terceros); WordPress guarda además su propia revisión.
+Para deshacer: restaurar la revisión anterior en el editor de WordPress o pegar el contenido de la copia.
 
 Webs con permiso escrito de sus propietarios (según Dav, 07/10/2026). Criterio: solo entradas
 antiguas donde la mención es cierta y del tema; ni clones (seium.es / es.seium.university,
