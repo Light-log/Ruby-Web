@@ -249,3 +249,15 @@ y `/us/blog/rails-8-0-to-8-1-upgrade` (hechos de Rails 8.1 tomados de sus releas
 de WhatsApp sin cifras, solo el modelo por mensaje). El 03/10 se pidió indexación en Search Console de las
 10 URLs nuevas anteriores (Rails, IA, /us/blog y los 6 artículos): todas «Se ha solicitado la indexación».
 Ritmo objetivo: 1 artículo cada 2 semanas con demanda comprobada en autocompletado.
+
+## Revisión de avances — 2026-10-07
+
+- Search Console, últimos 7 días (datos hasta el 04/10): 60 impresiones, 0 clics, posición media 41.
+  Las páginas nuevas ya salen para sus consultas objetivo: `/us/ruby-on-rails-consulting` (20 impr.,
+  «ruby on rails consulting/company/consultant», pos. 50–87), `/blog/automatizar-facturas-con-ia`
+  («automatizar facturas», pos. 50), guía Rails 7→8 («rails 8», pos. 15), WhatsApp API (pos. 16),
+  conciliación (pos. 2,5 en «conciliación de pago»). 13/13 URLs nuevas con indexación solicitada.
+- GA4: 2 sesiones en 28 días, ambas pruebas internas. Solo mide a quien acepta cookies; con este
+  volumen la métrica útil es Search Console. Eventos clave: `book_consultation`, `contact_whatsapp`.
+- Google Business sin verificar; Clutch y DesignRush en revisión; GoodFirms bloqueado.
+- Herramienta global `gsc-indexar` (skill `herramientas`) para pedir indexación por lotes.
