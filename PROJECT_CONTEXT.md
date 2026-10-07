@@ -261,3 +261,10 @@ Ritmo objetivo: 1 artículo cada 2 semanas con demanda comprobada en autocomplet
   volumen la métrica útil es Search Console. Eventos clave: `book_consultation`, `contact_whatsapp`.
 - Google Business sin verificar; Clutch y DesignRush en revisión; GoodFirms bloqueado.
 - Herramienta global `gsc-indexar` (skill `herramientas`) para pedir indexación por lotes.
+
+## Clúster de Ruby on Rails — 2026-10-07
+
+Cuatro guías nuevas en `/us/blog` con demanda comprobada: rails-6-to-7-upgrade-guide,
+solid-queue-vs-sidekiq, rails-n-plus-one-queries y rails-8-authentication-vs-devise (hechos de las
+guías oficiales de Rails y del README de Solid Queue). Ya son 6 guías de Rails. Las páginas de servicio
+de EE. UU. muestran «Related guides» derivadas de `related` de cada post (sin lista paralela).

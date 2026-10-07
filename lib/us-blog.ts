@@ -253,6 +253,254 @@ export const usBlogPosts: BlogPost[] = [
       { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
     ],
   },
+  {
+    slug: "rails-6-to-7-upgrade-guide",
+    title: "Rails 6.1 to 7 Upgrade Guide: Zeitwerk, Cookie Rotation and the Path to 7.2",
+    seoTitle: "Rails 6 to 7 Upgrade Guide",
+    description:
+      "How to upgrade a production app from Rails 6.1 to 7.0, 7.1 and 7.2: Ruby versions, Zeitwerk, SHA256 cookie rotation, cache keys and the changes that break code.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+    readingMinutes: 8,
+    intro:
+      "Many business applications still run on Rails 6.1, which no longer receives security fixes. Getting to a supported version means passing through 7.0, 7.1 and 7.2, and the first of those steps contains the changes that most often break production: the autoloader, the digest used for cookies and cache keys, and the JavaScript tooling. This guide covers what to prepare and the mistakes that log users out or empty caches.",
+    sections: [
+      {
+        heading: "The version path and Ruby requirements",
+        paragraphs: [
+          "Upgrade one minor version at a time: 6.1 to 7.0, then 7.1, then 7.2. Rails 7.0 and 7.1 require Ruby 2.7.0 or newer, and Rails 7.2 requires Ruby 3.1.0 or newer, so plan a Ruby upgrade before the last step and deploy it on its own.",
+          "Before touching the Gemfile, make deprecation warnings fail the test suite on 6.1 and fix them. Every warning you leave behind becomes an error a version later.",
+        ],
+      },
+      {
+        heading: "Zeitwerk is mandatory",
+        paragraphs: [
+          "Rails 7.0 removes the classic autoloader: applications must run in zeitwerk mode, and the config.autoloader setter no longer exists. Apps that already switched in 6.x usually have nothing to do. Apps still on classic mode should switch first, on 6.1, and run bin/rails zeitwerk:check until it passes.",
+          "The usual problems are file names that do not match the constant they define, acronyms such as API or HTML that need inflection rules, and code in lib that relied on loose naming. Fix them while still on 6.1, where the change is isolated.",
+        ],
+      },
+      {
+        heading: "SHA256 for cookies and cache keys",
+        paragraphs: [
+          "Rails 7.0 changes the default digest of the key generator from SHA1 to SHA256. That key generator signs and encrypts cookies, so enabling the new default without preparation invalidates existing sessions and logs every user out.",
+          "The official approach is a cookie rotator: keep reading cookies created with SHA1 while writing new ones with SHA256, and remove the rotator after the old cookies have expired. The digest used by ActiveSupport::Digest also moves to SHA256, which changes cache keys and ETags, so expect a cold cache right after the switch and schedule it outside peak hours.",
+        ],
+      },
+      {
+        heading: "Other changes that bite",
+        paragraphs: [
+          "These are smaller, but they show up in real applications.",
+        ],
+        list: [
+          "button_to now renders a patch form when you pass a persisted Active Record object; check buttons that expected a POST.",
+          "request.content_type now returns the full header including the charset; use media_type when you only need the MIME type.",
+          "Sprockets becomes optional: declare sprockets-rails explicitly if your asset pipeline depends on it.",
+          "Webpacker is retired; existing apps can keep it during the upgrade, but plan the move to jsbundling-rails or importmap-rails as a separate project.",
+        ],
+      },
+      {
+        heading: "A safe rollout",
+        paragraphs: [
+          "Keep config.load_defaults on the old version, upgrade the framework, and enable the new defaults one at a time from the generated new_framework_defaults file, deploying between changes. Treat the cookie digest and cache digest as their own deploys with monitoring. Once the app is stable on 7.2, the next step is our Rails 7 to 8 guide.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Go 6.1 → 7.0 → 7.1 → 7.2, and upgrade Ruby to 3.1+ before 7.2.",
+      "Switch to Zeitwerk on 6.1 and run bin/rails zeitwerk:check.",
+      "Rotate cookies before adopting SHA256 or every user gets logged out.",
+      "Expect cache keys to change and enable new defaults one by one.",
+    ],
+    related: [
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
+      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+    ],
+  },
+  {
+    slug: "solid-queue-vs-sidekiq",
+    title: "Solid Queue vs Sidekiq: Should Your Rails App Migrate, and How",
+    seoTitle: "Solid Queue vs Sidekiq: Should You Migrate?",
+    description:
+      "Solid Queue vs Sidekiq for Rails background jobs: how each works, when a database-backed queue is enough, and how to migrate gradually without breaking jobs.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+    readingMinutes: 7,
+    intro:
+      "Rails 8 made Solid Queue the default Active Job backend, and many teams now ask whether they should drop Sidekiq and Redis. The answer depends less on benchmarks than on your job volume, the Sidekiq features you use and how much infrastructure you want to run. This guide compares both and explains a migration that can be done queue by queue.",
+    sections: [
+      {
+        heading: "How each one works",
+        paragraphs: [
+          "Sidekiq stores jobs in Redis and processes them with threads. It is mature, very fast, and has a large ecosystem; some features, such as batches and advanced rate limiting, are part of its paid Pro and Enterprise editions.",
+          "Solid Queue stores jobs in your relational database: MySQL, PostgreSQL, SQLite or MariaDB. It uses FOR UPDATE SKIP LOCKED where available so workers do not block each other, and it includes concurrency controls, recurring tasks defined in config/recurring.yml, and a dashboard through Mission Control Jobs. In Rails 8 it is configured by default with a separate queue database.",
+        ],
+      },
+      {
+        heading: "When Solid Queue is enough",
+        paragraphs: [
+          "For most business applications, background jobs are emails, exports, webhooks, imports and scheduled maintenance. At that volume a database-backed queue performs well and removes Redis from the stack: one less service to host, monitor, back up and secure.",
+        ],
+        list: [
+          "Your job volume is moderate and latency of a second or two is acceptable.",
+          "You use Sidekiq only through Active Job, without Sidekiq-specific APIs.",
+          "You want recurring jobs and concurrency limits without extra gems or paid tiers.",
+          "Your team prefers fewer moving parts over maximum throughput.",
+        ],
+      },
+      {
+        heading: "When to keep Sidekiq",
+        paragraphs: [
+          "Keep Sidekiq if you process very high job volumes, rely on Pro or Enterprise features, or call Sidekiq directly through Sidekiq::Job classes and sidekiq_options. Moving those workloads to the database adds write load to it, so measure before switching rather than migrating because it is the new default.",
+        ],
+      },
+      {
+        heading: "A gradual migration",
+        paragraphs: [
+          "Active Job lets you set the adapter per job class, which makes an incremental migration possible.",
+        ],
+        list: [
+          "Convert jobs that use Sidekiq APIs directly into Active Job classes first.",
+          "Run bin/rails solid_queue:install, review config/queue.yml and decide between a separate queue database or a single one.",
+          "Start the workers with bin/jobs or the Puma plugin (plugin :solid_queue) in a staging environment.",
+          "Move low-risk jobs first by setting self.queue_adapter = :solid_queue on those classes, and watch them in Mission Control Jobs.",
+          "Move recurring jobs to config/recurring.yml, then the rest, and remove Sidekiq and Redis only when no jobs remain in their queues.",
+        ],
+        ordered: true,
+      },
+    ],
+    takeaways: [
+      "Solid Queue removes Redis and covers typical business workloads.",
+      "Keep Sidekiq for very high volume or paid Pro/Enterprise features.",
+      "Convert direct Sidekiq jobs to Active Job before migrating.",
+      "Migrate per job class and retire Redis only when its queues are empty.",
+    ],
+    related: [
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
+      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+    ],
+  },
+  {
+    slug: "rails-n-plus-one-queries",
+    title: "Rails N+1 Queries: How to Detect Them and Fix Them for Good",
+    seoTitle: "Rails N+1 Queries: Detect and Fix Them",
+    description:
+      "What N+1 queries are in Rails, how to detect them with logs, Bullet, Prosopite and strict_loading, and when to use includes, preload or eager_load to fix them.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+    readingMinutes: 6,
+    intro:
+      "N+1 queries are the most common reason a Rails page that was fast in development becomes slow in production. They are easy to introduce and easy to miss, because each individual query is fast. This guide shows how to find them systematically and how to choose the right fix.",
+    sections: [
+      {
+        heading: "What an N+1 query is",
+        paragraphs: [
+          "An N+1 happens when code loads a list of records with one query and then runs one more query for each record to fetch an association. A page that lists 50 orders and shows each customer name runs 51 queries instead of 2. With 10 rows nobody notices; with 1,000 rows the page times out.",
+        ],
+      },
+      {
+        heading: "How to detect them",
+        paragraphs: [
+          "Combine several signals instead of relying on one.",
+        ],
+        list: [
+          "Development logs: repeated identical SELECT statements with different ids are the classic pattern.",
+          "Bullet: a gem that warns in development when a page triggers N+1 queries or loads associations it never uses.",
+          "Prosopite: detects N+1 patterns from the queries actually executed, with fewer false positives in complex code.",
+          "strict_loading: mark a relation, a model or the whole app with strict loading so lazy-loading an association raises an error in tests.",
+          "Production monitoring: an APM that shows queries per request points to the endpoints worth fixing first.",
+        ],
+      },
+      {
+        heading: "Choosing the fix",
+        paragraphs: [
+          "Rails offers three ways to load associations in advance, and the right one depends on what you do with the data.",
+        ],
+        list: [
+          "preload runs a separate query per association; it is the safest default when you only display associated data.",
+          "eager_load uses a single query with LEFT OUTER JOIN; use it when you filter or order by columns of the association.",
+          "includes lets Rails choose between the two, and switches to eager_load when you reference the association in conditions.",
+        ],
+      },
+      {
+        heading: "Keeping them from coming back",
+        paragraphs: [
+          "Fixing today's N+1s is half the job. Enable strict_loading in the test suite or on the models that matter, keep Bullet or Prosopite active in development and CI, and add a request spec that asserts a maximum number of queries for the heaviest pages. Counter caches help for counts, and serializers or view components should receive already-loaded data instead of querying on their own.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Each query is fast; the cost is their number, so measure queries per request.",
+      "Use logs, Bullet or Prosopite, and strict_loading in tests to find them.",
+      "preload to display, eager_load to filter or sort, includes when unsure.",
+      "Guard the heaviest pages with tests that limit query counts.",
+    ],
+    related: [
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/application-security-audit", label: "Application security audit" },
+      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+    ],
+  },
+  {
+    slug: "rails-8-authentication-vs-devise",
+    title: "Rails 8 Authentication Generator vs Devise: Which One Should You Use?",
+    seoTitle: "Rails 8 Authentication vs Devise",
+    description:
+      "What the Rails 8 authentication generator creates, what it leaves out, and when Devise is still the better choice for a production Rails application.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+    readingMinutes: 6,
+    intro:
+      "Rails 8 added a built-in authentication generator, and new projects now face a choice that used to be automatic: generate the code or install Devise. Both are valid. The difference is how much you want to own and how many features you need on day one.",
+    sections: [
+      {
+        heading: "What the Rails 8 generator creates",
+        paragraphs: [
+          "Running bin/rails generate authentication adds a User model with has_secure_password, a Session model and a Current model, a SessionsController and a PasswordsController, a PasswordsMailer for password resets, an Authentication concern included in ApplicationController, the login and reset views, migrations for users and sessions, and the bcrypt gem.",
+          "It does not include sign-up. The official guide is explicit that you implement your own registration flow, views and routes.",
+        ],
+      },
+      {
+        heading: "What Devise adds",
+        paragraphs: [
+          "Devise is a mature engine with modules you enable as needed: registrations, email confirmation, account locking after failed attempts, session timeouts, remember-me, sign-in tracking and integration with OmniAuth for social and SSO logins. It also has a large ecosystem of extensions, for example for two-factor authentication.",
+        ],
+      },
+      {
+        heading: "How to choose",
+        paragraphs: [
+          "Consider who maintains the code and which requirements are already on the table.",
+        ],
+        list: [
+          "Choose the generator for internal tools and small products where login and password reset are enough, and where you prefer readable code in your own repository over a dependency.",
+          "Choose Devise when you need confirmation emails, account locking, OmniAuth or SSO from the start, or when the team already knows it well.",
+          "For existing apps on Devise, there is rarely a business reason to migrate; the risk of breaking login usually outweighs the benefit.",
+        ],
+      },
+      {
+        heading: "Security either way",
+        paragraphs: [
+          "Neither option is secure by default without review. Rate-limit login and password reset endpoints, make reset tokens expire, avoid revealing whether an email exists, log authentication events and add two-factor authentication for administrative accounts. A focused security review of the login flow is one of the cheapest ways to reduce risk in a Rails application.",
+        ],
+      },
+    ],
+    takeaways: [
+      "The Rails 8 generator gives you login, sessions and password reset, but not sign-up.",
+      "Devise brings registrations, confirmation, locking and OmniAuth out of the box.",
+      "Generator for small apps you want to own; Devise for richer requirements.",
+      "Review rate limits, token expiry and 2FA whichever you choose.",
+    ],
+    related: [
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/application-security-audit", label: "Application security audit" },
+      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+    ],
+  },
 ];
 
 export const usBlogSlugs = usBlogPosts.map((post) => post.slug);

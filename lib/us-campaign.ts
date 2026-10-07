@@ -128,7 +128,6 @@ export const usServices = {
       "Performance and security fixes backed by profiling and tools such as Brakeman and bundler-audit.",
     ],
     fit: "Best for teams that own a Rails application in production, or are starting one, and need senior help without hiring a full in-house team.",
-    guide: { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide: what breaks and how to plan it" },
     faqs: [
       ["Can you take over an existing Rails application?", "Yes. We start with a read-only assessment of the repository, dependencies, tests, and deployment so the first scope is based on what the code actually needs, not on assumptions."],
       ["Do you recommend rewriting old Rails apps?", "Rarely. An incremental upgrade usually preserves business rules that are hard to rediscover. A rewrite is discussed only when the assessment shows the existing code cannot be safely evolved."],
@@ -156,7 +155,6 @@ export const usServices = {
       "An evaluation set built from your own examples to measure accuracy before and after launch.",
     ],
     fit: "Best for teams handling a steady volume of documents, emails, or requests where the information is predictable but the format is not.",
-    guide: { href: "/us/blog/ai-automation-for-small-businesses", label: "AI automation for small businesses: what to automate first" },
     faqs: [
       ["Will AI make decisions without human approval?", "Only where you decide the risk is acceptable. Approvals, payments, and anything customer-facing can stay behind a review step, with the model preparing the work instead of finalizing it."],
       ["What happens to our data?", "We agree on the data flow before building: which provider processes it, under what terms, and what is stored. Sensitive fields can be masked or kept out of the model entirely."],
