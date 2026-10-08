@@ -21,6 +21,10 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 
 ## Prioridad 1 — ventas de España, primeros 60 días
 
+### Calendario de contenido y redes
+
+Ver `docs/calendario-contenido.md`: 1 artículo por semana (alternando Rails en inglés y negocio en español) + LinkedIn 2/sem, Instagram 2/sem y Facebook 2/sem. Semana 1 empieza el 12/10/2026.
+
 ### Canal 1: búsqueda orgánica
 
 - Blog publicado el 16/09 en `/blog` (4 artículos). Ritmo objetivo: 1 artículo cada 2 semanas, cada uno atado a una consulta real de Search Console y enlazando a una landing. Subir `updatedAt` en `lib/blog.ts` al retocar un artículo.
