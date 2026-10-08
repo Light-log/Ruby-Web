@@ -17,6 +17,10 @@ Antes de escribir: comprobar en Search Console si ya hay impresiones de esa bús
 
 Revisión de resultados en Search Console: **a mediados de noviembre** (semana 6).
 
+Importado en Google Calendar (cuenta personal de Dav, calendario principal) el 08/10/2026: 13 eventos a las 9:00
+hora de Venezuela, con recordatorio 30 min antes. Archivo: `docs/calendario-contenido.ics`. Para quitarlos,
+buscar «DEVRUBY ·» en Google Calendar.
+
 ## Redes sociales por semana
 
 | Red | Cuántas | Qué | Idioma |

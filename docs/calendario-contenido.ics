@@ -1,0 +1,187 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DEVRUBY//Calendario de contenido//ES
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Caracas
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0400
+TZNAME:-04
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:devruby-art-1@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261012T090000
+DTEND;TZID=America/Caracas:20261012T100000
+SUMMARY:DEVRUBY · Publicar artículo 1/8: Ruby on Rails vs Node.js vs Django for business apps in 2026
+DESCRIPTION:Sección: EN /us/blog\nBúsqueda objetivo: «ruby on rails vs django 2026»\, «ruby on rails vs node js»\nEnlazar a: https://devruby.org/us/ruby-on-rails-consulting\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-2@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261019T090000
+DTEND;TZID=America/Caracas:20261019T100000
+SUMMARY:DEVRUBY · Publicar artículo 2/8: Control de inventario: cuándo dejar Excel y pasar a un sistema
+DESCRIPTION:Sección: ES /blog\nBúsqueda objetivo: «control de inventario en excel»\nEnlazar a: https://devruby.org/servicios/desarrollo-de-software\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-3@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261026T090000
+DTEND;TZID=America/Caracas:20261026T100000
+SUMMARY:DEVRUBY · Publicar artículo 3/8: Rails API-only apps: when to use them and how to secure them
+DESCRIPTION:Sección: EN /us/blog\nBúsqueda objetivo: «rails api only»\, «rails api only authentication»\nEnlazar a: https://devruby.org/us/api-integration-services\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-4@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261102T090000
+DTEND;TZID=America/Caracas:20261102T100000
+SUMMARY:DEVRUBY · Publicar artículo 4/8: Integración de ERP y CRM: cómo conectarlos sin duplicar datos
+DESCRIPTION:Sección: ES /blog\nBúsqueda objetivo: «integracion erp y crm»\nEnlazar a: https://devruby.org/espana/integracion-api-sistemas\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-5@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261109T090000
+DTEND;TZID=America/Caracas:20261109T100000
+SUMMARY:DEVRUBY · Publicar artículo 5/8: Multi-tenant SaaS with Rails 8: approaches and trade-offs
+DESCRIPTION:Sección: EN /us/blog\nBúsqueda objetivo: «rails multi tenant»\, «rails 8 multi-tenant»\nEnlazar a: https://devruby.org/us/ruby-on-rails-consulting\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-6@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261116T090000
+DTEND;TZID=America/Caracas:20261116T100000
+SUMMARY:DEVRUBY · Publicar artículo 6/8: Automatizar Excel con IA o con Python
+DESCRIPTION:Sección: ES /blog\nBúsqueda objetivo: «automatizar excel con ia»\, «automatizar excel con python»\nEnlazar a: https://devruby.org/servicios/ia-aplicada\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-7@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261123T090000
+DTEND;TZID=America/Caracas:20261123T100000
+SUMMARY:DEVRUBY · Publicar artículo 7/8: Deploying Rails 8 with Kamal (and GitHub Actions)
+DESCRIPTION:Sección: EN /us/blog\nBúsqueda objetivo: «kamal deploy rails»\, «kamal deploy github actions»\nEnlazar a: https://devruby.org/us/ruby-on-rails-consulting\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-art-8@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261130T090000
+DTEND;TZID=America/Caracas:20261130T100000
+SUMMARY:DEVRUBY · Publicar artículo 8/8: CRM para pymes: ¿uno estándar o a medida?
+DESCRIPTION:Sección: ES /blog\nBúsqueda objetivo: «crm para pymes»\nEnlazar a: https://devruby.org/servicios/automatizacion-de-procesos\nAntes: comprobar en Search Console si ya hay impresiones de esa búsqueda.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-li-mar@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261013T090000
+DTEND;TZID=America/Caracas:20261013T093000
+SUMMARY:DEVRUBY · LinkedIn: compartir el artículo de la semana
+DESCRIPTION:Gancho + 3 ideas + enlace al artículo publicado el lunes. Inglés en semanas de Rails.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+RRULE:FREQ=WEEKLY;COUNT=8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-li-jue@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261015T090000
+DTEND;TZID=America/Caracas:20261015T093000
+SUMMARY:DEVRUBY · LinkedIn: consejo de la semana (sin enlace)
+DESCRIPTION:Un consejo o error común relacionado con el artículo\; texto o carrusel PDF.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+RRULE:FREQ=WEEKLY;COUNT=8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-igfb-mie@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261014T090000
+DTEND;TZID=America/Caracas:20261014T093000
+SUMMARY:DEVRUBY · Instagram + Facebook: carrusel
+DESCRIPTION:Carrusel de 5–7 diapositivas en español con lo esencial del artículo. Facebook: mismo carrusel + enlace al artículo. Imágenes con ChatGPT Plus (Chromium 9223).\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+RRULE:FREQ=WEEKLY;COUNT=8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-igfb-vie@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261016T090000
+DTEND;TZID=America/Caracas:20261016T093000
+SUMMARY:DEVRUBY · Instagram + Facebook: historia o reel
+DESCRIPTION:Historia o reel corto con un consejo + sticker de enlace a devruby.org/agenda. Facebook: publicación corta.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+RRULE:FREQ=WEEKLY;COUNT=8
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:devruby-gsc-review@devruby.org
+DTSTAMP:20261008T154048Z
+DTSTART;TZID=America/Caracas:20261116T090000
+DTEND;TZID=America/Caracas:20261116T094500
+SUMMARY:DEVRUBY · Revisar Search Console (posiciones de Rails y automatización)
+DESCRIPTION:¿Subieron las guías de Rails\, /servicios/automatizacion-de-procesos y el artículo de WhatsApp? ¿Hay clics? Ajustar el calendario según lo que Google ya muestra.\nDetalles y textos: docs/calendario-contenido.md (repo Ruby-Web).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Recordatorio
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
