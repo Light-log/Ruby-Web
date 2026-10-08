@@ -501,6 +501,74 @@ export const usBlogPosts: BlogPost[] = [
       { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
     ],
   },
+  {
+    slug: "ruby-on-rails-vs-node-vs-django",
+    title: "Ruby on Rails vs Node.js vs Django for Business Apps in 2026",
+    seoTitle: "Rails vs Node.js vs Django for Business Apps",
+    description:
+      "How to choose between Ruby on Rails, Node.js and Django for a business app in 2026: where each fits, the real trade-offs and the questions that decide.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-12",
+    updatedAt: "2026-10-12",
+    readingMinutes: 7,
+    intro:
+      "Rails, Node.js or Django? We hear the question in almost every discovery call for a new internal tool, SaaS or API. All three are mature and run serious products, so the honest answer depends less on benchmarks than on the kind of application you are building and on who will maintain it in two years. This guide compares them for business software, not for hello-world demos.",
+    sections: [
+      {
+        heading: "The short answer",
+        paragraphs: [
+          "Choose Rails when the product is a data-heavy business application, such as admin panels, internal tools, a B2B SaaS or an API, and you value shipping quickly on well-known conventions. Choose Node.js when your team already lives in JavaScript or TypeScript, or the product leans on real-time features. Choose Django when the application sits close to data analysis or machine learning in Python.",
+          "Any of the three is a defensible choice. A badly maintained app hurts more than picking the second-best framework.",
+        ],
+      },
+      {
+        heading: "Ruby on Rails: conventions and speed for business apps",
+        paragraphs: [
+          "Rails makes many decisions for you: project structure, database access with Active Record, background jobs, email, file storage and security defaults. For applications built around forms, records, roles and workflows, that means less glue code and faster delivery. With Hotwire, many interactive screens can be built without a separate JavaScript front end.",
+          "The trade-offs: the Rails talent pool is smaller than JavaScript's, and the framework rewards teams that follow its conventions. Performance is rarely the bottleneck for business apps, and recent Ruby versions include the YJIT just-in-time compiler.",
+        ],
+      },
+      {
+        heading: "Node.js: one language and a huge ecosystem",
+        paragraphs: [
+          "Node.js lets one team use JavaScript or TypeScript on both the front end and the back end, which simplifies hiring and sharing code. Its ecosystem is the largest of the three, and its event-driven model is a natural fit for real-time features such as chat, live dashboards or many simultaneous connections.",
+          "The cost is choice. Node.js is a runtime, not a full framework, so you assemble the stack yourself: framework, ORM, background jobs, authentication and structure. Frameworks such as NestJS or a full-stack setup with Next.js reduce that, but architecture decisions still weigh more on the team.",
+        ],
+      },
+      {
+        heading: "Django: Python and an admin out of the box",
+        paragraphs: [
+          "Django shares Rails' batteries-included philosophy and adds an automatically generated admin interface that is genuinely useful for back-office work. Its biggest advantage is Python: when the product needs data analysis, reporting or machine learning, keeping everything in one language avoids an extra service.",
+          "For typical CRUD-heavy business applications, Django and Rails deliver at a similar pace; the choice often comes down to which language the team and the surrounding systems already use.",
+        ],
+      },
+      {
+        heading: "The questions that actually decide",
+        paragraphs: [
+          "Before comparing frameworks, answer these with the people who will own the system.",
+        ],
+        list: [
+          "Who will maintain the code in two years, and which language do they know?",
+          "Is the product mostly forms, records and workflows, mostly real-time, or mostly data and models?",
+          "Which systems must it integrate with, and do they have good libraries in each language?",
+          "Can you hire or contract for that stack where you operate?",
+          "Is there an existing application, and would a rewrite be justified at all?",
+        ],
+        ordered: true,
+      },
+    ],
+    takeaways: [
+      "Rails: fastest path for data-heavy business apps, admin panels and APIs.",
+      "Node.js: one language across the stack and strong real-time support, with more decisions to make.",
+      "Django: Rails-like productivity plus Python for data and machine learning.",
+      "Pick by maintainers, product type and integrations, not by trend.",
+    ],
+    related: [
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/custom-internal-tools", label: "Custom internal tools" },
+      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+    ],
+  },
 ];
 
 export const usBlogSlugs = usBlogPosts.map((post) => post.slug);
