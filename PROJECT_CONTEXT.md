@@ -268,3 +268,11 @@ Cuatro guías nuevas en `/us/blog` con demanda comprobada: rails-6-to-7-upgrade-
 solid-queue-vs-sidekiq, rails-n-plus-one-queries y rails-8-authentication-vs-devise (hechos de las
 guías oficiales de Rails y del README de Solid Queue). Ya son 6 guías de Rails. Las páginas de servicio
 de EE. UU. muestran «Related guides» derivadas de `related` de cada post (sin lista paralela).
+
+## Marketing fuera del repo — 2026-10-08
+
+Por decisión de Dav, todo lo de redes sociales, calendarios, fichas de directorios, textos de backlinks,
+recursos de marca y plantillas de contenido vive en `~/Repos-Utilitarios/Ruby-Sociales-y-Marketing`
+(repo git local propio). Este repo solo guarda la web. Los artículos del blog sí se publican aquí
+(`lib/blog.ts`, `lib/us-blog.ts`): el de cada semana se prepara en una rama `contenido/semana-NN`
+y se fusiona en `main` el lunes de publicación.
