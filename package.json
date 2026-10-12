@@ -20,7 +20,7 @@
     "lucide-react": "^0.469.0",
     "motion": "^12.42.2",
     "next": "^15.5.25",
-    "nodemailer": "^9.1.1",
+    "nodemailer": "^10.1.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwind-merge": "^2.5.4",
