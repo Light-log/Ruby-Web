@@ -24,8 +24,10 @@ const sections: LegalSection[] = [
       <p>
         Las cookies y tecnologías similares, como el almacenamiento local del
         navegador, guardan información en tu dispositivo. Las técnicas son
-        necesarias para que el sitio funcione; las de analítica solo se activan
-        si las aceptas.
+        necesarias para que el sitio funcione. Las de analítica, en el Espacio
+        Económico Europeo, Reino Unido y Suiza, solo se activan si las aceptas;
+        en el resto de países se activan al entrar y puedes desactivarlas
+        cuando quieras.
       </p>
     ),
   },
@@ -61,7 +63,7 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          Puedes aceptar, rechazar o cambiar tu elección cuando quieras desde{" "}
+          Puedes aceptar, rechazar o desactivar la analítica cuando quieras desde{" "}
           <CookieSettingsLink className="font-semibold text-crimson underline underline-offset-4" />
           , también disponible en el pie de página. Si retiras el consentimiento,
           Google Analytics deja de cargarse y borramos sus cookies.
@@ -81,7 +83,7 @@ export default function CookiesPage() {
     <LegalPage
       title="Política de cookies"
       intro="Qué cookies usa este sitio, para qué sirven y cómo cambiar tu elección."
-      updated="25 de septiembre de 2026"
+      updated="12 de octubre de 2026"
       sections={sections}
     />
   );

@@ -89,8 +89,10 @@ const sections: LegalSection[] = [
             .
           </li>
           <li>
-            <strong>Google Analytics 4</strong> (Google): analítica, solo con tu
-            consentimiento.{" "}
+            <strong>Google Analytics 4</strong> (Google): analítica, con tu
+            consentimiento previo en el Espacio Económico Europeo, Reino Unido y
+            Suiza; en otros países se activa al entrar y puedes desactivarla en
+            «Configurar cookies».{" "}
             <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
               Política de Google
             </a>
@@ -199,7 +201,7 @@ export default function PrivacidadPage() {
     <LegalPage
       title="Política de Privacidad"
       intro={`Cómo trata ${site.legalName} los datos personales que recoge a través de este sitio web.`}
-      updated="25 de septiembre de 2026"
+      updated="12 de octubre de 2026"
       sections={sections}
     />
   );

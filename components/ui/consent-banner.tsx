@@ -20,6 +20,22 @@ type StoredConsent = {
   ts: number;
 };
 
+/**
+ * El RGPD exige consentimiento previo en el EEE, Reino Unido y Suiza; fuera, la analítica
+ * se activa y se puede desactivar. Sin geolocalización en el servidor se deduce por la zona
+ * horaria; si es europea, UTC (navegadores anti-huella) o desconocida, se pide igual.
+ */
+const CONSENT_TZ = /^(Europe|Atlantic|Arctic)\/|^(UTC|GMT|Etc\/.*)$|^America\/(Guadeloupe|Martinique|Cayenne|St_Barthelemy|Marigot)$|^Indian\/(Reunion|Mayotte)$/;
+
+function needsPriorConsent() {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return !tz || CONSENT_TZ.test(tz);
+  } catch {
+    return true;
+  }
+}
+
 function readConsent(): StoredConsent | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -45,6 +61,10 @@ export function ConsentBanner() {
     if (stored) {
       setAnalytics(stored.analytics);
       setAnalyticsGranted(stored.analytics);
+    } else if (!needsPriorConsent()) {
+      // Fuera de Europa: analítica activa sin banner; se desactiva desde «Configurar cookies».
+      setAnalytics(true);
+      setAnalyticsGranted(true);
     } else {
       initialBannerTimer = setTimeout(() => setVisible(true), INITIAL_BANNER_DELAY_MS);
     }
@@ -52,7 +72,7 @@ export function ConsentBanner() {
 
     const open = () => {
       const current = readConsent();
-      setAnalytics(current?.analytics ?? false);
+      setAnalytics(current?.analytics ?? !needsPriorConsent());
       setShowPrefs(true);
       setVisible(true);
     };

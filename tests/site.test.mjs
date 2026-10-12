@@ -275,6 +275,14 @@ test("legal pages, form consent and keyboard-safe buttons", () => {
   const banner = fs.readFileSync("components/ui/consent-banner.tsx", "utf8");
   assert.match(banner, /ga-disable-\$\{GA_ID\}/);
   assert.match(banner, /max-age=0; path=\/; domain=/);
+  // Consentimiento previo en Europa (y si la zona es UTC o desconocida); fuera, analítica activa.
+  const consentTz = eval(banner.match(/const CONSENT_TZ = (\/.+\/);/)[1]);
+  for (const tz of ["Europe/Madrid", "Europe/London", "Atlantic/Canary", "Arctic/Longyearbyen", "Indian/Reunion", "UTC", "Etc/GMT"]) {
+    assert.ok(consentTz.test(tz), tz);
+  }
+  for (const tz of ["America/New_York", "America/Caracas", "America/Mexico_City", "America/Bogota", "Asia/Tokyo"]) {
+    assert.ok(!consentTz.test(tz), tz);
+  }
 
   // Un <Button> dentro de un enlace debe renderizarse como span: nada de controles anidados.
   const files = fs.readdirSync("app", { recursive: true }).map((f) => `app/${f}`)
