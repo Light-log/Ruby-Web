@@ -276,3 +276,7 @@ recursos de marca y plantillas de contenido vive en `~/Repos-Utilitarios/Ruby-So
 (repo git local propio). Este repo solo guarda la web. Los artículos del blog sí se publican aquí
 (`lib/blog.ts`, `lib/us-blog.ts`): el de cada semana se prepara en una rama `contenido/semana-NN`
 y se fusiona en `main` el lunes de publicación.
+
+## RDX en el portafolio — 2026-10-12
+
+«ODAV (Odoo VE)» se sustituyó por **RDX** (primera tarjeta en la portada y en `/proyectos`, commit `407085d`): imagen `public/RDX.webp` (captura de la portada pública de rdx.devruby.org, sin datos de clientes), funciones vigentes de la 19.0.4.0.0 y enlace a `https://rdx.devruby.org`. Se retiró «Distribución homologada» e «Integración con bancos» (no verificables). Hostinger despliega solo tras el push (~3 min). `public/odoo.jpg` queda sin uso.
