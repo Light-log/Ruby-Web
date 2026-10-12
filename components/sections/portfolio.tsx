@@ -21,6 +21,16 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "RDX",
+    subtitle: "Sistema administrativo venezolano sobre Odoo 19",
+    description:
+      "Une facturación fiscal, retenciones, IGTF, tasa BCV, punto de venta e inventario en un solo sistema para empresas venezolanas, desde $10 al mes y con la migración incluida.",
+    tags: ["Odoo 19", "ERP", "Venezuela"],
+    image: "/RDX.webp",
+    ctaHref: "https://rdx.devruby.org",
+    ctaLabel: "Ver RDX",
+  },
+  {
     title: "RubyQ",
     subtitle: "Bots de IA omnicanal para atención al cliente",
     description:
@@ -71,16 +81,6 @@ const projects: Project[] = [
     image: "/Altum.webp",
     ctaHref: "https://app.altumiuris.com/",
     ctaLabel: "Ver proyecto",
-  },
-  {
-    title: "ODAV (Odoo VE)",
-    subtitle: "Distribución homologada + módulos locales",
-    description:
-      "Distribución de Odoo adaptada a Venezuela con módulos específicos, personalizaciones e integraciones para operaciones locales.",
-    tags: ["Odoo", "ERP", "Venezuela"],
-    image: "/odoo.jpg",
-    ctaHref: "/contacto",
-    ctaLabel: "Ver módulos",
   },
   {
     title: "Titan Fitness",

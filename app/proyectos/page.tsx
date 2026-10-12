@@ -55,6 +55,22 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "RDX",
+    subtitle: "Sistema administrativo venezolano sobre Odoo 19",
+    description:
+      "Une facturación fiscal, retenciones, IGTF, tasa BCV, punto de venta e inventario en un solo sistema para empresas venezolanas, desde $10 al mes y con la migración incluida.",
+    tags: ["Odoo 19", "ERP", "Venezuela", "POS"],
+    highlights: [
+      "Facturas en máquina fiscal TFHKA o imprenta digital, con IGTF y tasa BCV automática",
+      "Retenciones de IVA, ISLR y municipales con sus comprobantes, y libros de compras y ventas",
+      "Punto de venta fiscal e inventario, con migración desde Saint u otros sistemas",
+      "Instalador para Windows sin Docker y actualizaciones firmadas desde el propio sistema",
+    ],
+    image: "/RDX.webp",
+    ctaHref: "https://rdx.devruby.org",
+    ctaLabel: "Ver RDX",
+  },
+  {
     title: "RubyQ",
     subtitle: "Bots de IA omnicanal para atención al cliente",
     description:
@@ -135,22 +151,6 @@ const projects: Project[] = [
     image: "/Altum.webp",
     ctaHref: "https://app.altumiuris.com/",
     ctaLabel: "Ver proyecto",
-  },
-  {
-    title: "ODAV (Odoo VE)",
-    subtitle: "Distribución homologada + módulos locales",
-    description:
-      "Distribución de Odoo adaptada a Venezuela con módulos específicos, personalizaciones e integraciones para operaciones locales.",
-    tags: ["Odoo", "ERP", "Venezuela", "Python"],
-    highlights: [
-      "Módulos adaptados a legislación venezolana",
-      "Integración con bancos y pasarelas locales",
-      "Configuración de impuestos y retenciones",
-      "Soporte en español con equipo local",
-    ],
-    image: "/odoo.jpg",
-    ctaHref: "/contacto",
-    ctaLabel: "Ver módulos",
   },
   {
     title: "Titan Fitness",
