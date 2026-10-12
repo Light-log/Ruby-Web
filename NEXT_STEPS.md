@@ -25,6 +25,8 @@ Objetivo: convertir la infraestructura publicada en reuniones cualificadas y pri
 
 Ver `~/Repos-Utilitarios/Ruby-Sociales-y-Marketing/calendario/calendario-contenido.md`: 1 artículo por semana (alternando Rails en inglés y negocio en español) + LinkedIn 2/sem, Instagram 2/sem y Facebook 2/sem. Semana 1 empieza el 12/10/2026.
 
+- 12/10: semana 1 publicada (`/us/blog/ruby-on-rails-vs-node-vs-django`, indexación pedida) y ZIP en Drive. Dependencias parcheadas por el aviso de Hostinger (producción: 0 vulnerabilidades; quedan avisos solo de compilación en Tailwind 3 / ESLint 8, se quitan migrando a Tailwind 4). GSC 7 días: 813 impresiones, 3 clics, posición 41.
+
 ### Canal 1: búsqueda orgánica
 
 - Blog publicado el 16/09 en `/blog` (4 artículos). Ritmo objetivo: 1 artículo cada 2 semanas, cada uno atado a una consulta real de Search Console y enlazando a una landing. Subir `updatedAt` en `lib/blog.ts` al retocar un artículo.
