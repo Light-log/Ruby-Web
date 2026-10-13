@@ -276,6 +276,7 @@ recursos de marca y plantillas de contenido vive en `~/Repos-Utilitarios/Ruby-So
 (repo git local propio). Este repo solo guarda la web. Los artículos del blog sí se publican aquí
 (`lib/blog.ts`, `lib/us-blog.ts`): el de cada semana se prepara en una rama `contenido/semana-NN`
 y se fusiona en `main` el lunes de publicación.
+Contexto y próximos pasos de marketing: `PROJECT_CONTEXT.md` y `NEXT_STEPS.md` de esa carpeta.
 
 ## RDX en el portafolio — 2026-10-12
 
