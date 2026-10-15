@@ -99,10 +99,10 @@ const sections: LegalSection[] = [
             .
           </li>
           <li>
-            <strong>Calendly</strong>: reserva de reuniones. Se abre solo si pulsas
+            <strong>Cal.com</strong>: reserva de reuniones. Se abre solo si pulsas
             el enlace de agenda y tratará los datos que introduzcas allí.{" "}
-            <a href="https://calendly.com/privacy" target="_blank" rel="noreferrer">
-              Política de Calendly
+            <a href="https://cal.com/privacy" target="_blank" rel="noreferrer">
+              Política de Cal.com
             </a>
             .
           </li>

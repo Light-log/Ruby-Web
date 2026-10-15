@@ -8,7 +8,7 @@ import { usServices } from "@/lib/us-campaign";
 import { usBlogPosts } from "@/lib/us-blog";
 
 function usBookingUrl() {
-  const raw = bookingUrl();
+  const raw = bookingUrl(site.usBookingUrl);
   if (!raw) return "/contacto?origen=us";
   const url = new URL(raw);
   url.searchParams.set("utm_source", "devruby.org");

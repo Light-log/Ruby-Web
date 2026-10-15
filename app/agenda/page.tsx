@@ -28,7 +28,7 @@ export default async function AgendaPage({
 }) {
   const params = await searchParams;
   const origin = ["espana", "us"].includes(params?.origen ?? "") ? params?.origen : undefined;
-  const rawBookingUrl = bookingUrl();
+  const rawBookingUrl = bookingUrl(origin === "us" ? site.usBookingUrl : undefined);
   const configuredBookingUrl = rawBookingUrl && origin
     ? (() => {
         const url = new URL(rawBookingUrl);

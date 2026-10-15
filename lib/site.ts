@@ -4,6 +4,8 @@ export const site = {
   email: "soporte@devruby.org",
   phone: "+58 416 411 8747",
   linkedInUrl: "https://www.linkedin.com/company/devruby",
+  /** Cita en inglés de Cal.com para las rutas /us; la española es el valor por defecto de bookingUrl(). */
+  usBookingUrl: "https://cal.com/devruby/discovery-call",
   whatsAppUrl:
     "https://wa.me/584164118747?text=Hola%20DEVRUBY%2C%20quiero%20hablar%20sobre%20un%20proyecto.",
   /** Datos registrales del aviso legal. Solo datos de documentos oficiales: no inventar. */
@@ -16,7 +18,7 @@ export const site = {
 } as const;
 
 export function bookingUrl(
-  value = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendly.com/hola-devruby/30min"
+  value = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://cal.com/devruby/30min"
 ): string | null {
   if (!value) return null;
 

@@ -14,6 +14,9 @@ test("booking configuration only accepts HTTPS URLs", () => {
   const source = fs.readFileSync("lib/site.ts", "utf8");
 
   assert.match(source, /url\.protocol === "https:"/);
+  assert.match(source, /"https:\/\/cal\.com\/devruby\/30min"/);
+  assert.match(source, /usBookingUrl: "https:\/\/cal\.com\/devruby\/discovery-call"/);
+  assert.match(fs.readFileSync("components/sections/us-service-page.tsx", "utf8"), /bookingUrl\(site\.usBookingUrl\)/);
   assert.match(source, /return null/);
 });
 
@@ -26,7 +29,7 @@ test("counter renders its final value before client animation", () => {
 test("agenda page provides booking and WhatsApp fallback", () => {
   const source = fs.readFileSync("app/agenda/page.tsx", "utf8");
 
-  assert.match(source, /bookingUrl\(\)/);
+  assert.match(source, /bookingUrl\(origin === "us" \? site\.usBookingUrl : undefined\)/);
   assert.match(source, /site\.whatsAppUrl/);
   assert.match(source, /data-track="booking"/);
   assert.match(source, /utm_campaign/);

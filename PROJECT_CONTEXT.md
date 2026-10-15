@@ -4,7 +4,8 @@ La marca pública es DEVRUBY y la entidad legal es DEVRUBY LLC. El sitio se orie
 
 ## Conversión
 
-- Calendly: `https://calendly.com/hola-devruby/30min`
+- Cal.com (desde el 15/10/2026, sustituye a Calendly): `https://cal.com/devruby/30min` (ES, valor por defecto)
+  y `https://cal.com/devruby/discovery-call` (EN, rutas `/us` y `/agenda?origen=us`), cuenta david@devruby.org
 - Variable local: `NEXT_PUBLIC_BOOKING_URL`
 - Ruta principal: `/agenda`
 - Alternativa de contacto: WhatsApp y formulario.
