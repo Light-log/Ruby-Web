@@ -53,5 +53,5 @@ export async function GET() {
     totals[tool] ??= {};
     totals[tool][ref] = (totals[tool][ref] ?? 0) + 1;
   }
-  return NextResponse.json(totals, { headers: { "X-Robots-Tag": "noindex" } });
+  return NextResponse.json(totals, { headers: { "X-Robots-Tag": "noindex", "Cache-Control": "no-store" } }); // la CDN de Hostinger lo guardaba 5 min
 }
