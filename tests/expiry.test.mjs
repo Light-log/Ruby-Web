@@ -45,3 +45,13 @@ test("días hasta el fin de parches", () => {
   assert.equal(daysUntil("2026-11-07", "2026-10-19"), 19);
   assert.equal(daysUntil("2026-08-09", "2026-10-19"), -71);
 });
+
+test("la descarga de la plantilla cierra de verdad al acabar la cuenta atrás", async () => {
+  const fs = await import("node:fs");
+  const { FIN_DESCARGA } = await import("../lib/plantilla.ts");
+  assert.equal(new Date(FIN_DESCARGA).toISOString(), "2026-10-26T03:59:59.000Z"); // domingo 25/10 23:59:59 en Caracas
+  const route = fs.readFileSync("app/api/plantilla/route.ts", "utf8");
+  assert.match(route, /Date\.now\(\) > Date\.parse\(FIN_DESCARGA\)/);
+  assert.match(route, /status: 410/);
+  assert.ok(!fs.existsSync("public/recursos/plantilla-inventario-devruby.xlsx"), "el .xlsx no debe quedar público");
+});
