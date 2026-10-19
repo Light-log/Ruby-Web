@@ -8,7 +8,7 @@ import path from "node:path";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const TOOLS = new Set(["rails-expiry-check", "plantilla-inventario"]);
+const TOOLS = new Set(["rails-expiry-check", "plantilla-inventario", "sin-tiempo-excel"]);
 // Fuera de la carpeta de la app para que sobreviva a cada despliegue.
 const FILE = path.join(process.env.USO_DIR ?? path.join(os.homedir(), "devruby-uso"), "usos.tsv");
 

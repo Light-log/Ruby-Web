@@ -3,3 +3,4 @@
 export const FIN_DESCARGA = "2026-10-26T03:59:59Z";
 export const PLANTILLA_URL = "/api/plantilla";
 export const INSTAGRAM = "https://www.instagram.com/devruby.llc/";
+export const ANCLA_FORMULARIO = "sin-tiempo";
