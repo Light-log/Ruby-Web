@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { ArrowLeft, CalendarDays, Mail, MessageCircle, RotateCcw, Sparkles } from "lucide-react";
+import { ArrowLeft, MessageCircle, RotateCcw, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ANCLA_FORMULARIO as ANCLA } from "@/lib/plantilla";
-import { bookingUrl, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const PREGUNTAS: Array<[string, string[]]> = [
   ["¿Cuántos productos distintos manejas?", ["Menos de 100", "De 100 a 1.000", "Más de 1.000"]],
@@ -13,101 +13,119 @@ const PREGUNTAS: Array<[string, string[]]> = [
   ["¿Cuándo te gustaría resolverlo?", ["Este mes", "En 1 a 3 meses", "Solo quiero informarme"]],
 ];
 
-/** «¿Sin tiempo para Excel?»: 4 preguntas con botones y un toque para enviarlas. Sin campos ni datos guardados. */
+function whatsappCon(respuestas: string[]) {
+  const resumen = PREGUNTAS.map(([p], i) => `• ${p} ${respuestas[i]}`).join("\n");
+  const u = new URL(site.whatsAppUrl);
+  u.searchParams.set("text", `Hola DEVRUBY, no tengo tiempo para llevar el inventario en Excel. Mis respuestas:\n\n${resumen}\n\n¿Cómo lo resolverían?`);
+  return u.toString();
+}
+
+function contar() {
+  const ref = new URLSearchParams(window.location.search).get("ref") ?? "";
+  fetch("/api/uso", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ h: "sin-tiempo-excel", ref }), keepalive: true }).catch(() => {});
+}
+
+/**
+ * «¿Sin tiempo para Excel?»: barra que abre una ventana (<dialog> nativo: Esc, foco y fondo difuminado) con
+ * 4 preguntas de botones. La última respuesta abre WhatsApp con el mensaje armado. No se guarda nada.
+ */
 export function SinTiempoExcel() {
-  const [abierto, setAbierto] = React.useState(false);
+  const dialogo = React.useRef<HTMLDialogElement>(null);
   const [respuestas, setRespuestas] = React.useState<string[]>([]);
   const paso = respuestas.length;
   const hecho = paso === PREGUNTAS.length;
 
-  // El botón de la tarjeta de colores enlaza a #sin-tiempo: abrimos el formulario al llegar.
-  React.useEffect(() => {
-    const abrirSiAncla = () => {
-      if (window.location.hash === `#${ANCLA}`) setAbierto(true);
-    };
-    abrirSiAncla();
-    window.addEventListener("hashchange", abrirSiAncla);
-    return () => window.removeEventListener("hashchange", abrirSiAncla);
+  const abrir = React.useCallback(() => {
+    if (!dialogo.current?.open) dialogo.current?.showModal();
   }, []);
 
+  // El botón de la tarjeta de colores enlaza a #sin-tiempo: abrimos la ventana al llegar.
   React.useEffect(() => {
-    if (!hecho) return;
-    const ref = new URLSearchParams(window.location.search).get("ref") ?? "";
-    fetch("/api/uso", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ h: "sin-tiempo-excel", ref }), keepalive: true }).catch(() => {});
-  }, [hecho]);
+    const porAncla = () => window.location.hash === `#${ANCLA}` && abrir();
+    porAncla();
+    window.addEventListener("hashchange", porAncla);
+    return () => window.removeEventListener("hashchange", porAncla);
+  }, [abrir]);
 
-  const resumen = PREGUNTAS.map(([p], i) => `${p} ${respuestas[i] ?? ""}`).join("\n");
-  const mensaje = `Hola DEVRUBY, no tengo tiempo para llevar el inventario en Excel.\n\n${resumen}`;
-  const whatsapp = (() => {
-    const u = new URL(site.whatsAppUrl);
-    u.searchParams.set("text", mensaje);
-    return u.toString();
-  })();
-  const correo = `mailto:${site.email}?subject=${encodeURIComponent("Sin tiempo para Excel: inventario")}&body=${encodeURIComponent(mensaje)}`;
-  const agenda = (() => {
-    const raw = bookingUrl();
-    if (!raw) return "/agenda";
-    const u = new URL(raw);
-    u.searchParams.set("utm_source", "devruby.org");
-    u.searchParams.set("utm_medium", "formulario");
-    u.searchParams.set("utm_campaign", "sin-tiempo-excel");
-    return u.toString();
-  })();
+  function cerrar() {
+    dialogo.current?.close();
+    if (window.location.hash === `#${ANCLA}`) history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+
+  function responder(op: string) {
+    const nuevas = [...respuestas, op];
+    setRespuestas(nuevas);
+    if (nuevas.length === PREGUNTAS.length) {
+      contar();
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", "contact_whatsapp", { page_category: "plantilla", method: "sin-tiempo-excel" });
+      window.fbq?.("track", "Contact");
+      window.open(whatsappCon(nuevas), "_blank", "noopener"); // dentro del clic: el navegador no lo bloquea
+    }
+  }
 
   return (
-    <div id={ANCLA} className="scroll-mt-40">
-      {!abierto ? (
-        <Button variant="lavender" size="lg" className="w-full" onClick={() => setAbierto(true)}>
-          <Sparkles className="h-4 w-4" /> ¿Sin tiempo para Excel? Responde 4 preguntas
-        </Button>
-      ) : (
-        <div className="rounded-2xl border border-lavender/25 bg-white/90 p-5 shadow-card" aria-live="polite">
+    <>
+      <Button variant="lavender" size="lg" className="w-full" onClick={abrir} aria-haspopup="dialog">
+        <Sparkles className="h-4 w-4" /> ¿Sin tiempo para Excel? Responde 4 preguntas y te ayudamos por WhatsApp
+      </Button>
+
+      <dialog
+        id={ANCLA}
+        ref={dialogo}
+        aria-labelledby="sin-tiempo-titulo"
+        onClick={(e) => e.target === dialogo.current && cerrar()} // clic en el fondo difuminado
+        onClose={() => history.replaceState(null, "", window.location.pathname + window.location.search)}
+        className="m-auto w-[min(92vw,30rem)] rounded-3xl border border-lavender/25 bg-white p-0 shadow-2xl backdrop:bg-ivory/40 backdrop:backdrop-blur-md"
+      >
+        <div className="p-6 sm:p-7" aria-live="polite">
+          <div className="flex items-start justify-between gap-4">
+            <p id="sin-tiempo-titulo" className="font-display text-2xl text-ivory">¿Sin tiempo para Excel?</p>
+            <button type="button" onClick={cerrar} aria-label="Cerrar" className="rounded-full p-1.5 text-ivory-muted hover:bg-black/5 hover:text-ivory">
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
           {!hecho ? (
             <>
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.14em] text-lavender-dark">
-                <span>¿Sin tiempo para Excel?</span>
-                <span>{paso + 1} de {PREGUNTAS.length}</span>
+              <div className="mt-4 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.14em] text-lavender-dark">
+                <span>Pregunta {paso + 1} de {PREGUNTAS.length}</span>
+                {paso > 0 && (
+                  <button type="button" onClick={() => setRespuestas((r) => r.slice(0, -1))} className="inline-flex items-center gap-1 normal-case tracking-normal text-ivory-muted hover:text-ivory">
+                    <ArrowLeft className="h-3.5 w-3.5" /> Anterior
+                  </button>
+                )}
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-lavender/15">
                 <div className="h-full rounded-full bg-lavender transition-all" style={{ width: `${(paso / PREGUNTAS.length) * 100}%` }} />
               </div>
-              <p className="mt-4 font-semibold text-ivory">{PREGUNTAS[paso][0]}</p>
-              <div className="mt-3 grid gap-2">
+              <p className="mt-5 text-lg font-semibold text-ivory">{PREGUNTAS[paso][0]}</p>
+              <div className="mt-4 grid gap-2.5">
                 {PREGUNTAS[paso][1].map((op) => (
                   <button
                     key={op}
                     type="button"
-                    onClick={() => setRespuestas((r) => [...r, op])}
-                    className="rounded-xl border border-black/10 bg-white px-4 py-3 text-left text-sm font-semibold text-ivory transition-colors hover:border-lavender hover:bg-lavender/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender/40"
+                    onClick={() => responder(op)}
+                    className="rounded-2xl border border-black/10 bg-white px-5 py-3.5 text-left font-semibold text-ivory transition-colors hover:border-lavender hover:bg-lavender/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender/40"
                   >
                     {op}
                   </button>
                 ))}
               </div>
-              {paso > 0 && (
-                <button type="button" onClick={() => setRespuestas((r) => r.slice(0, -1))} className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-ivory-muted hover:text-ivory">
-                  <ArrowLeft className="h-3.5 w-3.5" /> Anterior
-                </button>
-              )}
+              <p className="mt-5 text-xs text-ivory-muted">Al responder la última, se abre WhatsApp con tus respuestas para que nos las envíes.</p>
             </>
           ) : (
             <>
-              <p className="font-semibold text-ivory">Listo. Envíanos tus respuestas y te decimos cómo lo resolveríamos.</p>
-              <ul className="mt-3 grid gap-1 text-sm text-ivory-dim">
-                {respuestas.map((r, i) => <li key={PREGUNTAS[i][0]}><span className="text-ivory-muted">{PREGUNTAS[i][0]}</span> <strong className="text-ivory">{r}</strong></li>)}
-              </ul>
-              <div className="mt-4 grid gap-2">
-                <a href={whatsapp} target="_blank" rel="noreferrer" data-track="whatsapp"><Button as="span" className="w-full"><MessageCircle className="h-4 w-4" /> Enviar por WhatsApp</Button></a>
-                <a href={agenda} target="_blank" rel="noreferrer" data-track="booking"><Button as="span" variant="lavender" className="w-full"><CalendarDays className="h-4 w-4" /> Agendar una llamada de 30 min</Button></a>
-                <a href={correo} data-track="contact"><Button as="span" variant="outline" className="w-full bg-white"><Mail className="h-4 w-4" /> Enviar por correo</Button></a>
-              </div>
-              <button type="button" onClick={() => setRespuestas([])} className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-ivory-muted hover:text-ivory">
-                <RotateCcw className="h-3.5 w-3.5" /> Empezar de nuevo
+              <p className="mt-4 text-ivory-dim">Te abrimos WhatsApp con tus respuestas. Solo tienes que pulsar <strong>enviar</strong>.</p>
+              <a href={whatsappCon(respuestas)} target="_blank" rel="noreferrer" data-track="whatsapp" className="mt-5 block">
+                <Button as="span" className="w-full"><MessageCircle className="h-4 w-4" /> ¿No se abrió? Abrir WhatsApp</Button>
+              </a>
+              <button type="button" onClick={() => setRespuestas([])} className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-ivory-muted hover:text-ivory">
+                <RotateCcw className="h-3.5 w-3.5" /> Cambiar respuestas
               </button>
             </>
           )}
         </div>
-      )}
-    </div>
+      </dialog>
+    </>
   );
 }

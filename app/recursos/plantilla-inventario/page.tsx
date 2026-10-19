@@ -83,7 +83,7 @@ export default function PlantillaInventarioPage() {
             <p className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs font-semibold text-crimson-dark"><FileSpreadsheet className="h-3.5 w-3.5" /> Excel · LibreOffice · Google Sheets</p>
             <h1 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-ivory md:text-5xl">La plantilla de inventario que te dice cuándo dejar Excel</h1>
             <p className="mt-5 text-lg leading-relaxed text-ivory-dim">Lleva tu stock en una hoja normal. La pestaña «Ya toca» revisa 5 señales y se pone en verde, ámbar o rojo. En verde, te dice que sigas con tu Excel.</p>
-            <div className="mt-8 grid max-w-md gap-4"><DescargaPlantilla /><SinTiempoExcel /></div>
+            <div className="mt-8 max-w-md"><DescargaPlantilla /></div>
           </div>
 
           <Card className="p-6 md:p-8" aria-label="Ejemplo de la pestaña Ya toca">
@@ -105,6 +105,9 @@ export default function PlantillaInventarioPage() {
               <p className="mt-2 text-sm text-white/90">Tu negocio creció más que tu Excel.</p>
             </div>
           </Card>
+
+          {/* Bajo las dos columnas: abre la ventana de 4 preguntas */}
+          <div className="lg:col-span-2"><SinTiempoExcel /></div>
         </div>
       </section>
 
