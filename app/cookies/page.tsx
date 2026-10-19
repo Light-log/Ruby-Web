@@ -15,6 +15,8 @@ const rows = [
   ["ruby-cookie-consent", "Propia (almacenamiento local)", "Técnica: recuerda tu elección de cookies", "Hasta que la borres"],
   ["_ga", "Google Analytics", "Analítica: distinguir visitantes", "2 años"],
   ["_ga_8N39T9ZRQD", "Google Analytics", "Analítica: mantener el estado de la sesión", "2 años"],
+  ["_fbp", "Meta (píxel)", "Publicidad: reconocer el navegador para medir y mostrar nuestros anuncios", "3 meses"],
+  ["_fbc", "Meta (píxel)", "Publicidad: recordar el anuncio de Meta por el que llegaste", "3 meses"],
 ];
 
 const sections: LegalSection[] = [
@@ -24,8 +26,9 @@ const sections: LegalSection[] = [
       <p>
         Las cookies y tecnologías similares, como el almacenamiento local del
         navegador, guardan información en tu dispositivo. Las técnicas son
-        necesarias para que el sitio funcione. Las de analítica, en el Espacio
-        Económico Europeo, Reino Unido y Suiza, solo se activan si las aceptas;
+        necesarias para que el sitio funcione. Las de analítica y las de
+        publicidad, en el Espacio Económico Europeo, Reino Unido y Suiza, solo se
+        activan si las aceptas;
         en el resto de países se activan al entrar y puedes desactivarlas
         cuando quieras.
       </p>
@@ -63,10 +66,10 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          Puedes aceptar, rechazar o desactivar la analítica cuando quieras desde{" "}
+          Puedes aceptar, rechazar o desactivar la analítica y la publicidad cuando quieras desde{" "}
           <CookieSettingsLink className="font-semibold text-crimson underline underline-offset-4" />
           , también disponible en el pie de página. Si retiras el consentimiento,
-          Google Analytics deja de cargarse y borramos sus cookies.
+          Google Analytics o el píxel de Meta dejan de cargarse y borramos sus cookies.
         </p>
         <p>
           También puedes borrar las cookies desde la configuración de tu
@@ -83,7 +86,7 @@ export default function CookiesPage() {
     <LegalPage
       title="Política de cookies"
       intro="Qué cookies usa este sitio, para qué sirven y cómo cambiar tu elección."
-      updated="12 de octubre de 2026"
+      updated="19 de octubre de 2026"
       sections={sections}
     />
   );

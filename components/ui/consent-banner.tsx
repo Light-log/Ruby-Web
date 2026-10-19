@@ -3,22 +3,27 @@
 import * as React from "react";
 import Link from "next/link";
 import Script from "next/script";
-import { Cookie, ShieldCheck, BarChart3, Check } from "lucide-react";
+import { Cookie, ShieldCheck, BarChart3, Megaphone, Check } from "lucide-react";
 import { ConversionEvents } from "@/components/analytics/conversion-events";
+import { MetaPixel } from "@/components/analytics/meta-pixel";
 
 const GA_ID = "G-8N39T9ZRQD";
 const STORAGE_KEY = "ruby-cookie-consent";
 /** Versión de la política. Si cambia, se vuelve a pedir el consentimiento. */
-const POLICY_VERSION = "2025-06-29";
+const POLICY_VERSION = "2026-10-19";
 /** Evento global para reabrir el panel (p. ej. desde el footer). */
 export const COOKIE_SETTINGS_EVENT = "cookie:open";
 const INITIAL_BANNER_DELAY_MS = 900;
 
-type StoredConsent = {
-  analytics: boolean;
+type Prefs = { analytics: boolean; marketing: boolean };
+
+type StoredConsent = Prefs & {
   version: string;
   ts: number;
 };
+
+const NONE: Prefs = { analytics: false, marketing: false };
+const ALL: Prefs = { analytics: true, marketing: true };
 
 /**
  * El RGPD exige consentimiento previo en el EEE, Reino Unido y Suiza; fuera, la analítica
@@ -42,7 +47,7 @@ function readConsent(): StoredConsent | null {
     if (!raw) return null;
     const parsed = JSON.parse(raw) as StoredConsent;
     if (parsed.version !== POLICY_VERSION) return null; // política nueva → re-pedir
-    return parsed;
+    return { ...parsed, marketing: parsed.marketing === true };
   } catch {
     return null;
   }
@@ -52,19 +57,19 @@ export function ConsentBanner() {
   const [mounted, setMounted] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
   const [showPrefs, setShowPrefs] = React.useState(false);
-  const [analytics, setAnalytics] = React.useState(false);
-  const [analyticsGranted, setAnalyticsGranted] = React.useState(false);
+  const [prefs, setPrefs] = React.useState<Prefs>(NONE);
+  const [granted, setGranted] = React.useState<Prefs>(NONE);
 
   React.useEffect(() => {
     const stored = readConsent();
     let initialBannerTimer: ReturnType<typeof setTimeout> | undefined;
     if (stored) {
-      setAnalytics(stored.analytics);
-      setAnalyticsGranted(stored.analytics);
+      setPrefs(stored);
+      setGranted(stored);
     } else if (!needsPriorConsent()) {
-      // Fuera de Europa: analítica activa sin banner; se desactiva desde «Configurar cookies».
-      setAnalytics(true);
-      setAnalyticsGranted(true);
+      // Fuera de Europa: analítica y publicidad activas sin banner; se desactivan desde «Configurar cookies».
+      setPrefs(ALL);
+      setGranted(ALL);
     } else {
       initialBannerTimer = setTimeout(() => setVisible(true), INITIAL_BANNER_DELAY_MS);
     }
@@ -72,7 +77,7 @@ export function ConsentBanner() {
 
     const open = () => {
       const current = readConsent();
-      setAnalytics(current?.analytics ?? !needsPriorConsent());
+      setPrefs(current ?? (needsPriorConsent() ? NONE : ALL));
       setShowPrefs(true);
       setVisible(true);
     };
@@ -83,13 +88,13 @@ export function ConsentBanner() {
     };
   }, []);
 
-  function persist(analyticsValue: boolean) {
-    const wasGranted = analyticsGranted;
+  function persist(next: Prefs) {
+    const was = granted;
     try {
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-          analytics: analyticsValue,
+          ...next,
           version: POLICY_VERSION,
           ts: Date.now(),
         } satisfies StoredConsent)
@@ -100,26 +105,32 @@ export function ConsentBanner() {
     setVisible(false);
     setShowPrefs(false);
 
-    // Si se retira un consentimiento ya activo, borramos las cookies de GA y
-    // recargamos para detenerlo (GA las fija en el dominio raíz).
-    if (wasGranted && !analyticsValue) {
+    // Si se retira un consentimiento ya activo, borramos sus cookies y recargamos
+    // para detener el script (GA y Meta las fijan en el dominio raíz).
+    const dropAnalytics = was.analytics && !next.analytics;
+    const dropMarketing = was.marketing && !next.marketing;
+    if (dropAnalytics || dropMarketing) {
       // Flag oficial de opt-out: sin él, gtag reescribe _ga_* antes de recargar.
-      (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] = true;
+      if (dropAnalytics) (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] = true;
       const root = window.location.hostname.replace(/^www\./, "");
       for (const name of document.cookie.split("; ").map((c) => c.split("=")[0])) {
-        if (!name.startsWith("_ga")) continue;
+        const isGa = name.startsWith("_ga");
+        const isMeta = name === "_fbp" || name === "_fbc";
+        if (!((dropAnalytics && isGa) || (dropMarketing && isMeta))) continue;
         document.cookie = `${name}=; max-age=0; path=/`;
         document.cookie = `${name}=; max-age=0; path=/; domain=.${root}`;
       }
       window.location.reload();
       return;
     }
-    setAnalyticsGranted(analyticsValue);
+    setGranted(next);
   }
 
   return (
     <>
-      {analyticsGranted && (
+      {granted.marketing && <MetaPixel />}
+      {(granted.analytics || granted.marketing) && <ConversionEvents />}
+      {granted.analytics && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
@@ -133,7 +144,6 @@ export function ConsentBanner() {
               gtag('config', '${GA_ID}', { anonymize_ip: true });
             `}
           </Script>
-          <ConversionEvents />
         </>
       )}
 
@@ -165,7 +175,8 @@ export function ConsentBanner() {
               >
                 Usamos almacenamiento técnico para que el sitio funcione y, con
                 tu permiso, cookies de analítica (Google Analytics) para medir y
-                mejorar la experiencia. Consulta nuestra{" "}
+                mejorar la experiencia y de publicidad (píxel de Meta) para mostrar
+                nuestros anuncios a quien ya nos visitó. Consulta nuestra{" "}
                 <Link
                   href="/privacidad"
                   className="font-semibold text-crimson underline underline-offset-2 transition-colors hover:text-crimson-dark"
@@ -194,8 +205,15 @@ export function ConsentBanner() {
                     icon={<BarChart3 className="h-4 w-4" />}
                     title="Analítica"
                     desc="Estadísticas de uso del sitio (Google Analytics)."
-                    checked={analytics}
-                    onToggle={() => setAnalytics((v) => !v)}
+                    checked={prefs.analytics}
+                    onToggle={() => setPrefs((p) => ({ ...p, analytics: !p.analytics }))}
+                  />
+                  <CategoryRow
+                    icon={<Megaphone className="h-4 w-4" />}
+                    title="Publicidad"
+                    desc="Medir y mostrar nuestros anuncios en Facebook e Instagram (píxel de Meta)."
+                    checked={prefs.marketing}
+                    onToggle={() => setPrefs((p) => ({ ...p, marketing: !p.marketing }))}
                   />
                 </div>
               )}
@@ -216,7 +234,7 @@ export function ConsentBanner() {
                 <div className="order-1 flex items-center gap-3 sm:order-2">
                   <button
                     type="button"
-                    onClick={() => persist(false)}
+                    onClick={() => persist(NONE)}
                     className="touch-manipulation flex-1 rounded-xl border border-black/12 px-5 py-2.5 text-sm font-semibold text-ivory transition-colors hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-crimson/30 sm:flex-none"
                   >
                     Rechazar
@@ -224,7 +242,7 @@ export function ConsentBanner() {
                   {showPrefs ? (
                     <button
                       type="button"
-                      onClick={() => persist(analytics)}
+                      onClick={() => persist(prefs)}
                       className="touch-manipulation flex-1 rounded-xl bg-crimson px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-colors hover:bg-crimson-light focus:outline-none focus:ring-2 focus:ring-crimson/40 sm:flex-none"
                     >
                       Guardar
@@ -232,7 +250,7 @@ export function ConsentBanner() {
                   ) : (
                     <button
                       type="button"
-                      onClick={() => persist(true)}
+                      onClick={() => persist(ALL)}
                       className="touch-manipulation flex-1 rounded-xl bg-crimson px-6 py-2.5 text-sm font-semibold text-white shadow-glow transition-colors hover:bg-crimson-light focus:outline-none focus:ring-2 focus:ring-crimson/40 sm:flex-none"
                     >
                       Aceptar

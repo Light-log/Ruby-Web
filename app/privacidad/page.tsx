@@ -38,6 +38,11 @@ const sections: LegalSection[] = [
           y datos técnicos del navegador, solo si aceptas las cookies de analítica.
         </li>
         <li>
+          <strong>Publicidad:</strong> identificadores de cookie del píxel de Meta,
+          páginas visitadas y acciones como pulsar «reservar» o enviar el
+          formulario, solo si aceptas las cookies de publicidad.
+        </li>
+        <li>
           <strong>Datos técnicos:</strong> al enviar el formulario usamos tu
           dirección IP temporalmente en memoria para limitar abusos. No la
           guardamos ni la incluimos en el correo de contacto.
@@ -57,6 +62,11 @@ const sections: LegalSection[] = [
         <li>
           <strong>Medir el uso del sitio:</strong> tu consentimiento para las
           cookies de analítica (art. 6.1.a RGPD y art. 22.2 LSSI).
+        </li>
+        <li>
+          <strong>Medir nuestros anuncios y mostrarlos a quien ya nos visitó</strong>{" "}
+          en Facebook e Instagram: tu consentimiento para las cookies de
+          publicidad (art. 6.1.a RGPD y art. 22.2 LSSI).
         </li>
         <li>
           <strong>Prevenir abusos</strong> del formulario: nuestro interés
@@ -99,6 +109,18 @@ const sections: LegalSection[] = [
             .
           </li>
           <li>
+            <strong>Píxel de Meta</strong> (Meta Platforms): publicidad, con tu
+            consentimiento previo en el Espacio Económico Europeo, Reino Unido y
+            Suiza; en otros países se activa al entrar y puedes desactivarlo en
+            «Configurar cookies». En la recogida y envío de estos datos somos
+            corresponsables con Meta; lo que Meta haga después con ellos lo
+            decide Meta.{" "}
+            <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noreferrer">
+              Política de Meta
+            </a>
+            .
+          </li>
+          <li>
             <strong>Cal.com</strong>: reserva de reuniones. Se abre solo si pulsas
             el enlace de agenda y tratará los datos que introduzcas allí.{" "}
             <a href="https://cal.com/privacy" target="_blank" rel="noreferrer">
@@ -123,7 +145,10 @@ const sections: LegalSection[] = [
           Privacidad de Datos UE-EE. UU. cuando el proveedor está adherido, o en
           las cláusulas contractuales tipo de la Comisión Europea.
         </p>
-        <p>No vendemos ni cedemos tus datos personales a terceros con fines comerciales.</p>
+        <p>
+          No vendemos tus datos personales. Solo los compartimos con Meta, para
+          nuestra publicidad, si aceptas las cookies de publicidad.
+        </p>
       </>
     ),
   },
@@ -201,7 +226,7 @@ export default function PrivacidadPage() {
     <LegalPage
       title="Política de Privacidad"
       intro={`Cómo trata ${site.legalName} los datos personales que recoge a través de este sitio web.`}
-      updated="12 de octubre de 2026"
+      updated="19 de octubre de 2026"
       sections={sections}
     />
   );
