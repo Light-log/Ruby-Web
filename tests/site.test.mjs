@@ -68,13 +68,13 @@ test("Spain campaign publishes specific commercial routes", () => {
   assert.match(route, /areaServed/);
 });
 
-test("lead tracking runs only after analytics consent and records successful forms", () => {
+test("lead tracking runs only after analytics or advertising consent and records successful forms", () => {
   const banner = fs.readFileSync("components/ui/consent-banner.tsx", "utf8");
   const tracking = fs.readFileSync("components/analytics/conversion-events.tsx", "utf8");
   const contact = fs.readFileSync("components/sections/contact.tsx", "utf8");
 
-  assert.match(banner, /analyticsGranted &&/);
-  assert.match(banner, /<ConversionEvents/);
+  assert.match(banner, /\(granted\.analytics \|\| granted\.marketing\) && <ConversionEvents/);
+  assert.match(banner, /granted\.marketing && <MetaPixel/);
   assert.match(tracking, /book_consultation/);
   assert.match(tracking, /contact_whatsapp/);
   assert.match(tracking, /generate_lead/);
