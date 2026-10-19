@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-type TrackName = "agenda" | "booking" | "whatsapp" | "contact";
+type TrackName = "agenda" | "booking" | "whatsapp" | "contact" | "download";
 
 declare global {
   interface Window {
@@ -15,6 +15,7 @@ const events: Record<TrackName, string> = {
   booking: "book_consultation",
   whatsapp: "contact_whatsapp",
   contact: "begin_contact",
+  download: "download_template",
 };
 
 /** Eventos estándar del píxel de Meta (solo se envían si el píxel está cargado). */
@@ -23,6 +24,7 @@ const metaEvents: Record<TrackName, string> = {
   booking: "Schedule",
   whatsapp: "Contact",
   contact: "Contact",
+  download: "Lead",
 };
 
 export const LEAD_SUBMITTED_EVENT = "devruby:lead-submitted";
