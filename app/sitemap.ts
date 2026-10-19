@@ -42,8 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     entry("/us", 0.9),
     ...usServiceSlugs.map((slug) => entry(`/us/${slug}`, 0.8)),
-    { ...entry("/us/rails-expiry-check", 0.8, "weekly"), lastModified: new Date("2026-10-26") },
-    { ...entry("/recursos/plantilla-inventario", 0.8), lastModified: new Date("2026-10-26") },
+    { ...entry("/us/rails-expiry-check", 0.8, "weekly"), lastModified: new Date("2026-10-19") },
+    { ...entry("/recursos/plantilla-inventario", 0.8), lastModified: new Date("2026-10-19") },
 
     {
       url: `${SITE_URL}/blog`,
