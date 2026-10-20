@@ -20,6 +20,13 @@ const nextConfig = {
         destination: "https://devruby.org/:path*",
         permanent: true,
       },
+      {
+        // Los términos viven en /aviso-legal ("Aviso legal y términos"); las rutas
+        // habituales que prueban verificadores (Apple, pasarelas) no deben dar 404.
+        source: "/:slug(terminos|terminos-y-condiciones|terms|terms-of-service|tos)",
+        destination: "/aviso-legal",
+        permanent: true,
+      },
     ];
   },
   async headers() {
