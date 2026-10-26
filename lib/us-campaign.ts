@@ -109,9 +109,9 @@ export const usServices = {
   },
   "ruby-on-rails-consulting": {
     label: "Ruby on Rails consulting",
-    title: "Ruby on Rails Consulting & Development",
+    title: "Ruby on Rails Consulting: Upgrades, Rescues & Development",
     description:
-      "Ruby on Rails consulting and development for U.S. businesses: new Rails applications, upgrades of legacy apps, APIs, performance work, and security reviews.",
+      "Senior Rails consultants for U.S. businesses. We upgrade apps stuck on end-of-life Rails versions, rescue legacy code, and ship features — without a rewrite.",
     eyebrow: "Ruby on Rails development",
     headline: "Rails engineering for applications your business depends on",
     intro:

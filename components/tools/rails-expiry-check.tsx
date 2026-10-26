@@ -152,6 +152,9 @@ export function RailsExpiryCheck({ cycles, bookingUrl }: { cycles: Record<Produc
                 <Button as="span" className="w-full sm:w-auto">Plan the upgrade with us <CalendarDays className="h-4 w-4" /></Button>
               </a>
             </div>
+            <p className="mt-4 text-xs text-ivory-muted">
+              Already got an upgrade quote from another vendor? Book the same call for a free second opinion on that estimate.
+            </p>
           </Card>
         </div>
       )}
