@@ -5,7 +5,7 @@ import { Footer } from "@/components/sections/footer";
 import { Navbar } from "@/components/sections/navbar";
 import { Card } from "@/components/ui/card";
 import { RailsExpiryCheck } from "@/components/tools/rails-expiry-check";
-import { type Cycle, type Product, FALLBACK } from "@/lib/expiry";
+import { cycles, fmt } from "@/lib/eol-dates";
 import { bookingUrl, site } from "@/lib/site";
 import { breadcrumbList } from "@/lib/structured-data";
 import { ogImages } from "@/lib/seo";
@@ -23,33 +23,8 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description, images: ogImages.map((i) => i.url) },
 };
 
-// Las fechas se refrescan una vez al día; si endoflife.date falla, se usa la copia de lib/expiry.ts.
+// Las fechas se refrescan una vez al día (lib/eol-dates.ts); si endoflife.date falla, copia de lib/expiry.ts.
 export const revalidate = 86400;
-
-async function cycles(product: Product): Promise<Cycle[]> {
-  try {
-    const res = await fetch(`https://endoflife.date/api/${product}.json`, { next: { revalidate } });
-    if (!res.ok) throw new Error(String(res.status));
-    const data = (await res.json()) as Array<Record<string, unknown>>;
-    const list = data
-      .map((c) => ({
-        cycle: String(c.cycle),
-        support: typeof c.support === "string" ? c.support : undefined,
-        eol: typeof c.eol === "string" ? c.eol : "9999-12-31", // `false` = sin fecha de fin todavía
-        latest: String(c.latest),
-      }))
-      .filter((c) => /^\d+\.\d+$/.test(c.cycle))
-      .slice(0, 8);
-    return list.length ? list : FALLBACK[product];
-  } catch {
-    return FALLBACK[product];
-  }
-}
-
-const fmt = (iso: string) =>
-  iso.startsWith("9999")
-    ? "not announced"
-    : new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
 const faqs: Array<[string, string]> = [
   ["Is my Gemfile.lock uploaded anywhere?", "No. The file is read by JavaScript in your browser and never sent to our servers. We only count that the check was used, without the file or any data from it."],
