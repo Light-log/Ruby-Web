@@ -665,6 +665,7 @@ export const usBlogPosts: BlogPost[] = [
     sections: [
       {
         heading: "Where PHP vulnerabilities come from",
+        image: { src: "/blog/is-rails-more-secure-than-php/01.webp", alt: "3D model of a house whose façade is a grid of twelve doors, all standing open, one for each plugin", width: 1600, height: 900 },
         paragraphs: [
           "Patchstack's State of WordPress Security in 2026 report counted 11,334 new vulnerabilities in the WordPress ecosystem in 2025, 42% more than in 2024. Of those, 91% were in plugins and 9% in themes. WordPress core had only 6, all low priority.",
           "Two more figures from the same report show why this matters: 46% of the vulnerabilities had no fix from the developer when they became public, and the weighted median time to the first exploit was 5 hours. A typical WordPress site runs many plugins from different authors, and each one is a door that someone else has to keep locked.",
@@ -673,6 +674,7 @@ export const usBlogPosts: BlogPost[] = [
       },
       {
         heading: "What Rails protects by default",
+        image: { src: "/blog/is-rails-more-secure-than-php/02.webp", alt: "3D model of a reinforced steel door with its bolts locked, in front of a wall of open doors", width: 1600, height: 900 },
         paragraphs: [
           "Rails makes the safe option the default for the most common web attacks. These come from the official Rails guides.",
         ],

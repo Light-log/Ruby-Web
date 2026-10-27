@@ -815,6 +815,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: "El problema no es WordPress ni PHP",
+        image: { src: "/blog/web-wordpress-segura-datos-2025/01.webp", alt: "Modelo 3D de una casa cuya fachada es una cuadrícula de doce puertas abiertas, una por plugin", width: 1600, height: 900 },
         paragraphs: [
           "Una web típica de WordPress suma plugins de muchos autores distintos: formularios, tienda, copias de seguridad, SEO, galerías. Cada uno es una puerta más que alguien tiene que mantener cerrada. Cuando su autor tarda en publicar el parche, o abandona el plugin, la puerta queda abierta aunque WordPress esté al día.",
           "El riesgo crece con dos hábitos muy comunes: instalar plugins para resolver algo puntual y no quitarlos después, y posponer las actualizaciones por miedo a que la web se rompa.",
@@ -835,6 +836,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: "Cuándo conviene una auditoría o un sistema a medida",
+        image: { src: "/blog/web-wordpress-segura-datos-2025/02.webp", alt: "Modelo 3D de una puerta blindada de acero con los cerrojos echados, delante de una pared de puertas abiertas", width: 1600, height: 900 },
         paragraphs: [
           "Si la web solo informa, con un buen mantenimiento suele bastar. Si recoge datos de clientes, cobra pagos o se conecta con tu ERP o tu CRM, conviene una revisión externa que vaya más allá de los plugins: permisos, formularios, integraciones y lo que se ve desde fuera.",
           "Cuando una parte del negocio depende de muchos plugins encadenados, a veces sale más a cuenta construir esa parte como una aplicación propia. Frameworks como Rails o Laravel traen de fábrica protecciones como el token contra CSRF y el escapado de lo que se muestra en pantalla, y dependen de menos piezas de terceros. Aun así, también hay que mantenerlos actualizados.",
