@@ -569,6 +569,149 @@ export const usBlogPosts: BlogPost[] = [
       { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
     ],
   },
+  {
+    slug: "ruby-3-2-end-of-life",
+    title: "Ruby 3.2 End of Life: How to Upgrade a Rails App to Ruby 3.4",
+    seoTitle: "Ruby 3.2 End of Life: Upgrade to Ruby 3.4",
+    description:
+      "Ruby 3.2 stopped receiving security fixes on March 31, 2026. What that means for a Rails app, whether to target Ruby 3.4 or 4.0, what breaks and a safe upgrade order.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-27",
+    updatedAt: "2026-10-27",
+    readingMinutes: 7,
+    intro:
+      "Ruby 3.2 reached end of life on March 31, 2026. Your Rails app keeps running, but any new vulnerability in the interpreter or its default libraries will not be fixed for that version. If the app also runs Rails 8.0, which loses security patches on November 7, 2026, it is a good moment to plan both upgrades, one after the other. This guide explains which Ruby to target, what tends to break and in what order to do the work.",
+    sections: [
+      {
+        heading: "What end of life means for Ruby 3.2",
+        paragraphs: [
+          "Each Ruby release is maintained for a little over three years: bug fixes first, then security fixes only. After its end-of-life date, the Ruby core team stops releasing patches for it. For Ruby 3.2 that date was March 31, 2026, according to endoflife.date.",
+          "Nothing breaks on that day. The risk is gradual: hosting images, gems and tooling slowly drop support, and when a security issue is published, the fix lands in newer versions only. The longer an app stays on an unsupported Ruby, the larger the jump becomes.",
+        ],
+        list: [
+          "Ruby 3.2: end of life on March 31, 2026.",
+          "Ruby 3.3: supported until March 31, 2027.",
+          "Ruby 3.4: supported until March 31, 2028.",
+          "Ruby 4.0: supported until March 31, 2029.",
+        ],
+      },
+      {
+        heading: "Ruby 3.4 or Ruby 4.0?",
+        paragraphs: [
+          "For most production Rails apps on 3.2 today, Ruby 3.4 is the sensible target. It has been out since December 2024, gems have had time to catch up, and it is supported until March 2028. Skipping 3.3 is fine: the Ruby team announces incompatibilities a version ahead, so going straight to 3.4 just means reading both sets of release notes.",
+          "Ruby 4.0, released in December 2025, buys one more year of support but removes more: the CGI library is gone from the default gems except cgi/escape, several old Ractor methods were removed, and Net::HTTP no longer adds a default Content-Type header to requests. Its new ZJIT compiler is not recommended for production yet. Choose 4.0 when your critical gems already declare support for it; otherwise move to 3.4 now and plan 4.0 as a separate, smaller step.",
+        ],
+      },
+      {
+        heading: "What breaks between Ruby 3.2 and 3.4",
+        paragraphs: [
+          "These are the items from the official Ruby 3.3 and 3.4 release notes that most often surface in Rails applications.",
+        ],
+        list: [
+          "Gems moved out of the default set: base64, bigdecimal, csv, drb, mutex_m, observer, getoptlong, nkf, syslog, abbrev, resolv-replace and rinda are now bundled gems. If your code or a gem requires them without declaring them, add them to the Gemfile. Ruby 3.3 already warns about this, but bootsnap hides the warning, so run once with DISABLE_BOOTSNAP=1.",
+          "Mutating a string literal in a file without a frozen_string_literal comment now emits a deprecation warning when deprecation warnings are enabled. It is not an error yet, but it shows where code will break in a future version.",
+          "Calling it with no arguments inside a block without parameters now refers to the block's first parameter. Test code that calls a method named it inside blocks deserves a look.",
+          "Hash#inspect output changed to {user: 1} and {\"user\" => 1}, and error messages now open quotes with a single quote instead of a backtick. Tests that compare inspected hashes or exact error messages will fail.",
+          "Smaller changes: Net::HTTP constants deprecated since 2012 were removed, Timeout.timeout rejects negative values, and the default URI parser now follows RFC 3986.",
+        ],
+      },
+      {
+        heading: "Upgrade Ruby first, then Rails",
+        paragraphs: [
+          "The official Rails upgrade guide recommends upgrading Ruby and Rails separately, Ruby first. Rails 8.0 and 8.1 require Ruby 3.2 or newer, so a Rails 8.0 app on Ruby 3.2 can move to Ruby 3.4 without touching Rails, deploy, and then upgrade Rails to 8.1 as a second project.",
+          "Keeping the two changes apart matters in production: if something breaks, you know which upgrade caused it, and each deploy can be rolled back on its own. If you are on Rails 7.2, which already lost security support on August 9, 2026, check that your exact Rails version supports the target Ruby before you start, and follow our Rails 7 to 8 guide afterwards.",
+        ],
+      },
+      {
+        heading: "A short upgrade checklist",
+        paragraphs: [
+          "For a typical Rails app moving from Ruby 3.2 to 3.4, the work fits in these steps.",
+        ],
+        list: [
+          "Check the current Ruby and Rails versions in Gemfile.lock and their support dates.",
+          "Run the suite once on 3.2 with DISABLE_BOOTSNAP=1 and deprecation warnings enabled, and fix what they report.",
+          "Add the bundled gems your app needs to the Gemfile and update gems that pin older Ruby versions.",
+          "Switch .ruby-version, the Dockerfile and CI to Ruby 3.4, then run bundle install and the full test suite.",
+          "Fix tests that depend on Hash#inspect output or exact error messages.",
+          "Deploy Ruby alone, watch error tracking for a few days, then plan the Rails upgrade.",
+        ],
+        ordered: true,
+      },
+    ],
+    takeaways: [
+      "Ruby 3.2 has had no security fixes since March 31, 2026; Ruby 3.4 is supported until March 31, 2028.",
+      "Target Ruby 3.4 now; move to 4.0 once your critical gems support it.",
+      "Declare the gems that left the default set and run once without bootsnap to see the warnings.",
+      "Upgrade Ruby first, deploy it alone, then upgrade Rails.",
+    ],
+    related: [
+      { href: "/us/rails-expiry-check", label: "Check your Rails and Ruby support dates" },
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/blog/rails-8-0-to-8-1-upgrade", label: "Rails 8.0 to 8.1 upgrade guide" },
+    ],
+  },
+  {
+    slug: "is-rails-more-secure-than-php",
+    title: "Is Rails More Secure Than PHP? What the 2025 Vulnerability Data Actually Shows",
+    seoTitle: "Is Rails More Secure Than PHP? The 2025 Data",
+    description:
+      "Rails vs PHP and WordPress security: what Patchstack's 2025 data shows, which protections Rails turns on by default and why the advantage ends when your version loses support.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-10-27",
+    updatedAt: "2026-10-27",
+    readingMinutes: 6,
+    intro:
+      "Is Rails more secure than PHP? Counting CVEs per language does not answer it: the counts depend on how products are named, and PHP covers everything from Laravel apps to plugins written in an afternoon. A better question is where vulnerabilities actually come from. The 2025 data from the WordPress ecosystem gives a clear answer, and it explains why a well-maintained Rails app starts from a stronger position.",
+    sections: [
+      {
+        heading: "Where PHP vulnerabilities come from",
+        paragraphs: [
+          "Patchstack's State of WordPress Security in 2026 report counted 11,334 new vulnerabilities in the WordPress ecosystem in 2025, 42% more than in 2024. Of those, 91% were in plugins and 9% in themes. WordPress core had only 6, all low priority.",
+          "Two more figures from the same report show why this matters: 46% of the vulnerabilities had no fix from the developer when they became public, and the weighted median time to the first exploit was 5 hours. A typical WordPress site runs many plugins from different authors, and each one is a door that someone else has to keep locked.",
+          "The language is not the problem. Laravel, the most popular PHP framework, ships with CSRF protection and escaped template output, much like Rails. The difference is between an application built on one framework with secure defaults and a site assembled from many third-party plugins.",
+        ],
+      },
+      {
+        heading: "What Rails protects by default",
+        paragraphs: [
+          "Rails makes the safe option the default for the most common web attacks. These come from the official Rails guides.",
+        ],
+        list: [
+          "CSRF: forgery protection is on by default in new Rails applications, and every form generated by Rails includes a security token.",
+          "XSS: values printed in ERB views with <%= %> are escaped automatically; inserting raw HTML requires an explicit raw or html_safe.",
+          "SQL injection: finders such as Model.find(id) escape input automatically, as do hash conditions like where(email: value). The risk returns when code builds SQL strings by hand.",
+          "Mass assignment: with strong parameters, request parameters cannot be used to create or update records until each attribute is explicitly permitted.",
+          "Secrets: credentials live in an encrypted file, config/credentials.yml.enc, and log filters for passwords, secrets and tokens are added by default.",
+          "Passwords: has_secure_password and the Rails 8 authentication generator store bcrypt hashes, never plain text.",
+        ],
+      },
+      {
+        heading: "What Rails does not do for you",
+        paragraphs: [
+          "Defaults reduce mistakes; they do not remove them. String interpolation inside where(), a careless html_safe, an authorization check missing from one controller, or a gem with a known vulnerability can open the same holes as in any other stack. Tools such as Brakeman for static analysis and bundler-audit or Dependabot for gem advisories catch many of these before they ship.",
+          "Gems are Rails' equivalent of plugins. What differs is how many you depend on and who maintains them, so review the Gemfile with the same care you would give a list of WordPress plugins.",
+        ],
+      },
+      {
+        heading: "The advantage ends when your version loses support",
+        paragraphs: [
+          "Every protection above assumes the framework still receives security patches. When a Rails version reaches end of life, new vulnerabilities in it are no longer fixed upstream, and the app is in the same position as a site running an abandoned plugin. Rails 7.2 lost security support on August 9, 2026, and Rails 8.0 loses it on November 7, 2026.",
+          "Before comparing frameworks, check the one you already run. Our free Rails Expiry Check reads your Gemfile.lock in the browser and shows the exact support dates for your Rails and Ruby versions.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Counting CVEs per language is not a fair comparison; look at where vulnerabilities come from.",
+      "In 2025, 91% of the 11,334 new WordPress-ecosystem vulnerabilities were in plugins, per Patchstack.",
+      "Rails turns on CSRF protection, output escaping, safe finders and strong parameters by default.",
+      "That advantage only lasts while your Rails and Ruby versions still receive security patches.",
+    ],
+    related: [
+      { href: "/us/rails-expiry-check", label: "Free Rails Expiry Check" },
+      { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
+      { href: "/us/blog/rails-8-authentication-vs-devise", label: "Rails 8 authentication vs Devise" },
+    ],
+  },
 ];
 
 export const usBlogSlugs = usBlogPosts.map((post) => post.slug);
