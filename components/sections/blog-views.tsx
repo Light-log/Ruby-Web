@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react";
 import { Navbar } from "@/components/sections/navbar";
@@ -222,6 +223,16 @@ export function BlogPostView({ copy, post, posts }: { copy: BlogCopy; post: Blog
               <FadeIn key={section.heading}>
                 <section className="mt-12">
                   <h2 className="font-display text-2xl text-ivory md:text-3xl">{section.heading}</h2>
+                  {section.image && (
+                    <Image
+                      src={section.image.src}
+                      alt={section.image.alt}
+                      width={section.image.width}
+                      height={section.image.height}
+                      sizes="(min-width: 768px) 720px, 100vw"
+                      className="mt-4 h-auto w-full rounded-2xl"
+                    />
+                  )}
                   {section.paragraphs.map((paragraph) => (
                     <p key={paragraph.slice(0, 40)} className="mt-4 leading-relaxed text-ivory-dim">
                       {paragraph}

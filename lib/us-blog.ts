@@ -668,7 +668,7 @@ export const usBlogPosts: BlogPost[] = [
         paragraphs: [
           "Patchstack's State of WordPress Security in 2026 report counted 11,334 new vulnerabilities in the WordPress ecosystem in 2025, 42% more than in 2024. Of those, 91% were in plugins and 9% in themes. WordPress core had only 6, all low priority.",
           "Two more figures from the same report show why this matters: 46% of the vulnerabilities had no fix from the developer when they became public, and the weighted median time to the first exploit was 5 hours. A typical WordPress site runs many plugins from different authors, and each one is a door that someone else has to keep locked.",
-          "The language is not the problem. Laravel, the most popular PHP framework, ships with CSRF protection and escaped template output, much like Rails. The difference is between an application built on one framework with secure defaults and a site assembled from many third-party plugins.",
+          "The language is not the problem. Laravel, for example, ships with CSRF protection and escaped template output, much like Rails. The difference is between an application built on one framework with secure defaults and a site assembled from many third-party plugins.",
         ],
       },
       {
