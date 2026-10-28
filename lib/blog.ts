@@ -11,6 +11,8 @@ export type BlogSection = {
   paragraphs: string[];
   list?: string[];
   ordered?: boolean;
+  /** Render en `public/blog/<slug>/NN.webp` (1600×900); se pinta bajo el título de la sección. */
+  image?: { src: string; alt: string; width: number; height: number };
 };
 
 export type BlogPost = {
@@ -789,6 +791,69 @@ export const blogPosts: BlogPost[] = [
       { href: "/servicios/automatizacion-de-procesos", label: "Automatización de procesos empresariales" },
       { href: "/espana/automatizacion-de-procesos", label: "Automatización de procesos para empresas en España" },
       { href: "/agenda", label: "Consulta inicial de 30 minutos" },
+    ],
+  },
+  {
+    slug: "web-wordpress-segura-datos-2025",
+    title: "¿Tu web en WordPress es segura? Lo que dicen los datos de 2025",
+    seoTitle: "¿Tu web en WordPress es segura? Datos de 2025",
+    description:
+      "En 2025 se publicaron 11.334 vulnerabilidades nuevas en el ecosistema WordPress y el 91 % estaba en plugins. Qué significa para la web de una pyme y qué revisar.",
+    eyebrow: "Seguridad de aplicaciones",
+    publishedAt: "2026-10-27",
+    updatedAt: "2026-10-27",
+    readingMinutes: 6,
+    intro:
+      "Si la web de tu empresa funciona con WordPress, la pregunta útil no es si WordPress es seguro, sino qué tienes instalado encima y quién lo mantiene al día. Los datos de 2025 lo dejan claro: casi todos los fallos de seguridad están en los plugins, no en WordPress.",
+    sections: [
+      {
+        heading: "Qué dicen los datos de 2025",
+        paragraphs: [
+          "El informe «State of WordPress Security in 2026» de Patchstack contó 11.334 vulnerabilidades nuevas en el ecosistema WordPress durante 2025, un 42 % más que en 2024. El 91 % estaba en plugins y el 9 % en temas. En el núcleo de WordPress solo se registraron 6, y de prioridad baja.",
+          "Dos cifras del mismo informe explican por qué esto importa a una pyme: el 46 % de esas vulnerabilidades no tenía parche del desarrollador cuando se hizo pública, y la mediana ponderada hasta el primer intento de explotación fue de 5 horas.",
+        ],
+      },
+      {
+        heading: "El problema no es WordPress ni PHP",
+        image: { src: "/blog/web-wordpress-segura-datos-2025/01.webp", alt: "Modelo 3D de una casa cuya fachada es una cuadrícula de doce puertas abiertas, una por plugin", width: 1600, height: 900 },
+        paragraphs: [
+          "Una web típica de WordPress suma plugins de muchos autores distintos: formularios, tienda, copias de seguridad, SEO, galerías. Cada uno es una puerta más que alguien tiene que mantener cerrada. Cuando su autor tarda en publicar el parche, o abandona el plugin, la puerta queda abierta aunque WordPress esté al día.",
+          "El riesgo crece con dos hábitos muy comunes: instalar plugins para resolver algo puntual y no quitarlos después, y posponer las actualizaciones por miedo a que la web se rompa.",
+        ],
+      },
+      {
+        heading: "Qué revisar en tu web",
+        paragraphs: [],
+        ordered: true,
+        list: [
+          "Inventario: apunta qué plugins y temas tienes instalados, activos o no, y para qué sirve cada uno.",
+          "Limpieza: desinstala los que no usas. Un plugin desactivado sigue en el servidor.",
+          "Actualizaciones: comprueba que WordPress, los plugins y el tema están en su última versión y decide con qué frecuencia se revisan.",
+          "Plugins abandonados: mira la fecha de su última actualización. Si lleva mucho tiempo sin cambios, busca una alternativa mantenida.",
+          "Copias de seguridad: confirma que existen, que se guardan fuera del servidor y que alguien ha probado a restaurar una.",
+          "Responsable: deja por escrito quién se encarga de todo lo anterior. Sin un nombre, no lo hace nadie.",
+        ],
+      },
+      {
+        heading: "Cuándo conviene una auditoría o un sistema a medida",
+        image: { src: "/blog/web-wordpress-segura-datos-2025/02.webp", alt: "Modelo 3D de una puerta blindada de acero con los cerrojos echados, delante de una pared de puertas abiertas", width: 1600, height: 900 },
+        paragraphs: [
+          "Si la web solo informa, con un buen mantenimiento suele bastar. Si recoge datos de clientes, cobra pagos o se conecta con tu ERP o tu CRM, conviene una revisión externa que vaya más allá de los plugins: permisos, formularios, integraciones y lo que se ve desde fuera.",
+          "Cuando una parte del negocio depende de muchos plugins encadenados, a veces sale más a cuenta construir esa parte como una aplicación propia. Frameworks como Rails o Laravel traen de fábrica protecciones como el token contra CSRF y el escapado de lo que se muestra en pantalla, y dependen de menos piezas de terceros. Aun así, también hay que mantenerlos actualizados.",
+          "En nuestras auditorías revisamos la web y sus integraciones y entregamos los hallazgos ordenados por impacto real, para que sepas qué arreglar primero.",
+        ],
+      },
+    ],
+    takeaways: [
+      "En 2025 hubo 11.334 vulnerabilidades nuevas en el ecosistema WordPress; el 91 % estaba en plugins (Patchstack).",
+      "El 46 % no tenía parche al hacerse pública y el primer intento de explotación llega en horas.",
+      "Haz inventario, quita lo que no usas, actualiza y nombra a un responsable.",
+      "Si la web maneja datos de clientes o pagos, pide una revisión externa.",
+    ],
+    related: [
+      { href: "/espana/auditoria-seguridad-aplicaciones", label: "Auditoría de seguridad de aplicaciones para empresas en España" },
+      { href: "/blog/priorizar-hallazgos-auditoria-seguridad-aplicaciones", label: "Cómo priorizar los hallazgos de una auditoría de seguridad" },
+      { href: "/servicios/seguridad-tecnica", label: "Servicio de seguridad técnica" },
     ],
   },
 ];
