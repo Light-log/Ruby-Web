@@ -29,10 +29,17 @@ test("counter renders its final value before client animation", () => {
 test("agenda page provides booking and WhatsApp fallback", () => {
   const source = fs.readFileSync("app/agenda/page.tsx", "utf8");
 
-  assert.match(source, /bookingUrl\(origin === "us" \? site\.usBookingUrl : undefined\)/);
+  assert.match(source, /bookingUrl\(\)/);
   assert.match(source, /site\.whatsAppUrl/);
   assert.match(source, /data-track="booking"/);
   assert.match(source, /utm_campaign/);
+  assert.match(source, /origen === "us"\) redirect\("\/us\/agenda"\)/);
+
+  const us = fs.readFileSync("app/us/agenda/page.tsx", "utf8");
+  assert.match(us, /site\.usBookingUrl\}\?utm_source=devruby\.org&utm_medium=organic&utm_campaign=us/);
+  assert.match(us, /site\.usWhatsAppUrl/);
+  assert.match(us, /data-track="booking"/);
+  assert.match(us, /<Footer lang="en" \/>/);
 });
 
 test("primary CTAs link to the agenda route", () => {
@@ -86,7 +93,7 @@ test("Spain leads retain their campaign origin through booking and contact", () 
   const contact = fs.readFileSync("components/sections/contact.tsx", "utf8");
   const route = fs.readFileSync("app/api/contact/route.ts", "utf8");
 
-  assert.match(agenda, /\["espana", "us"\]\.includes/);
+  assert.match(agenda, /origen === "espana" \? "espana"/);
   assert.match(contact, /get\("origen"\)/);
   assert.match(route, /Nuevo contacto\$\{sourceLabel\}/);
   assert.match(route, /Origen:/);

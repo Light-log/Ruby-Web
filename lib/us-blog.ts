@@ -18,7 +18,7 @@ export const usBlogCopy: BlogCopy = {
   heading: ["Practical guides for", "teams that run on software"],
   intro:
     "What we walk through with clients before a project starts: how to upgrade a Rails application safely, where AI actually removes work, and how to keep automation under control. No invented numbers or generic promises.",
-  agendaHref: "/agenda?origen=us",
+  agendaHref: "/us/agenda",
   t: {
     read: "Read guide",
     back: "Back to guides",
@@ -107,7 +107,7 @@ const posts: BlogPost[] = [
       { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7, 2026" },
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/application-security-audit", label: "Application security audit" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -179,7 +179,7 @@ const posts: BlogPost[] = [
     related: [
       { href: "/us/ai-workflow-automation", label: "AI workflow automation services" },
       { href: "/us/workflow-automation", label: "Workflow automation services" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -252,7 +252,7 @@ const posts: BlogPost[] = [
       { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7, 2026" },
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -317,7 +317,7 @@ const posts: BlogPost[] = [
     related: [
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -382,7 +382,7 @@ const posts: BlogPost[] = [
     related: [
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -444,7 +444,7 @@ const posts: BlogPost[] = [
     related: [
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/application-security-audit", label: "Application security audit" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -500,7 +500,7 @@ const posts: BlogPost[] = [
     related: [
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/application-security-audit", label: "Application security audit" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {
@@ -568,7 +568,7 @@ const posts: BlogPost[] = [
     related: [
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/custom-internal-tools", label: "Custom internal tools" },
-      { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
+      { href: "/us/agenda", label: "Book a 30-minute discovery call" },
     ],
   },
   {

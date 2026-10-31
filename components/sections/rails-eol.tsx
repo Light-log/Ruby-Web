@@ -87,7 +87,7 @@ export async function RailsEolPage({ cycle, url, heading, lead, meaning, steps, 
         <div className="mt-8 grid gap-4">{faqs.map(([q, a]) => <details key={q} className="rounded-2xl border border-black/8 bg-white/75 px-6 py-5 shadow-card"><summary className="cursor-pointer list-none font-semibold text-ivory marker:hidden">{q}</summary><p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory-dim">{a}</p></details>)}</div>
         <Link href="/us/ruby-on-rails-consulting" className="mt-10 inline-flex items-center gap-2 font-semibold text-crimson hover:text-crimson-dark">Ruby on Rails consulting and upgrades <ArrowRight className="h-4 w-4" /></Link>
       </div></section>
-      <Footer />
+      <Footer lang="en" />
     </main>
   );
 }
