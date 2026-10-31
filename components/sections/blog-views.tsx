@@ -161,7 +161,7 @@ export function BlogIndexView({ copy, posts }: { copy: BlogCopy; posts: BlogPost
         </div>
       </section>
 
-      <Footer />
+      <Footer lang={copy.lang} />
     </main>
   );
 }
@@ -326,7 +326,7 @@ export function BlogPostView({ copy, post, posts }: { copy: BlogCopy; post: Blog
         </section>
       )}
 
-      <Footer />
+      <Footer lang={copy.lang} />
     </main>
   );
 }

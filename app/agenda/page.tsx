@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { CalendarDays, CheckCircle2, MessageCircle } from "lucide-react";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
@@ -27,8 +28,10 @@ export default async function AgendaPage({
   searchParams?: Promise<{ origen?: string }>;
 }) {
   const params = await searchParams;
-  const origin = ["espana", "us"].includes(params?.origen ?? "") ? params?.origen : undefined;
-  const rawBookingUrl = bookingUrl(origin === "us" ? site.usBookingUrl : undefined);
+  // Enlaces antiguos de la campaña de EE. UU.: la agenda en inglés vive en /us/agenda.
+  if (params?.origen === "us") redirect("/us/agenda");
+  const origin = params?.origen === "espana" ? "espana" : undefined;
+  const rawBookingUrl = bookingUrl();
   const configuredBookingUrl = rawBookingUrl && origin
     ? (() => {
         const url = new URL(rawBookingUrl);

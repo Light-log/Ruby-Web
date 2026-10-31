@@ -5,11 +5,12 @@ import { site } from "@/lib/site";
 
 /** Botón flotante de WhatsApp. Queda bajo el banner de cookies (z-1000) mientras este se muestra. */
 export function WhatsAppButton() {
-  const label = usePathname()?.startsWith("/us") ? "Chat on WhatsApp" : "Escríbenos por WhatsApp";
+  const us = usePathname()?.startsWith("/us");
+  const label = us ? "Chat on WhatsApp" : "Escríbenos por WhatsApp";
 
   return (
     <a
-      href={site.whatsAppUrl}
+      href={us ? site.usWhatsAppUrl : site.whatsAppUrl}
       target="_blank"
       rel="noreferrer"
       data-track="whatsapp"

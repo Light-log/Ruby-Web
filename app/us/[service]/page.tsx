@@ -33,5 +33,5 @@ function ServiceSchema({ service: slug }: { service: keyof typeof usServices }) 
 export default async function USServiceRoute({ params }: Props) {
   const { service: slug } = await params;
   if (!isUSServiceSlug(slug)) notFound();
-  return <main lang="en-US" className="relative"><ServiceSchema service={slug} /><Navbar /><USServicePage slug={slug} /><Footer /></main>;
+  return <main lang="en-US" className="relative"><ServiceSchema service={slug} /><Navbar /><USServicePage slug={slug} /><Footer lang="en" /></main>;
 }

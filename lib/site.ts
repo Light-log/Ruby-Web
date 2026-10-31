@@ -8,6 +8,9 @@ export const site = {
   usBookingUrl: "https://cal.com/devruby/discovery-call",
   whatsAppUrl:
     "https://wa.me/584164118747?text=Hola%20DEVRUBY%2C%20quiero%20hablar%20sobre%20un%20proyecto.",
+  /** Mismo número con el mensaje en inglés, para las rutas /us. */
+  usWhatsAppUrl:
+    "https://wa.me/584164118747?text=Hello%20DEVRUBY%2C%20I%20would%20like%20to%20talk%20about%20a%20project.",
   /** Datos registrales del aviso legal. Solo datos de documentos oficiales: no inventar. */
   registry: {
     // Fuente: Docs/Empresa_LLC/Ficha_Identificacion_DEVRUBY_LLC.pdf
