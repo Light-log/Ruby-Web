@@ -215,6 +215,14 @@ export function BlogPostView({ copy, post, posts }: { copy: BlogCopy; post: Blog
               </span>
             </div>
             <p className="mt-8 text-lg leading-relaxed text-ivory-dim">{post.intro}</p>
+            {post.cta && (
+              <Link
+                href={post.cta.href}
+                className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-crimson/15 bg-crimson/5 p-5 font-semibold text-crimson-dark transition-colors hover:border-crimson/30"
+              >
+                {post.cta.label} <ArrowRight className="h-5 w-5 shrink-0" aria-hidden="true" />
+              </Link>
+            )}
           </FadeIn>
 
           {post.sections.map((section) => {

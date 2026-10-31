@@ -29,6 +29,8 @@ export type BlogPost = {
   sections: BlogSection[];
   takeaways: string[];
   related: { href: string; label: string }[];
+  /** Enlace destacado bajo la intro (p. ej. el Rails Expiry Check en las guías de Rails). */
+  cta?: { href: string; label: string };
 };
 
 export const blogCopy: BlogCopy = {

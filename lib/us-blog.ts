@@ -37,7 +37,7 @@ export const usBlogCopy: BlogCopy = {
   },
 };
 
-export const usBlogPosts: BlogPost[] = [
+const posts: BlogPost[] = [
   {
     slug: "rails-7-to-8-upgrade-guide",
     title: "Rails 7 to 8 Upgrade Guide: What Breaks and How to Plan the Upgrade",
@@ -46,7 +46,7 @@ export const usBlogPosts: BlogPost[] = [
       "How to upgrade a production app from Rails 7 to Rails 8: the version path, the Ruby requirement, the changes that actually break code, and a safe rollout plan.",
     eyebrow: "Ruby on Rails",
     publishedAt: "2026-10-03",
-    updatedAt: "2026-10-03",
+    updatedAt: "2026-10-30",
     readingMinutes: 8,
     intro:
       "Rails 8 is mostly an additive release: new defaults such as Propshaft, the Solid Queue, Solid Cache and Solid Cable trio, Kamal 2 and an authentication generator are aimed at new applications, and none of them is mandatory for an existing one. What makes an upgrade from Rails 7 risky is everything that was deprecated along the way and is now gone. This guide covers the path we follow for production applications and the changes that tend to break real code.",
@@ -104,6 +104,7 @@ export const usBlogPosts: BlogPost[] = [
       "Propshaft and the Solid stack are optional for existing apps; enable new defaults gradually.",
     ],
     related: [
+      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7, 2026" },
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/application-security-audit", label: "Application security audit" },
       { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
@@ -184,12 +185,12 @@ export const usBlogPosts: BlogPost[] = [
   {
     slug: "rails-8-0-to-8-1-upgrade",
     title: "Upgrading from Rails 8.0 to 8.1: What Changes and What to Check",
-    seoTitle: "Rails 8.0 to 8.1 Upgrade: What to Check",
+    seoTitle: "Rails 8.1 Upgrade Guide: Moving from 8.0",
     description:
-      "What changes when you upgrade a production app from Rails 8.0 to 8.1: removed behaviors, new deprecations, features to adopt later, and a checklist.",
+      "Rails 8.0 loses security patches on November 7, 2026. What changes when you move a production app to 8.1: removed behaviors, deprecations and a checklist.",
     eyebrow: "Ruby on Rails",
     publishedAt: "2026-10-04",
-    updatedAt: "2026-10-04",
+    updatedAt: "2026-10-30",
     readingMinutes: 6,
     intro:
       "Rails 8.1, released in October 2025, is a smaller step than the jump from 7.2 to 8.0, but it still removes a few behaviors that real applications rely on. If your app is already on 8.0 with a clean deprecation log, the upgrade is usually a short project. This guide separates what you need to fix now from what you can adopt later.",
@@ -248,6 +249,7 @@ export const usBlogPosts: BlogPost[] = [
       "Adopt job continuations, Rails.event, and bin/ci after the upgrade, not during it.",
     ],
     related: [
+      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7, 2026" },
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
       { href: "/agenda?origen=us", label: "Book a 30-minute discovery call" },
@@ -715,6 +717,20 @@ export const usBlogPosts: BlogPost[] = [
     ],
   },
 ];
+
+// Las guías de Rails traen tráfico de Google pero nadie pasa a nada (GA4, oct-2026): Expiry Check bajo la intro.
+// `ref` por artículo para ver en /api/uso cuál convierte. Revisar el texto tras el 7/11/2026 (fin de 8.0).
+export const usBlogPosts: BlogPost[] = posts.map((post) =>
+  post.eyebrow === "Ruby on Rails"
+    ? {
+        ...post,
+        cta: {
+          href: `/us/rails-expiry-check?ref=blog-${post.slug}`,
+          label: "Rails 8.0 security patches end November 7, 2026. Is your app affected? Check your Gemfile.lock in 10 seconds: free, and the file never leaves your browser.",
+        },
+      }
+    : post,
+);
 
 export const usBlogSlugs = usBlogPosts.map((post) => post.slug);
 
