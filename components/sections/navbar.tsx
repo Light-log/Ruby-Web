@@ -2,21 +2,51 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic";
 import { Menu, X } from "lucide-react";
 import * as React from "react";
+import { site } from "@/lib/site";
 
-const links = [
-  { href: "/servicios", label: "Servicios" },
-  { href: "/proceso", label: "Proceso" },
-  { href: "/proyectos", label: "Proyectos" },
-  { href: "/nosotros", label: "Nosotros" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contacto", label: "Contacto" },
-];
+const copy = {
+  es: {
+    home: "/",
+    tagline: "SOLUCIONES TECNOLÓGICAS",
+    links: [
+      { href: "/servicios", label: "Servicios" },
+      { href: "/proceso", label: "Proceso" },
+      { href: "/proyectos", label: "Proyectos" },
+      { href: "/nosotros", label: "Nosotros" },
+      { href: "/blog", label: "Blog" },
+      { href: "/contacto", label: "Contacto" },
+    ],
+    cta: { href: "/agenda", label: "Agenda una consulta", track: "agenda" },
+    openMenu: "Abrir menú",
+    closeMenu: "Cerrar menú",
+  },
+  // Rutas /us: el lector llega desde Google a guías en inglés. /agenda está en español, así que la cita va directa a Cal.com.
+  en: {
+    home: "/us",
+    tagline: "TECHNOLOGY SOLUTIONS",
+    links: [
+      { href: "/us#solutions", label: "Services" },
+      { href: "/us/rails-expiry-check", label: "Rails Expiry Check" },
+      { href: "/us/blog", label: "Guides" },
+    ],
+    cta: {
+      href: `${site.usBookingUrl}?utm_source=devruby.org&utm_medium=organic&utm_campaign=us`,
+      label: "Book a discovery call",
+      track: "booking",
+    },
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+};
 
 export function Navbar() {
+  const t = copy[/^\/us(\/|$)/.test(usePathname() ?? "") ? "en" : "es"];
+  const links = t.links;
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
@@ -38,7 +68,7 @@ export function Navbar() {
           mientras el contenido crecía a 88rem con px-8, así que en monitores
           anchos el navbar iba más estrecho y desalineado respecto a la página. */}
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href={t.home} className="flex items-center gap-3 group">
           <Image
             src="/logo-mark.webp"
             alt="DEVRUBY"
@@ -51,7 +81,7 @@ export function Navbar() {
               DEVRUBY
             </span>
             <span className="text-[10px] tracking-[0.2em] text-ivory-muted">
-              SOLUCIONES TECNOLÓGICAS
+              {t.tagline}
             </span>
           </div>
         </Link>
@@ -70,9 +100,9 @@ export function Navbar() {
 
         <div className="flex items-center gap-4">
           <Magnetic>
-            <Link href="/agenda" className="hidden sm:block" data-track="agenda">
+            <Link href={t.cta.href} className="hidden sm:block" data-track={t.cta.track}>
               <Button as="span" variant="primary" size="sm">
-                Agenda una consulta
+                {t.cta.label}
               </Button>
             </Link>
           </Magnetic>
@@ -80,7 +110,7 @@ export function Navbar() {
           <button
             className="lg:hidden grid h-11 w-11 place-items-center text-ivory"
             onClick={() => setOpen(!open)}
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-label={open ? t.closeMenu : t.openMenu}
             aria-expanded={open}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -101,9 +131,9 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link href="/agenda" className="mt-3" onClick={() => setOpen(false)} data-track="agenda">
+            <Link href={t.cta.href} className="mt-3" onClick={() => setOpen(false)} data-track={t.cta.track}>
               <Button variant="primary" size="sm" className="w-full">
-                Agenda una consulta
+                {t.cta.label}
               </Button>
             </Link>
           </nav>
