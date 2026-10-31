@@ -37,7 +37,7 @@ const faqs: Array<[string, string]> = [
 export default async function RailsExpiryCheckPage() {
   const data = { rails: await cycles("rails"), ruby: await cycles("ruby") };
   const raw = bookingUrl(site.usBookingUrl);
-  let booking = "/contacto?origen=us";
+  let booking = "/us/contact";
   if (raw) {
     const u = new URL(raw);
     u.searchParams.set("utm_source", "devruby.org");

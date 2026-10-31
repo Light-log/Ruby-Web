@@ -27,6 +27,13 @@ const nextConfig = {
         destination: "/aviso-legal",
         permanent: true,
       },
+      {
+        // Enlaces antiguos de la campaña de EE. UU.: el contacto en inglés vive en /us/contact.
+        source: "/contacto",
+        has: [{ type: "query", key: "origen", value: "us" }],
+        destination: "/us/contact",
+        permanent: false,
+      },
     ];
   },
   async headers() {

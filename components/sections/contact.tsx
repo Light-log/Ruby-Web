@@ -12,7 +12,63 @@ import * as React from "react";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
-export function Contact() {
+const copy = {
+  es: {
+    sendError: "No se pudo enviar. Intenta de nuevo.",
+    sent: "Recibimos tu información. Revisaremos el contexto y te responderemos por el medio indicado para coordinar el siguiente paso.",
+    networkError: "Error de red. Intenta de nuevo.",
+    badge: "Contacto",
+    heading: ["Cuéntanos tu", "necesidad técnica"],
+    intro: "Comparte el contexto de tu operación y los sistemas involucrados. Así podremos entender si somos el equipo adecuado para ayudarte.",
+    name: ["Nombre", "Tu nombre"],
+    company: ["Empresa (opcional)", "Nombre de tu empresa"],
+    email: ["Email", "correo@empresa.com"],
+    phone: ["Teléfono (opcional)", "+58 ..."],
+    message: ["Mensaje", "Cuéntanos el objetivo, el proceso actual y los sistemas que intervienen."],
+    required: "Solo pedimos lo necesario para responderte. Nombre, email y mensaje son obligatorios.",
+    consent: ["He leído y acepto la", "Política de Privacidad", "y el tratamiento de mis datos para responder a mi solicitud."],
+    sending: "Enviando...",
+    submit: "Enviar mensaje",
+    phoneLabel: "Teléfono",
+    locationLabel: "Ubicación",
+    location: "Remoto \u2022 España, EE. UU. y Latam",
+    bookTitle: "¿Prefieres reservar una conversación?",
+    bookText: "Puedes elegir el siguiente paso que te resulte más cómodo.",
+    agendaHref: "/agenda",
+    agenda: "Ver agenda",
+    whatsApp: site.whatsAppUrl,
+  },
+  // /us/contact. La API responde en español: en inglés se muestra un error propio.
+  en: {
+    sendError: "We could not send your message. Please try again or email soporte@devruby.org.",
+    sent: "We received your message. We will review the context and reply through the channel you gave us to agree on the next step.",
+    networkError: "Network error. Please try again.",
+    badge: "Contact",
+    heading: ["Tell us about your", "technical challenge"],
+    intro: "Share the context of your operation and the systems involved, so we can tell whether we are the right team to help.",
+    name: ["Name", "Your name"],
+    company: ["Company (optional)", "Your company"],
+    email: ["Email", "you@company.com"],
+    phone: ["Phone (optional)", "+1 ..."],
+    message: ["Message", "Tell us the goal, the current process and the systems involved."],
+    required: "We only ask for what we need to reply. Name, email and message are required.",
+    consent: ["I have read and accept the", "Privacy Policy (in Spanish)", "and the processing of my data to answer my request."],
+    sending: "Sending...",
+    submit: "Send message",
+    phoneLabel: "Phone",
+    locationLabel: "Location",
+    location: "Remote \u2022 Spain, U.S. and Latin America",
+    bookTitle: "Prefer to talk live?",
+    bookText: "Pick whichever next step is easiest for you.",
+    agendaHref: "/us/agenda",
+    agenda: "See available times",
+    whatsApp: site.usWhatsAppUrl,
+  },
+};
+
+/** `origin` fijo (p. ej. "us") manda sobre `?origen=` de la URL. */
+export function Contact({ lang = "es", origin }: { lang?: "es" | "en"; origin?: string }) {
+  const t = copy[lang];
   const [status, setStatus] = React.useState<Status>("idle");
   const [msg, setMsg] = React.useState<string>("");
 
@@ -32,7 +88,7 @@ export function Contact() {
       message: String(fd.get("message") ?? ""),
       hp: String(fd.get("hp") ?? ""),
       consent: fd.get("consent") === "on",
-      origin: new URLSearchParams(window.location.search).get("origen") ?? "sitio-web",
+      origin: origin ?? new URLSearchParams(window.location.search).get("origen") ?? "sitio-web",
     };
 
     try {
@@ -46,18 +102,18 @@ export function Contact() {
 
       if (!r.ok || !data?.ok) {
         setStatus("error");
-        setMsg(data?.error ?? "No se pudo enviar. Intenta de nuevo.");
+        setMsg((lang === "es" && data?.error) || t.sendError);
         return;
       }
 
       setStatus("ok");
       window.dispatchEvent(new Event(LEAD_SUBMITTED_EVENT));
-      setMsg("Recibimos tu información. Revisaremos el contexto y te responderemos por el medio indicado para coordinar el siguiente paso.");
+      setMsg(t.sent);
       form.reset();
       setTimeout(() => setStatus("idle"), 4000);
     } catch {
       setStatus("error");
-      setMsg("Error de red. Intenta de nuevo.");
+      setMsg(t.networkError);
     }
   }
 
@@ -70,16 +126,15 @@ export function Contact() {
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-crimson/15 bg-crimson/5 px-4 py-2 text-xs text-crimson-dark mb-6">
               <MessageSquare className="h-3.5 w-3.5" />
-              Contacto
+              {t.badge}
             </div>
 
             <h2 className="font-display text-3xl tracking-tight text-ivory md:text-5xl">
-              Cuéntanos tu{" "}
-              <span className="gradient-text">necesidad técnica</span>
+              {t.heading[0]}{" "}
+              <span className="gradient-text">{t.heading[1]}</span>
             </h2>
             <p className="mt-4 max-w-2xl text-ivory-dim">
-              Comparte el contexto de tu operación y los sistemas involucrados.
-              Así podremos entender si somos el equipo adecuado para ayudarte.
+              {t.intro}
             </p>
           </div>
         </FadeIn>
@@ -97,21 +152,21 @@ export function Contact() {
                 />
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Input name="name" label="Nombre" placeholder="Tu nombre" autoComplete="name" maxLength={120} required />
-                  <Input name="company" label="Empresa (opcional)" placeholder="Nombre de tu empresa" autoComplete="organization" maxLength={120} />
+                  <Input name="name" label={t.name[0]} placeholder={t.name[1]} autoComplete="name" maxLength={120} required />
+                  <Input name="company" label={t.company[0]} placeholder={t.company[1]} autoComplete="organization" maxLength={120} />
                 </div>
 
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Input name="email" label="Email" placeholder="correo@empresa.com" type="email" inputMode="email" autoComplete="email" maxLength={254} required />
-                  <Input name="phone" label="Teléfono (opcional)" placeholder="+58 ..." type="tel" maxLength={40} inputMode="tel" autoComplete="tel" />
+                  <Input name="email" label={t.email[0]} placeholder={t.email[1]} type="email" inputMode="email" autoComplete="email" maxLength={254} required />
+                  <Input name="phone" label={t.phone[0]} placeholder={t.phone[1]} type="tel" maxLength={40} inputMode="tel" autoComplete="tel" />
                 </div>
 
                 <label className="grid gap-2 text-sm text-ivory/80">
-                  <span className="font-semibold">Mensaje</span>
+                  <span className="font-semibold">{t.message[0]}</span>
                   <textarea
                     name="message"
                     className="min-h-[140px] resize-y rounded-2xl border border-black/10 bg-dark-200/60 px-4 py-3 text-ivory placeholder:text-ivory-muted outline-none transition-all duration-300 focus:border-crimson/40 focus:ring-2 focus:ring-crimson/20 focus:bg-white"
-                    placeholder="Cuéntanos el objetivo, el proceso actual y los sistemas que intervienen."
+                    placeholder={t.message[1]}
                     minLength={10}
                     maxLength={5000}
                     required
@@ -119,7 +174,7 @@ export function Contact() {
                 </label>
 
                 <p className="text-xs text-ivory-muted">
-                  Solo pedimos lo necesario para responderte. Nombre, email y mensaje son obligatorios.
+                  {t.required}
                 </p>
 
                 <label className="flex items-start gap-3 text-sm text-ivory-dim">
@@ -130,14 +185,15 @@ export function Contact() {
                     className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-black/20 accent-crimson"
                   />
                   <span>
-                    He leído y acepto la{" "}
+                    {t.consent[0]}{" "}
                     <Link
                       href="/privacidad"
+                      hrefLang="es"
                       className="font-semibold text-crimson underline underline-offset-2 transition-colors hover:text-crimson-dark"
                     >
-                      Política de Privacidad
+                      {t.consent[1]}
                     </Link>{" "}
-                    y el tratamiento de mis datos para responder a mi solicitud.
+                    {t.consent[2]}
                   </span>
                 </label>
 
@@ -149,11 +205,11 @@ export function Contact() {
                 >
                   {status === "loading" ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
+                      <Loader2 className="h-4 w-4 animate-spin" /> {t.sending}
                     </>
                   ) : (
                     <>
-                      Enviar mensaje <Send className="h-4 w-4" />
+                      {t.submit} <Send className="h-4 w-4" />
                     </>
                   )}
                 </Button>
@@ -183,11 +239,11 @@ export function Contact() {
                 <InfoRow icon={<Mail className="h-4 w-4" />} label="Email">
                   soporte@devruby.org
                 </InfoRow>
-                <InfoRow icon={<Phone className="h-4 w-4" />} label="Teléfono">
+                <InfoRow icon={<Phone className="h-4 w-4" />} label={t.phoneLabel}>
                   {site.phone}
                 </InfoRow>
-                <InfoRow icon={<MapPin className="h-4 w-4" />} label="Ubicación">
-                  Remoto &bull; España, EE. UU. y Latam
+                <InfoRow icon={<MapPin className="h-4 w-4" />} label={t.locationLabel}>
+                  {t.location}
                 </InfoRow>
               </div>
 
@@ -195,14 +251,14 @@ export function Contact() {
 
               <div className="mt-8">
                 <div className="font-display text-xl text-ivory">
-                  ¿Prefieres reservar una conversación?
+                  {t.bookTitle}
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-ivory-dim">
-                  Puedes elegir el siguiente paso que te resulte más cómodo.
+                  {t.bookText}
                 </p>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <Link href="/agenda" data-track="agenda"><Button as="span" className="w-full">Ver agenda</Button></Link>
-                  <a href={site.whatsAppUrl} target="_blank" rel="noreferrer" data-track="whatsapp"><Button as="span" variant="outline" className="w-full">WhatsApp</Button></a>
+                  <Link href={t.agendaHref} data-track="agenda"><Button as="span" className="w-full">{t.agenda}</Button></Link>
+                  <a href={t.whatsApp} target="_blank" rel="noreferrer" data-track="whatsapp"><Button as="span" variant="outline" className="w-full">WhatsApp</Button></a>
                 </div>
               </div>
             </Card>
