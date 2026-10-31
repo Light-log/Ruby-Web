@@ -350,8 +350,11 @@ test("U.S. blog reuses the shared views, is in English and links to real pages",
   const data = fs.readFileSync("lib/us-blog.ts", "utf8");
   assert.match(data, /basePath: "\/us\/blog"/);
   assert.match(data, /locale: "en-US"/);
+  const campaign = fs.readFileSync("lib/us-campaign.ts", "utf8");
   for (const [, href] of data.matchAll(/href: "(\/us\/[a-z0-9-]+)"/g)) {
-    assert.match(fs.readFileSync("lib/us-campaign.ts", "utf8"), new RegExp(`"${href.split("/")[2]}":`), href);
+    const name = href.split("/")[2];
+    // Página de servicio de la campaña o página propia (Expiry Check, fin de vida…).
+    assert.ok(campaign.includes(`"${name}":`) || fs.existsSync(`app/us/${name}/page.tsx`), href);
   }
   assert.match(fs.readFileSync("app/sitemap.ts", "utf8"), /\/us\/blog\/\$\{post\.slug\}/);
   assert.match(fs.readFileSync("app/us/page.tsx", "utf8"), /href="\/us\/blog"/);
