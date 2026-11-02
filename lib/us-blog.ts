@@ -716,6 +716,95 @@ const posts: BlogPost[] = [
       { href: "/us/blog/rails-8-authentication-vs-devise", label: "Rails 8 authentication vs Devise" },
     ],
   },
+  {
+    // Datos y método: Ruby-Sociales-y-Marketing/resultados/2026-11-02-informe-rails/
+    slug: "rails-version-report-november-2026",
+    title: "Rails Version Report: 2 in 3 Active Rails Repos Will Run an Unsupported Version After November 7",
+    seoTitle: "Rails Version Report: Unsupported Rails in 2026",
+    description:
+      "We read the Gemfile.lock of 395 active public Rails repositories. 47% already run a Rails version without security patches; when Rails 8.0 support ends on November 7, 2026, it becomes 66%.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-11-02",
+    updatedAt: "2026-11-02",
+    readingMinutes: 6,
+    intro:
+      "Rails 8.0 stops receiving security patches on November 7, 2026. To see what that means in practice, we looked at which Rails version 395 active public repositories actually lock in their Gemfile.lock. Almost half are already on a version that gets no security fixes, and Rails 8.0 is the second most used series in the sample, so on November 7 that share jumps to two in three. Below are the numbers, how we got them and what they do not tell you.",
+    sections: [
+      {
+        heading: "The short version",
+        paragraphs: [
+          "All figures are from public GitHub repositories with Ruby as their main language, at least 5 stars and a push in the last 12 months, read on November 2, 2026.",
+        ],
+        list: [
+          "47% of the repositories (185 of 395) lock a Rails version that no longer receives security patches: 7.2 or older.",
+          "Rails 8.0 is the second most used series, with 19% of the sample (75 repositories).",
+          "After November 7, 2026, the unsupported share rises to 66% (260 of 395).",
+          "Among repositories with 50 or more stars, the share goes from 40% today to 55% after November 7.",
+          "Being on a supported series is not the whole story: only 8 of the 75 Rails 8.0 repositories were on the latest 8.0 release (8.0.5.1), and 31 of 132 on the latest 8.1 release (8.1.4).",
+        ],
+      },
+      {
+        heading: "Which Rails versions active repositories run",
+        paragraphs: [
+          "Support dates are from endoflife.date. Rails 8.1 receives security fixes until October 10, 2027; Rails 7.2 lost them on August 9, 2026.",
+        ],
+        list: [
+          "Rails 8.2 (pre-release): 3 repositories (1%).",
+          "Rails 8.1: 132 (33%). Supported.",
+          "Rails 8.0: 75 (19%). Supported until November 7, 2026.",
+          "Rails 7.2: 44 (11%). No security patches since August 9, 2026.",
+          "Rails 7.1: 38 (10%). No security patches since October 1, 2025.",
+          "Rails 7.0: 27 (7%). No security patches since April 1, 2025.",
+          "Rails 6.1: 30 (8%). No security patches since October 1, 2024.",
+          "Rails 6.0 and older: 46 (12%), some going back to Rails 2.3.",
+        ],
+      },
+      {
+        heading: "What changes on November 7",
+        paragraphs: [
+          "Nothing breaks on the day. The app keeps running, but the next security issue found in Action Pack, Active Record or any other Rails component will be fixed in 8.1 and newer only. From then on, an 8.0 app has two options when an advisory is published: upgrade under pressure or carry the risk.",
+          "The good news is that 8.0 is the cheapest series to move. The jump to 8.1 is a minor upgrade with a short list of deprecations, and it buys support until October 2027. Apps on 7.2 or older have a longer path, because Rails recommends upgrading one minor version at a time.",
+        ],
+      },
+      {
+        heading: "How we measured it",
+        paragraphs: [
+          "We used GitHub's repository search for public, non-fork, non-archived repositories with Ruby as the main language, at least 5 stars and a push between November 2025 and November 2, 2026. To spread the sample across the year, we searched in twelve 30-day windows and kept up to 300 results from each, 3,578 repositories in total.",
+          "For each one we downloaded the Gemfile.lock from its default branch and read the exact Rails version it locks. 395 repositories had Rails in the lock file; the rest were gems, scripts or apps without a lock file. We then compared each version with its official support dates. We do not publish the names of the repositories: the point is the pattern, not any one project.",
+        ],
+      },
+      {
+        heading: "What this data does not tell you",
+        paragraphs: [
+          "Public repositories are not the same as production apps. The sample leans towards open source projects, gems that lock Rails only to run their tests, demos and side projects, and it leaves out private company code entirely. A recent push does not mean the code is deployed anywhere.",
+          "With 395 repositories, the margin of error is about 5 percentage points either way. Treat the figures as a signal of how common unsupported Rails is, not as a census. If anything, private apps with no one assigned to upgrades are likely to lag further behind than public code that someone is actively pushing to.",
+        ],
+      },
+      {
+        heading: "If your app is in the 66%",
+        paragraphs: [],
+        ordered: true,
+        list: [
+          "Check the exact Rails and Ruby versions in your Gemfile.lock and their support dates.",
+          "Whatever the series, move to its latest patch release now: it is the smallest change and it includes the security fixes already published.",
+          "If you are on Rails 8.0, plan the move to 8.1 before your next feature cycle; it is usually a short project.",
+          "If you are on 7.2 or older, map the path one minor version at a time and upgrade Ruby separately, before or after Rails.",
+          "Assign someone to check support dates twice a year. Most apps fall behind because no one owns the upgrade, not because it is hard.",
+        ],
+      },
+    ],
+    takeaways: [
+      "47% of 395 active public Rails repositories already lock a Rails version without security patches.",
+      "Rails 8.0 is 19% of the sample; after November 7, 2026, the unsupported share reaches 66%.",
+      "Few repositories run the latest patch of their series, even on supported versions.",
+      "Rails 8.0 to 8.1 is the cheapest upgrade on the list and adds support until October 2027.",
+    ],
+    related: [
+      { href: "/us/rails-expiry-check", label: "Free Rails Expiry Check" },
+      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7" },
+      { href: "/us/blog/rails-8-0-to-8-1-upgrade", label: "Rails 8.0 to 8.1 upgrade guide" },
+    ],
+  },
 ];
 
 // Las guías de Rails traen tráfico de Google pero nadie pasa a nada (GA4, oct-2026): Expiry Check bajo la intro.

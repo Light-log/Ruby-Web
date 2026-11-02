@@ -250,6 +250,10 @@ test("blog posts have unique slugs, dates and links to real service pages", () =
   for (const href of hrefs) {
     if (href === "/agenda") continue;
     const [, area, slug] = href.split("/");
+    if (area === "blog") {
+      assert.ok(slugs.includes(slug), `${href} points to a real article`);
+      continue;
+    }
     const catalog = { espana: "lib/spain-campaign.ts", us: "lib/us-campaign.ts", servicios: "lib/services-catalog.ts" }[area];
     assert.ok(catalog, `unknown area in ${href}`);
     assert.match(fs.readFileSync(catalog, "utf8"), new RegExp(`"${slug}":`), `${href} points to a real page`);
