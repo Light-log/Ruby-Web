@@ -858,6 +858,95 @@ export const blogPosts: BlogPost[] = [
       { href: "/servicios/seguridad-tecnica", label: "Servicio de seguridad técnica" },
     ],
   },
+  {
+    slug: "integracion-erp-crm",
+    title: "Integración de ERP y CRM: cómo conectarlos sin duplicar datos",
+    seoTitle: "Integración de ERP y CRM sin duplicar datos",
+    description:
+      "Qué datos deben pasar del CRM al ERP y al revés, quién manda en cada campo, las tres formas de conectarlos y cómo evitar pedidos duplicados cuando algo falla.",
+    eyebrow: "Integración de sistemas",
+    publishedAt: "2026-11-02",
+    updatedAt: "2026-11-02",
+    readingMinutes: 7,
+    intro:
+      "El CRM es donde el equipo comercial gana el cliente; el ERP, donde administración factura y cobra. Si no se hablan, alguien vuelve a teclear cada pedido, el comercial no sabe si el cliente tiene facturas pendientes y los dos sistemas acaban con versiones distintas del mismo cliente. Esta guía explica qué conectar, en qué dirección y con qué herramienta, para que el dato se escriba una sola vez.",
+    sections: [
+      {
+        heading: "Qué datos pasan de un sistema a otro",
+        paragraphs: [
+          "No hace falta sincronizarlo todo. En la mayoría de empresas el intercambio útil se reduce a cuatro flujos, y cada uno va en una sola dirección.",
+        ],
+        list: [
+          "Cliente, del CRM al ERP: cuando la oportunidad se gana, el cliente se crea en el ERP con sus datos fiscales, sin volver a teclearlo.",
+          "Pedido, del CRM al ERP: el presupuesto aceptado se convierte en pedido de venta con las mismas líneas y precios.",
+          "Catálogo y precios, del ERP al CRM: el comercial presupuesta con los artículos y tarifas que administración mantiene.",
+          "Facturas y cobros, del ERP al CRM: el comercial ve si el cliente debe dinero antes de ofrecerle otra venta.",
+        ],
+      },
+      {
+        heading: "Un dueño por campo, no solo por sistema",
+        paragraphs: [
+          "Decir que el CRM manda en los clientes se queda corto. El nombre comercial, el contacto y la fase de venta los cuida el equipo comercial en el CRM; el NIF, la dirección fiscal y la forma de pago, administración en el ERP. Si cada campo tiene un único sistema que lo escribe, la sincronización deja de pisarse a sí misma.",
+          "La otra pieza es el identificador común. Guarda el código del cliente del ERP en una ficha del CRM, y el identificador del CRM en el ERP. Casar registros por nombre o por correo funciona en una demo y falla con el primer «S.L.» que alguien escribe de otra forma. Si todavía no sabes cuántos duplicados tienes, empieza por nuestra guía para detectarlos antes de conectar nada.",
+        ],
+      },
+      {
+        heading: "Tres formas de conectarlos",
+        paragraphs: [
+          "La elección depende de cuánto se parecen tus reglas a las del resto de empresas y de cuántas operaciones mueves al día.",
+        ],
+        list: [
+          "Conector nativo o del marketplace del CRM o del ERP: se activa en días y suele estar incluido o tener un coste fijo. Sirve si sus campos y reglas encajan con tu proceso; si no, te obliga a cambiar el proceso.",
+          "Plataforma de automatización como Make, n8n o Zapier: buena para flujos sencillos y volumen moderado, por ejemplo crear el cliente en el ERP cuando se gana una oportunidad. Con muchas reglas o miles de operaciones al mes, el coste y el mantenimiento crecen rápido.",
+          "Integración propia sobre las APIs de ambos sistemas: tiene sentido cuando hay reglas propias de la empresa, mucho volumen o necesitas un registro completo de qué se sincronizó. Requiere quien la mantenga cuando cambie una de las dos APIs.",
+        ],
+      },
+      {
+        heading: "Al momento o cada cierto tiempo",
+        paragraphs: [
+          "Los webhooks avisan al instante de un cambio, por ejemplo una oportunidad ganada, y son la opción natural para el pedido. Pero un aviso se puede perder si el otro sistema está caído en ese momento.",
+          "Por eso conviene combinarlos con una consulta periódica, cada hora o cada noche, que compare y recupere lo que se quedó por el camino. Para catálogo, precios y cobros, una sincronización programada suele bastar. Ten en cuenta los límites de peticiones de cada API: una carga inicial de miles de registros hay que hacerla por tandas.",
+        ],
+      },
+      {
+        heading: "Qué pasa cuando algo falla",
+        paragraphs: [
+          "Una integración que funciona el día de la demo no es lo difícil. Lo difícil es el día en que el ERP rechaza un pedido porque falta un dato fiscal. Para que ese día no cueste un cliente, la integración necesita cuatro cosas.",
+        ],
+        list: [
+          "Registro de cada sincronización: qué registro, cuándo, en qué dirección y con qué resultado.",
+          "Reintentos sin duplicar: si un pedido se envía dos veces, el ERP debe reconocerlo por su identificador y no crear otro.",
+          "Una bandeja de errores que mire una persona, con el motivo legible, en lugar de un correo automático que nadie abre.",
+          "Un cuadre periódico: el número de pedidos ganados en el CRM y de pedidos creados en el ERP debería coincidir cada semana.",
+        ],
+      },
+      {
+        heading: "Cómo arrancar el proyecto",
+        paragraphs: [],
+        ordered: true,
+        list: [
+          "Elige un solo flujo para empezar, normalmente cliente y pedido del CRM al ERP.",
+          "Escribe la tabla de campos: qué campo, en qué sistema se escribe y cómo se llama en el otro.",
+          "Limpia los duplicados existentes y asigna el identificador común a los clientes actuales.",
+          "Decide la herramienta con las reglas reales sobre la mesa, no con la lista de funciones del proveedor.",
+          "Prueba con datos copiados, no con los de producción, incluidos los casos raros: clientes extranjeros, descuentos y abonos.",
+          "Pon en marcha el registro y la bandeja de errores antes de activar la sincronización.",
+          "Cuando el primer flujo lleve un mes sin incidencias, añade el siguiente.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Cuatro flujos cubren casi todo: cliente y pedido hacia el ERP; catálogo y cobros hacia el CRM.",
+      "Un sistema dueño por campo y un identificador común en los dos lados.",
+      "Conector nativo si tu proceso es estándar; automatización para flujos simples; integración propia si hay reglas o volumen.",
+      "Registro, reintentos sin duplicar, bandeja de errores y cuadre semanal desde el primer día.",
+    ],
+    related: [
+      { href: "/espana/integracion-api-sistemas", label: "Integración de APIs y sistemas para empresas en España" },
+      { href: "/blog/detectar-datos-duplicados-crm-erp-hojas-de-calculo", label: "Datos duplicados entre CRM, ERP y hojas de cálculo" },
+      { href: "/blog/make-vs-n8n-vs-zapier", label: "Make, n8n o Zapier: cuál elegir" },
+    ],
+  },
 ];
 
 export const blogSlugs = blogPosts.map((post) => post.slug);
