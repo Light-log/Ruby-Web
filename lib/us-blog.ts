@@ -805,6 +805,104 @@ const posts: BlogPost[] = [
       { href: "/us/blog/rails-8-0-to-8-1-upgrade", label: "Rails 8.0 to 8.1 upgrade guide" },
     ],
   },
+  {
+    slug: "rails-security-release-november-2026",
+    title: "Rails Security Release, November 4, 2026: 21 Advisories and No Fix for Rails 7.2",
+    seoTitle: "Rails Security Release Nov 2026: 21 Advisories",
+    description:
+      "Rails 8.1.4.1 and 8.0.5.2 fix 21 vulnerabilities, one critical in Active Storage. Who is affected, what to upgrade, and what to do on Rails 7.2 or older.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-11-04",
+    updatedAt: "2026-11-04",
+    readingMinutes: 7,
+    intro:
+      "On November 4, 2026 the Rails team released Rails 8.1.4.1 and 8.0.5.2, two security releases that fix 21 vulnerabilities: one critical, four high, thirteen medium and three low. The critical one lets an unauthenticated attacker write, and in some setups read, files on the server through an image upload. Only the 8.1 and 8.0 series get the fix. Rails 7.2 and every older version are unsupported and will not be patched, and Rails 8.0 itself loses security support three days later, on November 7. This guide explains which advisories matter most, how to tell whether your app is exposed, and what to do on each version.",
+    sections: [
+      {
+        heading: "What was released",
+        paragraphs: [
+          "The official announcement on rubyonrails.org lists 21 GitHub security advisories. Most affect both 8.1 and 8.0; a few, such as the RemoteIp spoofing issue, exist only in 8.1. The Rails team strongly recommends upgrading as soon as possible and says that users of older versions should move to at least the 8.0 series.",
+          "These are the five advisories rated critical or high:",
+        ],
+        list: [
+          "Critical, GHSA-f3w6-w445-fwh9: possible arbitrary file write and read in Active Storage image analysis through ImageMagick. Attaching an upload is enough; no variant or preview is needed.",
+          "High, GHSA-v924-7rp8-4mxh: possible arbitrary file read and remote code execution in Active Storage video previews, analysis and image processing, because the external tools choose a decoder from the uploaded file extension.",
+          "High, GHSA-wm3x-v3qw-4jh3: Strong Parameters bypass when the return value of Parameters#each_key is passed to mass assignment, an incomplete fix of CVE-2020-8164.",
+          "High, GHSA-2gff-2mmg-m73p (8.1 only): request.remote_ip can be spoofed with a Forwarded header when the proxy does not strip it, which can bypass IP-based rate limits and access rules.",
+          "High, GHSA-8474-xrp6-wh69: denial of service through safe_constantize, reachable by unauthenticated clients of the default Action Cable endpoint.",
+        ],
+      },
+      {
+        heading: "The critical one: Active Storage and ImageMagick",
+        paragraphs: [
+          "ImageMagick picks how to read a file from its content, and some of its coders act on other files named inside the image. Active Storage did not restrict them, and its ImageMagick analyzer runs as soon as a file is attached. A crafted upload can therefore write files on the server and, if attachments are stored with the Disk service, read files the application can read, such as secret_key_base and credentials for other systems.",
+          "According to the advisory, an application is affected when all three conditions hold: it uses ImageMagick for Active Storage (config.active_storage.variant_processor = :mini_magick, the default for apps on load_defaults 6.1 or earlier), its ImageMagick security policy does not already deny the coders involved (the policies packaged by Debian and Ubuntu do not), and it accepts uploads from untrusted users.",
+          "Apps that use libvips are not exposed to this advisory, but they can still be exposed to the video and audio one, because Active Storage analyzes video and audio attachments on upload by default.",
+        ],
+      },
+      {
+        heading: "Is your app affected?",
+        paragraphs: ["Answer these in order. Each one takes a minute with the repository open."],
+        list: [
+          "Which Rails version does Gemfile.lock pin? Anything below 8.0.5.2, or 8.1 below 8.1.4.1, is missing these fixes. On 7.2 or older there is no fixed version to install.",
+          "Does the app use Active Storage with uploads from users you do not control: avatars, documents, attachments in a form?",
+          "Which variant processor does it use? Look for config.active_storage.variant_processor in config/application.rb or config/environments/production.rb. If it is missing, check config.load_defaults: 6.1 or earlier means ImageMagick; 7.0 or later means libvips.",
+          "Are attachments stored with the Disk service (config/storage.yml)? Combined with ImageMagick, that is the case in which the advisory asks you to rotate secrets.",
+          "Does the app mount Action Cable and accept connections without authentication? That is the path to the safe_constantize denial of service.",
+        ],
+        ordered: true,
+      },
+      {
+        heading: "If you are on Rails 8.0 or 8.1",
+        paragraphs: [
+          "Upgrade to 8.1.4.1 or 8.0.5.2 and deploy. These are patch releases, so they should not need code changes, with three exceptions worth checking before you deploy.",
+          "If you are on 8.0, plan the move to 8.1 right after this patch: 8.0.5.2 is probably the last security release of the 8.0 series, which reaches end of life on November 7, 2026.",
+        ],
+        list: [
+          "An app with variant_processor = :mini_magick needs mini_magick 5.1 or newer. With an older mini_magick the app raises an exception during boot, so update it in the same change.",
+          "The fixed releases ship an ImageMagick policy that denies Ghostscript. An app that renders PDF or PostScript through ImageMagick must re-allow the gs delegate and the coders it uses in the host's policy.xml.",
+          "Action View now requires rails-html-sanitizer 1.7.2 or later. Sanitized HTML is serialized slightly differently, so tests that compare it as a string may fail.",
+          "If the app used ImageMagick with the Disk service and accepted uploads from strangers, change secret_key_base, the master key, the values in credentials.yml.enc, storage and database credentials, and third-party tokens. Upgrading closes the hole but does not undo a leak that already happened.",
+        ],
+      },
+      {
+        heading: "If you are on Rails 7.2 or older",
+        paragraphs: [
+          "There is no fixed version for you. Rails 7.2 lost security support on August 9, 2026, and the Rails team does not backport these patches. The realistic plan is to reduce exposure now and schedule the upgrade.",
+        ],
+        list: [
+          "Copy the rules of the policy shipped in the fixed releases, activestorage/lib/active_storage/image_magick/policy.xml, into ImageMagick's system policy, for example /etc/ImageMagick-7/policy.xml. At a minimum, deny the MSL coder, the Ghostscript coders and the gs delegate. This also protects ImageMagick calls outside Active Storage.",
+          "If you do not need video or audio analysis, consider limiting which content types users can upload until you upgrade.",
+          "If you do not use Action Cable, remove the endpoint with config.action_cable.mount_path = nil; if you do, reject unauthenticated connections in ApplicationCable::Connection.",
+          "Search the code for each_key and make sure its return value never reaches new, update or assign_attributes.",
+          "Plan the upgrade one minor version at a time toward 8.1, which is supported until October 2027. Going to 8.0 now would leave you unsupported again in three days.",
+        ],
+      },
+      {
+        heading: "What we saw in 395 active public Rails repositories",
+        paragraphs: [
+          "On November 4 we re-read the Gemfile.lock and configuration of the 395 active public repositories from our Rails Version Report, a few hours after the release. These are public projects, the default branch is not necessarily what runs in production, and we cannot see whether they accept uploads or harden ImageMagick, so treat the numbers as an order of magnitude, not an audit.",
+        ],
+        list: [
+          "7 of 395 (1.8%) already locked a fixed version a few hours after the release.",
+          "185 of 395 (46.8%) are on Rails 7.2 or older, a series that will not receive these fixes at all.",
+          "19 of 395 (4.8%) are configured to use ImageMagick for Active Storage, the first condition of the critical advisory. 13 of those 19 are on Rails 7.2 or older.",
+          "11 of those 19 lock mini_magick older than 5.1, so the patched Rails would fail to boot until mini_magick is updated too.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Rails 8.1.4.1 and 8.0.5.2, released November 4, 2026, fix 21 vulnerabilities, one of them critical.",
+      "The critical issue needs ImageMagick for Active Storage plus uploads from untrusted users; apps on load_defaults 6.1 or earlier use ImageMagick by default.",
+      "Rails 7.2 and older get no fix: harden ImageMagick's policy now and plan the upgrade to 8.1.",
+      "On 8.0, patch today and upgrade to 8.1 soon: 8.0 loses security support on November 7, 2026.",
+    ],
+    related: [
+      { href: "/us/rails-expiry-check", label: "Free Rails Expiry Check" },
+      { href: "/us/blog/rails-version-report-november-2026", label: "Rails Version Report: 2 in 3 repos unsupported after November 7" },
+      { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
+    ],
+  },
 ];
 
 // Las guías de Rails traen tráfico de Google pero nadie pasa a nada (GA4, oct-2026): Expiry Check bajo la intro.
