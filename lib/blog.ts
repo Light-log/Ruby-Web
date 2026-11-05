@@ -947,6 +947,106 @@ export const blogPosts: BlogPost[] = [
       { href: "/blog/make-vs-n8n-vs-zapier", label: "Make, n8n o Zapier: cuál elegir" },
     ],
   },
+  {
+    slug: "parche-rails-active-storage-y-linux-tcp-noviembre-2026",
+    title: "Dos fallos críticos en una semana: Rails Active Storage y el kernel de Linux",
+    seoTitle: "Rails Active Storage y Linux TCP: qué parchear",
+    description:
+      "Rails Active Storage (GHSA-f3w6-w445-fwh9) y el kernel de Linux (CVE-2026-98432): dos fallos de 9,8. Quién está expuesto y cómo parchear cada uno.",
+    eyebrow: "Seguridad de aplicaciones",
+    publishedAt: "2026-11-05",
+    updatedAt: "2026-11-05",
+    readingMinutes: 7,
+    intro:
+      "En los primeros días de noviembre de 2026 han salido dos avisos con puntuación 9,8 sobre 10 que tocan a muchas aplicaciones Rails en producción: uno en la propia aplicación, en cómo Active Storage analiza las imágenes subidas, y otro en el servidor que la ejecuta, el kernel de Linux. A fecha de hoy ninguno tiene ataques confirmados, pero los dos se arreglan con una actualización y conviene hacerla esta semana.",
+    sections: [
+      {
+        heading: "Rails Active Storage: una imagen subida puede escribir archivos en el servidor",
+        paragraphs: [
+          "El 4 de noviembre el equipo de Rails publicó las versiones 8.1.4.1 y 8.0.5.2, con 21 correcciones de seguridad: 1 crítica, 4 altas, 13 medias y 3 bajas. La crítica, GHSA-f3w6-w445-fwh9, permite que alguien que sube un archivo escriba archivos en el servidor y, si la aplicación los guarda en disco, también los lea.",
+          "Al adjuntar una imagen, Active Storage la analiza con ImageMagick sin limitar qué «coders» puede usar. Es el contenido del archivo el que elige el coder, y algunos (MSL, la familia Ghostscript, la indirección @archivo) leen o escriben otros archivos. El análisis se lanza al adjuntar: no hace falta pedir una miniatura ni una variante.",
+          "Tu aplicación está expuesta si se cumplen las tres condiciones siguientes:",
+        ],
+        list: [
+          "Acepta subidas de usuarios que no controlas: avatares, documentos, adjuntos de formularios.",
+          "config.active_storage.variant_processor es :mini_magick, el valor por defecto con load_defaults 6.1 o anterior.",
+          "La política de ImageMagick del servidor no bloquea ya MSL y Ghostscript. Las que traen Debian y Ubuntu no lo hacen.",
+        ],
+      },
+      {
+        heading: "Lectura de archivos y el aviso de vídeo",
+        paragraphs: [
+          "Si además usas el servicio Disk (:local), el atacante puede leer lo que lea la aplicación: secret_key_base, la master key, credenciales de otros sistemas. Con S3, GCS o Azure el fallo crítico se queda en escritura.",
+          "En el mismo paquete va GHSA-v924-7rp8-4mxh, de severidad alta: la extensión del nombre del archivo elegía el decodificador de FFmpeg o ImageMagick en vídeos y audios, con lectura de archivos y, en builds de FFmpeg con AviSynth, ejecución de código. Este afecta también a las aplicaciones que usan libvips si tienen activos los analizadores de vídeo y audio, que lo están por defecto.",
+        ],
+      },
+      {
+        heading: "Qué hacer en Rails",
+        paragraphs: [],
+        ordered: true,
+        list: [
+          "Ejecuta bundle update rails y comprueba la versión con bundle exec rails runner 'puts Rails.version'.",
+          "Si usas :mini_magick, sube mini_magick a 5.1 o superior: con una versión anterior la aplicación parcheada no arranca.",
+          "En Rails 7.2 o anterior no hay parche. Copia las reglas del policy.xml de la versión corregida a la política de ImageMagick del sistema (por ejemplo /etc/ImageMagick-7/policy.xml): como mínimo, deniega MSL, los coders de Ghostscript y el delegado gs, y verifícalo con magick -list policy. Para el aviso de vídeo, quita VideoPreviewer, VideoAnalyzer y AudioAnalyzer de la configuración de Active Storage.",
+          "En Rails 8.0, parchea hoy y planifica el salto a 8.1: la serie 8.0 deja de recibir parches de seguridad el 7 de noviembre.",
+          "Si estabas en el caso de lectura (Disk con ImageMagick), rota secretos: secret_key_base, master key, credenciales de almacenamiento y de base de datos, y tokens de terceros. Rotar secret_key_base cierra las sesiones de los usuarios; es el precio de no dejar la puerta abierta.",
+        ],
+      },
+      {
+        heading: "Lo que vimos en 395 repositorios públicos de Rails",
+        paragraphs: [
+          "El 4 de noviembre, horas después del aviso, releímos el Gemfile.lock y la configuración de 395 repositorios públicos y activos de Rails. Son proyectos públicos y su rama principal no tiene por qué ser lo que corre en producción, así que las cifras dan un orden de magnitud, no una auditoría.",
+        ],
+        list: [
+          "Solo 7 de 395 (1,8 %) tenían ya la versión corregida.",
+          "185 de 395 (46,8 %) están en Rails 7.2 o anterior, que no recibirá el parche.",
+          "19 de 395 (4,8 %) usan ImageMagick para Active Storage, la primera condición del fallo crítico; 13 de ellos están en Rails 7.2 o anterior y 11 tienen mini_magick anterior a 5.1.",
+        ],
+      },
+      {
+        heading: "Linux: un use-after-free en IPv4 TCP alcanzable desde la red",
+        paragraphs: [
+          "Por debajo de la aplicación, el kernel de Linux arrastra desde la versión 4.4 un use-after-free al establecer conexiones IPv4 TCP (CVE-2026-98432). Un atacante sin credenciales lo dispara enviando peticiones de conexión con opciones IP, Record Route o Timestamp, a cualquier puerto TCP abierto, aprovechando una carrera cuando el cliente retransmite. El equipo CVE del kernel lo puntúa 9,8; Red Hat empezó en 5,9 y lo subió a crítico; Amazon Linux lo deja en 8,1. IPv6 no está afectado en la ruta principal.",
+          "El 27 de octubre Anthropic afirmó que un modelo interno de investigación escribió un exploit de root remoto contra servidores con MPTCP, sin publicar el código; CloudLinux dice que no ha podido reproducirlo. En GitHub solo circula código que demuestra la carrera, no ejecución de código, y el fallo no figura en el catálogo de vulnerabilidades explotadas de CISA.",
+          "Estado de los parches a 5 de noviembre:",
+        ],
+        list: [
+          "RHEL 8, 9 y 10.2: corregido el 1 de noviembre (RHSA-2026:93414, 93412 y 93413).",
+          "Debian, Oracle Linux y SUSE: corregido en octubre.",
+          "Amazon Linux: corregido entre el 24 y el 30 de octubre.",
+          "Ubuntu 22.04, 24.04 y 26.04: el kernel corregido solo está en -proposed, el canal de pruebas.",
+          "Ubuntu 20.04 y anteriores: sin parche aún; hace falta Ubuntu Pro (ESM).",
+        ],
+      },
+      {
+        heading: "Qué hacer en el servidor",
+        paragraphs: [],
+        ordered: true,
+        list: [
+          "Actualiza el kernel y reinicia: sin reinicio sigues ejecutando el vulnerable. Compruébalo con uname -r.",
+          "En Ubuntu, vigila el tracker de Canonical: su postura es que la única mitigación válida es actualizar. Desactivar MPTCP no basta, porque el fallo está en IPv4 TCP.",
+          "Mientras llega el parche, Red Hat publicó una regla de nftables que descarta los paquetes IPv4 TCP con opciones IP. Bloquea el disparador conocido, pero puede romper cargas que usen esas opciones y no protege el tráfico entre contenedores del mismo host.",
+        ],
+      },
+      {
+        heading: "Por qué juntarlos",
+        paragraphs: [
+          "Son dos capas del mismo servidor. Una aplicación Rails en un VPS Ubuntu, con ImageMagick y almacenamiento en disco, tiene hoy dos puertas abiertas a la vez: una en el formulario de subida y otra en cualquier puerto TCP. Parchear la aplicación sin reiniciar el kernel, o al revés, deja la mitad del trabajo hecho.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Rails: actualiza a 8.1.4.1 o 8.0.5.2 y sube mini_magick a 5.1 o más; en 7.2 o anterior, endurece la política de ImageMagick y planifica la actualización.",
+      "Si usabas Disk con ImageMagick y subidas públicas, rota secretos.",
+      "Linux: kernel actualizado y reinicio; en Ubuntu, vigila cuándo sale de -proposed.",
+      "Ninguno tiene explotación confirmada hoy: es el momento barato de parchear.",
+    ],
+    related: [
+      { href: "/espana/auditoria-seguridad-aplicaciones", label: "Auditoría de seguridad de aplicaciones para empresas en España" },
+      { href: "/blog/priorizar-hallazgos-auditoria-seguridad-aplicaciones", label: "Cómo priorizar los hallazgos de una auditoría de seguridad" },
+      { href: "/servicios/seguridad-tecnica", label: "Servicio de seguridad técnica" },
+    ],
+  },
 ];
 
 export const blogSlugs = blogPosts.map((post) => post.slug);
