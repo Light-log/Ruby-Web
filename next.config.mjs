@@ -34,6 +34,12 @@ const nextConfig = {
         destination: "/us/contact",
         permanent: false,
       },
+      {
+        // El artículo conjunto Rails + Linux del 5/11 se partió en dos.
+        source: "/blog/parche-rails-active-storage-y-linux-tcp-noviembre-2026",
+        destination: "/blog/rails-active-storage-imagemagick-ghsa-f3w6-w445-fwh9",
+        permanent: true,
+      },
     ];
   },
   async headers() {
