@@ -104,7 +104,7 @@ const posts: BlogPost[] = [
       "Propshaft and the Solid stack are optional for existing apps; enable new defaults gradually.",
     ],
     related: [
-      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7, 2026" },
+      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life (November 7, 2026): what to do now" },
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/application-security-audit", label: "Application security audit" },
       { href: "/us/agenda", label: "Book a 30-minute discovery call" },
@@ -187,10 +187,10 @@ const posts: BlogPost[] = [
     title: "Upgrading from Rails 8.0 to 8.1: What Changes and What to Check",
     seoTitle: "Rails 8.1 Upgrade Guide: Moving from 8.0",
     description:
-      "Rails 8.0 loses security patches on November 7, 2026. What changes when you move a production app to 8.1: removed behaviors, deprecations and a checklist.",
+      "Rails 8.0 lost security patches on November 7, 2026. What changes when you move a production app to 8.1: removed behaviors, deprecations and a checklist.",
     eyebrow: "Ruby on Rails",
     publishedAt: "2026-10-04",
-    updatedAt: "2026-10-30",
+    updatedAt: "2026-11-10",
     readingMinutes: 6,
     intro:
       "Rails 8.1, released in October 2025, is a smaller step than the jump from 7.2 to 8.0, but it still removes a few behaviors that real applications rely on. If your app is already on 8.0 with a clean deprecation log, the upgrade is usually a short project. This guide separates what you need to fix now from what you can adopt later.",
@@ -249,7 +249,7 @@ const posts: BlogPost[] = [
       "Adopt job continuations, Rails.event, and bin/ci after the upgrade, not during it.",
     ],
     related: [
-      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7, 2026" },
+      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life (November 7, 2026): what to do now" },
       { href: "/us/ruby-on-rails-consulting", label: "Ruby on Rails consulting and development" },
       { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
       { href: "/us/agenda", label: "Book a 30-minute discovery call" },
@@ -801,7 +801,7 @@ const posts: BlogPost[] = [
     ],
     related: [
       { href: "/us/rails-expiry-check", label: "Free Rails Expiry Check" },
-      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do before November 7" },
+      { href: "/us/rails-8-0-end-of-life", label: "Rails 8.0 end of life: what to do now" },
       { href: "/us/blog/rails-8-0-to-8-1-upgrade", label: "Rails 8.0 to 8.1 upgrade guide" },
     ],
   },
@@ -813,7 +813,7 @@ const posts: BlogPost[] = [
       "Rails 8.1.4.1 and 8.0.5.2 fix 21 vulnerabilities, one critical in Active Storage. Who is affected, what to upgrade, and what to do on Rails 7.2 or older.",
     eyebrow: "Ruby on Rails",
     publishedAt: "2026-11-04",
-    updatedAt: "2026-11-04",
+    updatedAt: "2026-11-10",
     readingMinutes: 7,
     intro:
       "On November 4, 2026 the Rails team released Rails 8.1.4.1 and 8.0.5.2, two security releases that fix 21 vulnerabilities: one critical, four high, thirteen medium and three low. The critical one lets an unauthenticated attacker write, and in some setups read, files on the server through an image upload. Only the 8.1 and 8.0 series get the fix. Rails 7.2 and every older version are unsupported and will not be patched, and Rails 8.0 itself loses security support three days later, on November 7. This guide explains which advisories matter most, how to tell whether your app is exposed, and what to do on each version.",
@@ -856,7 +856,7 @@ const posts: BlogPost[] = [
         heading: "If you are on Rails 8.0 or 8.1",
         paragraphs: [
           "Upgrade to 8.1.4.1 or 8.0.5.2 and deploy. These are patch releases, so they should not need code changes, with three exceptions worth checking before you deploy.",
-          "If you are on 8.0, plan the move to 8.1 right after this patch: 8.0.5.2 is probably the last security release of the 8.0 series, which reaches end of life on November 7, 2026.",
+          "If you are on 8.0, plan the move to 8.1 right after this patch: 8.0.5.2 is the last security release of the 8.0 series, which reached end of life on November 7, 2026.",
         ],
         list: [
           "An app with variant_processor = :mini_magick needs mini_magick 5.1 or newer. With an older mini_magick the app raises an exception during boot, so update it in the same change.",
@@ -895,7 +895,7 @@ const posts: BlogPost[] = [
       "Rails 8.1.4.1 and 8.0.5.2, released November 4, 2026, fix 21 vulnerabilities, one of them critical.",
       "The critical issue needs ImageMagick for Active Storage plus uploads from untrusted users; apps on load_defaults 6.1 or earlier use ImageMagick by default.",
       "Rails 7.2 and older get no fix: harden ImageMagick's policy now and plan the upgrade to 8.1.",
-      "On 8.0, patch today and upgrade to 8.1 soon: 8.0 loses security support on November 7, 2026.",
+      "On 8.0, apply 8.0.5.2 and upgrade to 8.1: 8.0 lost security support on November 7, 2026.",
     ],
     related: [
       { href: "/us/rails-expiry-check", label: "Free Rails Expiry Check" },
@@ -906,14 +906,14 @@ const posts: BlogPost[] = [
 ];
 
 // Las guías de Rails traen tráfico de Google pero nadie pasa a nada (GA4, oct-2026): Expiry Check bajo la intro.
-// `ref` por artículo para ver en /api/uso cuál convierte. Revisar el texto tras el 7/11/2026 (fin de 8.0).
+// `ref` por artículo para ver en /api/uso cuál convierte. Texto revisado el 10/11/2026 (8.0 ya sin soporte).
 export const usBlogPosts: BlogPost[] = posts.map((post) =>
   post.eyebrow === "Ruby on Rails"
     ? {
         ...post,
         cta: {
           href: `/us/rails-expiry-check?ref=blog-${post.slug}`,
-          label: "Rails 8.0 security patches end November 7, 2026. Is your app affected? Check your Gemfile.lock in 10 seconds: free, and the file never leaves your browser.",
+          label: "Rails 8.0 stopped getting security patches on November 7, 2026. Is your app affected? Check your Gemfile.lock in 10 seconds: free, and the file never leaves your browser.",
         },
       }
     : post,

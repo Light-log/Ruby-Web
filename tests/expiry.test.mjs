@@ -33,7 +33,9 @@ test("veredictos con las fechas de endoflife.date", () => {
   assert.equal(r72.status, "expired");
   assert.equal(r72.latestPatch, "7.2.4");
   assert.equal(verdict("rails", "8.0.5.1", FALLBACK.rails, hoy).status, "security-only");
-  assert.equal(verdict("rails", "8.0.5.1", FALLBACK.rails, hoy).latestPatch, undefined);
+  assert.equal(verdict("rails", "8.0.5.1", FALLBACK.rails, hoy).latestPatch, "8.0.5.2");
+  assert.equal(verdict("rails", "8.0.5.2", FALLBACK.rails, hoy).latestPatch, undefined);
+  assert.equal(verdict("rails", "8.0.5.2", FALLBACK.rails, "2026-11-10").status, "expired");
   assert.equal(verdict("rails", "8.1.0", FALLBACK.rails, "2026-10-01").status, "supported");
   assert.equal(verdict("rails", "5.2.8", FALLBACK.rails, hoy).status, "expired");
   assert.equal(verdict("rails", "9.0.0", FALLBACK.rails, hoy).status, "unknown");

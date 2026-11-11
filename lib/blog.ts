@@ -955,7 +955,7 @@ export const blogPosts: BlogPost[] = [
       "GHSA-f3w6-w445-fwh9 (9,8): una subida a Active Storage escribe, y a veces lee, archivos del servidor vía ImageMagick. Quién está expuesto y cómo parchear.",
     eyebrow: "Ruby on Rails",
     publishedAt: "2026-11-05",
-    updatedAt: "2026-11-05",
+    updatedAt: "2026-11-10",
     readingMinutes: 5,
     intro:
       "El 4 de noviembre de 2026 el equipo de Rails publicó las versiones 8.1.4.1 y 8.0.5.2, con 21 correcciones de seguridad. La más grave, GHSA-f3w6-w445-fwh9, tiene una puntuación de 9,8 sobre 10: basta con que alguien suba una imagen para escribir archivos en el servidor y, en algunas configuraciones, leerlos. No hay ataques confirmados a fecha de hoy, pero Rails 7.2 y anteriores no recibirán el parche. Esta guía explica quién está expuesto y qué hacer en cada versión.",
@@ -988,7 +988,7 @@ export const blogPosts: BlogPost[] = [
           "Ejecuta bundle update rails y comprueba la versión con bundle exec rails runner 'puts Rails.version'.",
           "Si usas :mini_magick, sube mini_magick a 5.1 o superior: con una versión anterior la aplicación parcheada no arranca.",
           "En Rails 7.2 o anterior no hay parche. Copia las reglas del policy.xml de la versión corregida a la política de ImageMagick del sistema (por ejemplo /etc/ImageMagick-7/policy.xml): como mínimo, deniega MSL, los coders de Ghostscript y el delegado gs, y verifícalo con magick -list policy. Para el aviso de vídeo, quita VideoPreviewer, VideoAnalyzer y AudioAnalyzer de la configuración de Active Storage.",
-          "En Rails 8.0, parchea hoy y planifica el salto a 8.1: la serie 8.0 deja de recibir parches de seguridad el 7 de noviembre.",
+          "En Rails 8.0, aplica 8.0.5.2 y planifica el salto a 8.1: la serie 8.0 dejó de recibir parches de seguridad el 7 de noviembre y 8.0.5.2 fue su último parche.",
           "Si estabas en el caso de lectura (Disk con ImageMagick), rota secretos: secret_key_base, master key, credenciales de almacenamiento y de base de datos, y tokens de terceros. Rotar secret_key_base cierra las sesiones de los usuarios; es el precio de no dejar la puerta abierta.",
         ],
       },
@@ -1007,7 +1007,7 @@ export const blogPosts: BlogPost[] = [
     takeaways: [
       "Actualiza a 8.1.4.1 o 8.0.5.2 y sube mini_magick a 5.1 o más.",
       "En Rails 7.2 o anterior no hay parche: endurece la política de ImageMagick y planifica la actualización.",
-      "Rails 8.0 deja de recibir parches de seguridad el 7 de noviembre.",
+      "Rails 8.0 dejó de recibir parches de seguridad el 7 de noviembre: 8.0.5.2 fue el último.",
       "Si usabas Disk con ImageMagick y subidas públicas, rota secretos.",
     ],
     related: [
