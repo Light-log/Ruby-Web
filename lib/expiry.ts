@@ -22,11 +22,11 @@ export type Verdict = {
   latestPatch?: string;
 };
 
-/** Copia del 19/10/2026 por si endoflife.date no responde al compilar. */
+/** Copia del 10/11/2026 por si endoflife.date no responde al compilar. */
 export const FALLBACK: Record<Product, Cycle[]> = {
   rails: [
-    { cycle: "8.1", support: "2026-10-10", eol: "2027-10-10", latest: "8.1.4" },
-    { cycle: "8.0", support: "2026-05-07", eol: "2026-11-07", latest: "8.0.5.1" },
+    { cycle: "8.1", support: "2026-10-10", eol: "2027-10-10", latest: "8.1.4.1" },
+    { cycle: "8.0", support: "2026-05-07", eol: "2026-11-07", latest: "8.0.5.2" },
     { cycle: "7.2", support: "2025-08-09", eol: "2026-08-09", latest: "7.2.4" },
     { cycle: "7.1", support: "2024-10-01", eol: "2025-10-01", latest: "7.1.6" },
     { cycle: "7.0", support: "2023-10-15", eol: "2025-04-01", latest: "7.0.10" },

@@ -28,7 +28,7 @@ export default function Rails72EndOfLife() {
       "7.2 receives no fixes of any kind anymore: no bug fixes, no security patches, no backports.",
       "Every new CVE that affects 7.2 stays exploitable until you upgrade; there is no patch release to apply.",
       "An end-of-life framework is a common red flag in security questionnaires, customer audits, and cyber-insurance reviews.",
-      "The supported path is 8.1. Rails 8.0 stops getting security patches on November 7, 2026, so an upgrade landing on 8.0 only buys a few weeks.",
+      "The supported path is 8.1. Rails 8.0 stopped getting security patches on November 7, 2026, so an upgrade that lands on 8.0 leaves you unsupported again on day one.",
     ],
     steps: [
       ["Confirm what you run", "Check the Rails and Ruby versions actually deployed (Gemfile.lock, not memory). Our free Rails Expiry Check reads the file in your browser — nothing is uploaded."],
@@ -37,7 +37,7 @@ export default function Rails72EndOfLife() {
     ],
     faqs: [
       ["We're on Rails 7.2 and nothing is broken. Why move?", "Nothing being broken is not the same as nothing being vulnerable. Since August 9, 2026, new security issues in 7.2 go unpatched, and the gap between your version and the supported ones only gets more expensive to close."],
-      ["Should we stop at 8.0 or go straight to 8.1?", "Plan the path to land on 8.1. 8.0 loses security patches on November 7, 2026, so stopping there leaves you in the same situation within weeks. The 8.0 step is still useful as an intermediate, tested stop."],
+      ["Should we stop at 8.0 or go straight to 8.1?", "Go straight through to 8.1. 8.0 lost security patches on November 7, 2026, so stopping there leaves you in the same situation as today. The 8.0 step is still useful as an intermediate, tested stop on the way."],
       ["We don't have time or a team for the upgrade. What are the options?", "We do incremental Rails upgrades for U.S. businesses: an assessment of the app first, then one tested step at a time. If you already have a quote from another vendor, we also give a free second opinion on that estimate."],
     ],
   });
