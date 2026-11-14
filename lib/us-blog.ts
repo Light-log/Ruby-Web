@@ -903,6 +903,82 @@ const posts: BlogPost[] = [
       { href: "/us/blog/rails-7-to-8-upgrade-guide", label: "Rails 7 to 8 upgrade guide" },
     ],
   },
+  {
+    slug: "rails-8-0-end-of-life-what-to-do",
+    title: "Rails 8.0 Reached Official End of Life: What It Means and How to Move to 8.1",
+    seoTitle: "Rails 8.0 End of Life: Migration & Next Steps",
+    description:
+      "Rails 8.0 security patches ended on November 7, 2026. What that means after the November 4 vulnerabilities, how to audit exposure, and how to upgrade to 8.1.",
+    eyebrow: "Ruby on Rails",
+    publishedAt: "2026-11-14",
+    updatedAt: "2026-11-14",
+    readingMinutes: 7,
+    intro:
+      "On November 7, 2026, Rails 8.0 reached official end of life (EOL), exactly two years after its release. Under the Rails maintenance policy, 8.0 had already stopped receiving bug fixes in May 2026; as of November 7, security patches have ceased entirely. This transition arrived right after the November 4 security wave, which dropped 21 advisories across the ecosystem. If your production application is running Rails 8.0 or older, here is what official EOL means for your security posture and the exact roadmap to move safely to Rails 8.1.",
+    sections: [
+      {
+        heading: "The maintenance policy: where Rails versions stand today",
+        paragraphs: [
+          "The Rails core team maintains each major or minor release series under a strict timeline: normal bug fixes for 18 months, followed by security patches for an additional 6 months, giving each series a total lifespan of two years. Once a series reaches its second anniversary, it receives no further patches of any severity.",
+          "As of November 14, 2026, the status of recent Rails releases is:",
+        ],
+        list: [
+          "Rails 8.1: fully supported. Receives active bug fixes and all security patches.",
+          "Rails 8.0: end of life as of November 7, 2026. Its final release was 8.0.5.2 on November 4, 2026.",
+          "Rails 7.2: end of life since August 2026. Received zero patches during the November 4 security advisory cycle.",
+          "Rails 7.1 and older: completely unmaintained and vulnerable to multiple known CVEs.",
+        ],
+      },
+      {
+        heading: "Why running 8.0 post-EOL is dangerous after the November 4 release",
+        paragraphs: [
+          "The November 4 release was an eye-opener: 21 GitHub security advisories were published simultaneously, including a critical vulnerability in Active Storage image analysis via ImageMagick (GHSA-f3w6-w445-fwh9) that allows arbitrary file reads and writes on unpatched servers.",
+          "While Rails 8.0 did receive a last-minute patch (8.0.5.2) on November 4, any vulnerability discovered from November 8 onward will never be backported to 8.0. If a new zero-day surfaces in Action Pack, Active Record, or Action View, 8.0 applications will remain permanently unpatched.",
+          "Beyond technical exposure, running an unmaintained framework creates immediate governance friction. Cyber insurance policies increasingly exclude breach damages originating from end-of-life software, and SOC 2 or ISO 27001 auditors routinely flag Gemfile dependencies that have crossed vendor EOL dates.",
+        ],
+      },
+      {
+        heading: "Audit your application: 3-step checklist before touching code",
+        paragraphs: [
+          "Before planning a sprint, verify your true production dependency tree rather than relying on development memory:",
+        ],
+        list: [
+          "Check Gemfile.lock, not Gemfile: confirm whether rails is pinned below 8.0.5.2, and note your bundled Ruby version. Rails 8.1 requires Ruby 3.2 or newer, with Ruby 3.3 or 3.4 strongly recommended.",
+          "Verify the November 4 baseline: if you are still on 8.0.x below 8.0.5.2, patch to 8.0.5.2 first. It is always safer to resolve known security holes before executing a minor version transition.",
+          "Audit deprecation warnings: run your test suite with deprecation logging enabled (config.active_support.deprecation = :log or :raise in test). Deprecations in 8.0 become hard errors in 8.1.",
+        ],
+        ordered: true,
+      },
+      {
+        heading: "The upgrade path: from 8.0 to 8.1 with zero downtime",
+        paragraphs: [
+          "Upgrading from Rails 8.0 to 8.1 is an incremental minor release, not an architectural overhaul. In a well-tested application, the migration can be executed in a few focused steps:",
+          "1. Update the dependency: update your Gemfile to gem \x27rails\x27, \x27~> 8.1.4.1\x27 and run bundle update rails. Verify that dependent gems (like devise, sidekiq, or mini_magick) resolve cleanly.",
+          "2. Run the update task: execute bin/rails app:update to generate framework defaults. Review interactive diffs in config/environments/ and initializers carefully, accepting new security headers and session options.",
+          "3. Adopt new defaults gradually: keep config.load_defaults 8.0 in config/application.rb initially. Once all staging tests pass and the release is live, enable individual 8.1 flags in config/initializers/new_framework_defaults_8_1.rb before finally flipping load_defaults to 8.1.",
+        ],
+      },
+      {
+        heading: "When your team cannot pause feature delivery",
+        paragraphs: [
+          "Most engineering teams want to stay on supported versions, but roadmaps, customer deadlines, and backlog pressure push framework upgrades to \x27next quarter\x27. The danger is that deferred upgrades compound: moving from 8.0 to 8.1 takes days, but waiting until you must jump from 8.0 to 9.0 turns into a multi-month rescue project with elevated production risk.",
+          "At DEVRUBY, we perform scoped, incremental Rails upgrades for businesses with active production workloads. We assess the application repository, identify gem incompatibilities up front, and guarantee green test suites before any code lands in your main branch.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Rails 8.0 reached official end of life on November 7, 2026; no new security patches will be released for it.",
+      "The last supported patch for 8.0 is 8.0.5.2; every version prior to it is exposed to the November 4 CVEs.",
+      "Upgrading from 8.0 to 8.1 is a minor, non-breaking upgrade that should be scheduled immediately.",
+      "Running EOL frameworks creates security blindspots, insurance liabilities, and compliance audit failures.",
+    ],
+    related: [
+      { href: "/us/rails-expiry-check", label: "Free Rails Expiry Check" },
+      { href: "/us/ruby-on-rails-consulting", label: "Rails consulting, upgrades & rescue services" },
+      { href: "/us/blog/rails-security-release-november-2026", label: "Rails Security Release Nov 2026: 21 advisories" },
+      { href: "/us/blog/rails-8-0-to-8-1-upgrade", label: "Rails 8.0 to 8.1 upgrade guide" },
+    ],
+  },
 ];
 
 // Las guías de Rails traen tráfico de Google pero nadie pasa a nada (GA4, oct-2026): Expiry Check bajo la intro.

@@ -1070,6 +1070,147 @@ export const blogPosts: BlogPost[] = [
       { href: "/servicios/seguridad-tecnica", label: "Servicio de seguridad técnica" },
     ],
   },
+  {
+    slug: "verifactu-factura-electronica-que-exige-a-tu-software",
+    title: "Prórroga de VeriFactu y Factura Electrónica: qué exige la ley a tu software de gestión",
+    seoTitle: "VeriFactu y Factura Electrónica: requisitos de software",
+    description:
+      "Hacienda ajusta el calendario de VeriFactu hacia 2027/2028 para converger con la factura electrónica B2B. Qué requisitos técnicos exige a tu ERP o tienda y cómo adaptarlo.",
+    eyebrow: "Integración y normativa",
+    publishedAt: "2026-11-14",
+    updatedAt: "2026-11-14",
+    readingMinutes: 6,
+    intro:
+      "El anuncio del Ministerio de Hacienda de acompasar el calendario de VeriFactu con el despliegue de la factura electrónica obligatoria B2B (Ley Crea y Crece), proyectando su horizonte hacia finales de 2027 y 2028, ha dado un respiro temporal a muchas empresas. Sin embargo, interpretar esta prórroga como una invitación a retrasar las decisiones tecnológicas es un error costoso. Los requisitos de inalterabilidad, registro encadenado y código QR no van a cambiar. Explicamos qué exige la normativa a tu software y cómo adaptar tus sistemas actuales mediante APIs sin tener que cambiarlos por completo.",
+    sections: [
+      {
+        heading: "El calendario real: qué cambia y qué sigue vigente",
+        paragraphs: [
+          "El motivo del aplazamiento anunciado por Hacienda es práctico: evitar que el tejido empresarial afronte dos adaptaciones tecnológicas consecutivas y descoordinadas en un plazo de doce meses. La meta es la convergencia técnica entre el Reglamento de Sistemas Informáticos de Facturación (VeriFactu) y los formatos estructurados de la factura electrónica B2B.",
+          "No obstante, este ajuste no anula la ley: el marco legal formal sigue exigiendo que los programas de facturación garanticen la integridad y trazabilidad de los registros. Las empresas que pospongan la adaptación técnica hasta el último trimestre se encontrarán con cuellos de botella en sus proveedores de software, tarifas de urgencia y falta de tiempo para realizar pruebas en entornos reales.",
+        ],
+      },
+      {
+        heading: "Los cuatro requisitos técnicos que debe cumplir tu sistema",
+        paragraphs: [
+          "Cualquier aplicación que genere facturas (ya sea un ERP completo, un módulo en WooCommerce o un software desarrollado a medida) debe adaptarse a cuatro pilares obligatorios:",
+        ],
+        list: [
+          "Registro de facturación encadenado: cada factura generada calcula una huella o \x27hash\x27 SHA-256 que incluye los datos del registro y el hash de la factura previa. Esto crea una cadena criptográfica inviolable: si se borra o altera una factura intermedia, la cadena se rompe.",
+          "Código QR y huella fiscal visibles: las facturas impresas o en PDF deben incluir un código QR normalizado que permita al destinatario verificar su validez ante la Agencia Tributaria con un teléfono móvil.",
+          "Registro inalterable de eventos: el software debe auditar de forma autónoma los arranques, cierres de sesión, copias de seguridad, restauraciones y cualquier anomalía o intento de alteración de datos.",
+          "Modalidad VeriFactu (remisión continua): capacidad de remitir los registros de facturación de forma automática y cifrada a los servidores de la AEAT mediante servicios web con certificado electrónico reconocido.",
+        ],
+      },
+      {
+        heading: "¿Cambiar de ERP o integrar por API? El dilema de la pyme",
+        paragraphs: [
+          "Muchas pymes cuentan con software de gestión fuertemente arraigado en su operativa: sistemas a medida en PHP o Python, configuraciones avanzadas en Odoo o tiendas online complejas en WooCommerce, Shopify o PrestaShop. Reemplazar ese ecosistema por un software comercial homologado \x27llave en mano\x27 suele implicar costes de licenciamiento desorbitados, meses de migración y la pérdida de flujos de trabajo únicos.",
+          "La alternativa más eficiente y económica es construir una capa de integración API (un \x27bridge\x27 o conector fiscal). Este componente intercepta la creación de pedidos o facturas en tu software actual, genera el registro encadenado con su hash, firma digitalmente la petición y se comunica con la pasarela VeriFactu de la AEAT, devolviendo el código QR y la huella para su inserción en el documento final.",
+        ],
+      },
+      {
+        heading: "Casos habituales: tiendas online y facturación recurrente",
+        paragraphs: [
+          "En el comercio electrónico, el reto reside en emitir la factura simplificada u ordinaria al instante sin ralentizar la pasarela de pago del cliente. Mediante colas asíncronas de trabajo (background workers), el conector genera la factura y la comunica a Hacienda en segundo plano, evitando caídas durante picos de venta.",
+          "Para empresas de servicios con suscripciones mensuales o contratos recurrentes, la integración automatiza la generación masiva de registros encadenados y su posterior conciliación bancaria, eliminando la carga administrativa manual y el riesgo de descuadres ante inspecciones tributarias.",
+        ],
+      },
+      {
+        heading: "Plan de acción recomendado para los próximos meses",
+        paragraphs: [
+          "Aprovechar la prórroga de forma estratégica requiere actuar con método:",
+        ],
+        list: [
+          "1. Audita tus puntos de facturación: identifica todas las herramientas donde se generan cobros (tienda web, software de TPV físico, facturas manuales de administración).",
+          "2. Consulta a tus proveedores tecnológicos actuales: exige por escrito si certificarán su software ante Hacienda y qué coste tendrá la actualización.",
+          "3. Si usas software propio o a medida, planifica el conector API: diseñar la arquitectura con margen permite conectar con el entorno de pruebas de la AEAT y validar los flujos sin estrés.",
+        ],
+      },
+    ],
+    takeaways: [
+      "La prórroga unifica VeriFactu y la factura electrónica B2B, pero las exigencias técnicas de inalterabilidad y QR son definitivas.",
+      "El software de doble uso y la contabilidad paralela quedan totalmente erradicados bajo sanciones severas.",
+      "No es necesario descartar tu ERP o tienda actual: una capa de integración API permite cumplir la ley manteniendo tus herramientas.",
+      "Diseñar la integración con antelación evita sobrecostes de urgencia y saturación de proveedores tecnológicos.",
+    ],
+    related: [
+      { href: "/espana/integracion-api-sistemas", label: "Servicios de integración de APIs y sistemas para empresas" },
+      { href: "/espana/desarrollo-software-a-medida", label: "Desarrollo de software a medida y herramientas internas" },
+      { href: "/blog/integracion-erp-crm", label: "Integración de ERP y CRM: cómo conectar sistemas sin duplicar datos" },
+      { href: "/blog/software-a-medida-o-ajustar-herramientas", label: "¿Software a medida o herramientas comerciales? Cómo decidir" },
+    ],
+  },
+  {
+    slug: "vulnerabilidades-criticas-plugins-wordpress-lista-comprobacion",
+    title: "Vulnerabilidades críticas en plugins de WordPress: lista de comprobación para proteger tu web",
+    seoTitle: "Vulnerabilidades en WordPress: checklist de protección",
+    description:
+      "Las recientes fallas de ejecución remota (RCE) en plugins populares como Elementor o ACF Pro. Cómo saber si tu web está expuesta y medidas de mitigación.",
+    eyebrow: "Seguridad web",
+    publishedAt: "2026-11-14",
+    updatedAt: "2026-11-14",
+    readingMinutes: 6,
+    intro:
+      "Las continuas alertas de seguridad sobre vulnerabilidades críticas de ejecución remota de código (RCE) y escalada de privilegios en plugins ampliamente extendidos del ecosistema WordPress —incluyendo constructores visuales, gestores de campos avanzados y herramientas de duplicación— han puesto de manifiesto la fragilidad de miles de tiendas online y sitios corporativos. Cuando una vulnerabilidad RCE se explota activamente, un atacante no autenticado puede tomar el control del servidor en pocos segundos. Esta lista de comprobación técnica te permite auditar tu instalación y aplicar medidas de defensa en profundidad.",
+    sections: [
+      {
+        heading: "Por qué los plugins concentran el mayor riesgo de seguridad",
+        paragraphs: [
+          "El núcleo de WordPress cuenta con un escrutinio constante y un equipo de seguridad dedicado, pero el ecosistema de plugins es heterogéneo. La mayoría de brechas críticas no provienen de fallos en el core, sino de componentes de terceros que omiten validaciones básicas de permisos o procesan entradas de usuario sin sanitizar.",
+          "Entre los vectores más comunes detectados en las últimas vulnerabilidades destacan: llamadas AJAX accesibles sin autenticación (acciones registradas con wp_ajax_nopriv), deserialización insegura de objetos PHP, y rutas de subida de archivos que no verifican estrictamente el tipo MIME real ni la extensión en el disco.",
+          "Es un error creer que los ciberdelincuentes seleccionan sus víctimas manualmente: los ataques se ejecutan mediante bots automatizados que rastrean millones de dominios buscando versiones concretas de plugins vulnerables para inyectar puertas traseras (\x27web shells\x27), desviar pagos o robar bases de datos de clientes.",
+        ],
+      },
+      {
+        heading: "Lista de comprobación en cinco pasos para tu instalación",
+        paragraphs: [
+          "Aplica esta revisión técnica de inmediato sobre tu servidor o solicita a tu equipo técnico que verifique cada punto:",
+        ],
+        list: [
+          "1. Inventario y purga de extensiones inactivas: desactiva y elimina por completo cualquier plugin o tema que no esté en uso. Un plugin desactivado mantiene sus archivos PHP en el servidor (/wp-content/plugins/) y sigue siendo vulnerable a llamadas directas si contiene fallos de inclusión de archivos.",
+          "2. Bloqueo de ejecución PHP en carpetas de uploads: añade reglas en tu servidor web (Nginx o .htaccess en Apache) para prohibir tajantemente la ejecución de scripts .php dentro de /wp-content/uploads/. Si un plugin vulnerable permite subir un archivo malicioso camuflado, el servidor se negará a ejecutarlo.",
+          "3. Rotación de claves secretas y sales en wp-config.php: si sospechas de una intrusión o tras parchear una vulnerabilidad crítica, regenera las ocho constantes de seguridad (AUTH_KEY, SECURE_AUTH_KEY, LOGGED_IN_KEY, etc.). Esto invalida al instante todas las sesiones de cookies activas y expulsa accesos no autorizados.",
+          "4. Copias de seguridad automáticas y fuera del servidor (off-site): conservar los backups en el mismo directorio del hosting no sirve de nada si un atacante obtiene privilegios de ejecución. Las copias deben viajar cifradas a un almacenamiento independiente (S3, Cloudflare R2 o almacenamiento externo) con políticas de retención inmutables.",
+          "5. Auditoría de usuarios con rol de administrador: revisa la tabla de usuarios en busca de cuentas anómalas creadas recientemente. Muchos exploits de escalada de privilegios crean administradores ocultos para mantener acceso persistente tras el parcheo del plugin.",
+        ],
+      },
+      {
+        heading: "El dilema de las actualizaciones automáticas",
+        paragraphs: [
+          "Activar las actualizaciones automáticas en producción para todos los plugins parece la solución más cómoda, pero en plataformas complejas o tiendas WooCommerce activas puede generar incompatibilidades críticas, romper pasarelas de pago o desconfigurar estilos en pleno horario comercial.",
+          "La práctica recomendada en entornos profesionales es contar con un entorno de pruebas (staging) donde validar las actualizaciones antes de promoverlas a producción, respaldado por un sistema de monitorización de cambios que alerte en tiempo real sobre errores 500 o caídas de pasarelas de pago.",
+        ],
+      },
+      {
+        heading: "Protección perimetral y bastionado a nivel de infraestructura",
+        paragraphs: [
+          "La seguridad de una aplicación web debe estructurarse en capas. Más allá del código de WordPress, existen defensas perimetrales esenciales:",
+          "Configurar un cortafuegos de aplicaciones web (WAF) como Cloudflare bloquea patrones conocidos de explotación antes de que la petición toque tu servidor.",
+          "Asimismo, mantener el entorno PHP en una versión con soporte de parches activo y ajustar los permisos del sistema de archivos (archivos en 644, carpetas en 755 y wp-config.php en 400 o 440) impide que un script malicioso sobrescriba ficheros del sistema.",
+        ],
+      },
+      {
+        heading: "Cuándo solicitar una auditoría técnica externa",
+        paragraphs: [
+          "Si tu negocio procesa transacciones económicas, almacena datos personales de clientes o ha experimentado comportamientos anómalos (envío masivo de spam, redirecciones imprevistas en móviles o caídas inexplicables), una auditoría de seguridad especializada permite identificar puertas traseras ocultas y sanear la instalación con garantías.",
+          "En DEVRUBY realizamos auditorías de código, bastionado de servidores y sustitución de plugins comerciales inseguros por soluciones a medida optimizadas y seguras.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Los plugins representan más del 90% de los vectores de ataque en instalaciones de WordPress.",
+      "Elimina siempre los plugins inactivos: su presencia en disco sigue siendo un vector de explotación.",
+      "Bloquear la ejecución de scripts en /wp-content/uploads/ neutraliza la gran mayoría de subidas maliciosas.",
+      "Los backups deben ser externos e inmutables para garantizar la recuperación ante secuestro de datos o malware.",
+    ],
+    related: [
+      { href: "/espana/auditoria-seguridad-aplicaciones", label: "Auditoría de seguridad y bastionado técnico de aplicaciones" },
+      { href: "/blog/web-wordpress-segura-datos-2025", label: "Cómo mantener una web WordPress segura: datos y medidas clave" },
+      { href: "/blog/priorizar-hallazgos-auditoria-seguridad-aplicaciones", label: "Cómo priorizar los hallazgos de una auditoría de seguridad" },
+      { href: "/servicios/seguridad-tecnica", label: "Servicio de seguridad técnica" },
+    ],
+  },
 ];
 
 export const blogSlugs = blogPosts.map((post) => post.slug);
